@@ -1,0 +1,22 @@
+C-S 341 Software Engineering
+Project Meeting
+Project title:   Software for a shopping cart experience
+Group #:      4
+Members of the group:  Sal, David, Jack, Jack
+Meeting #:   1
+Held on: Sep 11, 2018 at 3:20 P.M.
+Location the U
+Members present: all the members were present
+Topic for discussion: Structure of the requirements document
+Report writer: Jack Collins
+Sept. 11, 2018
+Discussed basic vision
+Web Based Design
+Front-end and back-end teams
+Languages and tools
+PHP, Github, HTML, js and json, trello
+Want to have the basic back-end work down and a minimal GUI for the first demo
+We want to standardize our conventions. camelCase for variable names. 
+Next meeting and its agenda:
+The next meeting is planned to be on Sept. 14, 2018. We’ll begin to design project structure, create conventions, and begin to divide work
+
