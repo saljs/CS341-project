@@ -5,26 +5,67 @@
     % package that specifies normal margins
 \usepackage{makecell}
 \usepackage{setspace}
+\usepackage{tabularx}
+
+
 \doublespacing
 
 \begin{document}
     % line of code telling latex that your document is beginning
 
-\title{CS341 Shopping Card Project Plan}
+\title{CS341 Shopping Cart Project Plan}
 
 \author{Sal Skare}
 
 \maketitle 
     % tells latex to follow your header (e.g., title, author) commands.
 
-\section*{Project Overview} 
+\section*{Project Overview} The aim of this project is to develop a shopping cart software. A customer can browse or
+search items, add an item to or remove an item from his/her shopping cart, and edit item’s
+quantities in the shopping cart. The check out procedure requires promotion code if
+applies, shipping address, tax calculation and credit card information. An administrator
+can add an item to or remove an item from the system, and edit the item’s description and
+quantity in the system. The software should also have promotion occasionally.
+\\
+The following minimal set of functionalities must be included:
+\begin{itemize}
+    \item Register a customer into the system.
+    \item Modify the registered customer’s profile.
+    \item Browse, search, add, remove or edit items in the system or shopping cart.
+    \item Apply promotion code when check out if the promotion is valid.
+    \item The tax rate will be calculated based on the credit card’s billing address.
+    \item There should be at least three types of users: admin, registered customer, and guest.
+\end{itemize}
+
+\par A graphical user interface will be developed for this software. The interface must consist
+of multiple screens for different tasks. For example, there should be a welcome screen to
+start with which displays the various functionalities of the software. If one chooses to
+login or register to the system, there will be a separate window/screen that displays the
+requested information. 
+
+\par Our approach to this project will be to create a Software-as-a-Service model of cart software. Site administrators will be able to tailor their frontend to their business needs, and access the endpoints on our server using JavaScript.
 
 \section*{Project Plan}
-\begin{tabular}{l | l | l | l | l | l}
+\begin{tabularx}{\textwidth}{X | c | X | c | X }
     \hline
-    Deliverable & Estimated time to complete & Actual time & Deadline & Task lead & Notes \\
-
+    Deliverable & Estimated time to complete & Actual time & Deadline & Notes \\
     \hline
-\end{tabular}
+    Functional Requirements, Use Case Models, User Stories, Assumptions & 1.5 hours & & Sept. 27 & \\
+    \hline
+    Demo 1 & 20 hours & & Oct. 11 & \\
+    \hline
+    UML Diagrams & 10 hours & & Nov 1. & \\
+    \hline
+    Demo 2 & 25 hours & & Nov 15. & \\
+    \hline
+    Updated Documentation & 10 hours & & Nov. 29  & \\
+    \hline
+    Final Demo & 30 hours & & Dec 11 & \\
+    \hline
+    Final source code & 2 hours & & Dec 11. & We aim to keep our source code clean and well commented through the whole project \\
+    \hline
+    User manual & 4 hours & & Dec. 11 & \\
+    \hline
+\end{tabularx}
 
 \end{document}
