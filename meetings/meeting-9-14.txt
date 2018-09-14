@@ -1,1 +1,17 @@
+C-S 341 Software Engineering
+Project Meeting
+Project title:   Software for a shopping cart experience
+Group #:      1
+Members of the group:  Sal, David, Jack, Jack
+Meeting #:   1
+Held on: Sep 14, 2018 at 2:00 P.M.
+Location the U
+Members present: David, Jack, Jack
+Topic for discussion: project structure, create conventions, and begin to divide work
+Report writer: Jack Collins
+Sept. 14, 2018
+
+
+Next meeting and its agenda:
+The next meeting is planned to be on Sept. 14, 2018
 
