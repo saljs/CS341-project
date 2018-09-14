@@ -1,7 +1,11 @@
 Coding Conventions
+
 A. Variables
     1) Variable names should be in camelCase, except for constants
     2) conststants should be in ALLCAPS
 B. Comments
+    1) short description
+    2) parameters
+    3) return value
 C. Indenting
 D. 
