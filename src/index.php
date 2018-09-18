@@ -8,6 +8,7 @@ $MYSQLPASS = "A;nRmHG}xWwi";
 
 // Create MySQL connection
 $database = new mysqli($MYSQLSERVER, $MYSQLUSER, $MYSQLPASS, $MYSQLDB);
+$GLOBALS['database'] = $databse;
 
 // Check connection
 if ($database->connect_error) {
