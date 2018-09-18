@@ -1,5 +1,11 @@
 <?php 
 
+/*
+ * This page is responsible for parsing the URL and calling the 
+ * correct controller and function. It also handles the database 
+ * connection safely.
+ */
+
 // MySQL connection variables
 $MYSQLSERVER = "localhost";
 $MYSQLDB = "sals5552_cart";
@@ -26,7 +32,7 @@ class HTTPResponse {
     private $payload;
 
     /*
-     * Constructor.
+     * Constructor
      * @param code: the HTTP status code for this response.
      */
     public function __construct($code=200) {

@@ -4,12 +4,12 @@
  * Tests to make sure the server software 
  * is functioning correctly, as well as 
  * providing a simple example of how 
- * controllers sould look and work
+ * controllers should look and work
  */
 class test {
 
     /* 
-     * Echo's a varible back to the user
+     * Echos a variable back to the user
      * @param args: The list of params the user provided
      */
     static function testFunc($args): void {
