@@ -19,23 +19,16 @@ if ($database->connect_error) {
  */
 class HTTPResponse {
     //The HTTP status code (https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
-    private var $responseCode;
+    private $responseCode;
     
     //The payload object for this request
-    private var $payload;
+    private $payload;
 
     /*
-     * Default constructor, assumes a status code of 200, Success.
-     */
-    public function __construct() {
-        $this->responseCode = 200;
-    }
-
-    /*
-     * Constructor that allows different status codes.
+     * Constructor.
      * @param code: the HTTP status code for this response.
      */
-    public function __construct($code) {
+    public function __construct($code=200) {
         $this->responseCode = $code;
     }
 
@@ -44,7 +37,7 @@ class HTTPResponse {
      * @param object: The payload to be returned as JSON.
      */
     public function setPayload($object) {
-        $this-payload = $object;
+        $this->payload = $object;
     }
 
     /*
