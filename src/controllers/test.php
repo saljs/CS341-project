@@ -31,11 +31,15 @@ class test {
     /*
      * Dumps a list of tables in the database
      */
-    static function dump($args): void {
-        global $database;
-        $queryResult = $databse->query("SHOW TABLES;");
+    static function dumpTables($args): void {
+        $db = $GLOBALS['databse']; //get the database connection from the list of global variables
+        $queryResult = $databse->query("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA LIKE 'sals5552_cart';"); //run a query
         $output = new HTTPResponse();
-        $payload->tables = var_dump($queryResult);
+        $payload->tables = array();
+        while($row = $queryResult->fetch_assoc()) {
+            //add each table name to the payload
+            $payload->tables[] = $row['TABLE_NAME'];
+        }
         $output->setPayload($payload);
         $output->complete();
     }

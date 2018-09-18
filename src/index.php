@@ -53,11 +53,13 @@ class HTTPResponse {
 //Call the appropriate function
 if(preg_match_all("/\/(([A-Z]|[a-z])+)/", $_SERVER['REQUEST_URI'], $urlText)) {
 
+    //Check if the controller exists
     if(file_exists("controllers/" . $urlText[1][0] . ".php")) {
         require "controllers/" . $urlText[1][0] . ".php";
         
         $run = $urlText[1][0] . "::" . $urlText[1][1];
-        
+
+        //Check if the function exists in the controller
         if(is_callable($run)) {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 call_user_func($run($_POST));
