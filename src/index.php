@@ -53,7 +53,7 @@ class HTTPResponse {
 //Call the appropriate function
 if(preg_match_all("/\/(([A-Z]|[a-z])+)/", $_SERVER['REQUEST_URI'], $urlText)) {
 
-    if(file_exists("controllers/" . $urlText[1][0] . ".php") {
+    if(file_exists("controllers/" . $urlText[1][0] . ".php")) {
         require "controllers/" . $urlText[1][0] . ".php";
         
         $run = $urlText[1][0] . "::" . $urlText[1][1];
