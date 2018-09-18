@@ -8,7 +8,7 @@
  */
 class test {
 
-    /* testFunc:
+    /* 
      * Echo's a varible back to the user
      * @param args: The list of params the user provided
      */
@@ -26,6 +26,18 @@ class test {
             $output->setPayload($payload);
             $output->complete();
         }
+    }
+
+    /*
+     * Dumps a list of tables in the database
+     */
+    static function dump($args): void {
+        global $database;
+        $queryResult = $databse->query("SHOW TABLES;");
+        $output = new HTTPResponse();
+        $payload->tables = var_dump($queryResult);
+        $output->setPayload($payload);
+        $output->complete();
     }
 }
 
