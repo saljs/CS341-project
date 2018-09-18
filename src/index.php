@@ -50,20 +50,26 @@ class HTTPResponse {
     }
 }
 
-$urlText = array();
-preg_match("\/([A-Z]|[a-z]*)", $_SERVER['REQUEST_URI'], $urlText);
+if(preg_match_all("/\/(([A-Z]|[a-z])*)/", $_SERVER['REQUEST_URI'], $urlText)) {
 
-require "controllers/" . $urlText[0] . ".php";
-
-$run = $urlText[0] . "::" . $urlText[1];
-
-if(is_callable($run)) {
-    $response = call_user_func($run);
-    $response->complete();
+    require "controllers/" . $urlText[1][0] . ".php";
+    
+    $run = $urlText[1][0] . "::" . $urlText[1][1];
+    
+    if(is_callable($run)) {
+        $response = call_user_func($run);
+        $response->complete();
+    }
+    else {
+        $response = new HTTPResponse(400);
+        $payload->message = 'Error: no such function "' . $run . '"';
+        $response->setPayload($payload);
+        $response->complete();
+    }
 }
 else {
     $response = new HTTPResponse(400);
-    $payload->message = 'Error: no such function "' . $run . '"';
+    $payload->message = 'Error: controller not provided';
     $response->setPayload($payload);
     $response->complete();
 }
