@@ -9,14 +9,23 @@
 class test {
 
     /* testFunc:
-     * Echo's a varible back to an output object
-     * @param $var: a string provided by the user
+     * Echo's a varible back to the user
+     * @param args: The list of params the user provided
      */
-    function testFunc($args) {
-        $output = new HTTPResponse();
-        $payload->message = $args['var'];
-        $output->setPayload($payload);
-        return $output;
+    static function testFunc($args): void {
+        //checks if the required variable was given
+        if($args['var']) {
+            $output = new HTTPResponse();
+            $payload->message = $args['var'];
+            $output->setPayload($payload);
+            $output->complete(); //needs to be called to return value
+        }
+        else {
+            $output = new HTTPResponse(400); //error response
+            $payload->message = 'Error: must provide "var"';
+            $output->setPayload($payload);
+            $output->complete();
+        }
     }
 }
 

@@ -50,19 +50,38 @@ class HTTPResponse {
     }
 }
 
-if(preg_match_all("/\/(([A-Z]|[a-z])*)/", $_SERVER['REQUEST_URI'], $urlText)) {
+//Call the appropriate function
+if(preg_match_all("/\/(([A-Z]|[a-z])+)/", $_SERVER['REQUEST_URI'], $urlText)) {
 
-    require "controllers/" . $urlText[1][0] . ".php";
-    
-    $run = $urlText[1][0] . "::" . $urlText[1][1];
-    
-    if(is_callable($run)) {
-        $response = call_user_func($run);
-        $response->complete();
+    if(file_exists("controllers/" . $urlText[1][0] . ".php") {
+        require "controllers/" . $urlText[1][0] . ".php";
+        
+        $run = $urlText[1][0] . "::" . $urlText[1][1];
+        
+        if(is_callable($run)) {
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                call_user_func($run($_POST));
+            }
+            if($_SERVER['REQUEST_METHOD'] == 'PUT') {
+                call_user_func($run($_PUT));
+            }
+            if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+                call_user_func($run($_DELETE));
+            }
+            else {
+                call_user_func($run($_GET));
+            }
+        }
+        else {
+            $response = new HTTPResponse(400);
+            $payload->message = 'Error: no such function "' . $run . '"';
+            $response->setPayload($payload);
+            $response->complete();
+        }
     }
     else {
         $response = new HTTPResponse(400);
-        $payload->message = 'Error: no such function "' . $run . '"';
+        $payload->message = 'Error: no such controller "' . $urlText[1][0] . '"';
         $response->setPayload($payload);
         $response->complete();
     }
@@ -73,3 +92,6 @@ else {
     $response->setPayload($payload);
     $response->complete();
 }
+
+//Close the connection to the database
+$database->close();
