@@ -2,15 +2,16 @@ C-S 341 Software Engineering
 Project Meeting
 Project title:   Software for a shopping cart experience
 Group #:      1
-Members of the group:  Sal, David, Jack, Jack
-Meeting #:   1
-Held on: Sep 20, 2018 at 2:00 P.M.
+Members of the group:  Sal, Jack, Jack, David
+Meeting #:   3
+Held on: Sep 21, 2018 at 2:00 P.M.
 Location the U
-Members present: 
-Topic for discussion: Handling Payments (payPal API?)
+Members present: Sal, Jack C.
+Topic for discussion: Handling Payments (payPal API?), deliverable 2
 Report writer: Jack Collins
-Sept. 14, 2018
 
+Decided to create a functional requirements document to plan for our deliverable 2. project was split into categories: {(1) users, (2) Sign in} SAL ; {(3)Check out, (4) Out-going-prodcut managment} Jack C. ; {(5) products and promotions} <Jack E.> ; {(6) search and navigation} <David>. Back end does heavy lifting, front end displays. keep this in mind. 
+every member can create a list of assumptions. documents will merged into github.
 
-Next meeting and its agenda:
+Next meeting and its agenda: upcoming demo I 
 
