@@ -1,0 +1,16 @@
+C-S 341 Software Engineering
+Project Meeting
+Project title:   Software for a shopping cart experience
+Group #:      1
+Members of the group:  Sal, David, Jack, Jack
+Meeting #:   1
+Held on: Sep 20, 2018 at 2:00 P.M.
+Location the U
+Members present: 
+Topic for discussion: Handling Payments (payPal API?)
+Report writer: Jack Collins
+Sept. 14, 2018
+
+
+Next meeting and its agenda:
+
