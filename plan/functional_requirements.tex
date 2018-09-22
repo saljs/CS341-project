@@ -20,5 +20,26 @@
 \maketitle 
     % tells latex to follow your header (e.g., title, author) commands.
 
+\section{About this document} This document describes the functional requirements for the 
+software for an online e-commerce shopping cart software product.
+
+\section{Functional Requirements}
+
+\subsection{Users}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.1 \\
+    \it{Name:} & CreateUser \\
+    \it{Purpose:} & To create a new user in the database. \\
+    \it{Input parameters:} & Email, Password, Type of user \it{[customer, admin]}. \\
+    \it{Action:} & Creates a new entry in the database for the user, hashing the password. \\
+    \it{Output parameters:} & Success or failure message. \\
+    \it{Exceptions:} & The user already exists, not all required fields were given, there 
+    was a database error. \\
+    \it{Remarks:} & It will be up to the front-end design to also log in the newly created 
+    user if that functionality is desired. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
 
 \end{document}
