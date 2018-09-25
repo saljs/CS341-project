@@ -42,4 +42,19 @@ software for an online e-commerce shopping cart software product.
     \hline
 \end{tabularx}
 
+\subsection{Promotions}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & P.1 \\
+    \it{Name:} & CreatePromotion \\
+    \it{Purpose:} & To create a promotion for users to apply to items \\
+    \it{Input parameters:} & Name, Discount Code, Discount Type \it{[bogo, percent]}, Percent, End date\\
+    \it{Action:} & Creates a new promotion in the database.\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & The discount code already exists, invalid end date \\
+    \it{Remarks:} & The promotion should only be valid until the end date, the code can only be used once per user. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
 \end{document}
