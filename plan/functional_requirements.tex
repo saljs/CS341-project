@@ -31,13 +31,136 @@ software for an online e-commerce shopping cart software product.
     \it{Index:} & U.1 \\
     \it{Name:} & CreateUser \\
     \it{Purpose:} & To create a new user in the database. \\
-    \it{Input parameters:} & Email, Password, Type of user \it{[customer, admin]}. \\
-    \it{Action:} & Creates a new entry in the database for the user, hashing the password. \\
+    \it{Input parameters:} & Email, Password, Guest user ID, Type of user \it{[customer, admin]}. \\
+    \it{Action:} & Creates a new entry in the database for the user, hashing the password. If the guest 
+    user ID is given, the guest user cart will be imported to the new user.\\
     \it{Output parameters:} & Success or failure message. \\
     \it{Exceptions:} & The user already exists, not all required fields were given, there 
-    was a database error. \\
+    was a database error, the user does not have permission to create a new admin. \\
     \it{Remarks:} & It will be up to the front-end design to also log in the newly created 
-    user if that functionality is desired. \\
+    user if that functionality is desired. Also, to create an admin user requires an existing admin
+    to make the request, including a valid Access Token\\
+    \it{Cross references:} & AuthenticateUser \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.2 \\
+    \it{Name:} & ModifyUser \\
+    \it{Purpose:} & To change or information about a user. \\
+    \it{Input parameters:} & Email, Access Token, User fields to change \it{(e.g. Name, Password, etc.).} \\
+    \it{Action:} & Updates the given fields for the user identified by their email address. \\
+    \it{Output parameters:} & Success or failure message. \\
+    \it{Exceptions:} & Email was not given, field to set is of an invalid type, there was a database error. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & AuthenticateUser \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.3 \\
+    \it{Name:} & AuthenticateUser \\
+    \it{Purpose:} & Authenticates the user to the server for a set period of time. \\
+    \it{Input parameters:} & Email, Password \\
+    \it{Action:} & Generates an Access Token for the given user. \\
+    \it{Output parameters:} & A temporary Access Token to be included in all requests that require elevated permission. \\
+    \it{Exceptions:} & The user does not exist, the password did not match the user, there was a database error. \\
+    \it{Remarks:} & The server will log the time the token was created and mark it as expired after a set length of time, 
+    requiring the user to log in again. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.4 \\
+    \it{Name:} & GetUser \\
+    \it{Purpose:} & Returns information about the user \\
+    \it{Input parameters:} & Email, Access Token \\
+    \it{Action:} & Queries the database for the user, then returns all available fields. \\
+    \it{Output parameters:} &  An \it{User} object, containing, email, name, type of user.\\
+    \it{Exceptions:} & The user is not authenticated, there was a database error. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.5 \\
+    \it{Name:} & AddItemToCart \\
+    \it{Purpose:} & Adds the item to the user's cart. \\
+    \it{Input parameters:} & Email, Access Token, Item ID, count \\
+    \it{Action:} & Adds the number of items given by the count to the specified user's cart. \\
+    \it{Output parameters:} & A success or failure message. \\
+    \it{Exceptions:} & The user is not authenticated, the item does not exist, there was a database error. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.6 \\
+    \it{Name:} & RemoveItemFromCart \\
+    \it{Purpose:} & Removes the item from the user's cart. \\
+    \it{Input parameters:} & Email, Access Token, Item ID, count \\
+    \it{Action:} & Removes the number of items given by the count from the specified user's cart. \\
+    \it{Output parameters:} & A success or failure message. \\
+    \it{Exceptions:} & The user is not authenticated, the item does not exist, there was a database error. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.7 \\
+    \it{Name:} & GetCart \\
+    \it{Purpose:} & Returns a list of all items in a user's cart. \\
+    \it{Input parameters:} & Email, Access Token \\
+    \it{Action:} & Creates a list of item IDs and count in an authenticated user's cart. \\
+    \it{Output parameters:} & A list of Item IDs and the count for each item. \\
+    \it{Exceptions:} & The user is not authenticated, there was a database error. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\subsection{Guests}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & G.1 \\
+    \it{Name:} & AddItemToGuestCart \\
+    \it{Purpose:} & Adds the item to the guest user's cart. \\
+    \it{Input parameters:} & Guest user's id (A randomly generated GUID), Item ID, item count. \\
+    \it{Action:} & Adds the number of items given by the count to the specified guest user's cart. If this is the first time calling this function, 
+    an entry for the guest user will first be created in the database.\\
+    \it{Output parameters:} & A success or failure message. \\
+    \it{Exceptions:} & The item does not exist, there was a database error. \\
+    \it{Remarks:} & The front-end should store the guest user ID in a browser cookie so that subsequent requests can be made. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & G.2 \\
+    \it{Name:} & RemoveItemFromGuestCart \\
+    \it{Purpose:} & Removes the item from the guest user's cart. \\
+    \it{Input parameters:} & Guest user's id, Item ID, count \\
+    \it{Action:} & Removes the number of items given by the count from the specified guest user's cart. \\
+    \it{Output parameters:} & A success or failure message. \\
+    \it{Exceptions:} & The guest does not exist, the item does not exist, there was a database error. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & G.3 \\
+    \it{Name:} & GetGuestCart \\
+    \it{Purpose:} & Returns a list of all items in a guest user's cart. \\
+    \it{Input parameters:} & Guest user's ID \\
+    \it{Action:} & Creates a list of item IDs and count in a guest user's cart. \\
+    \it{Output parameters:} & A list of Item IDs and the count for each item. \\
+    \it{Exceptions:} & The guest user does not exist, there was a database error. \\
+    \it{Remarks:} & None 
     \it{Cross references:} & None. \\
     \hline
 \end{tabularx}
@@ -96,4 +219,10 @@ software for an online e-commerce shopping cart software product.
     \hline
 \end{tabularx}
 
+\section{Assumptions:}
+\begin{enumerate}
+    \item Users are identified by their email addresses.
+    \item If a user wants to change their email address, they will need to create a new account.
+    \item All payment info and address data will be handled through PayPal.
+\end{enumerate}
 \end{document}
