@@ -1,124 +1,303 @@
-About this document
-This document describes the functional requirements for the software for an ecommerce style shopping cart. A customer can …
-Functional Requirements
-Each functional requirement is given in the following format…
-Index:
-Name:
-Purpose:
-Input Parameters:
-Action:
-Output Parameter
-Exceptions:
-Remarks:
-Cross-references: 
+\documentclass[10pt,letter]{article}
 
-Functional Requirements for the Check Out Process
-Index: CO.1
-Name: SelectPaymentOption
-Purpose: 	To allow a guest or registered user to select an existing payment option or add another
-Input Parameters: Exists ,Name On Card, Card Number, Security Code, Expiration, Date, First Name, Last Name, Street Address, Apt. Number, City, State, Zipcode, Phone Number
-Action: 	setup a payment method to be applied to the shopping cart balance
-Select an existing payment method
-Output parameters: none
-Exceptions: 	data supplied is invalid
-Cart has a balance of $0.00
-Remarks:	This method is used only during the checkout routine. Adjusting payment for a registered user can be done with corresponding  the user setting functions
-Cross references: none
-Index: CO.2
-Name: 		ApplyPaymentOption
-Purpose: 	To allow a guest or registered user to apply their selected payment option
-Input Parameters: payment option
-Action: 	apply a payment towards the  balance of the cart
-Validates data
-Output parameters: confirmation of success/failure
-Exceptions: 	none
-Remarks:	This method is used only during the checkout routine, following the selection of a payment, or the initialization of a payment method
-Cross references: CO.1
+    % basic article document class
 
-Index: CO.3
-Name: SelectShippingOption
-Purpose: 	To allow a guest or registered user to select an previously documented address, or to add to new one
-Input Parameters: First Name, Last Name, Street Address, Apt. Number, City, State, Zipcode, Phone Number, type
-Action: 	setup a shipping method to be applied
-Select an existing shipping method
-Validates data
-Output parameters: none
-Exceptions: 	data supplied is invalid
-Remarks:	This method is used only during the checkout routine. Adjusting payment for a registered user can be done with corresponding  the user setting functions
-Cross references: CO.4
 
-Index: CO.4
-Name: ApplyShippingOption
-Purpose: 	To allow a guest or registered user to apply the selected address.
-Input Parameters: name
-Action: 	apply a shipping method to order
-Output parameters: confirms success/failure
-Exceptions: 	none
-Remarks:	This method is used only during the checkout routine. Adjusting documented shipping methods for a registered user can be done with corresponding  the user setting functions
-Cross references: CO.3
 
-Index: CO.5
-Name: ApplyPromocode
-Purpose:  allow both guest and registered user to apply promcodes to their shopping cart balance
-Input Parameters: promocode
-Action:  validates promocode
-applies promocode to shopping cart to alter the balance of the shopping cart
-Output parameters: amount reduced 
-Exceptions: 	promo code invalid
-Remarks:	this method is used only during the checkout routine
-Cross references: none
+\usepackage{fullpage}
 
-Index: CO.6
-Name: fetchCartTotal
-Purpose: to produce the total for order, including tax and shipping
-Input Parameters: cartItems, tax, shipping
-Action: 	sums the prices of each item
-applies  sales tax
-applies shipping  
-Output parameters: total
-Exceptions: 	none
-Remarks:	this method is applied at checkout, and can be used generally to display the current cart balance
-Cross references: 
+    % package that specifies normal margins
 
-Index: CO.7
-Name: 		DisplayCart
-Purpose: 	to display the contents of the cart to a user
-Input Parameters: none
-Action: 	Displays the items in the cart, their quantities, and price
-Output parameters:	none
-Exceptions: 	none
-Remarks:	this method can be used by the user at any time during their shopping experience.
-Cross references: CO.8
+\usepackage{makecell}
 
-Index: 		CO.8
-Name: 		AlterCart 
-Purpose: 	to allow the user to remove/add items to their cart
-Input Parameters: add/remove, item name, quantity
-Action: 	removes item from cart, either a select number or all
-Adds item to cart, in the selected quantity
-Output parameters: success/fail notification
-Exceptions: 	item is not currently available (out of stock)
-Remarks:	This method can be used when viewing the cart and when viewing a product page
-Cross references: CO.8
+\usepackage{setspace}
 
-Index: 		CO.9
-Name: 		SubmitCart
-Purpose: 	to submit the cart, along with payment
-Input Parameters: cart, payment method, shipping method
-Action: 	submits the order for processing by the admin
-Output parameters: success/fail notication to user
-Exceptions: 	cart is empty, payment or shipping is invalid
-Remarks:	this method is used to conclude the checkout process
-Cross references:  CO.7, CO.1, CO.2, CO.3
+\usepackage{tabularx}
 
-Index: 		CO.10
-Name: 		GenerateAdminNotification
-Purpose: 	to create an entry in the admins log so the order may be processed
-Input Parameters: user, user email, items, shipping method
-Action: 	notifies appropriate admin
-Creates an entry in admin processing log
-Output parameters: none
-Exceptions: 	none
-Remarks:	this method is for internal use only
-Cross references: CO.9
 
+
+
+
+\doublespacing
+
+
+
+\begin{document}
+
+    % line of code telling latex that your document is beginning
+
+
+
+\title{CS341 Shopping Cart Functional Requirements}
+
+
+
+\author{Group 4: Sal Skare, Jack Englund, David Wissink, and John Collins}
+
+
+
+\maketitle 
+
+    % tells latex to follow your header (e.g., title, author) commands.
+
+
+
+\section{About this document} This document describes the functional requirements for the 
+
+software for an online e-commerce shopping cart software product.
+
+
+
+\section{Functional Requirements}
+
+
+
+\subsection{Functional Requirements for the Checkout Process}
+
+
+
+\begin{tabularx}{\textwidth}{l X}
+
+    \it{Index:} & CO.1 \\
+
+    \it{Name:} & SelectPaymentOption \\
+
+    \it{Purpose:} & To allow a guest or registered user to select a payment option to apply to the cart balance. \\
+
+    \it{Input parameters:} & If Exists, Name On Card, Card Number, Security Code, Expiration, Date, First Name, Last Name, Billing Address, Phone Number \\
+
+    \it{Action:} & Setups a payment method to be applied to the shopping cart balance for registered user and guest. Selects an existing payment method for registered user. Validates the user data.
+
+    user ID is given, the guest user cart will be imported to the new user.\\
+
+    \it{Output parameters:} & Success or failure message. \\
+
+    \it{Exceptions:} & 
+
+    Data supplied is invalid. Cart has a balance of $0.00$. \\
+
+    \it{Remarks:} & This method is used only during the checkout routine. Adjusting payment for a registered user can be done with the corresponding  user setting functions. Should be incorporated into user friendly GUI.\\
+
+    \it{Cross references:} & CO.4 \\
+
+    \hline
+
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+
+    \it{Index:} & CO.2 \\
+
+    \it{Name:} & SelectShippingOption \\
+
+    \it{Purpose:} & To allow a guest or registered user to select a shipping address for their order.\\
+
+    \it{Input parameters:} & First Name, Last Name, Street Address, Apt. Number, City, State, Zip Code, Phone Number, Shipping Class \\
+
+    \it{Action:} & Initialize a new shipping method to be applied. Select an existing shipping method for registered guests. Validates the user's data.\\
+
+
+    \it{Output parameters:} & Success/Fail Notification  \\
+
+    \it{Exceptions:} & The supplied data is invalid. \\
+
+    \it{Remarks:} & This method is used only during the checkout routine. Adjusting payment for a registered user can be done with the corresponding user setting functions. User friendly form recommended. \\
+
+    \it{Cross references:} & CO.4\\
+
+    \hline
+
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+
+    \it{Index:} & CO.3 \\
+
+    \it{Name:} & ApplyPromocode \\
+
+    \it{Purpose:} & To allow both users to apply promocodes to their shopping cart balance. \\
+
+    \it{Input parameters:} & Promocode \\
+
+    \it{Action:} & Validates promocode. Applies promocode to shopping cart to alter the balance of the shopping cart (for both registered and guest users)\\
+
+    \it{Output parameters:} & Amount Reduced  \\
+
+    \it{Exceptions:} & Promocode is invalid\\
+
+    \it{Remarks:} & This method is used only during the checkout routine. Should be incorporated into user friendly GUI.\\
+
+    \it{Cross references:} & CO.4 \\
+
+    \hline
+
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+
+    \it{Index:} & CO.4 \\
+
+    \it{Name:} &  SubmitCheckout\\
+
+    \it{Purpose:} &  To submit the cart, along with payment, for processing by the admin\\
+
+    \it{Input parameters:} & Cart, Payment Method, Shipping Method \\
+
+    \it{Action:} & Submits the order for processing by the admin. Reduces the quantity in stock of each item. Generates user notification. Generates admin notification. \\
+
+    \it{Output parameters:} & Success/Fail Notification \\
+
+    \it{Exceptions:} & Cart is empty. Payment or shipping is invalid. \\
+
+    \it{Remarks:} & This method is used to conclude the checkout process. Should be incorporated into user friendly GUI.\\
+
+    \it{Cross references:} & CO.1, CO.2, CO.3, CO.5 \\
+
+    \hline
+
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+
+    \it{Index:} & CO.5 \\
+
+    \it{Name:} & GenerateAdminNotification\\
+
+    \it{Purpose:} &  To create an entry in the administration’s log so the order may be processed\\
+
+    \it{Input parameters:} & User Name, User Email, Items, Shipping Method  \\
+
+    \it{Action:} & Notifies appropriate admin. Creates an entry in the admin outgoing processing log\\
+
+    \it{Output parameters:} & none\\
+
+    \it{Exceptions:} & none \\
+
+    \it{Remarks:} & This method is for internal use only. No User will have access to this function.\\
+
+    \it{Cross references:} & CO.4 \\
+
+    \hline
+
+\end{tabularx}
+
+\subsection{Functional Requirements for Out Going Product Management}
+
+
+\begin{tabularx}{\textwidth}{l X}
+
+    \it{Index:} & PM.1 \\
+
+    \it{Name:} &  DisplayOrders\\
+
+    \it{Purpose:} &  To display all of the out going orders. \\
+
+    \it{Input parameters:} & none \\
+
+    \it{Action:} & Displays the orders in chronological order. Displays the status of the order. Displays the items purchased and their quantities. Displays additional data relevant to the user and the order.\\
+
+    \it{Output parameters:} & Admin GUI \\
+
+    \it{Exceptions:} & none \\
+
+    \it{Remarks:} & This method is for admin use, specifically those in charge of getting orders in the mail.\\
+
+    \it{Cross references:} & \\
+
+    \hline
+
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+
+    \it{Index:} & PM.2 \\
+
+    \it{Name:} &  GenerateShippingLabel\\
+
+    \it{Purpose:} & To fetch the shipping address of an outgoing order \\
+
+    \it{Input parameters:} & order ID \\
+
+    \it{Action:} & Creates a shipping label based on user data from the checkout process. \\
+
+    \it{Output parameters:} & A properly formatted shipping label\\
+
+    \it{Exceptions:} & none \\
+
+    \it{Remarks:} & This method is used by the admin only.\\
+
+    \it{Cross references:} & CO.2\\
+
+    \hline
+
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+
+    \it{Index:} &  PM.3\\
+
+    \it{Name:} & LocateItems \\
+
+    \it{Purpose:} & To provide locations of all items in an order. \\
+
+    \it{Input parameters:} & Order ID  \\
+
+    \it{Action:} & Generates a document, which will contain each item from a given order and it's location on site\\
+
+    \it{Output parameters:} & Location of items document\\
+
+    \it{Exceptions:} & none\\
+
+    \it{Remarks:} & this method is for admin use only\\
+
+    \it{Cross references:} & none\\
+
+    \hline
+
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+
+    \it{Index:} & PM.4 \\
+
+    \it{Name:} &  UpdateOrderStatus\\
+
+    \it{Purpose:} &  To indicate an items progress from checkout to delivery\\
+
+    \it{Input parameters:} & none \\
+
+    \it{Action:} & Advances an items status. Updates admin log\\
+
+    \it{Output parameters:} & Success/Fail notification\\
+
+    \it{Exceptions:} & none\\
+
+    \it{Remarks:} & This method is for admin use only.\\
+
+    \it{Cross references:} & none\\
+
+    \hline
+
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+
+    \it{Index:} & PM.5 \\
+
+    \it{Name:} & CancelOrder \\
+
+    \it{Purpose:} &  Allow admin to cancel a specific order\\
+
+    \it{Input parameters:} &  Order ID, Reason Code\\
+
+    \it{Action:} & Cancels the order.Removes the order from the outgoing log. Generates appropriate response based on reason code(back order, refund, damaged merchandise, etc.).\\
+
+    \it{Output parameters:} & user notification\\
+
+    \it{Exceptions:} & Invalid reason code\\
+
+    \it{Remarks:} & this method is for admin use only. Reason codes should perform appropriate actions such as refunding orders. \\
+
+    \it{Cross references:} & none\\
+
+    \hline
+
+\end{tabularx}
+
+
+
+
+
+\end{document}
