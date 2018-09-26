@@ -1,0 +1,124 @@
+About this document
+This document describes the functional requirements for the software for an ecommerce style shopping cart. A customer can …
+Functional Requirements
+Each functional requirement is given in the following format…
+Index:
+Name:
+Purpose:
+Input Parameters:
+Action:
+Output Parameter
+Exceptions:
+Remarks:
+Cross-references: 
+
+Functional Requirements for the Check Out Process
+Index: CO.1
+Name: SelectPaymentOption
+Purpose: 	To allow a guest or registered user to select an existing payment option or add another
+Input Parameters: Exists ,Name On Card, Card Number, Security Code, Expiration, Date, First Name, Last Name, Street Address, Apt. Number, City, State, Zipcode, Phone Number
+Action: 	setup a payment method to be applied to the shopping cart balance
+Select an existing payment method
+Output parameters: none
+Exceptions: 	data supplied is invalid
+Cart has a balance of $0.00
+Remarks:	This method is used only during the checkout routine. Adjusting payment for a registered user can be done with corresponding  the user setting functions
+Cross references: none
+Index: CO.2
+Name: 		ApplyPaymentOption
+Purpose: 	To allow a guest or registered user to apply their selected payment option
+Input Parameters: payment option
+Action: 	apply a payment towards the  balance of the cart
+Validates data
+Output parameters: confirmation of success/failure
+Exceptions: 	none
+Remarks:	This method is used only during the checkout routine, following the selection of a payment, or the initialization of a payment method
+Cross references: CO.1
+
+Index: CO.3
+Name: SelectShippingOption
+Purpose: 	To allow a guest or registered user to select an previously documented address, or to add to new one
+Input Parameters: First Name, Last Name, Street Address, Apt. Number, City, State, Zipcode, Phone Number, type
+Action: 	setup a shipping method to be applied
+Select an existing shipping method
+Validates data
+Output parameters: none
+Exceptions: 	data supplied is invalid
+Remarks:	This method is used only during the checkout routine. Adjusting payment for a registered user can be done with corresponding  the user setting functions
+Cross references: CO.4
+
+Index: CO.4
+Name: ApplyShippingOption
+Purpose: 	To allow a guest or registered user to apply the selected address.
+Input Parameters: name
+Action: 	apply a shipping method to order
+Output parameters: confirms success/failure
+Exceptions: 	none
+Remarks:	This method is used only during the checkout routine. Adjusting documented shipping methods for a registered user can be done with corresponding  the user setting functions
+Cross references: CO.3
+
+Index: CO.5
+Name: ApplyPromocode
+Purpose:  allow both guest and registered user to apply promcodes to their shopping cart balance
+Input Parameters: promocode
+Action:  validates promocode
+applies promocode to shopping cart to alter the balance of the shopping cart
+Output parameters: amount reduced 
+Exceptions: 	promo code invalid
+Remarks:	this method is used only during the checkout routine
+Cross references: none
+
+Index: CO.6
+Name: fetchCartTotal
+Purpose: to produce the total for order, including tax and shipping
+Input Parameters: cartItems, tax, shipping
+Action: 	sums the prices of each item
+applies  sales tax
+applies shipping  
+Output parameters: total
+Exceptions: 	none
+Remarks:	this method is applied at checkout, and can be used generally to display the current cart balance
+Cross references: 
+
+Index: CO.7
+Name: 		DisplayCart
+Purpose: 	to display the contents of the cart to a user
+Input Parameters: none
+Action: 	Displays the items in the cart, their quantities, and price
+Output parameters:	none
+Exceptions: 	none
+Remarks:	this method can be used by the user at any time during their shopping experience.
+Cross references: CO.8
+
+Index: 		CO.8
+Name: 		AlterCart 
+Purpose: 	to allow the user to remove/add items to their cart
+Input Parameters: add/remove, item name, quantity
+Action: 	removes item from cart, either a select number or all
+Adds item to cart, in the selected quantity
+Output parameters: success/fail notification
+Exceptions: 	item is not currently available (out of stock)
+Remarks:	This method can be used when viewing the cart and when viewing a product page
+Cross references: CO.8
+
+Index: 		CO.9
+Name: 		SubmitCart
+Purpose: 	to submit the cart, along with payment
+Input Parameters: cart, payment method, shipping method
+Action: 	submits the order for processing by the admin
+Output parameters: success/fail notication to user
+Exceptions: 	cart is empty, payment or shipping is invalid
+Remarks:	this method is used to conclude the checkout process
+Cross references:  CO.7, CO.1, CO.2, CO.3
+
+Index: 		CO.10
+Name: 		GenerateAdminNotification
+Purpose: 	to create an entry in the admins log so the order may be processed
+Input Parameters: user, user email, items, shipping method
+Action: 	notifies appropriate admin
+Creates an entry in admin processing log
+Output parameters: none
+Exceptions: 	none
+Remarks:	this method is for internal use only
+Cross references: CO.9
+
