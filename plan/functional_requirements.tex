@@ -57,4 +57,43 @@ software for an online e-commerce shopping cart software product.
     \hline
 \end{tabularx}
 
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & P.2 \\
+    \it{Name:} & EndPromotion \\
+    \it{Purpose:} & To forcefully end a promotion \\
+    \it{Input parameters:} & Discount Code \it{[Identifier]}.\\
+    \it{Action:} & Ends given promotion from database\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & The discount code doesn't exist, the promotion is already ended \\
+    \it{Remarks:} & Edit a field in the database, 'ongoing', to mark it as done. Otherwise could just change the end date to the current datetime.\\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & P.3 \\
+    \it{Name:} & GetPromotion \\
+    \it{Purpose:} & Returns the type & percentage of the promotion. \\
+    \it{Input parameters:} & Discount Code \it{[Identifier]}.\\
+    \it{Action:} & Gets a promotion based on the discount code given.\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & The discount code doesn't exist, the promotion is over. \\
+    \it{Remarks:} & This should be used during ApplyPromotion\\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & P.4 \\
+    \it{Name:} & ApplyPromotion \\
+    \it{Purpose:} & Applies the given promotion to a user's cart \\
+    \it{Input parameters:} & Discount Code \it{[Identifier]}.\\
+    \it{Action:} & Applies the discount percentage and type to the user's existing cart, modifies their total.\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & The discount code doesn't exist, the promotion is over. \\
+    \it{Remarks:} & This should be used when a user enters a discount code at checkout.\\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
 \end{document}
