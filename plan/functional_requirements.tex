@@ -219,6 +219,60 @@ software for an online e-commerce shopping cart software product.
     \hline
 \end{tabularx}
 
+\subsection{Product Page}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & PP.1 \\
+    \it{Name:} & LoadProduct \\
+    \it{Purpose:} & Loads product information \\
+    \it{Input parameters:} & Unique Product Id\\
+    \it{Action:} & Returns product information like name, price, quantity, image, etc.\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & Invalid PID. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & PP.2 \\
+    \it{Name:} & NewProduct \\
+    \it{Purpose:} & Creates a new product entry in the db.\\
+    \it{Input parameters:} & Name, Price, Seller, Initial Quantity, Max Quantity, Reviews, Images\\
+    \it{Action:} & Creates a new entry in the product database.\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & Max Quantity is less than 1, Image files are too big. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & PP.3 \\
+    \it{Name:} & EditProduct \\
+    \it{Purpose:} & Edits an already existing product\\
+    \it{Input parameters:} & PID, Name, Price, Seller, Initial Quantity, Max Quantity, Reviews, Images\\
+    \it{Action:} & Edits the row of PID in the database.\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & PID is not valid, then same exceptions as NewProduct \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & PP.4 \\
+    \it{Name:} & DeleteProduct \\
+    \it{Purpose:} & Removes a product from the database\\
+    \it{Input parameters:} & PID\\
+    \it{Action:} & Removes the row of the given PID from the database.\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & PID does not exist. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
 \section{Assumptions:}
 \begin{enumerate}
     \item Users are identified by their email addresses.
