@@ -285,19 +285,17 @@ software for an online e-commerce shopping cart software product.
 
     \it{Purpose:} & To allow a guest or registered user to select a payment option to apply to the cart balance. \\
 
-    \it{Input parameters:} & If Exists, Name On Card, Card Number, Security Code, Expiration, Date, First Name, Last Name, Billing Address, Phone Number \\
+    \it{Input parameters:} none
 
-    \it{Action:} & Setups a payment method to be applied to the shopping cart balance for registered user and guest. Selects an existing payment method for registered user. Validates the user data.
+    \it{Action:} & Setups a payment method to be applied to the shopping cart balance for registered user and guest. Selects an existing payment method for registered user. Payment will be handled through Paypal
 
     user ID is given, the guest user cart will be imported to the new user.\\
 
     \it{Output parameters:} & Success or failure message. \\
 
-    \it{Exceptions:} & 
+    \it{Exceptions:} &  Cart has a balance of $0.00$. \\
 
-    Data supplied is invalid. Cart has a balance of $0.00$. \\
-
-    \it{Remarks:} & This method is used only during the checkout routine. Adjusting payment for a registered user can be done with the corresponding  user setting functions. Should be incorporated into user friendly GUI.\\
+    \it{Remarks:} & This method is used only during the checkout routine. Adjusting payment for a registered user can be done with the corresponding user setting functions. Should be incorporated into user friendly GUI.\\
 
     \it{Cross references:} & CO.4 \\
 
