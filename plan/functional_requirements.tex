@@ -238,7 +238,7 @@ software for an online e-commerce shopping cart software product.
     \it{Index:} & PP.2 \\
     \it{Name:} & NewProduct \\
     \it{Purpose:} & Creates a new product entry in the db.\\
-    \it{Input parameters:} & Name, Price, Seller, Initial Quantity, Max Quantity, Reviews, Images\\
+    \it{Input parameters:} & Name, Category, Price, Seller, Initial Quantity, Max Quantity, Reviews, Images\\
     \it{Action:} & Creates a new entry in the product database.\\
     \it{Output parameters:} & Success or Failure message. \\
     \it{Exceptions:} & Max Quantity is less than 1, Image files are too big. \\
@@ -251,7 +251,7 @@ software for an online e-commerce shopping cart software product.
     \it{Index:} & PP.3 \\
     \it{Name:} & EditProduct \\
     \it{Purpose:} & Edits an already existing product\\
-    \it{Input parameters:} & PID, Name, Price, Seller, Initial Quantity, Max Quantity, Reviews, Images\\
+    \it{Input parameters:} & PID, Name, Category, Price, Seller, Initial Quantity, Max Quantity, Reviews, Images\\
     \it{Action:} & Edits the row of PID in the database.\\
     \it{Output parameters:} & Success or Failure message. \\
     \it{Exceptions:} & PID is not valid, then same exceptions as NewProduct \\
@@ -268,6 +268,48 @@ software for an online e-commerce shopping cart software product.
     \it{Action:} & Removes the row of the given PID from the database.\\
     \it{Output parameters:} & Success or Failure message. \\
     \it{Exceptions:} & PID does not exist. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+
+\subsection{Searching}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & S.1 \\
+    \it{Name:} & SearchByName \\
+    \it{Purpose:} & Searches for any products containing the name they entered.\\
+    \it{Input parameters:} & Name or partial name.\\
+    \it{Action:} & Searches the database for any product that contains the input parameter\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & No products meet the parameters. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & S.2 \\
+    \it{Name:} & SearchByCategory \\
+    \it{Purpose:} & Searches for any products in the given category\\
+    \it{Input parameters:} & Category\\
+    \it{Action:} & Searches the database for any products in the category\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & No products meet the parameters. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & S.3 \\
+    \it{Name:} & FilterSearch \\
+    \it{Purpose:} & Filter a result set based on the parameters given.\\
+    \it{Input parameters:} & Price, Seller, Reviews/Rating, Category.\\
+    \it{Action:} & Returns all products that follow the parameters given.\\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & No products meet the parameters. \\
     \it{Remarks:} & None. \\
     \it{Cross references:} & None. \\
     \hline
