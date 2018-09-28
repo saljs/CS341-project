@@ -1,5 +1,5 @@
 <?php
-include_once '../response.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/response.php';
 
 /*
  * Tests to make sure the server software 
