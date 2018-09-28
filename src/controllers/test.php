@@ -1,4 +1,5 @@
 <?php
+include_once '../response.php'
 
 /*
  * Tests to make sure the server software 
@@ -42,6 +43,13 @@ class test {
         }
         $output->setPayload($payload);
         $output->complete();
+    }
+
+    /*
+     * Returns the $_SERVER['HTTP_ORIGIN'] variable
+     */
+    static function origin($args): void {
+        success($_SERVER['HTTP_ORIGIN']);
     }
 }
 

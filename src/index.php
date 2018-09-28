@@ -52,6 +52,7 @@ class HTTPResponse {
      */
     public function complete() {
         http_response_code($this->responseCode);
+        header("Access-Control-Allow-Origin: *");
         header('Content-Type: application/json');
         echo json_encode($this->payload);
     }
