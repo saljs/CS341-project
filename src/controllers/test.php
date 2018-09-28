@@ -32,7 +32,7 @@ class test {
      */
     static function dumpTables($args): void {
         $db = $GLOBALS['database']; //get the database connection from the list of global variables
-        $queryResult = $db->query("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA LIKE 'sals5552_cart';"); //run a query
+        $queryResult = $db->query("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA LIKE 'sals5552_cart_" . getBusinessID() . "';"); //run a query
         $output = new HTTPResponse();
         $payload->tables = array();
         while($row = $queryResult->fetch_assoc()) {
