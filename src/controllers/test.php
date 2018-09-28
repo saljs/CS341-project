@@ -1,6 +1,4 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/response.php';
-
 /*
  * Tests to make sure the server software 
  * is functioning correctly, as well as 

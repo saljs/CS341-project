@@ -1,9 +1,8 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/response.php";
-
 /*
  * Endpoint that implements user flow
  */
+
 class User {
 
     /* 
