@@ -1,5 +1,5 @@
 <?php
-include_once '../response.php'
+include_once '../response.php';
 
 /*
  * Tests to make sure the server software 
