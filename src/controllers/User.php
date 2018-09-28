@@ -10,12 +10,15 @@ class User {
     /* 
      * Creates a new user
      * @param email: The new user's email address
-     * @param 
+     * @param password: The user's desired password
+     * @param type: Either 'user' or 'admin'
+     * @param name: The user's name
      */
     static function Create($args): void {
         //checks if the required variables were given
-        if(!($args['email'] && $args['password'] && $args['type'])) {
+        if(!($args['email'] && $args['password'] && $args['type'] && $args['name'])) {
             error("Missing required fields");
+            return;
         }
 
         //checks if user already exists
@@ -23,22 +26,26 @@ class User {
         $result = $db->query("SELECT id from users_" . Business::getID() . " WHERE email = '" . $args['email'] . "';");
         if(mysqli_num_rows($result) > 0) {
             error("User already exists");
+            return;
         }
 
         //checks if admin privs are needed
         if($args['type'] == "admin") {
             if(!$args['auth']) {
                 error("Operation requires admin privileges");
+                return;
             }
             //TODO: verify the key!
         }
         
         //inserts the user into the database
-        if(!$db->query("INSERT INTO users_" . Business::getID() . " (email, password, type) VALUES('" 
-             . $args['email'] . "', "
-             . password_hash($args['password'], PASSWORD_BCRYPT) . "', "
-             . $args['type'] . "');")) {
+        if(!$db->query("INSERT INTO users_" . Business::getID() . " (email, password, type, name) VALUES('" 
+             . $args['email'] . "', '"
+             . password_hash($args['password'], PASSWORD_BCRYPT) . "', '"
+             . $args['type'] . "', '"
+             . $args['name'] . "');")) {
              error($db->error);
+             return;
         }
 
         //imports the cart from a guest user
