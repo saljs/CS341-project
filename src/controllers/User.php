@@ -1,6 +1,5 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/response.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/business.php";
 
 /*
  * Endpoint that implements user flow
@@ -23,7 +22,7 @@ class User {
 
         //checks if user already exists
         $db = $GLOBALS['database'];
-        $result = $db->query("SELECT id from users_" . Business::getID() . " WHERE email = '" . $args['email'] . "';");
+        $result = $db->query("SELECT id from users WHERE email = '" . $args['email'] . "';");
         if(mysqli_num_rows($result) > 0) {
             error("User already exists");
             return;
@@ -39,7 +38,7 @@ class User {
         }
         
         //inserts the user into the database
-        if(!$db->query("INSERT INTO users_" . Business::getID() . " (email, password, type, name) VALUES('" 
+        if(!$db->query("INSERT INTO users (email, password, type, name) VALUES('" 
              . $args['email'] . "', '"
              . password_hash($args['password'], PASSWORD_BCRYPT) . "', '"
              . $args['type'] . "', '"

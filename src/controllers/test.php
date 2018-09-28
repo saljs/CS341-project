@@ -46,10 +46,10 @@ class test {
     }
 
     /*
-     * Returns the $_SERVER['HTTP_ORIGIN'] variable
+     * Returns the current business ID
      */
-    static function origin($args): void {
-        success($_SERVER['HTTP_ORIGIN']);
+    static function business($args): void {
+        success(getBusinessID()); //shorthand for HTTPResponse code 200
     }
 }
 

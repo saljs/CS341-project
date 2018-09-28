@@ -8,7 +8,7 @@
 
 // MySQL connection variables
 $MYSQLSERVER = "localhost";
-$MYSQLDB = "sals5552_cart";
+$MYSQLDB = "sals5552_cart_" . getBusinessID();
 $MYSQLUSER = "sals5552_admin";
 $MYSQLPASS = "A;nRmHG}xWwi";
 
@@ -56,6 +56,18 @@ class HTTPResponse {
         header('Content-Type: application/json');
         echo json_encode($this->payload);
     }
+}
+
+/*
+ * Return the id of the current buisness making the request.
+ * Defaults to 'debug'
+ */
+function getBusinessID(): string {
+    $site = "debug";
+    if($_SERVER['HTTP_ORIGIN']) {
+        $site = preg_replace(array('/(^\w+:|^)\/\/', '/\b\/.*/'), "", $_SERVER['HTTP_ORIGIN']);
+    }
+    return $site;
 }
 
 //Call the appropriate function
