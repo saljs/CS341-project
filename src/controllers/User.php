@@ -1,4 +1,6 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/response.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/business.php";
 
 /*
  * Endpoint that implements user flow
@@ -15,10 +17,10 @@ class User {
         if(!($args['email'] && $args['password'] && $args['type'])) {
             error("Missing required fields");
         }
-        
+
         //checks if user already exists
         $db = $GLOBALS['database'];
-        $result = $db->query("SELECT id from users WHERE email = '" . $args['email'] . "';");
+        $result = $db->query("SELECT id from users_" . Business::getID() . " WHERE email = '" . $args['email'] . "';");
         if(mysqli_num_rows($result) > 0) {
             error("User already exists");
         }
@@ -32,7 +34,7 @@ class User {
         }
         
         //inserts the user into the database
-        if(!$db->query("INSERT INTO users (email, password, type) VALUES('" 
+        if(!$db->query("INSERT INTO users_" . Business::getID() . " (email, password, type) VALUES('" 
              . $args['email'] . "', "
              . password_hash($args['password'], PASSWORD_BCRYPT) . "', "
              . $args['type'] . "');")) {
@@ -63,5 +65,6 @@ class SiteUser {
     function load(): int {
         $db = $GLOBALS['database'];
     }
+}
         
 ?>
