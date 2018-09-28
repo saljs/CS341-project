@@ -7,7 +7,7 @@
 class Business {
     
     static function getID(): int {
-        $site = "debug"
+        $site = "debug";
         if($_SERVER['HTTP_ORIGIN']) {
             $site = preg_replace(array('/(^\w+:|^)\/\/', '/\b\/.*/'), "", $_SERVER['HTTP_ORIGIN']);
         }
