@@ -74,10 +74,7 @@ if(preg_match_all("/\/(([A-Z]|[a-z])+)/", $_SERVER['REQUEST_URI'], $urlText)) {
     }
 }
 else {
-    $response = new HTTPResponse(400);
-    $payload->message = 'Error: controller not provided';
-    $response->setPayload($payload);
-    $response->complete();
+    readfile("home.html");
 }
 
 //Close the connection to the database
