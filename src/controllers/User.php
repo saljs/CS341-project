@@ -58,6 +58,26 @@ class User {
         success();
     }
 
+    /*
+     * Authenticates the user for 6 hours
+     * @param email The user's email
+     * @param The user's password
+     * @return A 64-digit hexadecimal authentication token
+     */
+    static function Authenticate($args): void {
+        try {
+            $user = new SiteUser($args['email']);
+            $token = $user->auth($args['password']);
+            $output = new HTTPResponse();
+            $payload->token = $token;
+            $output->setPayload($payload);
+            $output->complete();
+        }
+        catch (Exception $e) {
+            error($e->getMessage());
+        }
+    }
+
 }
 
 /*
