@@ -21,7 +21,7 @@ class User {
 
         //checks if user already exists
         $db = $GLOBALS['database'];
-        $result = $db->query("SELECT id from users WHERE email = '" . $args['email'] . "';");
+        $result = $db->query("SELECT id FROM users WHERE email = '" . $args['email'] . "';");
         if(mysqli_num_rows($result) > 0) {
             error("User already exists");
             return;
@@ -33,9 +33,15 @@ class User {
                 error("Operation requires admin privileges");
                 return;
             }
-            $admin = new SiteUser(null, $args['token']);
-            if(!$admin->isAuth()) {
-                error("Invalid token");
+            try {
+                $admin = new SiteUser(null, $args['token']);
+                if(!$admin->isAuth()) {
+                    error("Invalid token");
+                    return;
+                }
+            }
+            catch(Exception $e) {
+                error($e->getMessage());
                 return;
             }
         }
@@ -112,6 +118,9 @@ class SiteUser {
                 $this->tokenCreated = strtotime($row['created']);
                 $sql = "SELECT * FROM users WHERE id = '" . $row['user'] . "';";
             }
+            else {
+                throw new Exception("Invalid token");
+            }
         }
         else if($email != null) {
             $this->email = $email;
@@ -146,7 +155,7 @@ class SiteUser {
             throw new Exception("Invalid credentials");
         }
         $db = $GLOBALS['database'];
-        $result = $db->query("SELECT * from logins WHERE user = '" . $this->id . "';");
+        $result = $db->query("SELECT * FROM logins WHERE user = '" . $this->id . "';");
         if(mysqli_num_rows($result) > 0) {
             //Previous login for this user
             $row = mysqli_fetch_assoc($result);
