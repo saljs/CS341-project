@@ -110,7 +110,7 @@ class SiteUser {
                 $row = mysqli_fetch_assoc($result);
                 $this->token = $token;
                 $this->tokenCreated = strtotime($row['created']);
-                $sql = "SELECT * FROM users WHERE id = '" . $this->id . "';";
+                $sql = "SELECT * FROM users WHERE id = '" . $row['user'] . "';";
             }
         }
         else if($email != null) {
