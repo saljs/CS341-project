@@ -33,7 +33,7 @@ class User {
                 error("Operation requires admin privileges");
                 return;
             }
-            $admin = new SiteUser($token=$args['token']);
+            $admin = new SiteUser(null, $args['token']);
             if(!$admin->isAuth()) {
                 error("Invalid token");
                 return;
@@ -66,7 +66,7 @@ class User {
      */
     static function Authenticate($args): void {
         try {
-            $user = new SiteUser($email=$args['email']);
+            $user = new SiteUser($args['email'], null);
             $token = $user->auth($args['password']);
             $output = new HTTPResponse();
             $payload->token = $token;
@@ -101,7 +101,7 @@ class SiteUser {
      * @param email: The user's email address
      * @param token: An authentication token
      */
-    function __construct($email=null, $token=null) {
+    function __construct($email, $token) {
         $db = $GLOBALS['database'];
         $sql = "";
         if($token != null) {
@@ -128,7 +128,7 @@ class SiteUser {
                 $this->id =  $row['id'];
             }
             else {
-                throw new Exception($sql);
+                throw new Exception("User not found");
             }
         }
         else {
