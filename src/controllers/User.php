@@ -171,7 +171,7 @@ class SiteUser {
             }
         }
         //generate a new token
-        $this->token = bin2hex(random_bytes(128));
+        $this->token = bin2hex(random_bytes(32));
         if(!$db->query("INSERT INTO logins (user, token) VALUES('" . $this->id . "', '" . $this->token . "');")) {
             throw new Exception($db->error);
         }
