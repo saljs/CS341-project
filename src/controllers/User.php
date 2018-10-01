@@ -29,12 +29,12 @@ class User {
 
         //checks if admin privs are needed
         if($args['type'] == "admin") {
-            if(!$args['auth']) {
+            if(!$args['token']) {
                 error("Operation requires admin privileges");
                 return;
             }
-            $admin = new SiteUser($args['email']);
-            if(!$admin->checkAuth($args['auth'])) {
+            $admin = new SiteUser($token=$args['token']);
+            if(!$admin->isAuth()) {
                 error("Invalid token");
                 return;
             }
@@ -66,7 +66,7 @@ class User {
      */
     static function Authenticate($args): void {
         try {
-            $user = new SiteUser($args['email']);
+            $user = new SiteUser($email=$args['email']);
             $token = $user->auth($args['password']);
             $output = new HTTPResponse();
             $payload->token = $token;
@@ -85,25 +85,55 @@ class User {
  */
 class SiteUser {
 
+    //user information
     public $id;
     public $email;
     private $hash;
     public $type;
     public $name;
+
+    //login information
+    private $token;
+    private $tokenCreated;
     
     /*
      * Constructor
      * @param email: The user's email address
+     * @param token: An authentication token
      */
-    function __construct($email) {
-        $this->email = $email;
+    function __construct($email=null, $token=null) {
         $db = $GLOBALS['database'];
-        $result = $db->query("SELECT * from users WHERE email = '" . $this->email . "';");
-        $row = mysqli_fetch_assoc($result);
-        $this->hash = $row['password'];
-        $this->type = $row['type'];
-        $this->name = $row['name'];
-        $this->id =  $row['id'];
+        $sql = "";
+        if($token != null) {
+            $result = $db->query("SELECT * logins WHERE token = '" . $token . "';");
+            if(mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $this->token = $token;
+                $this->tokenCreated = strtotime($row['created']);
+                $sql = "SELECT * FROM users WHERE id = '" . $this->id . "';";
+            }
+        }
+        else if($email != null) {
+            $this->email = $email;
+            $sql = "SELECT * FROM users WHERE email = '" . $this->email . "';";
+        }
+        
+        if(!empty($sql)) {
+            $result = $db->query($sql);
+            if(mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $this->hash = $row['password'];
+                $this->type = $row['type'];
+                $this->name = $row['name'];
+                $this->id =  $row['id'];
+            }
+            else {
+                throw new Exception("User does not exist");
+            }
+        }
+        else {
+            throw new Exception("Need either email or token");
+        }
     }
 
     /*
@@ -121,7 +151,9 @@ class SiteUser {
             //Previous login for this user
             $row = mysqli_fetch_assoc($result);
             if(time() - strtotime($row['created']) < 21600) { //6 hours until token expires
-                return $row['token'];
+                $this->token = $row['token'];
+                $this->tokenCreated = strtotime($row['created']);
+                return $this->token;
             }
             else {
                 if(!$db->query("DELETE FROM logins WHERE user = '" . $this->id . "';")) {
@@ -130,26 +162,21 @@ class SiteUser {
             }
         }
         //generate a new token
-        $token = bin2hex(random_bytes(128));
-        if(!$db->query("INSERT INTO logins (user, token) VALUES('" . $this->id . "', '" . $token . "');")) {
+        $this->token = bin2hex(random_bytes(128));
+        if(!$db->query("INSERT INTO logins (user, token) VALUES('" . $this->id . "', '" . $this->token . "');")) {
             throw new Exception($db->error);
         }
-        return $token;
+        $this->tokenCreated = time();
+        return $this->token;
     }
 
     /*
      * Checks if the user is authenticated
-     * @param token: An authentication token
      * @return True if authenticated, false otherwise
      */
-    function checkAuth($token): bool {
-        $db = $GLOBALS['database'];
-        $result = $db->query("SELECT * from logins WHERE user = '" . $this->id . "';");
-        if(mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
-            if(time() - strtotime($row['created']) < 21600 && $row['token'] == $token) { //6 hours until token expires
-                return true;
-            }
+    function isAuth(): bool {
+        if(time() - $this->tokenCreated < 21600) {
+            return true;
         }
         return false;
     }
