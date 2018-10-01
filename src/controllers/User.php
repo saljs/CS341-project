@@ -123,6 +123,7 @@ class SiteUser {
      * @return True if authenticated, false otherwise
      */
     function checkAuth($token): bool {
+        $db = $GLOBALS['database'];
         $result = $db->query("SELECT * from logins WHERE user = '" . $this->id . "';");
         if(mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
