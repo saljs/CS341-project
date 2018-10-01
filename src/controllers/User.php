@@ -128,7 +128,7 @@ class SiteUser {
                 $this->id =  $row['id'];
             }
             else {
-                throw new Exception("User does not exist");
+                throw new Exception($sql);
             }
         }
         else {
