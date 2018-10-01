@@ -105,7 +105,7 @@ class SiteUser {
         $db = $GLOBALS['database'];
         $sql = "";
         if($token != null) {
-            $result = $db->query("SELECT * logins WHERE token = '" . $token . "';");
+            $result = $db->query("SELECT * FROM logins WHERE token = '" . $token . "';");
             if(mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
                 $this->token = $token;
