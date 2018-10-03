@@ -11,10 +11,11 @@ class Product {
      * @param price: price of the product
      * @param quantity: number currently in stock
      * @param image: visual for product, a path in the directory
+     * @param description: describes the product
      */
     static function Create($args): void {
         //checks if the required variables were given
-        if(!($args['name'] && $args['price'] && $args['quantity'] && $args['image'])) {
+        if(!($args['name'] && $args['price'] && $args['quantity'] && $args['image'] && $args['description'])) {
             error("Missing required fields");
             return;
         }
@@ -35,6 +36,12 @@ class Product {
 
 }
 class ViewableProduct{
-    
+    function __construct($name){
+        $db = $GLOBALS['database'];
+         $result = $db->query("SELECT * FROM products WHERE name = '" . $name. "';");
+        if(mysqli_num_rows($result) < 0) {
+                error("product does not exist");
+            }
+    }
 }
 ?>
