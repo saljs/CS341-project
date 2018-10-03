@@ -28,7 +28,13 @@ class Product {
         }
         success();
     }
+    static function testFunc(): void {
+        echo "hello world";
+    }
 
 
+}
+class ViewableProduct{
+    
 }
 ?>
