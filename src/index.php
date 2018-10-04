@@ -60,17 +60,11 @@ if(preg_match_all("/\/(([A-Z]|[a-z])+)/", $_SERVER['REQUEST_URI'], $urlText)) {
             }
         }
         else {
-            $response = new HTTPResponse(400);
-            $payload->message = 'Error: no such function "' . $run . '"';
-            $response->setPayload($payload);
-            $response->complete();
+            error('Error: no such function "' . $run . '"');
         }
     }
     else {
-        $response = new HTTPResponse(400);
-        $payload->message = 'Error: no such controller "' . $urlText[1][0] . '"';
-        $response->setPayload($payload);
-        $response->complete();
+        error('Error: no such controller "' . $urlText[1][0] . '""');
     }
 }
 else {
