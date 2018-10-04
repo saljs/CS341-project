@@ -30,21 +30,40 @@ class Promotion {
         // Checks if the promotion already exists & is running.
         $db = $GLOBALS['database'];
         $result = $db->query("SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';");
+
+        // If there is a existing promotion with that code in the database
         if(mysqli_num_rows($result) > 0) {
 
-            // We want to check if there's a promotion with the given code, *that is still going on*.
-            while($row = mysqli_fetch_row($result)) {
+            $row = mysqli_fetch_row($result);
 
-                $currenttime = time();
-                // If the end date is *not* past
-                if($currenttime < $row['enddate']) {
+            $currenttime = time();
+            // If the promotion is not over
+            if($currenttime < $row['enddate']) {
 
-                    error("Promotion already exists with that code");
-                    return;
-
-                }
+                error("Promotion already exists with that code");
+                return;
 
             }
+
+            // Otherwise, update that discount with the new information.
+            $db->query("UPDATE promotions 
+                          SET name=" . $args['name'] .
+                            " type=" . $args['type'] .
+                            " percent=" . $args['percent'] .
+                            " enddate=" . $args['enddate'] .
+                            " WHERE code=" . $args['code'] . ";");
+
+        } else {
+
+            // Create a new promotion
+            $db->query("INSERT INTO `promotions`
+                      (`name`, `code`, `type`, `percent`, `enddate`) 
+                      VALUES 
+                      (". $args['name'] . ", 
+                      " . $args['code'] . ", 
+                      " . $args['type'] . ", 
+                      " . $args['percent'] . ",
+                      " . $args['enddate'] . ");");
 
         }
 
@@ -52,7 +71,6 @@ class Promotion {
 
     }
 
-    //TODO: ongoing field in database
     static function End($args): void {
 
         // Make sure they entered a code
@@ -65,13 +83,14 @@ class Promotion {
         $result = $db->query("SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';");
         if(mysqli_num_rows($result) > 0) {
 
-            // We want to check if there's a promotion with the given code, *that is still going on*.
+            // We want to check if there's a promotion with the given code
             while($row = mysqli_fetch_row($result)) {
 
                 $currenttime = time();
-                // If the end date is *not* past
+                // If the promotion is not over
                 if($currenttime < $row['enddate']) {
 
+                    // Change the end date to the current time.
                     $db->query("UPDATE promotions SET enddate= '" . $currenttime . "' WHERE code='" . $args[code] . "';");
 
                 }
