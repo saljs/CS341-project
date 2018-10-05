@@ -1,0 +1,22 @@
+C-S 341 Software Engineering
+Project Meeting
+Project title:   Software for a shopping cart experience
+Group #:      1
+Members of the group:  Sal, Jack, Jack, David
+Meeting #:   1
+Held on: Oct 5, 2018 at 10:30 A.M. (30 min.)
+Location the U
+Members present: Sal, Jack, Jack
+Topic for discussion: next weeks deliverable, demo I, intial class design
+Report writer: Jack Collins
+Oct. 5, 2018
+
+Everyone has Begun work on seperate pieces of the project, specifically the neccessary front end and back end
+pieces for the first demo. The product class needs to be altered to include a category parameter in the table.
+Discussed storing product images as file paths rather than as files in the db table. we have decided to use a token based authent-
+ication system. Tasks that require admin can be authenticated by requiring the user class. Will begin to Front end develop now that 
+back end is established.
+
+Next meeting and its agenda:
+The next meeting is planned to be on Oct. 12, 2018. Will discuss current state of project, reflect on the first demo, and begin
+to plan for next deliverable.
