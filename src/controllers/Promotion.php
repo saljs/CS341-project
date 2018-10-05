@@ -60,9 +60,8 @@ class Promotion {
                     "', enddate='" . $args['enddate'] .
                     "' WHERE code='" . $args['code'] . "';";
 
-            $db->query($sql);
-
-            echo "\n" . $sql;
+            if(!$db->query($sql))
+                echo($sql);
 
         } else {
 
@@ -77,10 +76,9 @@ class Promotion {
                       '" . $args['percent'] . "',
                       '" . $args['enddate'] . "');";
 
-            echo "\n" . $sql;
-
-            // Create a new promotion
-            $db->query($sql);
+            // Create the new promotion
+            if(!$db->query($sql))
+                echo($sql);
 
         }
 
@@ -108,7 +106,10 @@ class Promotion {
                 if($currenttime < $row['enddate']) {
 
                     // Change the end date to the current time.
-                    $db->query("UPDATE promotions SET enddate= '" . $currenttime . "' WHERE code='" . $args[code] . "';");
+                    $sql = "UPDATE promotions SET enddate= '" . $currenttime . "' WHERE code='" . $args[code] . "';"
+
+                    if(!$db->query($sql))
+                        echo($sql);
 
                 }
 
