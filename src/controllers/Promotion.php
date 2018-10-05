@@ -67,11 +67,11 @@ class Promotion {
             $sql = "INSERT INTO `promotions`
                       (`name`, `code`, `type`, `percent`, `enddate`) 
                       VALUES 
-                      (". $args['name'] . ", 
-                      " . $args['code'] . ", 
-                      " . $args['type'] . ", 
-                      " . $args['percent'] . ",
-                      " . $args['enddate'] . ");";
+                      ('". $args['name'] . "', 
+                      '" . $args['code'] . "', 
+                      '" . $args['type'] . "', 
+                      '" . $args['percent'] . "',
+                      '" . $args['enddate'] . "');";
 
             echo "\n" . $sql;
 
