@@ -24,6 +24,22 @@ class Promotion {
             return;
         }
 
+        if(!$args['token']) {
+            error("Operation requires admin privileges");
+            return;
+        }
+        try {
+            $admin = new SiteUser(null, $args['token']);
+            if(!$admin->isAuth()) {
+                error("Invalid token");
+                return;
+            }
+        }
+        catch(Exception $e) {
+            error($e->getMessage());
+            return;
+        }
+
         // Checks if the enddate is valid (not past current time).
         $currenttime = time();
         if($currenttime >= $args['enddate']) {
@@ -34,7 +50,6 @@ class Promotion {
         // Checks if the promotion already exists & is running.
         $db = $GLOBALS['database'];
         $result = $db->query("SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';");
-        echo "selecting\n";
 
         // If there is a existing promotion with that code in the database
         if(mysqli_num_rows($result) > 0) {
@@ -50,8 +65,6 @@ class Promotion {
 
             }
 
-            echo "Updating\n";
-
             // Otherwise, update that discount with the new information.
             $sql = "UPDATE promotions 
                       SET name='" . $args['name'] .
@@ -61,11 +74,9 @@ class Promotion {
                     "' WHERE code='" . $args['code'] . "';";
 
             if(!$db->query($sql))
-                echo($sql);
+                error("There's an error in your SQL syntax: {$sql}");
 
         } else {
-
-            echo "Inserting\n";
 
             $sql = "INSERT INTO `promotions`
                       (`name`, `code`, `type`, `percent`, `enddate`) 
@@ -78,7 +89,7 @@ class Promotion {
 
             // Create the new promotion
             if(!$db->query($sql))
-                echo($sql);
+                error("There's an error in your SQL syntax: {$sql}");
 
         }
 
@@ -94,12 +105,28 @@ class Promotion {
             return;
         }
 
+        if(!$args['token']) {
+            error("Operation requires admin privileges");
+            return;
+        }
+        try {
+            $admin = new SiteUser(null, $args['token']);
+            if(!$admin->isAuth()) {
+                error("Invalid token");
+                return;
+            }
+        }
+        catch(Exception $e) {
+            error($e->getMessage());
+            return;
+        }
+
         $db = $GLOBALS['database'];
 
         $sql = "SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';";
         $result = $db->query($sql);
         if(!$result)
-            echo($sql);
+            error("There's an error in your SQL syntax: {$sql}");
 
         if(mysqli_num_rows($result) > 0) {
 
@@ -114,9 +141,7 @@ class Promotion {
                     $sql = "UPDATE promotions SET enddate= '" . $currenttime . "' WHERE code='" . $args[code] . "';";
 
                     if(!$db->query($sql))
-                        echo($sql);
-
-                    success();
+                        error("There's an error in your SQL syntax: {$sql}");
 
                 }
 
@@ -129,7 +154,8 @@ class Promotion {
 
         }
 
-    }
+        success();
 
+    }
 }
 ?>
