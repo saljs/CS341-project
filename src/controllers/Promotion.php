@@ -98,7 +98,7 @@ class Promotion {
 
         $sql = "SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';";
         $result = $db->query($sql);
-       // if(!$result)
+        if(!$result)
             echo($sql);
 
         if(mysqli_num_rows($result) > 0) {
@@ -108,7 +108,6 @@ class Promotion {
 
                 $currenttime = time();
                 // If the promotion is not over
-                echo "Is {$currenttime} < {$row['enddate']}?";
                 if($currenttime < $row['enddate']) {
 
                     // Change the end date to the current time.
@@ -117,13 +116,7 @@ class Promotion {
                     if(!$db->query($sql))
                         echo($sql);
 
-                    echo $sql;
-
                     success();
-
-                } else {
-
-                    echo "error";
 
                 }
 
