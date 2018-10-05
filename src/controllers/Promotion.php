@@ -31,11 +31,10 @@ class Promotion {
             return;
         }
 
-        echo "test";
-
         // Checks if the promotion already exists & is running.
         $db = $GLOBALS['database'];
         $result = $db->query("SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';");
+        echo "selecting\n";
 
         // If there is a existing promotion with that code in the database
         if(mysqli_num_rows($result) > 0) {
@@ -51,6 +50,8 @@ class Promotion {
 
             }
 
+            echo "Updating\n";
+
             // Otherwise, update that discount with the new information.
             $db->query("UPDATE promotions 
                           SET name=" . $args['name'] .
@@ -60,6 +61,8 @@ class Promotion {
                             " WHERE code=" . $args['code'] . ";");
 
         } else {
+
+            echo "Inserting\n";
 
             // Create a new promotion
             $db->query("INSERT INTO `promotions`
