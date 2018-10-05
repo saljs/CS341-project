@@ -12,7 +12,11 @@ class Promotion {
      * @param percent: The discount percentage
      * @param enddate: The epoch time-based end date of the promotion. https://www.epochconverter.com
      */
+
+    // HTTP Get Request
     static function Create($args): void {
+
+        //TODO: Admin Check, User.php
 
         // Checks if the required variables are given
         if (!($args['name'] && $args['code'] && $args['type'] && $args['percent'] && $args['enddate'])) {
@@ -26,6 +30,8 @@ class Promotion {
             error("Invalid End Date");
             return;
         }
+
+        echo "test";
 
         // Checks if the promotion already exists & is running.
         $db = $GLOBALS['database'];
