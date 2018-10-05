@@ -106,10 +106,12 @@ class Promotion {
                 if($currenttime < $row['enddate']) {
 
                     // Change the end date to the current time.
-                    $sql = "UPDATE promotions SET enddate= '" . $currenttime . "' WHERE code='" . $args[code] . "';"
+                    $sql = "UPDATE promotions SET enddate= '" . $currenttime . "' WHERE code='" . $args[code] . "';";
 
                     if(!$db->query($sql))
                         echo($sql);
+
+                    success();
 
                 }
 
