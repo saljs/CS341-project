@@ -120,6 +120,10 @@ class Promotion {
 
                     success();
 
+                } else {
+
+                    echo "error";
+
                 }
 
             }
