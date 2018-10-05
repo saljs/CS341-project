@@ -54,11 +54,11 @@ class Promotion {
 
             // Otherwise, update that discount with the new information.
             $db->query("UPDATE promotions 
-                          SET name=" . $args['name'] .
-                            " type=" . $args['type'] .
-                            " percent=" . $args['percent'] .
-                            " enddate=" . $args['enddate'] .
-                            " WHERE code=" . $args['code'] . ";");
+                          SET name='" . $args['name'] .
+                            "' type='" . $args['type'] .
+                            "' percent='" . $args['percent'] .
+                            "' enddate='" . $args['enddate'] .
+                            "' WHERE code='" . $args['code'] . "';");
 
         } else {
 
