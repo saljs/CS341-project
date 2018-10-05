@@ -95,7 +95,12 @@ class Promotion {
         }
 
         $db = $GLOBALS['database'];
-        $result = $db->query("SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';");
+
+        $sql = "SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';";
+        $result = $db->query($sql);
+        if(!$result)
+            echo($sql);
+
         if(mysqli_num_rows($result) > 0) {
 
             // We want to check if there's a promotion with the given code
