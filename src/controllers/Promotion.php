@@ -52,13 +52,16 @@ class Promotion {
 
             echo "Updating\n";
 
+            $sql = "UPDATE promotions 
+                      SET name='" . $args['name'] .
+                    "' type='" . $args['type'] .
+                    "' percent='" . $args['percent'] .
+                    "' enddate='" . $args['enddate'] .
+                    "' WHERE code='" . $args['code'] . "';"
             // Otherwise, update that discount with the new information.
-            $db->query("UPDATE promotions 
-                          SET name='" . $args['name'] .
-                            "' type='" . $args['type'] .
-                            "' percent='" . $args['percent'] .
-                            "' enddate='" . $args['enddate'] .
-                            "' WHERE code='" . $args['code'] . "';");
+            $db->query($sql);
+
+            echo "\n" . $sql;
 
         } else {
 
