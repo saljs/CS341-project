@@ -98,7 +98,7 @@ class Promotion {
 
         $sql = "SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';";
         $result = $db->query($sql);
-        if(!$result)
+       // if(!$result)
             echo($sql);
 
         if(mysqli_num_rows($result) > 0) {
@@ -115,6 +115,8 @@ class Promotion {
 
                     if(!$db->query($sql))
                         echo($sql);
+
+                    echo $sql;
 
                     success();
 
