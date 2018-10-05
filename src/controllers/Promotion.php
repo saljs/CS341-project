@@ -104,7 +104,7 @@ class Promotion {
         if(mysqli_num_rows($result) > 0) {
 
             // We want to check if there's a promotion with the given code
-            while($row = mysqli_fetch_row($result)) {
+            while($row = mysqli_fetch_assoc($result)) {
 
                 $currenttime = time();
                 // If the promotion is not over
