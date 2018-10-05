@@ -108,6 +108,7 @@ class Promotion {
 
                 $currenttime = time();
                 // If the promotion is not over
+                echo "Is {$currenttime} < {$row['enddate']}?";
                 if($currenttime < $row['enddate']) {
 
                     // Change the end date to the current time.
