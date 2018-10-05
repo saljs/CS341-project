@@ -64,15 +64,19 @@ class Promotion {
 
             echo "Inserting\n";
 
-            // Create a new promotion
-            $db->query("INSERT INTO `promotions`
+            $sql = "INSERT INTO `promotions`
                       (`name`, `code`, `type`, `percent`, `enddate`) 
                       VALUES 
                       (". $args['name'] . ", 
                       " . $args['code'] . ", 
                       " . $args['type'] . ", 
                       " . $args['percent'] . ",
-                      " . $args['enddate'] . ");");
+                      " . $args['enddate'] . ");";
+
+            echo "\n" . $sql;
+
+            // Create a new promotion
+            $db->query($sql);
 
         }
 
