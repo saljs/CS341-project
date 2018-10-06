@@ -70,6 +70,7 @@ class ViewableProduct{
                // $this->category = $row['name'];
             success();
         }
+        print_r($this);
     }
 }
 ?>
