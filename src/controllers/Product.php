@@ -32,7 +32,7 @@ class Product {
     static function testFunc(): void {
         echo "hello world";
     }
-    static function display($name): void{
+    static function display($args): void{
         echo $name;
         echo $arg['name'];
         $item = new ViewableProduct($name);
