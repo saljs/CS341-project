@@ -33,8 +33,11 @@ class Product {
     static function testFunc(): void {
         echo "hello world";
     }
-    static function display($args): void{
-        $item = new ViewableProduct($args['name']);
+    static function delete(): void{
+        echo "<h1>unimplimented, see functional req.s </h1>";
+    }
+    static function edit(): void{
+        echo "<h1>unimplimented, see functional req.s </h1>";
     }
 
 
