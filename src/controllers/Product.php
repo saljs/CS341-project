@@ -35,6 +35,7 @@ class Product {
     static function display($args): void{
         echo $name;
         echo $arg['name'];
+        print_r($args);
         echo "end of function";
         //$item = new ViewableProduct($name);
     }
