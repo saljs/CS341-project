@@ -48,7 +48,7 @@ class ViewableProduct{
     
     function __construct($name){
         $db = $GLOBALS['database'];
-        $q = "SELECT * FROM product WHERE name = ".$name.";";
+        $q = "SELECT * FROM product WHERE name = '".$name."';";
         echo $q;
          $result = $db->query($q); //fetch product by name from the db
         //checks if product with @param name exists
