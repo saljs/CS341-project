@@ -30,8 +30,9 @@ class Product {
         }
         success();
     }
-    static function display($args): void{
+    static function load($args): void{
         $item = new ViewableProduct($args['name']);
+        $item->display();
     }
     static function delete(): void{
         echo "<h1>unimplimented, see functional req.s </h1>";
@@ -73,6 +74,9 @@ class ViewableProduct{
             success();
         }
         print_r($this);
+    }
+    function diplay(){
+        echo "<h1>unimplimented, creates user veiwable calling on product.html</h1>
     }
 }
 ?>
