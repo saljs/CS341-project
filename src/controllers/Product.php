@@ -88,7 +88,7 @@ class ViewableProduct{
     function display(){
         echo "<h1>unimplimented, creates user veiwable calling on product.html</h1>";
         echo $this->image;
-        //echo "<img src= '".$this->image.".jpg'>";
+        echo "<img src= '".$this->image."'>";
     }
 }
 ?>
