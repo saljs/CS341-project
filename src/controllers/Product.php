@@ -33,6 +33,7 @@ class Product {
         echo "hello world";
     }
     static function display($name): void{
+        echo $name;
         $item = new ViewableProduct($name);
     }
 
