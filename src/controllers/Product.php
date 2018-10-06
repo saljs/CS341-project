@@ -39,11 +39,20 @@ class Product {
 
 }
 class ViewableProduct{
+    public $name;
+    public $price;
+    public $quantity;
+    public $image;
+    public $description;
+    
     function __construct($name){
         $db = $GLOBALS['database'];
-         $result = $db->query("SELECT * FROM products WHERE name = '" . $name. "';");
+        echo name;//debugging line
+         $result = $db->query("SELECT * FROM products WHERE name = '" . $name. "';"); //fetch product by name from the db
+        //checks if product with @param name exists
         if(mysqli_num_rows($result) < 0) {
-                error("product does not exist");
+                error("product does not exist");//dne, return error
+            echo "FAIL";
             }
     }
 }
