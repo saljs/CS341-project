@@ -89,7 +89,7 @@ class ViewableProduct{
         echo "<h1>unimplimented, creates user veiwable calling on product.html</h1>";
         echo $this->image;
         echo "<img src= '".$this->image."'>";
-        echo "<img src= 'example/img/cart.jpg'/>";
+        echo "<img src= 'CS341-project/example/img/cart.jpg'/>";
     }
 }
 ?>
