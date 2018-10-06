@@ -47,9 +47,9 @@ class ViewableProduct{
     
     function __construct($name){
         $db = $GLOBALS['database'];
-        echo name;//debugging line
-         $result = $db->query("SELECT * FROM products WHERE name = '" . $name. "';"); //fetch product by name from the db
+         $result = $db->query("SELECT * FROM products WHERE name = '" .$name. "';"); //fetch product by name from the db
         //checks if product with @param name exists
+        echo mysqli_num_rows($result);//debugging
         if(mysqli_num_rows($result) < 0) {
                 error("product does not exist");//dne, return error
             echo "FAIL";
