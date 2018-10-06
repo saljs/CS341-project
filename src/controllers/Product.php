@@ -52,7 +52,8 @@ class ViewableProduct{
         echo $q;
          $result = $db->query($q); //fetch product by name from the db
         //checks if product with @param name exists
-        echo "<br> db query returned " .mysqli_num_rows($result). " results";
+        echo "<br> db query returned " .mysqli_num_rows($result). " results <br>";
+        print_r($result);
         if(mysqli_num_rows($result) < 1) {
             error("product does not exist");//dne, return error
             echo "FAIL";
