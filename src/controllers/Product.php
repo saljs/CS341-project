@@ -32,7 +32,7 @@ class Product {
     }
     static function load($args): void{
         $item = new ViewableProduct($args['name']);
-        $item->display();
+        //$item->display();
     }
     static function delete(): void{
         echo "<h1>unimplimented, see functional req.s </h1>";
