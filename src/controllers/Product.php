@@ -30,13 +30,23 @@ class Product {
         }
         success();
     }
+    /* 
+     * Loads an existing Product
+     * @param name: name of the product to query from db
+     */
     static function load($args): void{
         $item = new ViewableProduct($args['name']);
-        //$item->display();
+        $item->display();
     }
+     /* 
+     * deletes an existing Product
+     */
     static function delete(): void{
         echo "<h1>unimplimented, see functional req.s </h1>";
     }
+     /* 
+     * edits an existing Product
+     */
     static function edit(): void{
         echo "<h1>unimplimented, see functional req.s </h1>";
     }
