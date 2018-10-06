@@ -33,10 +33,7 @@ class Product {
         echo "hello world";
     }
     static function display($args): void{
-        echo $name;
-        echo $args['name'];
-        echo "end of function";
-        //$item = new ViewableProduct($name);
+        $item = new ViewableProduct($args['name']);
     }
 
 
@@ -54,11 +51,11 @@ class ViewableProduct{
         //checks if product with @param name exists
         echo $name;
         echo $result->num_rows;
-        echo "how many results:".mysqli_num_rows($result);//debugging
-        if(mysqli_num_rows($result) < 0) {
-                error("product does not exist");//dne, return error
-            echo "FAIL";
-            }
+        //echo "how many results:".mysqli_num_rows($result);//debugging
+        //if(mysqli_num_rows($result) < 0) {
+          //      error("product does not exist");//dne, return error
+          //  echo "FAIL";
+          //  }
     }
 }
 ?>
