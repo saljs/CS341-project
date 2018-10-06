@@ -12,11 +12,11 @@ class Product {
      * @param quantity: number currently in stock
      * @param image: visual for product, a path in the directory
      * @param description: describes the product
-     * @param category: category for item
+     * @param category: category for item //need to add to table
      */
     static function Create($args): void {
         //checks if the required variables were given
-        if(!($args['name'] && $args['price'] && $args['quantity'] && $args['image'] && $args['description'] && $args['category'])) {
+        if(!($args['name'] && $args['price'] && $args['quantity'] && $args['image'] && $args['description'])) {//once add cat. to table, add check here
             error("Missing required fields");
             return;
         }
@@ -45,6 +45,7 @@ class ViewableProduct{
     public $quantity;
     public $image;
     public $description;
+    public $category;
     
     function __construct($name){
         $db = $GLOBALS['database'];
@@ -54,11 +55,19 @@ class ViewableProduct{
         //checks if product with @param name exists
         echo "<br> db query returned " .mysqli_num_rows($result). " results <br>";
         print_r($result);
-        if(mysqli_num_rows($result) < 1) {
+        if(mysqli_num_rows($result) < 1) {//if product with this name gave a NO result
             error("product does not exist");//dne, return error
             echo "FAIL";
          }
-        else{
+        else{//there was a result
+            //load all rows from query into this object
+            $row = mysqli_fetch_assoc($result);
+                $this->name = $row['name'];
+                $this->price = $row['price'];
+                $this->quantity = $row['quantity'];
+                $this->image = $row['image'];
+                $this->description = $row['description'];
+               // $this->category = $row['name'];
             success();
         }
     }
