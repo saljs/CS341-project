@@ -57,6 +57,9 @@ class ViewableProduct{
             error("product does not exist");//dne, return error
             echo "FAIL";
          }
+        else{
+            success();
+        }
     }
 }
 ?>
