@@ -85,7 +85,7 @@ class ViewableProduct{
         }
         print_r($this);
     }
-    function diplay(){
+    function display(){
         echo "<h1>unimplimented, creates user veiwable calling on product.html</h1>";
     }
 }
