@@ -13,10 +13,10 @@ function login(e) {
 
     $.post('https://cs341group4.tk/User/Authenticate', $('#login').serialize())
     .done(function(data) {
-        $.cookie('token', data.token);
+        $.cookie('token', data.responseJSON.token);
         window.location.href = baseURL + "/";
     })
     .fail(function(data){
-        $('#error').html(data.message);
+        $('#error').html(data.responseJSON.message);
     });
 }
