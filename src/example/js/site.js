@@ -11,7 +11,7 @@ function login(e) {
     var email = $('#email').val();
     var passwd = $('#password').val();
 
-    $.post('https://cs431group4.tk/User/Authenticate',
+    $.post('https://cs341group4.tk/User/Authenticate',
         $('#login').serialize(),
         function( data ) {
             if("token" in data) {
