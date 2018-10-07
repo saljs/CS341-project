@@ -2,8 +2,8 @@
 var baseURL = "/example";
 
 $( document ).ready(function() {
-    //add click listeners
-    $('#loginButton').click(login);
+    //add event listeners
+    $('#login').on('submit', login);
 });
 
 function login() {
