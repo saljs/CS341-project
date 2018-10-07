@@ -31,7 +31,7 @@ if ($database->connect_error) {
 function getBusinessID(): string {
     $site = "debug";
     if($_SERVER['HTTP_ORIGIN']) {
-        $site = preg_replace("/http[s]:[\/\\\]+/", "", $_SERVER['HTTP_ORIGIN']);
+        $site = preg_replace(array("/http[s]:[\/\\\]+/", "/\./"), array("", ""), $_SERVER['HTTP_ORIGIN']);
     }
     return $site;
 }

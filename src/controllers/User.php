@@ -78,6 +78,7 @@ class User {
             $payload->token = $token;
             $output->setPayload($payload);
             $output->complete();
+            return;
         }
         catch (Exception $e) {
             error($e->getMessage());
@@ -123,14 +124,14 @@ class SiteUser {
             }
         }
         else if($email != null) {
-            $this->email = $email;
-            $sql = "SELECT * FROM users WHERE email = '" . $this->email . "';";
+            $sql = "SELECT * FROM users WHERE email = '" . $email . "';";
         }
         
         if(!empty($sql)) {
             $result = $db->query($sql);
             if(mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
+                $this->email = $row['email'];
                 $this->hash = $row['password'];
                 $this->type = $row['type'];
                 $this->name = $row['name'];
