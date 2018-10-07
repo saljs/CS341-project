@@ -20,7 +20,8 @@ $GLOBALS['database'] = $database;
 
 // Check connection
 if ($database->connect_error) {
-    die("MySQL connection failed: " . $database->connect_error);
+    error("MySQL connection failed: " . $database->connect_error);
+    exit(-1);
 }
 
 /*
@@ -30,7 +31,7 @@ if ($database->connect_error) {
 function getBusinessID(): string {
     $site = "debug";
     if($_SERVER['HTTP_ORIGIN']) {
-        $site = preg_replace(array('/(^\w+:|^)\/\/', '/\b\/.*/'), "", $_SERVER['HTTP_ORIGIN']);
+        $site = preg_replace("/http[s]:[\/\\\]+/", "", $_SERVER['HTTP_ORIGIN']);
     }
     return $site;
 }

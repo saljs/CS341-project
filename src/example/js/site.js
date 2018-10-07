@@ -11,16 +11,12 @@ function login(e) {
     var email = $('#email').val();
     var passwd = $('#password').val();
 
-    $.post('https://cs341group4.tk/User/Authenticate',
-        $('#login').serialize(),
-        function( data ) {
-            if("token" in data) {
-                $.cookie('token', data.token);
-                window.location.href = baseURL + "/";
-            }
-            else {
-                $('#error').html(data.message);
-            }
-        }
-    );
+    $.post('https://cs341group4.tk/User/Authenticate', $('#login').serialize())
+    .done(function(data) {
+        $.cookie('token', data.token);
+        window.location.href = baseURL + "/";
+    })
+    .fail(function(data){
+        $('#error').html(data.message);
+    });
 }
