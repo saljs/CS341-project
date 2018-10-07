@@ -21,7 +21,11 @@ function login(e) {
 
 function register(e) {
     e.preventDefault();
-    $.post('https://cs341group4.tk/User/Create', $('#register').serialize())
+    var fields = $('#register').serialize();
+    if(fields.type == "admin") {
+        fields.token = $.cookie('token');
+    }
+    $.post('https://cs341group4.tk/User/Create', fields)
     .done(function() {
         $('#register').remove();
     })
