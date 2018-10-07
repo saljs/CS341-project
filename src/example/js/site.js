@@ -6,7 +6,8 @@ $( document ).ready(function() {
     $('#login').on('submit', login);
 });
 
-function login() {
+function login(e) {
+    e.preventDefault();
     var email = $('#email').val();
     var passwd = $('#password').val();
 
