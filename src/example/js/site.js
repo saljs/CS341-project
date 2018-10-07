@@ -15,7 +15,7 @@ function login(e) {
         window.location.href = baseURL + "/";
     })
     .fail(function(data){
-        $('#error').html(data.message);
+        $('#error').html(data.responseJSON.message);
     });
 }
 
@@ -26,10 +26,11 @@ function register(e) {
         fields.token = $.cookie('token');
     }
     $.post('https://cs341group4.tk/User/Create', fields)
-    .done(function() {
+    .done(function(data) {
+        $('#message').html(data.message);
         $('#register').remove();
     })
-    .always(function(data){
-        $('#message').html(data.message);
+    .fail(function(data){
+        $('#message').html(data.responseJSON.message);
     });
 }
