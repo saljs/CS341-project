@@ -50,10 +50,10 @@ if(preg_match_all("/\/(([A-Z]|[a-z])+)/", $_SERVER['REQUEST_URI'], $urlText)) {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 call_user_func($run($_POST));
             }
-            if($_SERVER['REQUEST_METHOD'] == 'PUT') {
+            else if($_SERVER['REQUEST_METHOD'] == 'PUT') {
                 call_user_func($run($_PUT));
             }
-            if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+            else if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
                 call_user_func($run($_DELETE));
             }
             else {
