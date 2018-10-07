@@ -20,7 +20,6 @@ class Product {
             error("Missing required fields");
             return;
         }
-
         //checks if product already exists with the same name
         $db = $GLOBALS['database'];
         $result = $db->query("SELECT id FROM products WHERE name = '" . $args['name'] . "';");
@@ -28,6 +27,7 @@ class Product {
             error("Product already exists");
             return;
         }
+        //to do: generate new product in db
         success();
     }
     /* 
@@ -75,12 +75,12 @@ class ViewableProduct{
         else{//there was a result
             //load all rows from query into this object
             $row = mysqli_fetch_assoc($result);
-                $this->name = $row['name'];
-                $this->price = $row['price'];
-                $this->quantity = $row['quantity'];
-                $this->image = $row['image'];
-                $this->description = $row['description'];
-               // $this->category = $row['name'];
+            $this->name = $row['name'];
+            $this->price = $row['price'];
+            $this->quantity = $row['quantity'];
+            $this->image = $row['image'];
+            $this->description = $row['description'];
+            //$this->category = $row['name'];
             success();
         }
         print_r($this);
