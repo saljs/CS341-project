@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Register</title>
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/site.js"></script>
+    </head>
+    <body>
+        <h1>Register</h1>
+        <form id="register">
+            Email: <input type="text" name="email"/>
+            <br/>
+            Name: <input type="text" name="name"/>
+            <br/>
+            Password: <input type="password" name="password"/>
+            <br/>
+            Admin user:
+            <br/>
+            <input type-"radio" name="type" value="user" checked="checked"/> No
+            <br/>
+            <input type-"radio" name="type" value="admin"/> Yes
+            <br/>
+            <input type="submit" value="Register"/>
+        </form>
+        <br/>
+        <span id="message"></span>
+    </body>
+</html>

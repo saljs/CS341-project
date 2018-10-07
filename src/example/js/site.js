@@ -4,19 +4,28 @@ var baseURL = "/example";
 $( document ).ready(function() {
     //add event listeners
     $('#login').on('submit', login);
+    $('#register').on('submit', register);
 });
 
 function login(e) {
     e.preventDefault();
-    var email = $('#email').val();
-    var passwd = $('#password').val();
-
     $.post('https://cs341group4.tk/User/Authenticate', $('#login').serialize())
     .done(function(data) {
-        $.cookie('token', data.responseJSON.token);
+        $.cookie('token', data.token);
         window.location.href = baseURL + "/";
     })
     .fail(function(data){
-        $('#error').html(data.responseJSON.message);
+        $('#error').html(data.message);
+    });
+}
+
+function register(e) {
+    e.preventDefault();
+    $.post('https://cs341group4.tk/User/Create', $('#register').serialize())
+    .done(function() {
+        $('#register').remove();
+    })
+    .always(function(data){
+        $('#message').html(data.message);
     });
 }
