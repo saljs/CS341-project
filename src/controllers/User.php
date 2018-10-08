@@ -35,7 +35,7 @@ class User {
             }
             try {
                 $admin = new SiteUser(null, $args['token']);
-                if(!$admin->isAuth()) {
+                if(!$admin->isAuth() || $admin->type != "admin") {
                     error("Invalid token");
                     return;
                 }
