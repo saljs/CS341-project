@@ -11,23 +11,25 @@ class Product {
      * @param price: price of the product
      * @param quantity: number currently in stock
      * @param image: visual for product, a path in the directory
-     * @param description: describes the product, including catagories
+     * @param description: describes the product
+     * @param catagory: The catogories that the product fits into, csv
      */
     static function Create($args): void {
         //checks if the required variables were given
-        if(!($args['name'] && $args['price'] && $args['quantity'] && $args['image'] && $args['description'])) {
+        if(!($args['name'] && $args['price'] && $args['quantity'] && $args['image'] && $args['description'] && $args['catagory'])) {
             error("Missing required fields");
             return;
         }
 
         //insert into database
         $db = $GLOBALS['database'];
-        if(!$db->query("INSERT INTO product (name, price, quantity, image, description) VALUES('"
+        if(!$db->query("INSERT INTO product (name, price, quantity, image, description, catagory) VALUES('"
             . $args['name'] . "', '"
             . $args['price'] . "', '"
             . $args['quantity'] . "', '"
             . $args['image'] . "', '"
-            . $args['description'] . "');")) {
+            . $args['description'] . "', '"
+            . $args['catagory'] . "');")){
             error($db->error);
             return;
         }
@@ -38,7 +40,7 @@ class Product {
      * @param id: id of the product to query from db
      * @return The product name, price, quantity, image, and description
      */
-    static function Get($args): void{
+    static function Get($args): void {
         if(!$args['id']) {
             error("Product id required");
             return;
@@ -58,17 +60,61 @@ class Product {
             error($e->getMessage());
         }
     }
+
+    /*
+     * Gets info about a group of products
+     * @param catagory: The catagory of the product.
+     * @param search: A search string
+     * @return A list of products
+     */
+    static function GetAll($args): void {
+        $sql = "SELECT * FROM product";
+        if($args['catagory'] && !$args['search') {
+            //select all from given catagory
+            $sql .= " WHERE catagory LIKE '%" . $args['catagory'] . "%';";
+        }
+        else if($args['search'] && !$args['catagory']) {
+            //select all that meet search parameter
+            $sql .= "WHERE name LIKE '%" . $args['search'] 
+                . "%' OR description LIKE '%" . $args['search'] . "%';";
+        }
+        else if($args['search'] && $args['catagory']) {
+            //select all from catagory that match search
+            $sql .= " WHERE catagory LIKE '%" . $args['catagory'] 
+                . " AND (name LIKE '%" . $args['search'] 
+                . "%' OR description LIKE '%" . $args['search'] . "%');";
+        }
+        else {
+            //return all items
+            $sql .= ";";
+        }
+
+        $db = $GLOBALS['database'];
+        $products = $db->query($sql);
+        $output = new HTTPResponse();
+        $payload->products = array();
+        while($product = $products->fetch_assoc()) {
+            //add each product to the payload
+            $item->id = $product['id'];
+            $item->name = $product['name'];
+            $item->price = $product['price'];
+            $item->image = $product['image'];
+            $payload->products[] = $item;
+        }
+        $output->setPayload($payload);
+        $output->complete();
+    }
      
 	/* 
      * Deletes an existing Product
      */
-    static function delete(): void{
+    static function delete(): void {
         echo "<h1>unimplimented, see functional req.s </h1>";
     }
      /* 
      * edits an existing Product
      */
-    static function edit(): void{
+    static function edit(): void {
         echo "<h1>unimplimented, see functional req.s </h1>";
     }
 
@@ -84,8 +130,7 @@ class ViewableProduct{
     
     function __construct($id) {
         $db = $GLOBALS['database'];
-        $q = "SELECT * FROM product WHERE id = '" . $id . "';";
-        $result = $db->query("SELECT * FROM product WHERE id = '" . $id . "';"); //fetch product by name from the db
+        $result = $db->query("SELECT * FROM product WHERE id = '" . $id . "';"); //fetch product by id from the db
         
         if(mysqli_num_rows($result) < 1) { //if product with this name gave a NO result
             throw new Exception("Product does not exist"); //dne, return error
