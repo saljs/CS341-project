@@ -44,7 +44,9 @@ function userWelcome() {
             $.post('https://cs341group4.tk/User/Get', {token: $.cookie('token')})
             .done(function(data) {
                 $('#userWelcome').html("You are logged in as " + data.name);
-                $('#login').prop('id', 'newId').html("Logout").on('click', logout);
+                $('#loginButton').remove();
+                $('#userWelcome').after('<button id="logout">Logout</button>');
+                $('#logout').on('click', logout);
             });
         }
     }
