@@ -69,7 +69,7 @@ class Product {
      */
     static function GetAll($args): void {
         $sql = "SELECT * FROM product";
-        if($args['catagory'] && !$args['search') {
+        if($args['catagory'] && !$args['search']) {
             //select all from given catagory
             $sql .= " WHERE catagory LIKE '%" . $args['catagory'] . "%';";
         }
