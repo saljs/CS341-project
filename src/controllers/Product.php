@@ -75,7 +75,7 @@ class Product {
         }
         else if($args['search'] && !$args['catagory']) {
             //select all that meet search parameter
-            $sql .= "WHERE name LIKE '%" . $args['search'] 
+            $sql .= " WHERE name LIKE '%" . $args['search'] 
                 . "%' OR description LIKE '%" . $args['search'] . "%';";
         }
         else if($args['search'] && $args['catagory']) {

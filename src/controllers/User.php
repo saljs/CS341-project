@@ -92,12 +92,17 @@ class User {
     static function Get($args): void {
         try {
             $user = new SiteUser(null, $args['token']);
-            $output = new HTTPResponse();
-            $payload->email = $user->email;
-            $payload->name = $user->name;
-            $payload->type = $user->type;
-            $output->setPayload($payload);
-            $output->complete();
+            if($user->isAuth()) {
+                $output = new HTTPResponse();
+                $payload->email = $user->email;
+                $payload->name = $user->name;
+                $payload->type = $user->type;
+                $output->setPayload($payload);
+                $output->complete();
+            }
+            else {
+                error("Not logged in");
+            }
         }
         catch (Exception $e) {
             error($e->getMessage());
