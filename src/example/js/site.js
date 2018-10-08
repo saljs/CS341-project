@@ -44,6 +44,7 @@ function userWelcome() {
             $.post('https://cs341group4.tk/User/Get', {token: $.cookie('token')})
             .done(function(data) {
                 $('#userWelcome').html("You are logged in as " + data.name);
+                $('#login').prop('id', 'newId').html("Logout").on('click', logout);
             });
         }
     }
@@ -51,7 +52,7 @@ function userWelcome() {
 
 function logout(e) {
     $.removeCookie('token');
-     location.reload();
+    location.reload();
 }
 
 function loadAllItems() {
@@ -69,6 +70,9 @@ function loadAllItems() {
 
 function itemList(items) {
     items.forEach(function(item) {
-        $('#products').append('<li><a href="' + baseURL + '/item.html?id=' + item.id + '">' + item.name + '</a></li>');
+        $('#products').append('<li><a href="' + baseURL + '/item.html?id=' + item.id + '">' 
+            + '<img src="' + item.image + '" class="productImg"/>'
+            + item.name 
+            + '</a></li>');
     });
 }
