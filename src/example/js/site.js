@@ -7,6 +7,7 @@ $( document ).ready(function() {
     $('#logout').on('click', logout);
     $('#register').on('submit', register);
     userWelcome();
+    loadItems();
 });
 
 function login(e) {
@@ -51,4 +52,23 @@ function userWelcome() {
 function logout(e) {
     $.removeCookie('token');
      location.reload();
+}
+
+function loadAllItems() {
+    if($('#products').length) {
+        $.get('https://cs341group4.tk/Product/GetAll')
+        .done(function(data){
+            $('#message').html("");
+            itemList(data.products);
+        })
+        .fail(function(data){
+            $('#message').html(data.responseJSON.message);
+        });
+    }
+}
+
+function itemList(items) {
+    items.forEach(function(item) {
+        $('#products').append('<li><a href="' + baseUrl + '/item.html?id=' + item.id + '">' + item.name + '</a></li>');
+    }
 }
