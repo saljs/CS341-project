@@ -7,7 +7,7 @@ $( document ).ready(function() {
     $('#logout').on('click', logout);
     $('#register').on('submit', register);
     userWelcome();
-    loadItems();
+    loadAllItems();
 });
 
 function login(e) {
