@@ -4,7 +4,9 @@ var baseURL = "/example";
 $( document ).ready(function() {
     //add event listeners
     $('#login').on('submit', login);
+    $('#logout').on('click', login);
     $('#register').on('submit', register);
+    userWelcome();
 });
 
 function login(e) {
@@ -22,8 +24,8 @@ function login(e) {
 function register(e) {
     e.preventDefault();
     var fields = $('#register').serialize();
-    if(fields.type == "admin") {
-        fields.token = $.cookie('token');
+    if($('input[name=type]:checked', '#register').val() == "admin") {
+        fields += "&token=" + $.cookie('token');
     }
     $.post('https://cs341group4.tk/User/Create', fields)
     .done(function(data) {
@@ -33,4 +35,20 @@ function register(e) {
     .fail(function(data){
         $('#message').html(data.responseJSON.message);
     });
+}
+
+function userWelcome() {
+    if($('#userWelcome').length) {
+        if($.cookie('token') != undefined) {
+            $.post('https://cs341group4.tk/User/Get', {token: $.cookie('token')})
+            .done(function(data) {
+                $('#userWelcome').html("You are logged in as " + data.name);
+            });
+        }
+    }
+}
+
+function logout(e) {
+    $.removeCookie('token');
+     location.reload();
 }

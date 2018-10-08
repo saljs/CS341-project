@@ -78,7 +78,26 @@ class User {
             $payload->token = $token;
             $output->setPayload($payload);
             $output->complete();
-            return;
+        }
+        catch (Exception $e) {
+            error($e->getMessage());
+        }
+    }
+
+    /*
+     * Returns public user information
+     * @param token The user's authentication token
+     * @return The user's email, name, and type
+     */
+    static function Get($args): void {
+        try {
+            $user = new SiteUser(null, args['token']);
+            $output = new HTTPResponse();
+            $payload->email = $user->email;
+            $payload->name = $user->name;
+            $payload->type = $user->type;
+            $output->setPayload($payload);
+            $output->complete();
         }
         catch (Exception $e) {
             error($e->getMessage());
