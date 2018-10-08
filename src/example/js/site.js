@@ -4,7 +4,7 @@ var baseURL = "/example";
 $( document ).ready(function() {
     //add event listeners
     $('#login').on('submit', login);
-    $('#logout').on('click', login);
+    $('#logout').on('click', logout);
     $('#register').on('submit', register);
     userWelcome();
 });
