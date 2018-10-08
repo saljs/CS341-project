@@ -69,6 +69,6 @@ function loadAllItems() {
 
 function itemList(items) {
     items.forEach(function(item) {
-        $('#products').append('<li><a href="' + baseUrl + '/item.html?id=' + item.id + '">' + item.name + '</a></li>');
+        $('#products').append('<li><a href="' + baseURL + '/item.html?id=' + item.id + '">' + item.name + '</a></li>');
     });
 }
