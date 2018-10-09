@@ -90,7 +90,7 @@ function loadAllItems() {
 function itemList(items) {
     items.forEach(function(item) {
         $('#products').append('<li><a href="' + baseURL + '/item.html?id=' + item.id + '">' 
-            + '<img src="' + item.image + '" class="productImg"/>'
+            + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
             + item.name 
             + '</a></li>');
     });
