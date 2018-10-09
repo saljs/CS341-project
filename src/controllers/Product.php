@@ -112,6 +112,7 @@ class Product {
         $payload->products = array();
         while($product = $products->fetch_assoc()) {
             //add each product to the payload
+            $item = new stdClass();
             $item->id = $product['id'];
             $item->name = $product['name'];
             $item->price = $product['price'];
