@@ -76,7 +76,7 @@ function logout(e) {
 
 function loadAllItems() {
     if($('#products').length) {
-        $.get('https://cs341group4.tk/Product/GetAll')
+        $.post('https://cs341group4.tk/Product/GetAll')
         .done(function(data){
             $('#message').html("");
             itemList(data.products);
