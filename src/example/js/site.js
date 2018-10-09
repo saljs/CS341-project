@@ -6,6 +6,7 @@ $( document ).ready(function() {
     $('#login').on('submit', login);
     $('#logout').on('click', logout);
     $('#register').on('submit', register);
+    $('#newItem').on('submit', addItem);
     userWelcome();
     loadAllItems();
 });
@@ -38,6 +39,19 @@ function register(e) {
     });
 }
 
+function addItem(e) {
+    e.preventDefault();
+    var fields = $('#newItem').serialize();
+    fields += "&token=" + $.cookie('token');
+    $.post('https://cs341group4.tk/Product/Create', fields)
+    .done(function(data) {
+        $('#message').html(data.message);
+    })
+    .fail(function(data){
+        $('#message').html(data.responseJSON.message);
+    });
+}
+
 function userWelcome() {
     if($('#userWelcome').length) {
         if($.cookie('token') != undefined) {
@@ -47,6 +61,9 @@ function userWelcome() {
                 $('#loginButton').remove();
                 $('#userWelcome').after('<button id="logout">Logout</button>');
                 $('#logout').on('click', logout);
+                if(data.type == "admin") {
+                    $('#logout').after('<br/><a href="/example/admin.html">Admin page</a>');
+                }
             });
         }
     }

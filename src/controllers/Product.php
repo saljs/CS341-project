@@ -1,4 +1,6 @@
 <?php
+require_once User.php;
+
 /*
  * adds product to database and displays them
  */
@@ -12,14 +14,29 @@ class Product {
      * @param quantity: number currently in stock
      * @param image: visual for product, a path in the directory
      * @param description: describes the product
-     * @param catagory: The catogories that the product fits into, csv
+     * @param catagory: the categories that the product fits into, csv
+     * @param token: A User authentication token
      */
     static function Create($args): void {
         //checks if the required variables were given
-        if(!($args['name'] && $args['price'] && $args['quantity'] && $args['image'] && $args['description'] && $args['catagory'])) {
+        if(!($args['name'] && $args['price'] && $args['quantity'] && $args['image'] && $args['description'] && $args['catagory'] && $args['token'])) {
             error("Missing required fields");
             return;
         }
+
+        //check if user has access
+        try {
+            $user = new SiteUser(null, $args['token']);
+            if(!$user->isAuth() || $user->type != "admin") {
+                error("User doesn't have privileges to add items");
+                return;
+            }
+        }
+        catch(Exception $e) {
+            error($e->getMessage());
+            return;
+        }
+
 
         //insert into database
         $db = $GLOBALS['database'];
