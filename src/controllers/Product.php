@@ -150,6 +150,7 @@ class ViewableProduct{
         $db = $GLOBALS['database'];
 	$result = $db->query("SELECT * FROM product WHERE name = '" . $id . "';"); //fetch product by id from the db
         print_r($result);
+	    echo "SELECT * FROM product WHERE name = '" . $id . "';"
         $result = $db->query("SELECT * FROM product WHERE id = '" . $id . "';"); //fetch product by id from the db
         print_r($result);
         if(mysqli_num_rows($result) < 1) { //if product with this name gave a NO result
