@@ -158,7 +158,7 @@ class Promotion {
         } try {
 
             // Get our promotion based on the code given.
-            $promo = new ViewableProduct($args['code']);
+            $promo = new ViewableDiscount($args['code']);
             $output = new HTTPResponse();
 
             // Declare our return fields.
