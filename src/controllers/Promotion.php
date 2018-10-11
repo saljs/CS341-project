@@ -256,8 +256,6 @@ class ViewableDiscount {
         if(!$result)
             error("There's an error in your SQL syntax: {$sql}");
 
-        echo "SQL: " . $sql . "\n\n\n";
-
         if(mysqli_num_rows($result) < 1) {
 
             throw new Exception("Promotion Code does not exist");
@@ -265,13 +263,17 @@ class ViewableDiscount {
         } else {
 
             $row = mysqli_fetch_row($result);
+            echo "[Row] Name: " . $row['name'] . "\n\n\n";
+            echo "[Row] Percent: " . $row['Percent'] . "\n\n\n";
+            echo "[Row] Enddate: " . $row['Enddate'] . "\n\n\n";
+
+
             $this->code = $code;
             $this->name = $row['name'];
             $this->type = $row['type'];
             $this->percent = $row['percent'];
             $this->enddate = $row['enddate'];
 
-            echo $row['type'];
 
         }
 
