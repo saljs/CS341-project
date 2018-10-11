@@ -47,7 +47,10 @@ class Promotion {
 
         // Checks if the promotion already exists & is running.
         $db = $GLOBALS['database'];
-        $result = $db->query("SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';");
+        $sql = "SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';";
+        $result = $db->query($sql);
+        if(!$result)
+            error("There's an error in your SQL syntax: {$sql}");
 
         // If there is a existing promotion with that code in the database
         if(mysqli_num_rows($result) > 0) {
@@ -105,7 +108,11 @@ class Promotion {
 
         // Checks if the promotion already exists & is running.
         $db = $GLOBALS['database'];
-        $result = $db->query("SELECT `name`, `type`, `percent`, `enddate` FROM promotions WHERE code = '" . $args['code'] . "';");
+        $sql = "SELECT `name`, `type`, `percent`, `enddate` FROM promotions WHERE code = '{$args["code"]}';";
+        $result = $db->query($sql);
+        if(!$result)
+            error("There's an error in your SQL syntax: {$sql}");
+
 
         if(mysqli_num_rows($result) > 0) {
 
@@ -129,14 +136,16 @@ class Promotion {
 
                 }
 
-                foreach($new as $key => $val) {
+                // Use our existing create function to update the item
+                self::Create($new);
 
-                    echo $key . "\n\n\n";
-                    echo $val . "\n\n\n";
-
-                }
+                success();
 
             }
+
+        } else {
+
+            error("");
 
         }
 
