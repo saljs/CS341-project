@@ -113,7 +113,6 @@ class Promotion {
         if(!$result)
             error("There's an error in your SQL syntax: {$sql}");
 
-
         if(mysqli_num_rows($result) > 0) {
 
             // We want to check if there's a promotion with the given code
@@ -145,6 +144,36 @@ class Promotion {
 
             }
 
+        }
+
+    }
+
+    static function Get($args): void {
+
+        if (!$args['code']) {
+
+            error("Discount code required");
+            return;
+
+        } try {
+
+            // Get our promotion based on the code given.
+            $promo = new ViewableProduct($args['code']);
+            $output = new HTTPResponse();
+
+            // Declare our return fields.
+            $payload->code = $promo['code'];
+            $payload->name = $promo['name'];
+            $payload->type = $promo['type'];
+            $payload->percent = $promo['percent'];
+            $payload->enddate = $promo['enddate'];
+
+            // Send the output.
+            $output->setPayload($payload);
+            $output->complete();
+
+        } catch (Exception $e) {
+            error($e->getMessage());
         }
 
     }
@@ -209,5 +238,40 @@ class Promotion {
         success();
 
     }
+}
+
+class ViewableDiscount {
+
+    public $code;
+    public $name;
+    public $type;
+    public $percent;
+    public $enddate;
+
+    function __construct($code){
+
+        $db = $GLOBALS['database'];
+        $sql = "SELECT `name`, `type`, `percent`, `enddate` FROM promotions WHERE code = '{$code}';";
+        $result = $db->query($sql);
+        if(!$result)
+            error("There's an error in your SQL syntax: {$sql}");
+
+        if(mysqli_num_rows($result) < 1) {
+
+            throw new Exception("Promotion Code does not exist");
+
+        } else {
+
+            $row = mysqli_fetch_row($result);
+            $this->code = $code;
+            $this->name = $row['name'];
+            $this->type = $row['type'];
+            $this->percent = $row['percent'];
+            $this->enddate = $row['enddate'];
+
+        }
+
+    }
+
 }
 ?>
