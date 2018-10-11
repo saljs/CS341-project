@@ -105,7 +105,7 @@ class Promotion {
 
         // Checks if the promotion already exists & is running.
         $db = $GLOBALS['database'];
-        $result = $db->query("SELECT * FROM promotions WHERE code = '" . $args['code'] . "';");
+        $result = $db->query("SELECT `name`, `type`, `percent`, `enddate` FROM promotions WHERE code = '" . $args['code'] . "';");
 
         if(mysqli_num_rows($result) > 0) {
 
@@ -116,34 +116,24 @@ class Promotion {
             // If the promotion is not over
             if ($currenttime < $row['enddate']) {
 
-                foreach($args as $key => $val) {
+                // Go through each field in the row, if that field was given in the
+                // edit arguements, then insert it into our new array, otherwise take
+                // that data from the database and insert it into our new array.
+                $new['code'] = $args['code'];
+                foreach($row as $key => $val) {
 
-                    echo $val . "\n";
+                    if($args[$val])
+                        $new[$val] = $args[$val];
+                    else
+                        $new[$val] = $row[$val];
 
                 }
 
+                foreach($new as $key => $val) {
 
-                $new['code'] = $args['code'];
-                if($args['name'])
-                    $new['name'] = $args['name'];
-                else
-                    $new['name'] = $row['name'];
+                    echo $val . '\n';
 
-                if($args['type'])
-                    $new['type'] = $args['type'];
-                else
-                    $new['type'] = $row['type'];
-
-                if($args['percent'])
-                    $new['percent'] = $args['percent'];
-                else
-                    $new['percent'] = $row['percent'];
-
-                if($args['enddate'])
-                    $new['enddate'] = $args['enddate'];
-                else
-                    $new['enddate'] = $row['enddate'];
-
+                }
 
             }
 
