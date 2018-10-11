@@ -252,7 +252,6 @@ class ViewableDiscount {
 
         $db = $GLOBALS['database'];
         $sql = "SELECT `name`, `type`, `percent`, `enddate` FROM promotions WHERE code = '{$code}';";
-        echo $sql + "\n\n\n";
         $result = $db->query($sql);
         if(!$result)
             error("There's an error in your SQL syntax: {$sql}");
@@ -269,6 +268,8 @@ class ViewableDiscount {
             $this->type = $row['type'];
             $this->percent = $row['percent'];
             $this->enddate = $row['enddate'];
+
+            echo $row['type'];
 
         }
 
