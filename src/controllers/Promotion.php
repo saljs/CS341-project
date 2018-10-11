@@ -139,13 +139,11 @@ class Promotion {
                 // Use our existing create function to update the item
                 self::Create($new);
 
-                success();
+            } else {
+
+                error("This promotion is over");
 
             }
-
-        } else {
-
-            error("");
 
         }
 
