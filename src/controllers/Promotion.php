@@ -97,6 +97,62 @@ class Promotion {
 
     }
 
+    static function Edit($args): void {
+
+        // Make sure they passed all fields
+        if(!($args['code'])) {
+            error("Missing required fields");
+            return;
+        }
+
+        // Checks if the promotion already exists & is running.
+        $db = $GLOBALS['database'];
+        $result = $db->query("SELECT * FROM promotions WHERE code = '" . $args['code'] . "';");
+
+        if(mysqli_num_rows($result) > 0) {
+
+            // We want to check if there's a promotion with the given code
+            $row = mysqli_fetch_assoc($result);
+            $currenttime = time();
+
+            // If the promotion is not over
+            if ($currenttime < $row['enddate']) {
+
+                foreach($args as $key => $val) {
+
+                    echo $val . "\n";
+
+                }
+
+
+                $new['code'] = $args['code'];
+                if($args['name'])
+                    $new['name'] = $args['name'];
+                else
+                    $new['name'] = $row['name'];
+
+                if($args['type'])
+                    $new['type'] = $args['type'];
+                else
+                    $new['type'] = $row['type'];
+
+                if($args['percent'])
+                    $new['percent'] = $args['percent'];
+                else
+                    $new['percent'] = $row['percent'];
+
+                if($args['enddate'])
+                    $new['enddate'] = $args['enddate'];
+                else
+                    $new['enddate'] = $row['enddate'];
+
+
+            }
+
+        }
+
+    }
+
     static function End($args): void {
 
         // Make sure they entered a code
