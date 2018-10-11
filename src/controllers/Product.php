@@ -148,8 +148,6 @@ class ViewableProduct{
     
     function __construct($id) {
         $db = $GLOBALS['database'];
-	$q = "SELECT * FROM product WHERE id = '" . $id . "';";
-	echo $q;
         $result = $db->query("SELECT * FROM product WHERE id = '" . $id . "';"); //fetch product by id from the db
         if(mysqli_num_rows($result) < 1) { //if product with this name gave a NO result
             throw new Exception("Product does not exist"); //dne, return error

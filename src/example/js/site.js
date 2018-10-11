@@ -9,6 +9,7 @@ $( document ).ready(function() {
     $('#newItem').on('submit', addItem);
     userWelcome();
     loadAllItems();
+    loadOneItem();
 });
 
 function login(e) {
@@ -77,11 +78,11 @@ function logout(e) {
 function loadAllItems() {
     if($('#products').length) {
         $.post('https://cs341group4.tk/Product/GetAll')
-        .done(function(data){
+        .done(function(data) {
             $('#message').html("");
             itemList(data.products);
         })
-        .fail(function(data){
+        .fail(function(data) {
             $('#message').html(data.responseJSON.message);
         });
     }
@@ -89,9 +90,38 @@ function loadAllItems() {
 
 function itemList(items) {
     items.forEach(function(item) {
-        $('#products').append('<li><a href="https://cs341group4.tk/Product/get?id=' + item.id + '">' 
+        $('#products').append('<li><a href="https://cs341group4.tk/' + baseURL +'/item.html?id=' + item.id + '">' 
             + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
             + item.name 
             + '</a></li>');
     });
+}
+
+function loadSingleItem() {
+    if($('#itemName') && $('#itemPrice') && $('#itemQuantity') && $('itemDesc')) {
+        var id = $.urlParam('id');
+        if(id) {
+            $.post('https://cs341group4.tk/Product/Get', {id: id})
+            .done(function(data) {
+                $('#itemName').html(data.name);
+                $('#itemPrice').html(data.price);
+                $('#itemQuantity').html(data.quantity);
+                $('#itemDesc').html(data.description);
+                $('#itemName').append('<img src="' + data.image + '" class="itemImg"/>');
+            })
+            .fail(function(data) {
+                $('#itemDesc').html(data.responseJSON.message);
+            });
+        }
+    }
+}
+
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }
+    else{
+       return decodeURI(results[1]) || 0;
+    }
 }
