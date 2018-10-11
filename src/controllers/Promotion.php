@@ -122,6 +122,8 @@ class Promotion {
                 $new['code'] = $args['code'];
                 foreach($row as $key => $val) {
 
+                    echo "Checking: " . $val . "\n";
+
                     if($args[$val])
                         $new[$val] = $args[$val];
                     else
@@ -131,7 +133,7 @@ class Promotion {
 
                 foreach($new as $key => $val) {
 
-                    echo $val . '\n';
+                    echo $val . "\n";
 
                 }
 
