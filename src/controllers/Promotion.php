@@ -162,11 +162,11 @@ class Promotion {
             $output = new HTTPResponse();
 
             // Declare our return fields.
-            $payload->code = $promo['code'];
-            $payload->name = $promo['name'];
-            $payload->type = $promo['type'];
-            $payload->percent = $promo['percent'];
-            $payload->enddate = $promo['enddate'];
+            $payload->code = $promo->code;
+            $payload->name = $promo->name;
+            $payload->type = $promo->type;
+            $payload->percent = $promo->percent;
+            $payload->enddate = $promo->enddate;
 
             // Send the output.
             $output->setPayload($payload);
