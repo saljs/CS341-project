@@ -265,10 +265,11 @@ class ViewableDiscount {
 
             $row = mysqli_fetch_row($result);
 
-            echo "[ROW]: " . $row;
-            echo "[Row] Name: " . $row['name'] . "\n\n\n";
-            echo "[Row] Percent: " . $row['Percent'] . "\n\n\n";
-            echo "[Row] Enddate: " . $row['Enddate'] . "\n\n\n";
+            foreach($row as $key => $val) {
+
+                echo "Row Data: " . $key . "   " . $val . "\n\n\n";
+
+            }
 
 
             $this->code = $code;
