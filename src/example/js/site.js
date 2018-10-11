@@ -9,7 +9,7 @@ $( document ).ready(function() {
     $('#newItem').on('submit', addItem);
     userWelcome();
     loadAllItems();
-    loadOneItem();
+    loadSingleItem();
 });
 
 function login(e) {
