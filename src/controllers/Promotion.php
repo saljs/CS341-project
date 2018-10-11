@@ -16,29 +16,27 @@ class Promotion {
     // HTTP Get Request
     static function Create($args): void {
 
-        //TODO: Admin Check, User.php
-
         // Checks if the required variables are given
         if (!($args['name'] && $args['code'] && $args['type'] && $args['percent'] && $args['enddate'])) {
             error("Missing required fields");
             return;
         }
 
-        if(!$args['token']) {
-            error("Operation requires admin privileges");
-            return;
-        }
-        try {
-            $admin = new SiteUser(null, $args['token']);
-            if(!$admin->isAuth()) {
-                error("Invalid token");
-                return;
-            }
-        }
-        catch(Exception $e) {
-            error($e->getMessage());
-            return;
-        }
+//        if(!$args['token']) {
+//            error("Operation requires admin privileges");
+//            return;
+//        }
+//        try {
+//            $admin = new SiteUser(null, $args['token']);
+//            if(!$admin->isAuth()) {
+//                error("Invalid token");
+//                return;
+//            }
+//        }
+//        catch(Exception $e) {
+//            error($e->getMessage());
+//            return;
+//        }
 
         // Checks if the enddate is valid (not past current time).
         $currenttime = time();
@@ -161,21 +159,21 @@ class Promotion {
             return;
         }
 
-        if(!$args['token']) {
-            error("Operation requires admin privileges");
-            return;
-        }
-        try {
-            $admin = new SiteUser(null, $args['token']);
-            if(!$admin->isAuth()) {
-                error("Invalid token");
-                return;
-            }
-        }
-        catch(Exception $e) {
-            error($e->getMessage());
-            return;
-        }
+//        if(!$args['token']) {
+//            error("Operation requires admin privileges");
+//            return;
+//        }
+//        try {
+//            $admin = new SiteUser(null, $args['token']);
+//            if(!$admin->isAuth()) {
+//                error("Invalid token");
+//                return;
+//            }
+//        }
+//        catch(Exception $e) {
+//            error($e->getMessage());
+//            return;
+//        }
 
         $db = $GLOBALS['database'];
 
