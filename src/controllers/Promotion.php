@@ -256,6 +256,8 @@ class ViewableDiscount {
         if(!$result)
             error("There's an error in your SQL syntax: {$sql}");
 
+        echo "SQL: " . $sql . "\n\n\n";
+
         if(mysqli_num_rows($result) < 1) {
 
             throw new Exception("Promotion Code does not exist");
