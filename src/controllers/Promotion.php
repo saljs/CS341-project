@@ -57,12 +57,6 @@ class Promotion {
 
             $row = mysqli_fetch_row($result);
 
-            foreach($row as $key => $val) {
-
-                echo "Row Data: " . $key . "   " . $val . "\n\n\n";
-
-            }
-
             $currenttime = time();
             // If the promotion is not over
             if($currenttime < $row['enddate']) {
@@ -166,6 +160,8 @@ class Promotion {
             // Get our promotion based on the code given.
             $promo = new ViewableDiscount($args['code']);
             $output = new HTTPResponse();
+
+            echo "REEEEEEEEEEEEEEEEEE " . $promo->type;
 
             // Declare our return fields.
             $payload->code = $promo->code;
@@ -277,13 +273,11 @@ class ViewableDiscount {
 
             }
 
-
             $this->code = $code;
             $this->name = $row['name'];
             $this->type = $row['type'];
             $this->percent = $row['percent'];
             $this->enddate = $row['enddate'];
-
 
         }
 
