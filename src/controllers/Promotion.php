@@ -57,6 +57,12 @@ class Promotion {
 
             $row = mysqli_fetch_row($result);
 
+            foreach($row as $key => $val) {
+
+                echo "Row Data: " . $key . "   " . $val . "\n\n\n";
+
+            }
+
             $currenttime = time();
             // If the promotion is not over
             if($currenttime < $row['enddate']) {
