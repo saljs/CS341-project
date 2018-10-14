@@ -265,7 +265,7 @@ class ViewableDiscount {
         } else {
 
 
-            $row = mysqli_fetch_row($result);
+            $row = mysqli_fetch_assoc($result);
 
             foreach($row as $key => $val) {
 
