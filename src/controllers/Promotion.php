@@ -7,21 +7,22 @@ class Promotion {
      * Creates a new promotion
      * @param name: The display name
      * @param code: the discount code
-     * @param type: Either bogo_category or percent_category, where category is the item category
-     * that the promotion works on.
+     * @param type: Either bogo or percent
      * @param percent: The discount percentage
+     * @param startdate: The epoch time-based end date of the promotion. https://www.epochconverter.com
      * @param enddate: The epoch time-based end date of the promotion. https://www.epochconverter.com
+     * @param items: Comma delimited list of item ID's that the promotion works for.
+     * @param categories: Comma delimited list of category names that the promotion works for.
      */
 
     // HTTP Get Request
     static function Create($args): void {
 
         // Checks if the required variables are given
-        if (!($args['name'] && $args['code'] && $args['type'] && $args['percent'] && $args['enddate'])) {
+        if (!($args['name'] && $args['code'] && $args['type'] && $args['percent'] && $args['enddate'] && $args['startdate'] && $args['items'] && $args['categories'])) {
             error("Missing required fields");
             return;
         }
-
 //        if(!$args['token']) {
 //            error("Operation requires admin privileges");
 //            return;
@@ -72,6 +73,9 @@ class Promotion {
                     "', type='" . $args['type'] .
                     "', percent='" . $args['percent'] .
                     "', enddate='" . $args['enddate'] .
+                    "', startdate='" . $args['startdate'] .
+                    "', items='" . $args['items'] .
+                    "', categories='" . $args['categories'] .
                     "' WHERE code='" . $args['code'] . "';";
 
             if(!$db->query($sql))
@@ -80,12 +84,15 @@ class Promotion {
         } else {
 
             $sql = "INSERT INTO `promotions`
-                      (`name`, `code`, `type`, `percent`, `enddate`) 
+                      (`name`, `code`, `type`, `percent`, `items`, `categories`, `startdate`, `enddate`) 
                       VALUES 
                       ('". $args['name'] . "', 
                       '" . $args['code'] . "', 
                       '" . $args['type'] . "', 
                       '" . $args['percent'] . "',
+                      '" . $args['items'] . "',
+                      '" . $args['categories'] . "',
+                      '" . $args['startdate'] . "',
                       '" . $args['enddate'] . "');";
 
             // Create the new promotion
@@ -108,7 +115,7 @@ class Promotion {
 
         // Checks if the promotion already exists & is running.
         $db = $GLOBALS['database'];
-        $sql = "SELECT `name`, `type`, `percent`, `enddate` FROM promotions WHERE code = '{$args["code"]}';";
+        $sql = "SELECT `name`, `type`, `percent`, `startdate`, `enddate`, `items`, `categories` FROM promotions WHERE code = '{$args["code"]}';";
         $result = $db->query($sql);
         if(!$result)
             error("There's an error in your SQL syntax: {$sql}");
@@ -161,14 +168,15 @@ class Promotion {
             $promo = new ViewableDiscount($args['code']);
             $output = new HTTPResponse();
 
-            echo "REEEEEEEEEEEEEEEEEE " . $promo->type;
-
             // Declare our return fields.
             $payload->code = $promo->code;
             $payload->name = $promo->name;
             $payload->type = $promo->type;
             $payload->percent = $promo->percent;
+            $payload->startdate = $promo->startdate;
             $payload->enddate = $promo->enddate;
+            $payload->items = $promo->items;
+            $payload->categories = $promo->categories;
 
             // Send the output.
             $output->setPayload($payload);
@@ -248,12 +256,15 @@ class ViewableDiscount {
     public $name;
     public $type;
     public $percent;
+    public $startdate;
     public $enddate;
+    public $items;
+    public $categories;
 
     function __construct($code){
 
         $db = $GLOBALS['database'];
-        $sql = "SELECT `name`, `type`, `percent`, `enddate` FROM promotions WHERE code = '{$code}';";
+        $sql = "SELECT * FROM promotions WHERE code = '{$code}';";
         $result = $db->query($sql);
         if(!$result)
             error("There's an error in your SQL syntax: {$sql}");
@@ -267,17 +278,14 @@ class ViewableDiscount {
 
             $row = mysqli_fetch_assoc($result);
 
-            foreach($row as $key => $val) {
-
-                echo "Row Data: " . $key . "   " . $val . "\n\n\n";
-
-            }
-
             $this->code = $code;
             $this->name = $row['name'];
             $this->type = $row['type'];
             $this->percent = $row['percent'];
+            $this->startdate = $row['startdate'];
             $this->enddate = $row['enddate'];
+            $this->items = $row['items'];
+            $this->categories = $row['categories'];
 
         }
 
