@@ -6,37 +6,80 @@
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/jquery.cookie.js"></script>
         <script src="js/site.js"></script>
+
+        <!-- Tabs -->
+        <script src="js/tabs.js"></script>
+        <link rel="stylesheet" href="css/tabs.css">
+
+        <!-- Date Picker -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $( "#datepicker" ).datepicker({
+                    minDate: 0
+                });
+            } );
+        </script>
     </head>
     <body>
+
         <h1>Admin page</h1>
-        <form id="newItem">
-            <h3>Add item</h3>
-            Name: <input type="text" name="name"/>
-            <br/>
-            Price: <input type="text" name="price"/>
-            <br/>
-            Quantity available: <input type="number" name="quantity"/>
-            <br/>
-            Image: <input type="text" name="image"/>
-            <br/>
-            Description: <input type="text" name="description"/>
-            <br/>
-            Catagories: <input type="text" name="catagory"/>
-            <br>
-            <input type="submit" value="Add"/>
-        </form>
-        <form id="register">
-            <h3>Add Admin user</h3>
-            Email: <input type="text" name="email"/>
-            <br/>
-            Name: <input type="text" name="name"/>
-            <br/>
-            Password: <input type="password" name="password"/>
-            <br/>
-            <input type="hidden" name="type" value="admin"/>
-            <input type="submit" value="Register"/>
-        </form>
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'Items')" id="defaultOpen">Items</button>
+            <button class="tablinks" onclick="openCity(event, 'Accounts')">Accounts</button>
+            <button class="tablinks" onclick="openCity(event, 'Promotions')">Promotions</button>
+        </div>
+
+        <!-- Tab content -->
+        <div id="Items" class="tabcontent">
+            <form id="newItem">
+                <h3>Add item</h3>
+                Name: <input type="text" name="name"/>
+                <br/>
+                Price: <input type="text" name="price"/>
+                <br/>
+                Quantity available: <input type="number" name="quantity"/>
+                <br/>
+                Image: <input type="text" name="image"/>
+                <br/>
+                Description: <input type="text" name="description"/>
+                <br/>
+                Catagories: <input type="text" name="catagory"/>
+                <br>
+                <input type="submit" value="Add"/>
+            </form>
+        </div>
+        <div id="Accounts" class="tabcontent">
+            <form id="register">
+                <h3>Add Admin user</h3>
+                Email: <input type="text" name="email"/>
+                <br/>
+                Name: <input type="text" name="name"/>
+                <br/>
+                Password: <input type="password" name="password"/>
+                <br/>
+                <input type="hidden" name="type" value="admin"/>
+                <input type="submit" value="Register"/>
+            </form>
+        </div>
+        <div id="Promotions" class="tabcontent">
+            <form id="addPromotion">
+                <h3>Add Promotion</h3>
+                <p>Start Date: <input type="text" id="datepicker"></p>
+                <p>Start Time: <input type="time" value="00:00" required></p>
+                <p>End Date: <input type="text" id="datepicker"></p>
+                <p>End Time: <input type="time" value="00:00" required></p>
+            </form>
+        </div>
         <br/>
         <span id="message"></span>
+
+        <!-- Open default tab -->
+        <script>document.getElementById("defaultOpen").click();</script>
+
     </body>
 </html>
