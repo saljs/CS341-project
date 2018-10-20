@@ -6,6 +6,7 @@ $( document ).ready(function() {
     $('#login').on('submit', login);
     $('#logout').on('click', logout);
     $('#register').on('submit', register);
+    $('#addPromotion').on('submit', addPromotion);
     $('#newItem').on('submit', addItem);
     userWelcome();
     loadAllItems();
@@ -22,6 +23,20 @@ function login(e) {
     .fail(function(data){
         $('#error').html(data.responseJSON.message);
     });
+}
+
+function addPromotion(e) {
+    e.preventDefault();
+    var fields = $('#addPromotion').serialize();
+    fields += "&token=" + $.cookie('token');
+    $.post('https://cs341group4.tk/Promotion/Create', fields)
+    .done(function(data) {
+        $('#message').html(data.message);
+    })
+    .fail(function(data){
+        $('#message').html(data.responseJSON.message);
+    });
+
 }
 
 function register(e) {

@@ -17,11 +17,9 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
-            $( function() {
-                $( "#datepicker" ).datepicker({
-                    minDate: 0
-                });
-            } );
+            $(function() {
+                $("#datepicker1,#datepicker2").datepicker();
+            });
         </script>
     </head>
     <body>
@@ -69,10 +67,34 @@
         <div id="Promotions" class="tabcontent">
             <form id="addPromotion">
                 <h3>Add Promotion</h3>
-                <p>Start Date: <input type="text" id="datepicker"></p>
-                <p>Start Time: <input type="time" value="00:00" required></p>
-                <p>End Date: <input type="text" id="datepicker"></p>
-                <p>End Time: <input type="time" value="00:00" required></p>
+                <p>Display Name:
+                    <input type="text" name="name" required/><br>
+                </p>
+
+                <p>Discount Code:
+                    <input type="text" name="code" required/><br>
+                </p>
+
+                <p>Promotion Type:
+                    <input type="radio" name="type" value="bogo" checked>Bogo
+                    <input type="radio" name="type" value="percent">Percent<br>
+                </p>
+
+                <p>Percent Off:
+                    <input type="number" name="percent" step="10" min="10" max="100" placeholder="30"/>
+                </p>
+
+                <!-- Merge start date and start time -->
+                <p>Start Date: <input type="text" id="datepicker1" required/>
+                    <br>
+                    Start Time: <input type="time" value="00:00" required/>
+                </p>
+
+                <!-- same as above comment -->
+                <p>End Date: <input type="text" id="datepicker2" required/>
+                    <br>End Time: <input type="time" value="00:00" required/>
+                </p>
+                <input type="submit" value="addPromotion"/>
             </form>
         </div>
         <br/>
