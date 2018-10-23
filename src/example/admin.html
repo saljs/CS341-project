@@ -76,12 +76,12 @@
                 </p>
 
                 <p>Promotion Type:
-                    <input type="radio" name="type" value="bogo" checked>Bogo
-                    <input type="radio" name="type" value="percent">Percent<br>
+                    <input type="radio" name="type" value="percent" checked>Percent
+                    <input type="radio" name="type" value="bogo">Bogo
                 </p>
 
                 <p>Percent Off:
-                    <input type="number" name="percent" step="10" min="10" max="100" placeholder="30"/>
+                    <input type="number" name="percent" step="10" min="10" max="100" placeholder="30" required/>
                 </p>
 
                 <!-- Merge start date and start time -->
@@ -94,6 +94,7 @@
                 <p>End Date: <input type="text" id="datepicker2" required/>
                     <br>End Time: <input type="time" value="00:00" required/>
                 </p>
+
                 <input type="submit" value="addPromotion"/>
             </form>
         </div>
