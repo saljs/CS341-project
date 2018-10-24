@@ -104,7 +104,7 @@
             // Checks if the category exists
             $db = $GLOBALS['database'];
             $sql = "SELECT category FROM categories WHERE category='" . $args['category'] . "';";
-            echo $sql;
+
             $result = $db->query($sql);
             if(!$result) {
                 error("There's an error in your SQL syntax: {$sql}");
