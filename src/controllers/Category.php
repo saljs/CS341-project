@@ -10,18 +10,18 @@
                 return;
             }
 
-            // Check if user has access
-            try {
-                $user = new SiteUser(null, $args['token']);
-                if(!$user->isAuth() || $user->type != "admin") {
-                    error("User doesn't have privileges to add items");
-                    return;
-                }
-            }
-            catch(Exception $e) {
-                error($e->getMessage());
-                return;
-            }
+//            // Check if user has access
+//            try {
+//                $user = new SiteUser(null, $args['token']);
+//                if(!$user->isAuth() || $user->type != "admin") {
+//                    error("User doesn't have privileges to add items");
+//                    return;
+//                }
+//            }
+//            catch(Exception $e) {
+//                error($e->getMessage());
+//                return;
+//            }
 
             // Checks if the category exists
             $db = $GLOBALS['database'];
