@@ -7,6 +7,7 @@ $( document ).ready(function() {
     $('#logout').on('click', logout);
     $('#register').on('submit', register);
     $('#addPromotion').on('submit', addPromotion);
+    $('#createCategory').on('submit', createCategory);
     $('#newItem').on('submit', addItem);
     userWelcome();
     loadAllItems();
@@ -50,6 +51,19 @@ function register(e) {
     .done(function(data) {
         $('#message').html(data.message);
         $('#register').remove();
+    })
+    .fail(function(data){
+        $('#message').html(data.responseJSON.message);
+    });
+}
+
+function createCategory(e) {
+    e.preventDefault();
+    var fields = $('#createCategory').serialize();
+    fields += "&token=" + $.cookie('token');
+    $.post('https://cs341group4.tk/Category/Create', fields)
+    .done(function(data) {
+        $('#message').html(data.message);
     })
     .fail(function(data){
         $('#message').html(data.responseJSON.message);

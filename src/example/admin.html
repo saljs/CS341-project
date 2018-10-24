@@ -30,6 +30,7 @@
             <button class="tablinks" onclick="openCity(event, 'Items')" id="defaultOpen">Items</button>
             <button class="tablinks" onclick="openCity(event, 'Accounts')">Accounts</button>
             <button class="tablinks" onclick="openCity(event, 'Promotions')">Promotions</button>
+            <button class="tablinks" onclick="openCity(event, 'Categories')">Categories</button>
         </div>
 
         <!-- Tab content -->
@@ -105,6 +106,16 @@
                 <input type="submit" value="addPromotion"/>
             </form>
         </div>
+        <div id="Categories" class="tabcontent">
+            <form id="createCategory">
+                <h3>Add Category</h3>
+                Category Name: <input type="text" name="category"/>
+                <br>
+                <input type="submit" value="Add"/>
+            </form>
+        </div>
+
+
         <br/>
         <span id="message"></span>
 
