@@ -61,6 +61,7 @@ function createCategory(e) {
     e.preventDefault();
     var fields = $('#createCategory').serialize();
     fields += "&token=" + $.cookie('token');
+    console.log(fields);
     $.post('https://cs341group4.tk/Category/Create', fields)
     .done(function(data) {
         $('#message').html(data.message);
