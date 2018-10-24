@@ -84,16 +84,23 @@
                     <input type="number" name="percent" step="10" min="10" max="100" placeholder="30" required/>
                 </p>
 
-                <!-- Merge start date and start time -->
+                <!-- TODO: Merge start date and start time -->
                 <p>Start Date: <input type="text" id="datepicker1" required/>
-                    <br>
-                    Start Time: <input type="time" value="00:00" required/>
+                    <br>Start Time: <input type="time" value="00:00" required/>
                 </p>
 
-                <!-- same as above comment -->
+                <!-- TODO: same as above comment -->
                 <p>End Date: <input type="text" id="datepicker2" required/>
                     <br>End Time: <input type="time" value="00:00" required/>
                 </p>
+
+                <div>
+                    <!-- TODO: Dynamically generate these check boxes based on categories in database -->
+                    <input type="checkbox" id="electronics" name="categories"
+                           value="electronics" checked />
+                    <label for="electronics">Electronics</label>
+                </div>
+
 
                 <input type="submit" value="addPromotion"/>
             </form>

@@ -25,11 +25,11 @@ function login(e) {
     });
 }
 
+//TODO: No idea why this doesn't work, never used js
 function addPromotion(e) {
-    alert(e);
     e.preventDefault();
     var fields = $('#addPromotion').serialize();
-    //fields += "&token=" + $.cookie('token');
+    fields += "&token=" + $.cookie('token');
     $.post('https://cs341group4.tk/Promotion/Create', fields)
     .done(function(data) {
         $('#message').html(data.message);
