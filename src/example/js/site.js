@@ -50,7 +50,6 @@ function register(e) {
     $.post('https://cs341group4.tk/User/Create', fields)
     .done(function(data) {
         $('#message').html(data.message);
-        $('#register').remove();
     })
     .fail(function(data){
         $('#message').html(data.responseJSON.message);
@@ -58,12 +57,14 @@ function register(e) {
 }
 
 function createCategory(e) {
+    console.log("-----------------------------------------");
     e.preventDefault();
     var fields = $('#createCategory').serialize();
     fields += "&token=" + $.cookie('token');
     console.log(fields);
     $.post('https://cs341group4.tk/Category/Create', fields)
     .done(function(data) {
+        console.log(data);
         $('#message').html(data.message);
     })
     .fail(function(data){
