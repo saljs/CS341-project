@@ -1,5 +1,10 @@
 <?php
 
+    /*
+     * Creates a category entry in the database
+     * @param name: The category name
+     */
+
     class Category {
 
         static function Create($args): void {
@@ -49,8 +54,10 @@
 
         }
 
-        // Replies a coma delimited string of all categories in the database
-        static function GetAll($args): void {
+        /*
+         * Returns a comma delimited list of all existing categories
+         */
+        static function GetAll(): void {
 
             $db = $GLOBALS['database'];
             $sql = "SELECT category FROM categories";
@@ -81,7 +88,10 @@
 
         }
 
-        //TODO: FIx
+        /*
+         * Deletes a category entry in the database
+         * @param name: The category name
+         */
         static function Delete($args): void {
 
             if(!($args['category'])) {
@@ -94,6 +104,7 @@
             // Checks if the category exists
             $db = $GLOBALS['database'];
             $sql = "SELECT category FROM categories WHERE category='" . $args['category'] . "';";
+            echo $sql;
             $result = $db->query($sql);
             if(!$result) {
                 error("There's an error in your SQL syntax: {$sql}");
@@ -112,6 +123,7 @@
             } else {
 
                 success("There is no category with that name");
+                return;
 
             }
 
