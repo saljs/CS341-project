@@ -31,7 +31,8 @@
                 error("There's an error in your SQL syntax: {$sql}");
 
             // If there is not an existing category with the name
-            if(!mysqli_num_rows(result) > 0) {
+            echo mysqli_num_rows($result);
+            if(!mysqli_num_rows($result) > 0) {
 
                 $sql = "INSERT INTO `categories`
                       (`category`) 
