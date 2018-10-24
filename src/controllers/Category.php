@@ -31,7 +31,6 @@
                 error("There's an error in your SQL syntax: {$sql}");
 
             // If there is not an existing category with the name
-            echo mysqli_num_rows($result);
             if(!mysqli_num_rows($result) > 0) {
 
                 $sql = "INSERT INTO `categories`
@@ -82,6 +81,7 @@
 
         }
 
+        //TODO: FIx
         static function Delete($args): void {
 
             if(!($args['category'])) {
@@ -100,7 +100,7 @@
                 return;
             }
 
-            // If there is not an existing category with the name
+            // If there is a category with that name
             if(mysqli_num_rows(result) > 0) {
 
                 $sql = "DELETE FROM `categories` WHERE category='" . $args['category'] . "';";
@@ -108,6 +108,10 @@
                     error("There's an error in your SQL syntax: {$sql}");
                     return;
                 }
+
+            } else {
+
+                success("There is no category with that name");
 
             }
 
