@@ -112,7 +112,7 @@
             }
 
             // If there is a category with that name
-            if(mysqli_num_rows(result) > 0) {
+            if(mysqli_num_rows($result) > 0) {
 
                 $sql = "DELETE FROM `categories` WHERE category='" . $args['category'] . "';";
                 if(!$db->query($sql)) {
