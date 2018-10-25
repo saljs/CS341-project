@@ -9,11 +9,15 @@
 
         <!-- Tabs -->
         <script src="js/tabs.js"></script>
-        <link rel="stylesheet" href="css/tabs.css">
 
-        <!-- Date Picker -->
+        <link rel="stylesheet" href="css/tabs.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/slidebars.css">
+        <link rel="stylesheet" href="css/menu.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
+
+        <!-- Date Picker -->
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
@@ -24,103 +28,157 @@
     </head>
     <body>
 
-        <h1>Admin page</h1>
-        <!-- Tab links -->
-        <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'Items')" id="defaultOpen">Items</button>
-            <button class="tablinks" onclick="openCity(event, 'Accounts')">Accounts</button>
-            <button class="tablinks" onclick="openCity(event, 'Promotions')">Promotions</button>
-            <button class="tablinks" onclick="openCity(event, 'Categories')">Categories</button>
-        </div>
+        <!-- Any page content goes here -->
+        <div canvas="container">
 
-        <!-- Tab content -->
-        <div id="Items" class="tabcontent">
-            <form id="newItem">
-                <h3>Add item</h3>
-                Name: <input type="text" name="name"/>
-                <br/>
-                Price: <input type="text" name="price"/>
-                <br/>
-                Quantity available: <input type="number" name="quantity"/>
-                <br/>
-                Image: <input type="text" name="image"/>
-                <br/>
-                Description: <input type="text" name="description"/>
-                <br/>
-                Catagories: <input type="text" name="catagory"/>
-                <br>
-                <input type="submit" value="Add"/>
-            </form>
-        </div>
-        <div id="Accounts" class="tabcontent">
-            <form id="register">
-                <h3>Add Admin user</h3>
-                Email: <input type="text" name="email"/>
-                <br/>
-                Name: <input type="text" name="name"/>
-                <br/>
-                Password: <input type="password" name="password"/>
-                <br/>
-                <input type="hidden" name="type" value="admin"/>
-                <input type="submit" value="Register"/>
-            </form>
-        </div>
-        <div id="Promotions" class="tabcontent">
-            <form id="addPromotion">
-                <h3>Add Promotion</h3>
-                <p>Display Name:
-                    <input type="text" name="name" required/><br>
-                </p>
+            <!-- Menu Button -->
+            <div class="js-toggle-left-slidebar" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
 
-                <p>Discount Code:
-                    <input type="text" name="code" required/><br>
-                </p>
-
-                <p>Promotion Type:
-                    <input type="radio" name="type" value="percent" checked>Percent
-                    <input type="radio" name="type" value="bogo">Bogo
-                </p>
-
-                <p>Percent Off:
-                    <input type="number" name="percent" step="10" min="10" max="100" placeholder="30" required/>
-                </p>
-
-                <!-- TODO: Merge start date and start time -->
-                <p>Start Date: <input type="text" id="datepicker1" required/>
-                    <br>Start Time: <input type="time" value="00:00" required/>
-                </p>
-
-                <!-- TODO: same as above comment -->
-                <p>End Date: <input type="text" id="datepicker2" required/>
-                    <br>End Time: <input type="time" value="00:00" required/>
-                </p>
-
-                <div>
-                    <!-- TODO: Dynamically generate these check boxes based on categories in database -->
-                    <input type="checkbox" id="electronics" name="categories"
-                           value="electronics" checked />
-                    <label for="electronics">Electronics</label>
+            <!-- Tab Content -->
+            <div class="inner-container">
+                <div id="Home" class="tabcontent">
+                    <h1>Home Page</h1>
                 </div>
+                <div id="Items" class="tabcontent">
+                    <form id="newItem">
+                        <h3>Add item</h3>
+                        Name: <input type="text" name="name"/>
+                        <br/>
+                        Price: <input type="text" name="price"/>
+                        <br/>
+                        Quantity available: <input type="number" name="quantity"/>
+                        <br/>
+                        Image: <input type="text" name="image"/>
+                        <br/>
+                        Description: <input type="text" name="description"/>
+                        <br/>
+                        Catagories: <input type="text" name="catagory"/>
+                        <br>
+                        <input type="submit" value="Add"/>
+                    </form>
+                </div>
+                <div id="Accounts" class="tabcontent">
+                    <form id="register">
+                        <h3>Add Admin user</h3>
+                        Email: <input type="text" name="email"/>
+                        <br/>
+                        Name: <input type="text" name="name"/>
+                        <br/>
+                        Password: <input type="password" name="password"/>
+                        <br/>
+                        <input type="hidden" name="type" value="admin"/>
+                        <input type="submit" value="Register"/>
+                    </form>
+                </div>
+                <div id="Promotions" class="tabcontent">
+                    <form id="addPromotion">
+                        <h3>Add Promotion</h3>
+                        <p>Display Name:
+                            <input type="text" name="name" required/><br>
+                        </p>
+
+                        <p>Discount Code:
+                            <input type="text" name="code" required/><br>
+                        </p>
+
+                        <p>Promotion Type:
+                            <input type="radio" name="type" value="percent" checked>Percent
+                            <input type="radio" name="type" value="bogo">Bogo
+                        </p>
+
+                        <p>Percent Off:
+                            <input type="number" name="percent" step="10" min="10" max="100" placeholder="30" required/>
+                        </p>
+
+                        <!-- TODO: Merge start date and start time -->
+                        <p>Start Date: <input type="text" id="datepicker1" required/>
+                            <br>Start Time: <input type="time" value="00:00" required/>
+                        </p>
+
+                        <!-- TODO: same as above comment -->
+                        <p>End Date: <input type="text" id="datepicker2" required/>
+                            <br>End Time: <input type="time" value="00:00" required/>
+                        </p>
+
+                        <div>
+                            <!-- TODO: Dynamically generate these check boxes based on categories in database -->
+                            <input type="checkbox" id="electronics" name="categories"
+                                   value="electronics" checked />
+                            <label for="electronics">Electronics</label>
+                        </div>
 
 
-                <input type="submit" value="addPromotion"/>
-            </form>
+                        <input type="submit" value="addPromotion"/>
+                    </form>
+                </div>
+                <div id="Catego ries" class="tabcontent">
+                    <form id="createCategory">
+                        <h3>Add Category</h3>
+                        Category Name: <input type="text" name="category"/>
+                        <br>
+                        <input type="submit" value="Add"/>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div id="Categories" class="tabcontent">
-            <form id="createCategory">
-                <h3>Add Category</h3>
-                Category Name: <input type="text" name="category"/>
-                <br>
-                <input type="submit" value="Add"/>
-            </form>
-        </div>
 
+        <!-- Sidebar content -->
+        <div off-canvas="slidebar-1 left reveal">
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Home')" id="defaultOpen">Home</button></li>
+
+                <!-- Items subtabs -->
+                <button class="tablinks"><a href="#itemsTab" class="tabLink itemsTab" onclick="testFunc(this)">Items</a></button></li>
+                <ul class="subtab newscontainer itemsTab" id="itemsTab">
+                    <li><button class="tablinks" onclick="openTab(event, 'Items')">Add Item</button></li>
+                    <li><button class="tablinks" onclick="openTab(event, 'Items')">Edit Item</button></li>
+                    <li><button class="tablinks" onclick="openTab(event, 'Items')">Remove Item</button></li>
+                </ul>
+
+                <!-- Accounts subtabs -->
+                <button class="tablinks">Accounts</button>
+                <ul class="subtab">
+                    <li><button class="tablinks" onclick="openTab(event, 'Accounts')">New Admin</button></li>
+                    <li><button class="tablinks" onclick="openTab(event, 'Accounts')">Edit Admin</button></li>
+                    <li><button class="tablinks" onclick="openTab(event, 'Accounts')">Remove Admin</button></li>
+                </ul>
+
+                <!-- Promotions subtabs -->
+                <button class="tablinks" onclick="openTab(event, 'Promotions')">Promotions</button>
+
+                <!-- Categories subtabs -->
+                <button class="tablinks" onclick="openTab(event, 'Categories')">Categories</button>
+            </div>
+        </div>
 
         <br/>
         <span id="message"></span>
 
         <!-- Open default tab -->
-        <script>document.getElementById("defaultOpen").click();</script>
+
+        <script src="js/https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="js/slidebars.js"></script>
+        <script src="js/scripts.js"></script>
+        <script>
+            document.getElementById("defaultOpen").click();
+
+            function myFunction(x) {
+                x.classList.toggle("change");
+            }
+            function testFunc(item) {
+                var divs = document.getElementsByClassName("newscontainer");
+                for (var i = 0; i < divs.length; i++) {
+                    divs[i].style.display = 'none';
+                }
+                var myDiv = item.href;
+                var target = myDiv.split("#");
+                document.getElementById(target[1]).style.display = "block";
+            }
+        </script>
 
     </body>
 </html>

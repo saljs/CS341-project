@@ -1,0 +1,22 @@
+[canvas=container],
+[off-canvas] {
+    padding: 10px 20px;
+}
+
+[class*=js-] {
+    cursor: pointer;
+}
+
+.inner-container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
+    background-color: whitesmoke;
+}
+
+.newscontainer {
+    display:none;
+}

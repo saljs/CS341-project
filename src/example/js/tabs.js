@@ -1,7 +1,7 @@
 /**
  * Created by Jack Englund on 10/19/2018.
  */
-function openCity(evt, cityName) {
+function openTab(evt, cityName) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
