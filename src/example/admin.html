@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<!-- <a href="https://icons8.com">Icon pack by Icons8</a>-->
+
 <html>
     <head>
         <title>Login</title>
@@ -10,12 +12,16 @@
         <!-- Tabs -->
         <script src="js/tabs.js"></script>
 
+        <!-- CSS -->
         <link rel="stylesheet" href="css/tabs.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/slidebars.css">
         <link rel="stylesheet" href="css/menu.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=K2D:200,300" rel="stylesheet">
 
         <!-- Date Picker -->
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -25,6 +31,7 @@
                 $("#datepicker1,#datepicker2").datepicker();
             });
         </script>
+
     </head>
     <body>
 
@@ -43,7 +50,10 @@
                 <div id="Home" class="tabcontent">
                     <h1>Home Page</h1>
                 </div>
-                <div id="Items" class="tabcontent">
+                <div id="ItemInfo" class="tabcontent">
+
+                </div>
+                <div id="AddItem" class="tabcontent">
                     <form id="newItem">
                         <h3>Add item</h3>
                         Name: <input type="text" name="name"/>
@@ -61,7 +71,17 @@
                         <input type="submit" value="Add"/>
                     </form>
                 </div>
-                <div id="Accounts" class="tabcontent">
+                <div id="EditItem" class="tabcontent">
+
+                </div>
+                <div id="RemoveItem" class="tabcontent">
+
+                </div>
+
+                <div id="AdminInfo" class="tabcontent">
+
+                </div>
+                <div id="NewAdmin" class="tabcontent">
                     <form id="register">
                         <h3>Add Admin user</h3>
                         Email: <input type="text" name="email"/>
@@ -74,7 +94,17 @@
                         <input type="submit" value="Register"/>
                     </form>
                 </div>
-                <div id="Promotions" class="tabcontent">
+                <div id="EditAdmin" class="tabcontent">
+
+                </div>
+                <div id="RemoveAdmin" class="tabcontent">
+
+                </div>
+
+                <div id="PromotionInfo" class="tabcontent">
+
+                </div>
+                <div id="NewPromotion" class="tabcontent">
                     <form id="addPromotion">
                         <h3>Add Promotion</h3>
                         <p>Display Name:
@@ -115,7 +145,17 @@
                         <input type="submit" value="addPromotion"/>
                     </form>
                 </div>
-                <div id="Catego ries" class="tabcontent">
+                <div id="EditPromotion" class="tabcontent">
+
+                </div>
+                <div id="RemovePromotion" class="tabcontent">
+
+                </div>
+
+                <div id="CategoryInfo" class="tabcontent">
+
+                </div>
+                <div id="NewCategory" class="tabcontent">
                     <form id="createCategory">
                         <h3>Add Category</h3>
                         Category Name: <input type="text" name="category"/>
@@ -123,35 +163,145 @@
                         <input type="submit" value="Add"/>
                     </form>
                 </div>
+                <div id="EditCategory" class="tabcontent">
+
+                </div>
+                <div id="RemoveCategory" class="tabcontent">
+
+                </div>
             </div>
         </div>
 
         <!-- Sidebar content -->
         <div off-canvas="slidebar-1 left reveal">
             <div class="tab">
-                <button class="tablinks" onclick="openTab(event, 'Home')" id="defaultOpen">Home</button></li>
+                <button class="tablinks" onclick="openTab(event, 'Home')" id="defaultOpen">
+                    <img src="https://png.icons8.com/ios/50/000000/home-filled.png" class="icon"> Home
+                </button>
 
                 <!-- Items subtabs -->
-                <button class="tablinks"><a href="#itemsTab" class="tabLink itemsTab" onclick="testFunc(this)">Items</a></button></li>
-                <ul class="subtab newscontainer itemsTab" id="itemsTab">
-                    <li><button class="tablinks" onclick="openTab(event, 'Items')">Add Item</button></li>
-                    <li><button class="tablinks" onclick="openTab(event, 'Items')">Edit Item</button></li>
-                    <li><button class="tablinks" onclick="openTab(event, 'Items')">Remove Item</button></li>
-                </ul>
+                <div>
+                    <a href="#itemsTab" class="itemsTab" onclick="testFunc(this)">
+                        <button class="tablinks">
+                            <img src="https://png.icons8.com/ios-glyphs/50/000000/product.png" class="icon"> Items
+                        </button>
+                    </a>
+                    <ul class="subtab newscontainer itemsTab" id="itemsTab">
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'ItemInfo')">
+                                <img src="https://png.icons8.com/ios/50/000000/info-filled.png" class="icon"> Info
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'AddItem')">
+                                <img src="https://png.icons8.com/ios/50/000000/plus-filled.png" class="icon"> Add Item
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'EditItem')">
+                                <img src="https://png.icons8.com/metro/50/000000/pencil.png" class="icon"> Edit Item
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'RemoveItem')">
+                                <img src="https://png.icons8.com/metro/50/000000/trash.png" class="icon"> Remove Item
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
                 <!-- Accounts subtabs -->
-                <button class="tablinks">Accounts</button>
-                <ul class="subtab">
-                    <li><button class="tablinks" onclick="openTab(event, 'Accounts')">New Admin</button></li>
-                    <li><button class="tablinks" onclick="openTab(event, 'Accounts')">Edit Admin</button></li>
-                    <li><button class="tablinks" onclick="openTab(event, 'Accounts')">Remove Admin</button></li>
-                </ul>
+                <div>
+                    <a href="#accountsTab" class="tabLink accountsTab" onclick="testFunc(this)">
+                        <button class="tablinks">
+                            <img src="https://png.icons8.com/ios/50/000000/user-filled.png" class="icon"> Accounts
+                        </button>
+                    </a>
+                    <ul class="subtab newscontainer accountsTab" id="accountsTab">
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'AdminInfo')">
+                                <img src="https://png.icons8.com/ios/50/000000/info-filled.png" class="icon"> Info
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'NewAdmin')">
+                                <img src="https://png.icons8.com/ios/50/000000/plus-filled.png" class="icon"> New Admin
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'EditAdmin')">
+                                <img src="https://png.icons8.com/ios/50/000000/pencil.png" class="icon"> Edit Admin
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'RemoveAdmin')">
+                                <img src="https://png.icons8.com/ios/50/000000/trash.png" class="icon"> Remove Admin
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
                 <!-- Promotions subtabs -->
-                <button class="tablinks" onclick="openTab(event, 'Promotions')">Promotions</button>
+                <div>
+                    <a href="#promotionTab" class="tabLink promotionTab" onclick="testFunc(this)">
+                        <button class="tablinks">
+                            <img src="https://png.icons8.com/ios/50/000000/commercial-filled.png" class="icon"> Promotion
+                        </button>
+                    </a>
+                    <ul class="subtab newscontainer promotionTab" id="promotionTab">
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'PromotionInfo')">
+                                <img src="https://png.icons8.com/ios/50/000000/info-filled.png" class="icon"> Info
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'NewPromotion')">
+                                <img src="https://png.icons8.com/ios/50/000000/plus-filled.png" class="icon"> New Promotion
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'EditPromotion')">
+                                <img src="https://png.icons8.com/ios/50/000000/pencil.png" class="icon"> Edit Promotion
+                            </button>
+                            </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'RemovePromotion')">
+                                <img src="https://png.icons8.com/ios/50/000000/trash.png" class="icon"> Remove Promotion
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
                 <!-- Categories subtabs -->
-                <button class="tablinks" onclick="openTab(event, 'Categories')">Categories</button>
+                <div>
+                    <a href="#categoryTab" class="tabLink categoryTab" onclick="testFunc(this)">
+                        <button class="tablinks">
+                            <img src="https://png.icons8.com/ios/50/000000/opened-folder-filled.png" class="icon"> Categories
+                        </button>
+                    </a>
+                    <ul class="subtab newscontainer categoryTab" id="categoryTab">
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'CategoryInfo')">
+                                <img src="https://png.icons8.com/ios/50/000000/info-filled.png" class="icon"> Info
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'NewCategory')">
+                                <img src="https://png.icons8.com/ios/50/000000/plus-filled.png" class="icon"> New Category
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'EditCategory')">
+                                <img src="https://png.icons8.com/ios/50/000000/pencil.png" class="icon"> Edit Category
+                            </button>
+                        </li>
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'RemoveCategory')">
+                                <img src="https://png.icons8.com/ios/50/000000/trash.png" class="icon"> Remove Category
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 

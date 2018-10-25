@@ -16,6 +16,10 @@
     transition: 0.3s;
     color: whitesmoke;
     width: 100%;
+    font-size: 1em;
+    font-family: "K2D", sans-serif;
+    font-weight: 300;
+
 }
 
 /* Change background color of buttons on hover */

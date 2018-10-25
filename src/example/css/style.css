@@ -20,3 +20,13 @@
 .newscontainer {
     display:none;
 }
+
+.icon {
+    filter: brightness(0) invert(1);
+    width: 20px;
+    vertical-align:bottom;
+}
+
+body {
+    font-size: 100%;
+}

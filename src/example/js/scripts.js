@@ -50,54 +50,6 @@
         controller.toggle( 'slidebar-1' );
     } );
 
-    // Right Slidebar controls
-    $( '.js-open-right-slidebar' ).on( 'click', function ( event ) {
-        event.stopPropagation();
-        controller.open( 'slidebar-2' );
-    } );
-
-    $( '.js-close-right-slidebar' ).on( 'click', function ( event ) {
-        event.stopPropagation();
-        controller.close( 'slidebar-2' );
-    } );
-
-    $( '.js-toggle-right-slidebar' ).on( 'click', function ( event ) {
-        event.stopPropagation();
-        controller.toggle( 'slidebar-2' );
-    } );
-
-    // Top Slidebar controls
-    $( '.js-open-top-slidebar' ).on( 'click', function ( event ) {
-        event.stopPropagation();
-        controller.open( 'slidebar-3' );
-    } );
-
-    $( '.js-close-top-slidebar' ).on( 'click', function ( event ) {
-        event.stopPropagation();
-        controller.close( 'slidebar-3' );
-    } );
-
-    $( '.js-toggle-top-slidebar' ).on( 'click', function ( event ) {
-        event.stopPropagation();
-        controller.toggle( 'slidebar-3' );
-    } );
-
-    // Bottom Slidebar controls
-    $( '.js-open-bottom-slidebar' ).on( 'click', function ( event ) {
-        event.stopPropagation();
-        controller.open( 'slidebar-4' );
-    } );
-
-    $( '.js-close-bottom-slidebar' ).on( 'click', function ( event ) {
-        event.stopPropagation();
-        controller.close( 'slidebar-4' );
-    } );
-
-    $( '.js-toggle-bottom-slidebar' ).on( 'click', function ( event ) {
-        event.stopPropagation();
-        controller.toggle( 'slidebar-4' );
-    } );
-
     // Close any
     $( controller.events ).on( 'opened', function () {
         $( '[canvas="container"]' ).addClass( 'js-close-any-slidebar' );
