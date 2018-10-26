@@ -159,12 +159,21 @@
                     <p> List all existing categories</p>
                 </div>
                 <div id="NewCategory" class="tabcontent">
-                    <form id="createCategory">
+
+                    <form >
                         <h3>Add Category</h3>
                         Category Name: <input type="text" name="category"/>
                         <br>
                         <input type="submit" value="Add"/>
                     </form>
+
+                    <h3>Add Category</h3>
+                    <form id="createCategory" action="/Category/Create">
+                        Category Name:<br>
+                        <input type="text" name="category" value="Electronics"/>
+                        <input type="submit" value="Submit">
+                    </form>
+
                 </div>
                 <div id="EditCategory" class="tabcontent">
 
