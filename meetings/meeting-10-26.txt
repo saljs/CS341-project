@@ -10,5 +10,21 @@ Members present: Jack E., Jack C., David
 Topic for discussion: deliverable 3, implementation of front end, tasks for demo 2
 Report writer: Jack Collins
 
+begin to implement demo 2 functionalities, and develop css format. GOal is to complete next weeks deliverable this weekend.
+using shared google slides, we will devlop a slide for each type of diagram
+1)Admin	logs	in
+2)add	a	promotion	NOV18,	(JACK E.)
+    -it	is	20%	off	for	itemA.	
+    -It	starts	Nov.	14,	ends	Nov.	16,	2018.
+3) Registered	customer	Jane	Doe	logins,	
+4)searches	itemA,	(SAL)
+5) cart (DAVID)
+    -filling
+    -editing
+6) checkout procdure (JACK C.)
+    -paypal API
+    -then	 applies	 the	 promotion	 in	 the	 check	 out.	
+    -Show	the	final	price	for	this	order.
+    -cancel
 
-Next meeting and its agenda: reflect on next thursdays deliverable
+Next meeting and its agenda: reflect on next thursdays deliverable, discuss progress on demo 2
