@@ -107,14 +107,15 @@ class Cart {
             return;
         }
 
+        $sql = "UPDATE cart SET quantity = " . $args['quantity'] . " WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';";
+        
         //check if we're deleting the item
         if($args['quantity'] < 1) {
-            Delete($args);
-            return;
+            $sql = "DELETE FROM cart WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';";
         }
 
         $db = $GLOBALS['database'];
-        if(!$db->query("UPDATE cart SET quantity = " . $args['quantity'] . " WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';")) {
+        if(!$db->query($sql) {
             error($db->error);
             return;
         }
