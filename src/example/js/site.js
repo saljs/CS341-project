@@ -8,7 +8,7 @@ $( document ).ready(function() {
     $('#register').on('submit', register);
     $('#addPromotion').on('submit', addPromotion);
     $('#createCategory').on('submit', createCategory);
-    $('#newItem').on('submit', addItem);a
+    $('#newItem').on('submit', addItem);
     $('#addToCart').on('click', addToCart);
     userWelcome();
     loadAllItems();

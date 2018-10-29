@@ -14,6 +14,11 @@ class Cart {
      * @param token - The user's auth token
      */
     static function Add($args):void {
+        //check params
+        if(!($args['itemId'] && $args['token'])) {
+            error("Missing required fields");
+            return;
+        }
         //check if user is logged in
         $user = new SiteUser(null, $args['token']);
         if(!$user->isAuth()) { 
@@ -31,6 +36,7 @@ class Cart {
         else {
             $sql = "INSERT INTO cart (userId, itemId, quantity) VALUES ('" . $user->id . "', '" . $args['itemId'] . "', 1);";
         }
+        //insert item into cart
         if(!$db->query($sql)) {
             error($db->error);
             return;
