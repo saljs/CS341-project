@@ -8,7 +8,8 @@ $( document ).ready(function() {
     $('#register').on('submit', register);
     $('#addPromotion').on('submit', addPromotion);
     $('#createCategory').on('submit', createCategory);
-    $('#newItem').on('submit', addItem);
+    $('#newItem').on('submit', addItem);a
+    $('#addToCart').on('click', addToCart);
     userWelcome();
     loadAllItems();
     loadSingleItem();
@@ -26,7 +27,6 @@ function login(e) {
     });
 }
 
-//TODO: No idea why this doesn't work, never used js
 function addPromotion(e) {
     e.preventDefault();
     var fields = $('#addPromotion').serialize();
@@ -144,6 +144,47 @@ function loadSingleItem() {
             });
         }
     }
+}
+
+function addToCart() {
+    if($.cookie('token') != undefined) {
+        var id = $.urlParam('id');
+        $.post('https://cs341group4.tk/Cart/Add', {token: $.cookie('token'), itemId : id})
+        .done(function(data) {
+            window.location = baseURL + "/cart.html";
+        }
+        .fail(function(data) {
+            $('#message').html(data.responseJSON.message);
+        });
+    }
+    else {
+        //TODO: add guest cart
+    }
+}
+
+
+function loadCart() {
+    if($('#cart').length) {
+        if($.cookie('token') != undefined) {
+            $.post('https://cs341group4.tk/Cart/Get', {token: $.cookie('token')})
+            .done(function(data) {
+                $('#message').html("");
+                cartList(data.products);
+            })
+            .fail(function(data) {
+                $('#message').html(data.responseJSON.message);
+            });
+        }
+    }
+}
+
+function itemList(items) {
+    items.forEach(function(item) {
+        $('#cart').append('<li><a href="https://cs341group4.tk/' + baseURL +'/item.html?id=' + item.id + '">' 
+            + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
+            + item.name 
+            + '</a></li>');
+    });
 }
 
 $.urlParam = function(name){
