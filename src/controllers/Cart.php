@@ -108,7 +108,7 @@ class Cart {
         }
 
         $db = $GLOBALS['database'];
-        if(!$db->query("UPDATE cart SET quantity = " . $args['quantity'] . "W HERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';")) {
+        if(!$db->query("UPDATE cart SET quantity = " . $args['quantity'] . "WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';")) {
             error($db->error);
             return;
         }
