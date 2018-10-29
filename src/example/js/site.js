@@ -13,6 +13,7 @@ $( document ).ready(function() {
     userWelcome();
     loadAllItems();
     loadSingleItem();
+    loadCart();
 });
 
 function login(e) {
@@ -176,6 +177,9 @@ function loadCart() {
             });
         }
     }
+    else {
+        //TODO: add guest cart
+    }
 }
 
 function cartList(items) {
@@ -183,8 +187,41 @@ function cartList(items) {
         $('#cart').append('<li><a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '">' 
             + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
             + item.name 
-            + '</a></li>');
+            + '</a> Quantity: <input type="number" id="quantity-' + item.id 
+            + '" value="' + item.quantity + '" onchange="updateCartItem(' + item.id + ');">'
+            + '<button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
+            + '</li>');
     });
+}
+
+function updateCartItem(id) {
+    if($.cookie('token') != undefined) {
+        var quantity = $('#quantity-' + id).val();
+        $.post('https://cs341group4.tk/Cart/Update', 
+            {token: $.cookie('token'), itemId : id, quantity: quantity})
+        .fail(function(data) {
+            $('#message').html(data.responseJSON.message);
+        });
+    }
+    else {
+        //TODO: add guest cart
+    }
+}
+function deleteCartItem(id) {
+    if($.cookie('token') != undefined) {
+        $.post('https://cs341group4.tk/Cart/Delete', 
+            {token: $.cookie('token'), itemId : id})
+        .done(function(data) {
+            $('#cart').html("Reloading items...");
+            loadCart();
+        })
+        .fail(function(data) {
+            $('#message').html(data.responseJSON.message);
+        });
+    }
+    else {
+        //TODO: add guest cart
+    }
 }
 
 $.urlParam = function(name){
