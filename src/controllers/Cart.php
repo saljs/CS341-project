@@ -89,7 +89,7 @@ class Cart {
     }
 
     /*
-     * Updates the quantity of items in a user's cart
+     * Updates the quantity of an item in a user's cart
      * @param token - The user's auth token
      * @param itemId - The item id
      * @param quantity - The new quantity
@@ -108,7 +108,33 @@ class Cart {
         }
 
         $db = $GLOBALS['database'];
-        if(!$db->query("UPDATE cart SET quantity = " . $args['quantity'] . "WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';")) {
+        if(!$db->query("UPDATE cart SET quantity = " . $args['quantity'] . " WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';")) {
+            error($db->error);
+            return;
+        }
+        success();
+    }
+    
+    /*
+     * Delete's an item from a user's cart
+     * @param token - The user's auth token
+     * @param itemId - The item id
+     */
+    static function Delete($args):void {
+        //Check if the token was included
+        if(!($args['itemId'] && $args['token'])) {
+            error("Missing required fields");
+            return;
+        }
+        //check if user is logged in
+        $user = new SiteUser(null, $args['token']);
+        if(!$user->isAuth()) { 
+            error("User is not authenticated");
+            return;
+        }
+
+        $db = $GLOBALS['database'];
+        if(!$db->query("DELETE FROM cart WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';")) {
             error($db->error);
             return;
         }
