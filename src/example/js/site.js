@@ -178,7 +178,7 @@ function loadCart() {
     }
 }
 
-function itemList(items) {
+function cartList(items) {
     items.forEach(function(item) {
         $('#cart').append('<li><a href="https://cs341group4.tk/' + baseURL +'/item.html?id=' + item.id + '">' 
             + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
