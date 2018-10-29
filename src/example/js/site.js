@@ -152,7 +152,7 @@ function addToCart() {
         $.post('https://cs341group4.tk/Cart/Add', {token: $.cookie('token'), itemId : id})
         .done(function(data) {
             window.location = baseURL + "/cart.html";
-        }
+        })
         .fail(function(data) {
             $('#message').html(data.responseJSON.message);
         });
