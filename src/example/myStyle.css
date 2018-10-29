@@ -146,3 +146,16 @@ form dt {
 
     background: url(border.gif) repeat-x top;
 }
+
+#cart, #products {
+    list-style-type: none;
+}
+#cart > li, #products > li {
+    margin-bottom: 150px;
+    border: 1px solid rgba(125,125,255,1.0); 
+}
+.productImg {
+    float: left;
+    width: 150px;
+    height: 15px;
+}

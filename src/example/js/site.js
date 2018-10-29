@@ -187,7 +187,7 @@ function cartList(items) {
         $('#cart').append('<li><a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '">' 
             + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
             + item.name 
-            + '</a> Quantity: <input type="number" id="quantity-' + item.id 
+            + '</a><br/>Quantity: <input type="number" id="quantity-' + item.id 
             + '" value="' + item.quantity + '" onchange="updateCartItem(' + item.id + ');">'
             + '<button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
             + '</li>');
