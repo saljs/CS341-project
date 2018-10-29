@@ -107,6 +107,12 @@ class Cart {
             return;
         }
 
+        //check if we're deleting the item
+        if($args['quantity'] < 1) {
+            Delete($args);
+            return;
+        }
+
         $db = $GLOBALS['database'];
         if(!$db->query("UPDATE cart SET quantity = " . $args['quantity'] . " WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';")) {
             error($db->error);
