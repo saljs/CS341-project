@@ -212,7 +212,7 @@ function deleteCartItem(id) {
         $.post('https://cs341group4.tk/Cart/Delete', 
             {token: $.cookie('token'), itemId : id})
         .done(function(data) {
-            $('#cart').html("Reloading items...");
+            $('#message').html("Reloading items...");
             loadCart();
         })
         .fail(function(data) {
