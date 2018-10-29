@@ -151,8 +151,10 @@ form dt {
     list-style-type: none;
 }
 #cart > li, #products > li {
-    margin-bottom: 150px;
-    border: 1px solid rgba(125,125,255,1.0); 
+    margin-bottom: 20px;
+    padding-bottom: 150px;
+    border: 1px solid rgba(125,125,255,1.0);
+    padding-top: 20px;
 }
 .productImg {
     float: left;
