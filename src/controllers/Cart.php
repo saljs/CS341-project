@@ -5,7 +5,9 @@
  * autheticated user's cart
  */
 
-require_once "User.php";
+require_once __DIR__ . '/User.php';
+require_once __DIR__ . '/Product.php';
+
 
 class Cart {
     /*
@@ -42,6 +44,48 @@ class Cart {
             return;
         }
         success();
+    }
+
+    /*
+     * Get's a list of items in a user's cart
+     * @param token - the user's auth token
+     * @return A list of items in the user's cart
+     */
+    static function Get($args):void {
+        //Check if the token was included
+        if(!$args['token']) {
+            error("Missing required fields");
+            return;
+        }
+        //check if user is logged in
+        $user = new SiteUser(null, $args['token']);
+        if(!$user->isAuth()) { 
+            error("User is not authenticated");
+            return;
+        }
+
+        $db = $GLOBALS['database'];
+        $products = $db->query("SELECT * FROM cart WHERE userId = '" . $user->id . "';");
+        $output = new HTTPResponse();
+        $payload->products = array();
+        while($product = $products->fetch_assoc()) {
+            //add each product to the payload
+            try {
+                $prod = new ViewableProduct($product['itemId']);
+            }
+            catch (Exception $e) {
+                error($e->getMessage());
+            }
+            $item = new stdClass();
+            $item->id = $product['itemId'];
+            $item->name = $prod->name;
+            $item->price = $prod->price;
+            $item->image = $prod->image;
+            $item->quantity = $product['quantity'];
+            $payload->products[] = $item;
+        }
+        $output->setPayload($payload);
+        $output->complete();
     }
 
 }  
