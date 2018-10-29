@@ -115,7 +115,7 @@ class Cart {
         }
 
         $db = $GLOBALS['database'];
-        if(!$db->query($sql) {
+        if(!$db->query($sql)) {
             error($db->error);
             return;
         }
