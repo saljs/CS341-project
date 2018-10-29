@@ -1,29 +1,42 @@
 <?php
+/*
+ * Cart.php
+ * Defines an interface for interacting with an 
+ * autheticated user's cart
+ */
 
-class Cart{
-  
-    /* 
-     *
-     * Creates a new cart for a user, cart is assoicated with user by the authentication token
-     * @param token: A User authentication token
+require_once "User.php";
+
+class Cart {
+    /*
+     * Adds an item to a user's cart
+     * @param itemId - the item ID
+     * @param token - The user's auth token
      */
-      static function Create($args): void {
-        //checks if the required variables were given
-        if(!($args['token'])) {
-            error("Missing required fields");
+    static function Add($args):void {
+        //check if user is logged in
+        $user = new SiteUser(null, $args['token']);
+        if(!$user->isAuth()) { 
+            error("User is not authenticated");
             return;
         }
-        //insert into database
+
+        //check if item is already in user's cart
         $db = $GLOBALS['database'];
-        if(!$db->query("INSERT INTO cart (token) VALUES('". $args['token'] . "');")){
+        $sql = "";
+        $result = $db->query("SELECT * FROM cart WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';"); 
+        if(mysqli_num_rows($result) > 0) { 
+            $sql = "UPDATE cart SET quantity = quantity + 1 WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';";
+        }
+        else {
+            $sql = "INSERT INTO cart (userId, itemId, quantity) VALUES ('" . $user->id . "', '" . $args['itemId'] . "', 1);";
+        }
+        if(!$db->query($sql)) {
             error($db->error);
             return;
         }
         success();
     }
-}
-class ViewableCart{
 
-
-}
+}  
 ?>
