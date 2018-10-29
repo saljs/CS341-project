@@ -88,5 +88,32 @@ class Cart {
         $output->complete();
     }
 
+    /*
+     * Updates the quantity of items in a user's cart
+     * @param token - The user's auth token
+     * @param itemId - The item id
+     * @param quantity - The new quantity
+     */
+    static function Update($args):void {
+        //Check if the token was included
+        if(!($args['itemId'] && $args['quantity'] && $args['token'])) {
+            error("Missing required fields");
+            return;
+        }
+        //check if user is logged in
+        $user = new SiteUser(null, $args['token']);
+        if(!$user->isAuth()) { 
+            error("User is not authenticated");
+            return;
+        }
+
+        $db = $GLOBALS['database'];
+        if(!$db->query("UPDATE cart WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "' SET quantity = " . $args['quantity'] . ";")) {
+            error($db->error);
+            return;
+        }
+        success();
+    }
+
 }  
 ?>

@@ -189,7 +189,7 @@ function cartList(items) {
             + item.name 
             + '</a><br/>Quantity: <input type="number" id="quantity-' + item.id 
             + '" value="' + item.quantity + '" onchange="updateCartItem(' + item.id + ');">'
-            + '<button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
+            + '<br/><button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
             + '</li>');
     });
 }
