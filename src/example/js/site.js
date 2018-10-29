@@ -213,6 +213,7 @@ function deleteCartItem(id) {
             {token: $.cookie('token'), itemId : id})
         .done(function(data) {
             $('#message').html("Reloading items...");
+            $('#cart').html("");
             loadCart();
         })
         .fail(function(data) {
