@@ -10,7 +10,7 @@ $( document ).ready(function() {
     $('#createCategory').on('submit', createCategory);
     $('#newItem').on('submit', addItem);
     $('#addToCart').on('click', addToCart);
-    $('#PayPalEdit').on('submit', paypalEdit);
+    $('#paypalSettings').on('submit', paypalEdit);
     userWelcome();
     loadAllItems();
     loadSingleItem();
@@ -233,7 +233,7 @@ function deleteCartItem(id) {
 
 function paypalEdit(e) {
     e.preventDefault();
-    var fields = $('#PayPalEdit').serialize();
+    var fields = $('#paypalSettings').serialize();
     fields += "&token=" + $.cookie('token');
     $.post('https://cs341group4.tk/Checkout/PayPalEdit', fields)
     .done(function(data) {
