@@ -10,7 +10,8 @@ $( document ).ready(function() {
     $('#createCategory').on('submit', createCategory);
     $('#newItem').on('submit', addItem);
     $('#addToCart').on('click', addToCart);
-    $('#paypalSettings').on('submit', paypalEdit);
+    $('#checkout').on('submit', paypalEdit);
+    $('#paypalSettings').on('submit', checkout);
     userWelcome();
     loadAllItems();
     loadSingleItem();
@@ -229,6 +230,19 @@ function deleteCartItem(id) {
     else {
         //TODO: add guest cart
     }
+}
+
+function checkout(e) {
+    e.preventDefault();
+    var fields = $('#checkout').serialize();
+    fields += "&token=" + $.cookie('token');
+    $.post('https://cs341group4.tk/Checkout/Complete', fields)
+    .done(function(data) {
+        window.location = data.payemntPage;
+    })
+    .fail(function(data){
+        $('#message').html(data.responseJSON.message);
+    });
 }
 
 function paypalEdit(e) {
