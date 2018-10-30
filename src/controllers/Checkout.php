@@ -8,6 +8,25 @@ require_once __DIR__ . '/User.php';
 require_once __DIR__ . '/Product.php';
 require_once __DIR__ . '/../PayPal-PHP-SDK/autoload.php';
 
+/*
+ * Calculates te total price of the user's cart
+ * @param userId - The user's id
+ * @param promotionCode - an optional promotion code
+ */
+static function getCartPrice($userId, $promotionCode):float {
+    $db = $GLOBALS['database'];
+    $products = $db->query("SELECT * FROM cart WHERE userId = '" . $userId . "';");
+    $cost = 0;
+    while($product = $products->fetch_assoc()) {
+        $prod = new ViewableProduct($product['itemId']);
+        $cost += (float)$prod->price * (int)$product['quantity'];
+    }
+
+    if($promotionCode) {
+        //TODO: process promotions
+    }
+    return $cost;
+}  
 
 class Checkout {
 
@@ -106,25 +125,6 @@ class Checkout {
         success();
     }
 
-    /*
-     * Calculates te total price of the user's cart
-     * @param userId - The user's id
-     * @param promotionCode - an optional promotion code
-     */
-    private static function getCartPrice($userId, $promotionCode):float {
-	    $db = $GLOBALS['database'];
-        $products = $db->query("SELECT * FROM cart WHERE userId = '" . $userId . "';");
-        $cost = 0;
-        while($product = $products->fetch_assoc()) {
-            $prod = new ViewableProduct($product['itemId']);
-            $cost += (float)$prod->price * (int)$product['quantity'];
-        }
-
-        if($promotionCode) {
-            //TODO: process promotions
-        }
-        return $cost;
-    }  
 
 }
 
