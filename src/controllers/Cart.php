@@ -140,6 +140,31 @@ class Cart {
         }
         success();
     }
+    
+    /*
+     * Delete's all items from a user's cart
+     * @param token - The user's auth token
+     */
+    static function DeleteAll($args):void {
+        //Check if the token was included
+        if(!($args['itemId'] && $args['token'])) {
+            error("Missing required fields");
+            return;
+        }
+        //check if user is logged in
+        $user = new SiteUser(null, $args['token']);
+        if(!$user->isAuth()) { 
+            error("User is not authenticated");
+            return;
+        }
+
+        $db = $GLOBALS['database'];
+        if(!$db->query("DELETE FROM cart WHERE userId = '" . $user->id . "';")) {
+            error($db->error);
+            return;
+        }
+        success();
+    }
 
 }  
 ?>
