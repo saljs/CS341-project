@@ -27,3 +27,10 @@
 body {
     font-size: 100%;
 }
+
+.form-header {
+    border: solid #727272;
+    border-width: 0 0 1px 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}

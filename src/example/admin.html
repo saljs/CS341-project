@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="css/menu.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=K2D:200,300" rel="stylesheet">
@@ -39,7 +40,6 @@
 
             <!-- Menu Button -->
             <img class="js-toggle-left-slidebar" style="padding: 0.6em" src="https://png.icons8.com/ios/50/000000/menu-filled.png">
-
 
             <!-- Tab Content -->
             <div class="inner-container">
@@ -102,34 +102,63 @@
                     <p> List all existing promotions and their data.</p>
                 </div>
                 <div id="NewPromotion" class="tabcontent">
-                    <form id="addPromotion">
-                        <h3>Add Promotion</h3>
-                        <p>Display Name:
-                            <input type="text" name="name" required/><br>
-                        </p>
+                    <form id="addPromotion" onclick="outputCategories()">
+                        <h3 class="form-header">Add Promotion</h3>
+                        <div class="form-group">
+                            <label for="displayName">Display Name</label>
+                            <input type="text" name="name" class="form-control" id="displayName" placeholder="Holiday 50% Off" required>
+                        </div>
 
-                        <p>Discount Code:
-                            <input type="text" name="code" required/><br>
-                        </p>
+                        <div class="form-group">
+                            <label for="discountCode">Discount Code</label>
+                            <input type="text" name="code" class="form-control" id="discountCode" placeholder="HOL50" required>
+                        </div>
 
-                        <p>Promotion Type:
-                            <input type="radio" name="type" value="percent" checked>Percent
-                            <input type="radio" name="type" value="bogo">Bogo
-                        </p>
+                        <div>
+                            <label>Promotion Type</label><br>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="percentRadio" value="percent" checked>
+                                <label class="form-check-label" for="percentRadio" required>
+                                    Percent
+                                </label>
+                            </div>
 
-                        <p>Percent Off:
-                            <input type="number" name="percent" step="10" min="10" max="100" placeholder="30" required/>
-                        </p>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="bogoRadio" value="bogo">
+                                <label class="form-check-label" for="bogoRadio" required>
+                                    Bogo
+                                </label>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <label for="percentOff">Percent Off</label>
+                            <input type="number" name="percent" class="form-control" id="percentOff" step="10" min="10" max="100" placeholder="50" required>
+                        </div>
 
                         <!-- TODO: Merge start date and start time -->
-                        <p>Start Date: <input type="text" id="datepicker1" required/>
-                            <br>Start Time: <input type="time" value="00:00" required/>
-                        </p>
+                        <div class="form-group">
+                            <label for="datepicker1">Start Date</label>
+                            <input type="text" id="datepicker1" class="form-control" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timepicker1">Start Time</label>
+                            <input type="text" id="timepicker1" class="form-control" value="00:00" required/>
+                        </div>
 
                         <!-- TODO: same as above comment -->
-                        <p>End Date: <input type="text" id="datepicker2" required/>
-                            <br>End Time: <input type="time" value="00:00" required/>
-                        </p>
+                        <div class="form-group">
+                            <label for="datepicker2">End Date</label>
+                            <input type="text" id="datepicker2" class="form-control" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timepicker2">End Time</label>
+                            <input type="text" id="timepicker2" class="form-control" value="00:00" required/>
+                        </div>
 
                         <div>
                             <!-- TODO: Dynamically generate these check boxes based on categories in database -->
@@ -138,8 +167,7 @@
                             <label for="electronics">Electronics</label>
                         </div>
 
-
-                        <input type="submit" value="addPromotion"/>
+                        <button type="submit" class="btn btn-primary" value="addPromotion">Submit</button>
                     </form>
                 </div>
                 <div id="EditPromotion" class="tabcontent">
@@ -169,18 +197,11 @@
                 </div>
                 <div id="NewCategory" class="tabcontent">
 
-                    <form >
-                        <h3>Add Category</h3>
-                        Category Name: <input type="text" name="category"/>
-                        <br>
-                        <input type="submit" value="Add"/>
-                    </form>
-
                     <h3>Add Category</h3>
                     <form id="createCategory" action="/Category/Create">
                         Category Name:<br>
                         <input type="text" name="category" value="Electronics"/>
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="Add">
                     </form>
 
                 </div>
@@ -347,9 +368,25 @@
 
         <!-- Open default tab -->
 
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="js/slidebars.js"></script>
         <script src="js/scripts.js"></script>
         <script>
+
+            function outputCategories() {
+                var request = new XMLHttpRequest();
+                request.open('GET', "https://cs341group4.tk/Category/GetAll");
+                request.responseType = 'text';
+
+                request.onload = function() {
+                    console.log(request.response);
+                };
+
+                request.send();
+            }
+
             document.getElementById("defaultOpen").click();
 
             function myFunction(x) {
