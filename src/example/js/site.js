@@ -16,6 +16,7 @@ $( document ).ready(function() {
     loadAllItems();
     loadSingleItem();
     loadCart();
+    outputCategories();
 });
 
 function login(e) {
@@ -42,6 +43,18 @@ function addPromotion(e) {
         $('#message').html(data.responseJSON.message);
     });
 
+}
+
+function outputCategories() {
+    var request = new XMLHttpRequest();
+    request.open('GET', "https://cs341group4.tk/Category/GetAll");
+    request.responseType = 'text';
+
+    request.onload = function() {
+        console.log(request.response);
+    };
+
+    request.send();
 }
 
 function register(e) {

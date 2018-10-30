@@ -375,18 +375,6 @@
         <script src="js/scripts.js"></script>
         <script>
 
-            function outputCategories() {
-                var request = new XMLHttpRequest();
-                request.open('GET', "https://cs341group4.tk/Category/GetAll");
-                request.responseType = 'text';
-
-                request.onload = function() {
-                    console.log(request.response);
-                };
-
-                request.send();
-            }
-
             document.getElementById("defaultOpen").click();
 
             function myFunction(x) {
