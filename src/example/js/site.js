@@ -192,10 +192,10 @@ function cartList(items) {
             + '" value="' + item.quantity + '" onchange="updateCartItem(' + item.id + ');">'
             + '<br/><button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
             + '</li>');
-        total += item.price;
+        total += parseFloat(item.price);
     });
     if($('#totalPrice').length) {
-        $('#totalPrice').html("Total: $" + total);
+        $('#totalPrice').html("Total: $" + total.toFixed(2));
     }
 }
 
