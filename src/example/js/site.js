@@ -10,8 +10,8 @@ $( document ).ready(function() {
     $('#createCategory').on('submit', createCategory);
     $('#newItem').on('submit', addItem);
     $('#addToCart').on('click', addToCart);
-    $('#checkout').on('submit', paypalEdit);
-    $('#paypalSettings').on('submit', checkout);
+    $('#checkout').on('submit', checkout);
+    $('#paypalSettings').on('submit', paypalEdit);
     userWelcome();
     loadAllItems();
     loadSingleItem();
