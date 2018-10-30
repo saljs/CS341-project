@@ -192,7 +192,7 @@ function cartList(items) {
             + '" value="' + item.quantity + '" onchange="updateCartItem(' + item.id + ');">'
             + '<br/><button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
             + '</li>');
-        total += parseFloat(item.price);
+        total += parseFloat(item.price) * parseInt(item.quantity);
     });
     if($('#totalPrice').length) {
         $('#totalPrice').html("Total: $" + total.toFixed(2));
