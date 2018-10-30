@@ -47,7 +47,8 @@
                     <h2 class="form-header">Home Page</h2>
                     <p> Not sure what to display here, maybe stats like how many items are the database, how many users there are, etc.</p>
                 </div>
-                <div id="Items">
+                <!-- Items -->
+                <div>
                     <div id="ItemInfo" class="tabcontent">
                         <h3 class="form-header">Item Info</h3>
                         <p> Display stats for items like total items.</p>
@@ -78,7 +79,8 @@
                     </div>
                 </div>
 
-                <div id="Admins">
+                <!-- Accounts -->
+                <div>
                     <div id="AdminInfo" class="tabcontent">
                         <h3 class="form-header">Admin Info</h3>
                         <p> Display admin count. etc, possibly remove this.</p>
@@ -106,7 +108,8 @@
                     </div>
                 </div>
 
-                <div id="Promotions">
+                <!-- Promotions -->
+                <div>
                     <div id="PromotionInfo" class="tabcontent">
                         <h3 class="form-header">Promotion Info</h3>
                         <p> List all existing promotions and their data.</p>
@@ -188,25 +191,40 @@
                     </div>
                 </div>
 
-                <div id="PayPal">
+                <!-- PayPal -->
+                <div>
                     <div id="PayPalEdit" class="tabcontent">
                         <h3 class="form-header">PayPal Settings</h3>
                         <p>These settings are hidden for security. Clicking update will over-write the current settings.</p>
                         <form id="paypalSettings">
-                            Client Id: <input type="text" name="paypal-clientId"/>
-                            <br/>
-                            Client Secret: <input type="text" name="paypal-secret"/>
-                            <br/>
-                            Success URL: <input type="url" name="paypal-success-url"/>
-                            <br/>
-                            Cancel URL: <input type="url" name="paypal-cancel-url"/>
-                            <br/>
-                            <input type="submit" value="Update"/>
+
+                            <div class="form-group">
+                                <label for="displayName">Client Id</label>
+                                <input type="text" name="paypal-clientId" class="form-control" id="clientId" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="displayName">Client Secret</label>
+                                <input type="text" name="paypal-secret" class="form-control" id="clientSecret" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="displayName">Success URL</label>
+                                <input type="url" name="paypal-success-url" class="form-control" id="successUrl" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="displayName">Cancel URL</label>
+                                <input type="url" name="paypal-cancel-url" class="form-control" id="cancelUrl" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" value="Update">Submit</button>
                         </form>
                     </div>
                 </div>
 
-                <div id="Categories">
+                <!-- Categories -->
+                <div>
                     <div id="CategoryInfo" class="tabcontent">
                         <h3 class="form-header">Category Info</h3>
                         <p> List all existing categories</p>
@@ -299,7 +317,7 @@
                 <div>
                     <a href="#promotionTab" class="tabLink promotionTab" onclick="testFunc(this)">
                         <button class="tablinks">
-                            <img src="https://png.icons8.com/ios/50/000000/commercial-filled.png" class="icon"> Promotion
+                            <img src="https://png.icons8.com/ios/50/000000/commercial-filled.png" class="icon"> Promotions
                         </button>
                     </a>
                     <ul class="subtab newscontainer promotionTab" id="promotionTab">
