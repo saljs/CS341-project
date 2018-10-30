@@ -13,7 +13,7 @@ require_once __DIR__ . '/../PayPal-PHP-SDK/autoload.php';
  * @param userId - The user's id
  * @param promotionCode - an optional promotion code
  */
-static function getCartPrice($userId, $promotionCode):float {
+function getCartPrice($userId, $promotionCode):float {
     $db = $GLOBALS['database'];
     $products = $db->query("SELECT * FROM cart WHERE userId = '" . $userId . "';");
     $cost = 0;
@@ -124,8 +124,6 @@ class Checkout {
         }
         success();
     }
-
-
 }
 
 ?>
