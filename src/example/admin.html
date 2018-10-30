@@ -47,169 +47,179 @@
                     <h1>Home Page</h1>
                     <p> Not sure what to display here, maybe stats like how many items are the database, how many users there are, etc.</p>
                 </div>
-                <div id="ItemInfo" class="tabcontent">
-                    <p> Display stats for items like total items.</p>
-                </div>
-                <div id="AddItem" class="tabcontent">
-                    <form id="newItem">
-                        <h3>Add item</h3>
-                        Name: <input type="text" name="name"/>
-                        <br/>
-                        Price: <input type="text" name="price"/>
-                        <br/>
-                        Quantity available: <input type="number" name="quantity"/>
-                        <br/>
-                        Image: <input type="text" name="image"/>
-                        <br/>
-                        Description: <input type="text" name="description"/>
-                        <br/>
-                        Catagories: <input type="text" name="catagory"/>
-                        <br>
-                        <input type="submit" value="Add"/>
-                    </form>
-                </div>
-                <div id="EditItem" class="tabcontent">
+                <div id="Items">
+                    <div id="ItemInfo" class="tabcontent">
+                        <p> Display stats for items like total items.</p>
+                    </div>
+                    <div id="AddItem" class="tabcontent">
+                        <form id="newItem">
+                            <h3>Add item</h3>
+                            Name: <input type="text" name="name"/>
+                            <br/>
+                            Price: <input type="text" name="price"/>
+                            <br/>
+                            Quantity available: <input type="number" name="quantity"/>
+                            <br/>
+                            Image: <input type="text" name="image"/>
+                            <br/>
+                            Description: <input type="text" name="description"/>
+                            <br/>
+                            Catagories: <input type="text" name="catagory"/>
+                            <br>
+                            <input type="submit" value="Add"/>
+                        </form>
+                    </div>
+                    <div id="EditItem" class="tabcontent">
 
-                </div>
-                <div id="RemoveItem" class="tabcontent">
+                    </div>
+                    <div id="RemoveItem" class="tabcontent">
 
-                </div>
-
-                <div id="AdminInfo" class="tabcontent">
-                    <p> Display admin count. etc</p>
-                </div>
-                <div id="NewAdmin" class="tabcontent">
-                    <form id="register">
-                        <h3>Add Admin user</h3>
-                        Email: <input type="text" name="email"/>
-                        <br/>
-                        Name: <input type="text" name="name"/>
-                        <br/>
-                        Password: <input type="password" name="password"/>
-                        <br/>
-                        <input type="hidden" name="type" value="admin"/>
-                        <input type="submit" value="Register"/>
-                    </form>
-                </div>
-                <div id="EditAdmin" class="tabcontent">
-
-                </div>
-                <div id="RemoveAdmin" class="tabcontent">
-
+                    </div>
                 </div>
 
-                <div id="PromotionInfo" class="tabcontent">
-                    <p> List all existing promotions and their data.</p>
+                <div id="Admins">
+                    <div id="AdminInfo" class="tabcontent">
+                        <p> Display admin count. etc</p>
+                    </div>
+                    <div id="NewAdmin" class="tabcontent">
+                        <form id="register">
+                            <h3>Add Admin user</h3>
+                            Email: <input type="text" name="email"/>
+                            <br/>
+                            Name: <input type="text" name="name"/>
+                            <br/>
+                            Password: <input type="password" name="password"/>
+                            <br/>
+                            <input type="hidden" name="type" value="admin"/>
+                            <input type="submit" value="Register"/>
+                        </form>
+                    </div>
+                    <div id="EditAdmin" class="tabcontent">
+
+                    </div>
+                    <div id="RemoveAdmin" class="tabcontent">
+
+                    </div>
                 </div>
-                <div id="NewPromotion" class="tabcontent">
-                    <form id="addPromotion" onclick="outputCategories()">
-                        <h3 class="form-header">Add Promotion</h3>
-                        <div class="form-group">
-                            <label for="displayName">Display Name</label>
-                            <input type="text" name="name" class="form-control" id="displayName" placeholder="Holiday 50% Off" required>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="discountCode">Discount Code</label>
-                            <input type="text" name="code" class="form-control" id="discountCode" placeholder="HOL50" required>
-                        </div>
-
-                        <div>
-                            <label>Promotion Type</label><br>
-                            <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="percentRadio" value="percent" checked>
-                                <label class="form-check-label" for="percentRadio" required>
-                                    Percent
-                                </label>
+                <div id="Promotions">
+                    <div id="PromotionInfo" class="tabcontent">
+                        <p> List all existing promotions and their data.</p>
+                    </div>
+                    <div id="NewPromotion" class="tabcontent">
+                        <form id="addPromotion" onclick="outputCategories()">
+                            <h3 class="form-header">Add Promotion</h3>
+                            <div class="form-group">
+                                <label for="displayName">Display Name</label>
+                                <input type="text" name="name" class="form-control" id="displayName" placeholder="Holiday 50% Off" required>
                             </div>
 
-                            <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="bogoRadio" value="bogo">
-                                <label class="form-check-label" for="bogoRadio" required>
-                                    Bogo
-                                </label>
+                            <div class="form-group">
+                                <label for="discountCode">Discount Code</label>
+                                <input type="text" name="code" class="form-control" id="discountCode" placeholder="HOL50" required>
                             </div>
-                        </div>
 
-                        <br>
+                            <div>
+                                <label>Promotion Type</label><br>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="percentRadio" value="percent" checked>
+                                    <label class="form-check-label" for="percentRadio" required>
+                                        Percent
+                                    </label>
+                                </div>
 
-                        <div class="form-group">
-                            <label for="percentOff">Percent Off</label>
-                            <input type="number" name="percent" class="form-control" id="percentOff" step="10" min="10" max="100" placeholder="50" required>
-                        </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="bogoRadio" value="bogo">
+                                    <label class="form-check-label" for="bogoRadio" required>
+                                        Bogo
+                                    </label>
+                                </div>
+                            </div>
 
-                        <!-- TODO: Merge start date and start time -->
-                        <div class="form-group">
-                            <label for="datepicker1">Start Date</label>
-                            <input type="text" id="datepicker1" class="form-control" required/>
-                        </div>
+                            <br>
 
-                        <div class="form-group">
-                            <label for="timepicker1">Start Time</label>
-                            <input type="text" id="timepicker1" class="form-control" value="00:00" required/>
-                        </div>
+                            <div class="form-group">
+                                <label for="percentOff">Percent Off</label>
+                                <input type="number" name="percent" class="form-control" id="percentOff" step="10" min="10" max="100" placeholder="50" required>
+                            </div>
 
-                        <!-- TODO: same as above comment -->
-                        <div class="form-group">
-                            <label for="datepicker2">End Date</label>
-                            <input type="text" id="datepicker2" class="form-control" required/>
-                        </div>
+                            <!-- TODO: Merge start date and start time -->
+                            <div class="form-group">
+                                <label for="datepicker1">Start Date</label>
+                                <input type="text" id="datepicker1" class="form-control" required/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="timepicker2">End Time</label>
-                            <input type="text" id="timepicker2" class="form-control" value="00:00" required/>
-                        </div>
+                            <div class="form-group">
+                                <label for="timepicker1">Start Time</label>
+                                <input type="text" id="timepicker1" class="form-control" value="00:00" required/>
+                            </div>
 
-                        <div>
-                            <!-- TODO: Dynamically generate these check boxes based on categories in database -->
-                            <input type="checkbox" id="electronics" name="categories"
-                                   value="electronics" checked />
-                            <label for="electronics">Electronics</label>
-                        </div>
+                            <!-- TODO: same as above comment -->
+                            <div class="form-group">
+                                <label for="datepicker2">End Date</label>
+                                <input type="text" id="datepicker2" class="form-control" required/>
+                            </div>
 
-                        <button type="submit" class="btn btn-primary" value="addPromotion">Submit</button>
-                    </form>
+                            <div class="form-group">
+                                <label for="timepicker2">End Time</label>
+                                <input type="text" id="timepicker2" class="form-control" value="00:00" required/>
+                            </div>
+
+                            <div>
+                                <!-- TODO: Dynamically generate these check boxes based on categories in database -->
+                                <input type="checkbox" id="electronics" name="categories"
+                                       value="electronics" checked />
+                                <label for="electronics">Electronics</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" value="addPromotion">Submit</button>
+                        </form>
+                    </div>
+                    <div id="EditPromotion" class="tabcontent">
+
+                    </div>
+                    <div id="RemovePromotion" class="tabcontent">
+
+                    </div>
                 </div>
-                <div id="EditPromotion" class="tabcontent">
 
-                </div>
-                <div id="RemovePromotion" class="tabcontent">
-
-                </div>
-
-                <div id="PayPalEdit" class="tabcontent">
-                    <p>These settings are hidden for security. Clicking update will over-write the current settings.</p>
-                    <form id="paypalSettings">
-                        Client Id: <input type="text" name="paypal-clientId"/>
-                        <br/>
-                        Client Secret: <input type="text" name="paypal-secret"/>
-                        <br/>
-                        Success URL: <input type="url" name="paypal-success-url"/>
-                        <br/>
-                        Cancel URL: <input type="url" name="paypal-cancel-url"/>
-                        <br/>
-                        <input type="submit" value="Update"/>
-                    </form>
+                <div id="PayPal">
+                    <div id="PayPalEdit" class="tabcontent">
+                        <p>These settings are hidden for security. Clicking update will over-write the current settings.</p>
+                        <form id="paypalSettings">
+                            Client Id: <input type="text" name="paypal-clientId"/>
+                            <br/>
+                            Client Secret: <input type="text" name="paypal-secret"/>
+                            <br/>
+                            Success URL: <input type="url" name="paypal-success-url"/>
+                            <br/>
+                            Cancel URL: <input type="url" name="paypal-cancel-url"/>
+                            <br/>
+                            <input type="submit" value="Update"/>
+                        </form>
+                    </div>
                 </div>
 
-                <div id="CategoryInfo" class="tabcontent">
-                    <p> List all existing categories</p>
-                </div>
-                <div id="NewCategory" class="tabcontent">
+                <div id="Categories">
+                    <div id="CategoryInfo" class="tabcontent">
+                        <p> List all existing categories</p>
+                    </div>
+                    <div id="NewCategory" class="tabcontent">
 
-                    <h3>Add Category</h3>
-                    <form id="createCategory" action="/Category/Create">
-                        Category Name:<br>
-                        <input type="text" name="category" value="Electronics"/>
-                        <input type="submit" value="Add">
-                    </form>
+                        <h3>Add Category</h3>
+                        <form id="createCategory" action="/Category/Create">
+                            Category Name:<br>
+                            <input type="text" name="category" value="Electronics"/>
+                            <input type="submit" value="Add">
+                        </form>
 
-                </div>
-                <div id="EditCategory" class="tabcontent">
+                    </div>
+                    <div id="EditCategory" class="tabcontent">
 
-                </div>
-                <div id="RemoveCategory" class="tabcontent">
+                    </div>
+                    <div id="RemoveCategory" class="tabcontent">
 
+                    </div>
                 </div>
             </div>
         </div>

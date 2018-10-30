@@ -45,18 +45,6 @@ function addPromotion(e) {
 
 }
 
-function outputCategories() {
-    var request = new XMLHttpRequest();
-    request.open('GET', "https://cs341group4.tk/Category/GetAll");
-    request.responseType = 'text';
-
-    request.onload = function() {
-        console.log(request.response);
-    };
-
-    request.send();
-}
-
 function register(e) {
     e.preventDefault();
     var fields = $('#register').serialize();
