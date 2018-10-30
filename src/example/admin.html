@@ -149,6 +149,21 @@
 
                 </div>
 
+                <div id="PayPalEdit" class="tabcontent">
+                    <p>These settings are hidden for security. Clicking update will over-write the current settings.</p>
+                    <form id="paypalSettings">
+                        Client Id: <input type="text" name="paypal-clientId"/>
+                        <br/>
+                        Client Secret: <input type="text" name="paypal-secret"/>
+                        <br/>
+                        Success URL: <input type="url" name="paypal-success-url"/>
+                        <br/>
+                        Cancel URL: <input type="url" name="paypal-cancel-url"/>
+                        <br/>a
+                        <input type="submit" value="Update"/>
+                    </form>
+                </div>
+
                 <div id="CategoryInfo" class="tabcontent">
                     <p> List all existing categories</p>
                 </div>
@@ -273,6 +288,22 @@
                         <li>
                             <button class="tablinks" onclick="openTab(event, 'RemovePromotion')">
                                 <img src="https://png.icons8.com/ios/50/000000/trash.png" class="icon"> Remove Promotion
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Paypal subtabs -->
+                <div>
+                    <a href="#paypalTab" class="tabLink paypalTab" onclick="testFunc(this)">
+                        <button class="tablinks">
+                            <img src="https://png.icons8.com/ios/50/000000/commercial-filled.png" class="icon"> PayPal Settings
+                        </button>
+                    </a>
+                    <ul class="subtab newscontainer paypalTab" id="promotionTab">
+                        <li>
+                            <button class="tablinks" onclick="openTab(event, 'PayPalEdit')">
+                                <img src="https://png.icons8.com/ios/50/000000/info-filled.png" class="icon"> Edit
                             </button>
                         </li>
                     </ul>

@@ -10,6 +10,7 @@ $( document ).ready(function() {
     $('#createCategory').on('submit', createCategory);
     $('#newItem').on('submit', addItem);
     $('#addToCart').on('click', addToCart);
+    $('#PayPalEdit').on('submit', paypalEdit);
     userWelcome();
     loadAllItems();
     loadSingleItem();
@@ -228,6 +229,19 @@ function deleteCartItem(id) {
     else {
         //TODO: add guest cart
     }
+}
+
+function paypalEdit(e) {
+    e.preventDefault();
+    var fields = $('#PayPalEdit').serialize();
+    fields += "&token=" + $.cookie('token');
+    $.post('https://cs341group4.tk/Checkout/PayPalEdit', fields)
+    .done(function(data) {
+        $('#message').html(data.message);
+    })
+    .fail(function(data){
+        $('#message').html(data.responseJSON.message);
+    });
 }
 
 $.urlParam = function(name){
