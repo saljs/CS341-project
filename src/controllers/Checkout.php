@@ -96,10 +96,10 @@ class Checkout {
 
         $db = $GLOBALS['database'];
         if(!$db->query("UPDADE siteadmin SET"
-            . " 'paypal-clientid' = '" . $args['paypal-clientId'] . "',"
-            . " 'paypal-secret' = '" . $args['paypal-secret'] . "',"
-            . " 'paypal-success-url' = '" . $args['paypal-success-url'] . "',"
-            . " 'paypal-cancel-url' = '" . $args['paypal-cancel-url'] . "';")) {
+            . " paypal-clientid = '" . $args['paypal-clientId'] . "',"
+            . " paypal-secret = '" . $args['paypal-secret'] . "',"
+            . " paypal-success-url = '" . $args['paypal-success-url'] . "',"
+            . " paypal-cancel-url = '" . $args['paypal-cancel-url'] . "';")) {
             error($db->error);
             return;
         }
