@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1aa5095b-c0a4-4e78-b98e-85d1ad24e7c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/example/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/js/site.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/js/site.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +62,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="594" />
-          <entry key="html" value="2191" />
+          <entry key="html" value="2548" />
           <entry key="js" value="669" />
           <entry key="php" value="1874" />
         </counts>
@@ -71,7 +70,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="594" />
-          <entry key="HTML" value="2191" />
+          <entry key="HTML" value="2548" />
           <entry key="JavaScript" value="669" />
           <entry key="PHP" value="1874" />
         </counts>
@@ -85,12 +84,11 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/example/admin.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="237">
-                  <caret line="193" column="47" lean-forward="true" selection-start-line="193" selection-start-column="47" selection-end-line="193" selection-end-column="47" />
+                <state relative-caret-position="323">
+                  <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
                   <folding>
                     <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                    <element signature="n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                    <element signature="n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
                     <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
                   </folding>
                 </state>
@@ -332,7 +330,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19956000" />
+    <option name="totallyTimeSpent" value="20615000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
@@ -488,12 +486,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/example/admin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="193" column="47" lean-forward="true" selection-start-line="193" selection-start-column="47" selection-end-line="193" selection-end-column="47" />
+        <state relative-caret-position="323">
+          <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
           </folding>
         </state>
