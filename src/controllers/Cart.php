@@ -147,7 +147,7 @@ class Cart {
      */
     static function DeleteAll($args):void {
         //Check if the token was included
-        if(!($args['itemId'] && $args['token'])) {
+        if(!$args['token']) {
             error("Missing required fields");
             return;
         }
