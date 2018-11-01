@@ -12,11 +12,11 @@ $( document ).ready(function() {
     $('#addToCart').on('click', addToCart);
     $('#checkout').on('submit', checkout);
     $('#paypalSettings').on('submit', paypalEdit);
+    $('#errordiv').hide();
     userWelcome();
     loadAllItems();
     loadSingleItem();
     loadCart();
-    outputCategories();
 });
 
 function login(e) {
@@ -27,7 +27,9 @@ function login(e) {
         window.location.href = baseURL + "/";
     })
     .fail(function(data){
+        $('#errordiv').show();
         $('#error').html(data.responseJSON.message);
+        setTimeout(function(){ $('#errordiv').hide(); }, 4500);
     });
 }
 
