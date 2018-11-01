@@ -179,14 +179,14 @@ function loadCart() {
                 $('#message').html(data.responseJSON.message);
             });
         }
-    }
-    else {
-        //TODO: add guest cart
+        else {
+            //TODO: add guest cart
+        }
+        updatePrice();
     }
 }
 
 function cartList(items) {
-    var total = 0;
     items.forEach(function(item) {
         $('#cart').append('<li><a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '">' 
             + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
@@ -195,10 +195,28 @@ function cartList(items) {
             + '" value="' + item.quantity + '" onchange="updateCartItem(' + item.id + ');">'
             + '<br/><button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
             + '</li>');
-        total += parseFloat(item.price) * parseInt(item.quantity);
     });
     if($('#totalPrice').length) {
         $('#totalPrice').html("Total: $" + total.toFixed(2));
+    }
+}
+
+function updatePrice() {
+    if($('#totalPrice').length) {
+        if($.cookie('token') != undefined) {
+            var fields = $('#checkout').serialize();
+            fields += "&token=" + $.cookie('token');
+            $.post('https://cs341group4.tk/Cart/Get', fields)
+            .done(function(data) {
+                $('#totalPrice').html(data.total);
+            })
+            .fail(function(data) {
+                $('#message').html(data.responseJSON.message);
+            });
+        }
+        else {
+            //TODO: add guest cart
+        }
     }
 }
 
