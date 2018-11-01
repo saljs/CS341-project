@@ -8,6 +8,25 @@
 require_once __DIR__ . '/User.php';
 require_once __DIR__ . '/Product.php';
 
+/*
+ * Calculates the total price of the user's cart
+ * @param userId - The user's id
+ * @param promotionCode - an optional promotion code
+ */
+function getCartPrice($userId, $promotionCode):float {
+    $db = $GLOBALS['database'];
+    $products = $db->query("SELECT * FROM cart WHERE userId = '" . $userId . "';");
+    $cost = 0;
+    while($product = $products->fetch_assoc()) {
+        $prod = new ViewableProduct($product['itemId']);
+        $cost += (float)$prod->price * (int)$product['quantity'];
+    }
+
+    if($promotionCode) {
+        //TODO: process promotions
+    }
+    return $cost;
+}  
 
 class Cart {
     /*
@@ -166,5 +185,28 @@ class Cart {
         success();
     }
 
+    /*
+     * Get's the total amount for the cart.
+     * @param token: The user's auth token
+     * @param code: An optional promotion code
+     * @return the total cost of all items in the user's cart
+     */
+    static function Total($args):void {
+        //Check if the token was included
+        if(!$args['token']) {
+            error("Missing required fields");
+            return;
+        }
+        //check if user is logged in
+        $user = new SiteUser(null, $args['token']);
+        if(!$user->isAuth()) { 
+            error("User is not authenticated");
+            return;
+        }
+        $output = new HTTPResponse();
+        $payload->total = getCartPrice($user->id, $args['code']);
+        $output->setPayload($payload);
+        $output->complete();
+    }
 }  
 ?>
