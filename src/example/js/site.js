@@ -196,9 +196,6 @@ function cartList(items) {
             + '<br/><button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
             + '</li>');
     });
-    if($('#totalPrice').length) {
-        $('#totalPrice').html("Total: $" + total.toFixed(2));
-    }
 }
 
 function updatePrice() {
@@ -223,7 +220,7 @@ function updatePrice() {
 function updateCartItem(id) {
     if($.cookie('token') != undefined) {
         var quantity = $('#quantity-' + id).val();
-        $.post('https://cs341group4.tk/Cart/Update', 
+        $.post('https://cs341group4.tk/Cart/Total', 
             {token: $.cookie('token'), itemId : id, quantity: quantity})
         .fail(function(data) {
             $('#message').html(data.responseJSON.message);
