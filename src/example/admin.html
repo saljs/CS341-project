@@ -404,8 +404,8 @@
 
                     if (request.status >= 200 && request.status < 400) {
                         for(var category in data.categories) {
-                            $('#categoryList').append("<tr><th scope='row'>" + category+1 + "</th>");
-                            $('#categorylist').append("<td>" + data.categories[category] + "</td></tr>");
+                            $('#categoryList').append("<tr><th scope='row'>" + category + "</th>");
+                            $('#categoryList').append("<td>" + data.categories[category] + "</td></tr>");
                         }
                     } else {
                         console.log('error');
