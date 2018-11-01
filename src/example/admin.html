@@ -173,11 +173,8 @@
                                 <input type="text" id="timepicker2" class="form-control" value="00:00" required/>
                             </div>
 
-                            <div>
+                            <div id="newPromoCatList">
                                 <!-- TODO: Dynamically generate these check boxes based on categories in database -->
-                                <input type="checkbox" id="electronics" name="categories"
-                                       value="electronics" checked />
-                                <label for="electronics">Electronics</label>
                             </div>
 
                             <button type="submit" class="btn btn-primary" value="addPromotion">Submit</button>
@@ -336,7 +333,7 @@
                             </button>
                         </li>
                         <li>
-                            <button class="tablinks" onclick="openTab(event, 'NewPromotion')">
+                            <button class="tablinks" onclick="openTab(event, 'NewPromotion'); loadCategories('newpromo')">
                                 <img src="https://png.icons8.com/ios/50/000000/plus-filled.png" class="icon"> New Promotion
                             </button>
                         </li>
@@ -403,7 +400,13 @@
                     if (request.status >= 200 && request.status < 400) {
                         for(var category in data.categories) {
                             if(type === 'catinfo')
-                            $('#categoryList').append("<tr><th scope='row'>" + category + "</th><td>" + data.categories[category] + "</td></tr>");
+                                $('#categoryList').append("<tr><th scope='row'>" + category + "</th><td>" + data.categories[category] + "</td></tr>");
+                            else if(type === 'newpromo') {
+                                var temp = data.categories[category];
+                                $('#newPromoCatList').append("<input type='checkbox' id='" + temp + "' name='categories'" +
+                                                                           "value='"+ temp +"'/>" +
+                                                                    "<label for='" + temp + "'>" + temp + "</label>")
+                            }
                         }
                     }
                 };
