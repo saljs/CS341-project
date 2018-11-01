@@ -227,7 +227,12 @@
                 <div>
                     <div id="CategoryInfo" class="tabcontent">
                         <h3 class="form-header">Category Info</h3>
-                        <p id="categorylist"> List all existing categories</p>
+                        <table style="width: 100%" id="categorylist">
+                            <tr>
+                                <th>Categories</th>
+                            </tr>
+
+                        </table>
 
                         <div class="form-check-inline topbottompadding">
                             <input type="text" name="category" class="form-control" placeholder="Electronics" required>
@@ -395,8 +400,7 @@
 
                     if (request.status >= 200 && request.status < 400) {
                         for(var category in data.categories) {
-                            console.log(data.categories[category]);
-                            $('#categorylist').append(data.categories[category]);
+                            $('#categorylist').append("<tr><td>" + data.categories[category] + "</td></tr>");
                         }
                     } else {
                         console.log('error');
