@@ -229,6 +229,7 @@ function updateCartItem(id) {
     else {
         //TODO: add guest cart
     }
+    updatePrice();
 }
 function deleteCartItem(id) {
     if($.cookie('token') != undefined) {
