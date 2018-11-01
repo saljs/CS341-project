@@ -227,11 +227,15 @@
                 <div>
                     <div id="CategoryInfo" class="tabcontent">
                         <h3 class="form-header">Category Info</h3>
-                        <table style="width: 100%" id="categorylist">
-                            <tr>
-                                <th>Categories</th>
-                            </tr>
-
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Category</th>
+                                </tr>
+                            </thead>
+                            <tbody id="categoryList">
+                            </tbody>
                         </table>
 
                         <div class="form-check-inline topbottompadding">
@@ -400,12 +404,20 @@
 
                     if (request.status >= 200 && request.status < 400) {
                         for(var category in data.categories) {
-                            $('#categorylist').append("<tr><td>" + data.categories[category] + "</td></tr>");
+                            $('#categoryList').append("<tr><th scope='row'>" + category+1 + "</th>");
+                            $('#categorylist').append("<td>" + data.categories[category] + "</td></tr>");
                         }
                     } else {
                         console.log('error');
                     }
                 }
+                //
+                // <tr>
+                //     <th scope="row">1</th>
+                //     <td>Mark</td>
+                //     <td>Otto</td>
+                //     <td>@mdo</td>
+                // </tr>
 
                 request.send();
             }
