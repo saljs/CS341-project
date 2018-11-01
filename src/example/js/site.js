@@ -203,7 +203,7 @@ function updatePrice() {
         if($.cookie('token') != undefined) {
             var fields = $('#checkout').serialize();
             fields += "&token=" + $.cookie('token');
-            $.post('https://cs341group4.tk/Cart/Get', fields)
+            $.post('https://cs341group4.tk/Cart/Total', fields)
             .done(function(data) {
                 $('#totalPrice').html(data.total);
             })
@@ -220,7 +220,7 @@ function updatePrice() {
 function updateCartItem(id) {
     if($.cookie('token') != undefined) {
         var quantity = $('#quantity-' + id).val();
-        $.post('https://cs341group4.tk/Cart/Total', 
+        $.post('https://cs341group4.tk/Cart/Update', 
             {token: $.cookie('token'), itemId : id, quantity: quantity})
         .fail(function(data) {
             $('#message').html(data.responseJSON.message);
