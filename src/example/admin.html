@@ -403,9 +403,9 @@
                                 $('#categoryList').append("<tr><th scope='row'>" + category + "</th><td>" + data.categories[category] + "</td></tr>");
                             else if(type === 'newpromo') {
                                 var temp = data.categories[category];
-                                $('#newPromoCatList').append("<input type='checkbox' id='" + temp + "' name='categories'" +
+                                $('#newPromoCatList').append("<div class='form-check'><input type='checkbox' class='form-check-input' id='" + temp + "' name='categories'" +
                                                                            "value='"+ temp +"'/>" +
-                                                                    "<label for='" + temp + "'>" + temp + "</label>")
+                                                                    "<label class='form-check-label' for='" + temp + "'>" + temp + "</label></div>")
                             }
                         }
                     }
