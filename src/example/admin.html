@@ -291,7 +291,7 @@
                             </button>
                         </li>
                         <li>
-                            <button class="tablinks" onclick="openTab(event, 'AddItem'); loadCategories('catcheck', 'newItemCatList')">
+                            <button class="tablinks" onclick="openTab(event, 'AddItem');">
                                 <img src="https://png.icons8.com/ios/50/000000/plus-filled.png" class="icon"> Add Item
                             </button>
                         </li>
@@ -353,7 +353,7 @@
                             </button>
                         </li>
                         <li>
-                            <button class="tablinks" onclick="openTab(event, 'NewPromotion'); loadCategories('catcheck', 'newPromoCatList')">
+                            <button class="tablinks" onclick="openTab(event, 'NewPromotion'); ">
                                 <img src="https://png.icons8.com/ios/50/000000/plus-filled.png" class="icon"> New Promotion
                             </button>
                         </li>
@@ -388,7 +388,7 @@
 
                 <!-- Categories subtabs -->
                 <div>
-                    <a href="#categoryTab" class="tabLink categoryTab" onclick="openTab(event, 'CategoryInfo'); loadCategories('cattable', 'categoryList')">
+                    <a href="#categoryTab" class="tabLink categoryTab" onclick="openTab(event, 'CategoryInfo'); ">
                         <button class="tablinks">
                             <img src="https://png.icons8.com/ios/50/000000/opened-folder-filled.png" class="icon"> Categories
                         </button>
@@ -438,6 +438,9 @@
                 request.send();
             }
 
+            loadCategories('cattable', 'categoryList');
+            loadCategories('catcheck', 'newPromoCatList');
+            loadCategories('catcheck', 'newItemCatList');
             document.getElementById("defaultOpen").click();
 
             function myFunction(x) {
