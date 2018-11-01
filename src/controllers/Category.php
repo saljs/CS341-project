@@ -68,16 +68,13 @@
                 return;
             }
 
-            $categories = "";
+            $categories = array();
 
             while($row = mysqli_fetch_assoc($result)) {
 
-                $categories .= $row['category'] . ',';
+                array_push($categories, $row['category']);
 
             }
-
-            rtrim($categories, ',');
-
             // make into json object?
             $output = new HTTPResponse();
 
