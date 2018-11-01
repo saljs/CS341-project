@@ -11,7 +11,8 @@
     margin-right: auto;
     margin-left: auto;
     height: 100%;
-    background-color: whitesmoke;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .newscontainer {
