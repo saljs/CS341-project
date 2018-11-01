@@ -227,11 +227,11 @@
                 <div>
                     <div id="CategoryInfo" class="tabcontent">
                         <h3 class="form-header">Category Info</h3>
-                        <p> List all existing categories</p>
+                        <p id="categorylist"> List all existing categories</p>
 
                         <div class="form-check-inline topbottompadding">
                             <input type="text" name="category" class="form-control" placeholder="Electronics" required>
-                            <button type="submit" class="btn btn-primary" value="Add" onclick="getCategories()">Add</button>
+                            <button type="submit" class="btn btn-primary" value="Add">Add</button>
                         </div>
 
                         <div class="form-check-inline topbottompadding">
@@ -362,7 +362,7 @@
 
                 <!-- Categories subtabs -->
                 <div>
-                    <a href="#categoryTab" class="tabLink categoryTab" onclick="openTab(event, 'CategoryInfo')">
+                    <a href="#categoryTab" class="tabLink categoryTab" onclick="openTab(event, 'CategoryInfo'); loadCategories()">
                         <button class="tablinks">
                             <img src="https://png.icons8.com/ios/50/000000/opened-folder-filled.png" class="icon"> Categories
                         </button>
@@ -383,7 +383,7 @@
         <script src="js/scripts.js"></script>
         <script>
 
-            function getCategories() {
+            function loadCategories() {
                 var request = new XMLHttpRequest();
 
                 request.open('GET', 'https://cs341group4.tk/Category/GetAll', true);
@@ -391,9 +391,13 @@
 
                     // Begin accessing JSON data here
                     var data = JSON.parse(this.response);
+                    console.log(data[0]);
 
                     if (request.status >= 200 && request.status < 400) {
-                        console.log(data);
+                        for(var category in data.categories) {
+                            console.log(data.categories[category]);
+                            $('#categorylist').append(data.categories[category]);
+                        }
                     } else {
                         console.log('error');
                     }
