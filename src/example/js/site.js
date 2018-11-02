@@ -130,7 +130,7 @@ function itemList(items) {
         //    + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
         //    + item.name 
         //    + '</a></li>');
-        $('#products').append('<div class="col-lg-3 col-md-6 mb-4">'+'<div class="card">'+
+        $('#products').append('<div class="col-lg-4 col-md-6 mb-4">'+'<div class="card h-100">'+
                 '<img class="card-img-top" src="http://placehold.it/500x325" alt="">'+
                 '<div class="card-body">'+
                     '<h4 class="card-title">'+item.name+'</h4>'+
