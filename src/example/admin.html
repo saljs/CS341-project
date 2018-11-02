@@ -420,35 +420,6 @@
         <script src="js/tags.js"></script>
         <script>
 
-            function loadCategories(type, id) {
-                var request = new XMLHttpRequest();
-
-                request.open('GET', 'https://cs341group4.tk/Category/GetAll', true);
-                request.onload = function () {
-
-                    // Begin accessing JSON data here
-                    var data = JSON.parse(this.response);
-                    if (request.status >= 200 && request.status < 400) {
-                        for(var category in data.categories) {
-                            if(type === 'cattable')
-                                $('#' + id).append("<tr>" +
-                                                       "<th scope='row'>" + category + "</th>" +
-                                                       "<td>" + data.categories[category] + "</td>" +
-                                                   "</tr>");
-                            else if(type === 'catcheck') {
-                                var temp = data.categories[category];
-                                $('#' + id).append("<div class='form-check'>" +
-                                                       "<input type='checkbox' class='form-check-input' id='" + temp + "' name='categories'" + "value='"+ temp +"'/>" +
-                                                        "<label class='form-check-label' for='" + temp + "'>" + temp + "</label>" +
-                                                    "</div>");
-                            }
-                        }
-                    }
-                };
-
-                request.send();
-            }
-
             loadCategories('cattable', 'categoryList');
             loadCategories('catcheck', 'newPromoCatList');
             loadCategories('catcheck', 'newItemCatList');
