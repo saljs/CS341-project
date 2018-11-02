@@ -117,6 +117,7 @@ class Product {
             $item->name = $product['name'];
             $item->price = $product['price'];
             $item->image = $product['image'];
+            $item->description = $product['description'];
             $payload->products[] = $item;
         }
         $output->setPayload($payload);
