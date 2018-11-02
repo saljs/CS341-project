@@ -117,6 +117,7 @@ function loadAllItems() {
         .done(function(data) {
             $('#message').html("");
             itemList(data.products);
+            console.log(data.products);
         })
         .fail(function(data) {
             $('#message').html(data.responseJSON.message);
