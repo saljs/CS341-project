@@ -65,8 +65,8 @@ function loadCategories(type, id) {
                 else if(type === 'catcheck') {
                     var temp = data.categories[category];
                     $('#' + id).append("<div class='form-check'>" +
-                        "<input type='checkbox' class='form-check-input' id='" + temp + "' name='categories'" + "value='"+ temp +"'/>" +
-                        "<label class='form-check-label' for='" + temp + "'>" + temp + "</label>" +
+                        "<input type='checkbox' class='form-check-input' name='categories'" + "value='"+ temp +"'/>" +
+                        "<label class='form-check-label'>" + temp + "</label>" +
                         "</div>");
                 }
             }
