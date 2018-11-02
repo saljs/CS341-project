@@ -17,6 +17,6 @@ body {
 .card {
   height: 100%;
 }
-.col-lg-3 col-md-6 mb-4{
-    left: 300px;
+#itemView{
+   margin: auto;
 }
