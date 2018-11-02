@@ -60,15 +60,19 @@
     </div>
 </nav>      
         
-        
-        <h1>Your Cart:</h1>
+<form>
+    <h3 class="form-header">Cart</h3>
+        <div class="form-group">
+            <label>Promotiom Code</label>
+            <input type="text" name="code" onchange="updatePrice();"/>
+        </div>
+     <button type="submit" class="btn btn-primary" value="addPromotion">Submit</button>
+ </form> 
         <div id="message">Loading items...</div>
         <ul id="cart"></ul>
         Total: $
         <span id="totalPrice"></span>
         <form id="checkout">
-            Promotion code: <input type="text" name="code" onchange="updatePrice();"/>
-            <br>
             <input class="btn btn-primary" type="submit" value="Checkout"/>
         </form>
     </body>
