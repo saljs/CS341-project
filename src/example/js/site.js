@@ -126,10 +126,21 @@ function loadAllItems() {
 
 function itemList(items) {
     items.forEach(function(item) {
-        $('#products').append('<li><a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '">' 
-            + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
-            + item.name 
-            + '</a></li>');
+        //$('#products').append('<li><a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '">' 
+        //    + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
+        //    + item.name 
+        //    + '</a></li>');
+        $('#products').append('<div class="col-lg-3 col-md-6 mb-4">'+'<div class="card">'+
+                '<img class="card-img-top" src="http://placehold.it/500x325" alt="">'+
+                '<div class="card-body">'+
+                    '<h4 class="card-title">'+item.name+'</h4>'+
+                    '<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>'+
+                '</div>'+
+                '<div class="card-footer">'+
+                    '<a href="#" class="btn btn-primary">Find Out More!</a>'+
+                '</div>'+
+            '</div>'+
+        '</div>)';
     });
 }
 
