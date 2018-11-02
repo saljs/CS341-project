@@ -143,7 +143,7 @@ function loadSingleItem() {
                 $('#itemPrice').html(data.price);
                 $('#itemQuantity').html(data.quantity);
                 $('#itemDesc').html(data.description);
-                $('#itemImg').attr("src",'<img src="' + data.image + '" class="itemImg" width="400" height="400"/>');
+                $('#itemImg').attr("src",data.image);
             })
             .fail(function(data) {
                 $('#itemDesc').html(data.responseJSON.message);
