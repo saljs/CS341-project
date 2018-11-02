@@ -8,12 +8,11 @@
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/jquery.cookie.js"></script>
         <script src="js/site.js"></script>
-
-        <!-- Tabs -->
         <script src="js/tabs.js"></script>
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/tabs.css">
+        <link rel="stylesheet" href="css/tags.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/slidebars.css">
         <link rel="stylesheet" href="css/menu.css">
@@ -31,6 +30,8 @@
                 $("#datepicker1,#datepicker2").datepicker();
             });
         </script>
+
+
 
     </head>
     <body>
@@ -83,7 +84,7 @@
                             <div id="newItemCatList">
 
                             </div>
-                            <button type="submit" class="btn btn-primary" value="Add">Add User</button>
+                            <button type="submit" class="btn btn-primary" value="Add">Add Item</button>
                         </form>
                     </div>
                     <div id="EditItem" class="tabcontent">
@@ -193,8 +194,17 @@
                                 <input type="text" id="timepicker2" class="form-control" value="00:00" required/>
                             </div>
 
-                            <div id="newPromoCatList">
+                            <!-- You can get these item values from the hidden input, tags-input, in the form of a comma delimited list
+                                    we have TODO: change list to add items based on ID, not name.-->
+                            <div class="form-group">
+                                <label>Item(s)</label>
+                                <div class="tags-input form-control" data-name="tags-input">
+                                    <!-- Content goes here -->
+                                </div>
+                            </div>
 
+                            <div id="newPromoCatList">
+                                <!-- Content goes here -->
                             </div>
 
                             <button type="submit" class="btn btn-primary" value="addPromotion">Submit</button>
@@ -407,6 +417,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="js/slidebars.js"></script>
         <script src="js/scripts.js"></script>
+        <script src="js/tags.js"></script>
         <script>
 
             function loadCategories(type, id) {
