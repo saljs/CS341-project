@@ -53,6 +53,7 @@ function loadCategories(type, id) {
     request.open('GET', 'https://cs341group4.tk/Category/GetAll', true);
     request.onload = function () {
 
+        let cat;
         // Begin accessing JSON data here
         var data = JSON.parse(this.response);
         if (request.status >= 200 && request.status < 400) {
@@ -63,11 +64,15 @@ function loadCategories(type, id) {
                         "<td>" + data.categories[category] + "</td>" +
                         "</tr>");
                 else if(type === 'catcheck') {
-                    var temp = data.categories[category];
+                    cat = data.categories[category];
                     $('#' + id).append("<div class='form-check'>" +
-                        "<input type='checkbox' class='form-check-input' name='categories'" + "value='"+ temp +"'/>" +
-                        "<label class='form-check-label'>" + temp + "</label>" +
+                        "<input type='checkbox' class='form-check-input' name='categories'" + "value='"+ cat +"'/>" +
+                        "<label class='form-check-label'>" + cat + "</label>" +
                         "</div>");
+                }
+                else if(type === 'navbar') {
+                    cat = data.categories[category];
+                    $('#' + id).append("<a href='#' class='list-group-item'>" + cat + "</a>")
                 }
             }
         }
