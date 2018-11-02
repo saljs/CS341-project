@@ -140,7 +140,7 @@ function itemList(items) {
                     '<a href="#" class="btn btn-primary">Find Out More!</a>'+
                 '</div>'+
             '</div>'+
-        '</div>)';
+        '</div>');
     });
 }
 
