@@ -140,7 +140,7 @@ function loadSingleItem() {
             $.post('https://cs341group4.tk/Product/Get', {id: id})
             .done(function(data) {
                 $('#itemName').html(data.name);
-                $('#itemPrice').html(data.price);
+                $('#itemPrice').html("$" + data.price);
                 $('#itemQuantity').html(data.quantity);
                 $('#itemDesc').html(data.description);
                 $('#itemImg').attr("src",data.image);
