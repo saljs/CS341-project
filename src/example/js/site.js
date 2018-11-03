@@ -173,7 +173,7 @@ function itemList(items) {
                                             '<p class="card-text">'+item.description+'</p>'+
                                         '</div>'+
                                         '<div class="card-footer">'+
-                                            '<a href="#" class="btn btn-primary">Find Out More!</a>'+
+                                            '<a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '" class="btn btn-primary">Find Out More!</a>'+
                                         '</div>'+
                                 '</div>'+
                             '</div>');
