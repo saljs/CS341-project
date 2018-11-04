@@ -167,13 +167,13 @@ function itemList(items) {
         //    + '</a></li>');
         $('#products').append('<div class="col-lg-4 col-md-6 mb-4">'+'' +
                                 '<div class="card h-100">'+
-                                    '<img class="card-img-top" src="http://placehold.it/700x400" alt="">'+
+                                    '<img class="card-img-top" src="'+item.image+'" alt="">'+
                                         '<div class="card-body">'+
                                             '<h4 class="card-title">'+item.name+'</h4>'+
                                             '<p class="card-text">'+item.description+'</p>'+
                                         '</div>'+
                                         '<div class="card-footer">'+
-                                            '<a href="#" class="btn btn-primary">Find Out More!</a>'+
+                                            '<a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '" class="btn btn-primary">Find Out More!</a>'+
                                         '</div>'+
                                 '</div>'+
                             '</div>');
