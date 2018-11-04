@@ -139,7 +139,7 @@ class Product {
 
     static function GetAllCategory($args) : void {
 
-        if($args['category']) {
+        if(!$args['category']) {
             error("Missing required fields");
             return;
         }

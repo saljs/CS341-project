@@ -47,6 +47,19 @@ function addPromotion(e) {
 
 }
 
+function loadCategoryItems(category) {
+
+    // Remove all products from #products
+    $('#products').html("");
+
+    request.open('GET', 'https://cs341group4.tk/Product/GetAllCategory', true);
+    request.onload = function () {
+
+
+    }
+
+}
+
 function loadCategories(type, id) {
     var request = new XMLHttpRequest();
 
@@ -72,7 +85,7 @@ function loadCategories(type, id) {
                 }
                 else if(type === 'navbar') {
                     cat = data.categories[category];
-                    $('#' + id).append("<a href='#" + cat + "' class='list-group-item'>" + cat + "</a>")
+                    $('#' + id).append("<a href='#" + cat + "' class='list-group-item' onclick='loadCategoryItems(" + cat + ")'>" + cat + "</a>")
                 }
             }
         }
