@@ -14,12 +14,12 @@ class Product {
      * @param quantity: number currently in stock
      * @param image: visual for product, a path in the directory
      * @param description: describes the product
-     * @param catagory: the categories that the product fits into, csv
+     * @param category: the categories that the product fits into, csv
      * @param token: A User authentication token
      */
     static function Create($args): void {
         //checks if the required variables were given
-        if(!($args['name'] && $args['price'] && $args['quantity'] && $args['image'] && $args['description'] && $args['catagory'] && $args['token'])) {
+        if(!($args['name'] && $args['price'] && $args['quantity'] && $args['image'] && $args['description'] && $args['category'] && $args['token'])) {
             error("Missing required fields");
             return;
         }
@@ -40,13 +40,13 @@ class Product {
 
         //insert into database
         $db = $GLOBALS['database'];
-        if(!$db->query("INSERT INTO product (name, price, quantity, image, description, catagory) VALUES('"
+        if(!$db->query("INSERT INTO product (name, price, quantity, image, description, category) VALUES('"
             . $args['name'] . "', '"
             . $args['price'] . "', '"
             . $args['quantity'] . "', '"
             . $args['image'] . "', '"
             . $args['description'] . "', '"
-            . $args['catagory'] . "');")){
+            . $args['category'] . "');")){
             error($db->error);
             return;
         }
@@ -80,24 +80,24 @@ class Product {
 
     /*
      * Gets info about a group of products
-     * @param catagory: The catagory of the product.
+     * @param category: The category of the product.
      * @param search: A search string
      * @return A list of products
      */
     static function GetAll($args): void {
         $sql = "SELECT * FROM product";
-        if($args['catagory'] && !$args['search']) {
-            //select all from given catagory
-            $sql .= " WHERE catagory LIKE '%" . $args['catagory'] . "%';";
+        if($args['category'] && !$args['search']) {
+            //select all from given category
+            $sql .= " WHERE category LIKE '%" . $args['category'] . "%';";
         }
-        else if($args['search'] && !$args['catagory']) {
+        else if($args['search'] && !$args['category']) {
             //select all that meet search parameter
             $sql .= " WHERE name LIKE '%" . $args['search'] 
                 . "%' OR description LIKE '%" . $args['search'] . "%';";
         }
-        else if($args['search'] && $args['catagory']) {
-            //select all from catagory that match search
-            $sql .= " WHERE catagory LIKE '%" . $args['catagory'] 
+        else if($args['search'] && $args['category']) {
+            //select all from category that match search
+            $sql .= " WHERE category LIKE '%" . $args['category'] 
                 . " AND (name LIKE '%" . $args['search'] 
                 . "%' OR description LIKE '%" . $args['search'] . "%');";
         }
@@ -135,6 +135,24 @@ class Product {
      */
     static function edit(): void {
         echo "<h1>unimplimented, see functional req.s </h1>";
+    }
+
+    static function GetAllCategory($args) : void {
+
+        if($args['category']) {
+            error("Missing required fields");
+            return;
+        }
+
+        $sql = "SELECT * FROM product WHERE 'category' LIKE %" . $args['category'] . "%;";
+
+        $db = $GLOBALS['database'];
+        $result = $db->query($sql);
+        if(!$result) {
+            error("There's an error in your SQL syntax: {$sql}");
+            return;
+        }
+
     }
 
 
