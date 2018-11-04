@@ -87,7 +87,7 @@ function loadCategories(type, id) {
                 }
                 else if(type === 'navbar') {
                     cat = data.categories[category];
-                    $('#' + id).append("<a href='#' class='list-group-item'>" + cat + "</a>")
+                    $('#').append("<a href='#' class='list-group-item'>" + cat + "</a>")
                 }
             }
         }
