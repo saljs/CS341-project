@@ -144,7 +144,7 @@ class Product {
             return;
         }
 
-        $sql = "SELECT * FROM product WHERE 'category' LIKE %" . $args['category'] . "%;";
+        $sql = "SELECT * FROM product WHERE `category` LIKE %'" . $args['category'] . "'%;";
 
         $db = $GLOBALS['database'];
         $result = $db->query($sql);
