@@ -137,25 +137,6 @@ class Product {
         echo "<h1>unimplimented, see functional req.s </h1>";
     }
 
-    static function GetAllCategory($args) : void {
-
-        if(!$args['category']) {
-            error("Missing required fields");
-            return;
-        }
-
-        $sql = "SELECT * FROM product WHERE `category` LIKE '%" . $args['category'] . "%';";
-
-        $db = $GLOBALS['database'];
-        $result = $db->query($sql);
-        if(!$result) {
-            error("There's an error in your SQL syntax: {$sql}");
-            return;
-        }
-
-    }
-
-
 }
 class ViewableProduct{
     private $id;

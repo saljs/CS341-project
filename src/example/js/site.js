@@ -52,7 +52,7 @@ function loadCategoryItems(category) {
     // Remove all products from #products
     $('#products').html("");
 
-    request.open('GET', 'https://cs341group4.tk/Product/GetAllCategory', true);
+    request.open('GET', 'https://cs341group4.tk/Product/GetAllCategory?category=' + category, true);
     request.onload = function () {
 
 
