@@ -89,7 +89,15 @@ function loadCategories(type, id) {
                     cat = data.categories[category];
                     let catex = "'" + cat + "'";
                     console.log(catex);
-                    $('#' + id).append("<a href='#" + cat + "' class='list-group-item' onclick='loadCategoryItems(" + catex + ")'>" + cat + "</a>")
+                    //$('#' + id).append("<a href='#" + cat + "' class='list-group-item' onclick='loadCategoryItems(" + catex + ")'>" + cat + "</a>");
+                    $('#' + id).append(
+                        $('<a/>', {
+                            'href': '#' + cat,
+                            'class': 'list-group-item',
+                        }).on({
+                            'click': loadCategoryItems(catex)
+                        })
+                    );
                 }
             }
         }
