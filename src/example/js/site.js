@@ -283,12 +283,12 @@ function cartList(items) {
       $('#cart').append('<tr><td><img src="'+item.image+'" /> </td>'+
                             '<td>'+item.name+'</td>'+
                             '<td>In stock</td>'+
-                            '<td><input class="form-control" type="text" value="'+item.quantity+'" /></td>'+
+                            '<td><input class="form-control" type="text" value="'+item.quantity+'"/></td>'+
                             '<td class="text-right">$'+item.price+'</td>'+
                             '<td class="text-right">'+
-                        '<button class="btn btn-sm btn-danger" onclick="deleteCartItem('+item.id+');">'+
-                        '<i class="fa fa-trash"></i> </button> </td>'+
-        '</tr>');
+                            '<button class="btn btn-sm btn-danger" onclick="deleteCartItem('+item.id+');">'+
+                            '<i class="fa fa-trash"></i> </button> </td>'+
+                        '</tr>');
     });
 }
 
