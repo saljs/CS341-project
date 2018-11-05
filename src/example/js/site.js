@@ -224,7 +224,7 @@ function loadSingleItem() {
             .done(function(data) {
                 $('#itemName').html(data.name);
                 $('#itemPrice').html("$" + data.price);
-                $('#itemQuantity').html(data.quantity);
+                $('#itemQuantity').html(data.quantity + " left");
                 $('#itemDesc').html(data.description);
                 $('#itemImg').attr("src",data.image);
             })
