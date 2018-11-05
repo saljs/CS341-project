@@ -273,13 +273,22 @@ function loadCart() {
 
 function cartList(items) {
     items.forEach(function(item) {
-        $('#cart').append('<li><a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '">' 
-            + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
-            + item.name + ' - $' + item.price
-            + '</a><br/>Quantity: <input type="number" id="quantity-' + item.id 
-            + '" value="' + item.quantity + '" onchange="updateCartItem(' + item.id + ');">'
-            + '<br/><button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
-            + '</li>');
+       // $('#cart').append('<li><a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '">' 
+       //     + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
+       //     + item.name + ' - $' + item.price
+       //     + '</a><br/>Quantity: <input type="number" id="quantity-' + item.id 
+       //     + '" value="' + item.quantity + '" onchange="updateCartItem(' + item.id + ');">'
+       //     + '<br/><button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
+       //     + '</li>');
+      $('#cart').append('<tr><td><img src="'+item.image+'" /> </td>'+
+                            '<td>'+item.name+'</td>'+
+                            '<td>In stock</td>'+
+                            '<td><input class="form-control" type="text" value="'+item.quantity+'" /></td>+
+                            '<td class="text-right">$'+item.price+'</td>'+
+                            '<td class="text-right">'+
+                        '<button class="btn btn-sm btn-danger" onclick="deleteCartItem('+item.id+');">'+
+                        '<i class="fa fa-trash"></i> </button> </td>'+
+        '</tr>');
     });
 }
 
