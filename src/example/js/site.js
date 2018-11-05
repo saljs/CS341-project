@@ -90,7 +90,8 @@ function loadCategoryItems(category) {
     request.onload = function () {
 
         let data = JSON.parse(this.response);
-        console.log("Data: " + data);
+        console.log(data.products);
+        itemList(data.products);
 
     };
 
