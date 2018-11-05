@@ -14,9 +14,11 @@ $( document ).ready(function() {
     $('#paypalSettings').on('submit', paypalEdit);
     $('#errordiv').hide();
     userWelcome();
+    loadCategoryItems();
     loadAllItems();
     loadSingleItem();
     loadCart();
+
 });
 
 function login(e) {
@@ -46,22 +48,6 @@ function addPromotion(e) {
     });
 
 }
-
-function loadCategoryItems(category) {
-
-    // Remove all products from #products
-    $('#products').html("");
-
-    request.open('GET', 'https://cs341group4.tk/Product/GetAll?category=' + category, true);
-    request.onload = function () {
-
-        var data = JSON.parse(this.response);
-        itemList(data.products);
-
-    }
-
-}
-
 function loadCategories(type, id) {
     var request = new XMLHttpRequest();
 
@@ -87,7 +73,7 @@ function loadCategories(type, id) {
                 }
                 else if(type === 'navbar') {
                     cat = data.categories[category];
-                    $('#' + id).append("<a href='#" + cat + "' class='list-group-item'>" + cat + "</a>")
+                    $('#' + id).append("<a href='https://cs341group4.tk" + baseURL + "/store.html?category=" + cat + "' class='list-group-item'>" + cat + "</a>")
                 }
             }
         }
@@ -161,17 +147,27 @@ function logout(e) {
 }
 
 function loadAllItems() {
-    if($('#products').length) {
-        $.post('https://cs341group4.tk/Product/GetAll')
-        .done(function(data) {
-            $('#message').html("");
-            itemList(data.products);
-            console.log(data.products);
-        })
-        .fail(function(data) {
-            $('#message').html(data.responseJSON.message);
-        });
+
+    // If they didn't specify a category, show all items
+    let category = $.urlParam('category');
+    if(!category) {
+        if ($('#products').length) {
+            $.post('https://cs341group4.tk/Product/GetAll')
+                .done(function (data) {
+                    $('#message').html("");
+                    itemList(data.products);
+                    console.log(data.products);
+                })
+                .fail(function (data) {
+                    $('#message').html(data.responseJSON.message);
+                });
+        }
+    } else {
+
+        loadCategoryItems(category);
+
     }
+
 }
 
 function itemList(items) {
@@ -194,6 +190,22 @@ function itemList(items) {
                             '</div>');
     });
 }
+
+function loadCategoryItems(category) {
+
+    // Remove all products from #products
+    $('#products').html("");
+
+    request.open('GET', 'https://cs341group4.tk/Product/GetAll?category=' + category, true);
+    request.onload = function () {
+
+        var data = JSON.parse(this.response);
+        itemList(data.products);
+
+    }
+
+}
+
 
 function loadSingleItem() {
     if($('#itemName') && $('#itemPrice') && $('#itemQuantity') && $('itemDesc')) {
