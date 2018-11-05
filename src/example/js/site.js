@@ -194,7 +194,7 @@ function loadCategoryItems(category) {
     // Remove all products from #products
     $('#products').html("");
 
-    var request = new XMLHttpRequest();
+    let request = new XMLHttpRequest();
     request.open('GET', 'https://cs341group4.tk/Product/GetAll?category=' + category, true);
     request.onload = function () {
 
@@ -202,6 +202,8 @@ function loadCategoryItems(category) {
         console.log(data);
 
     }
+
+    request.send();
 
 }
 
