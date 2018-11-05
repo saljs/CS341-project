@@ -280,7 +280,7 @@ function cartList(items) {
        //     + '" value="' + item.quantity + '" onchange="updateCartItem(' + item.id + ');">'
        //     + '<br/><button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
        //     + '</li>');
-      $('#cart').append('<tr><td><img width="50" height="50" src="'+item.image+'" /> </td>'+
+      $('#cart').prepend('<tr><td><img width="50" height="50" src="'+item.image+'" /> </td>'+
                  '<td>'+item.name+'</td>'+
                  '<td>In stock</td>'+
                  '<td><input class="form-control" type="text" value="'+item.quantity+'"/></td>'+
