@@ -52,7 +52,6 @@ function loadCategories(type, id) {
 
     request.open('GET', 'https://cs341group4.tk/Category/GetAll', true);
     request.onload = function () {
-
         let cat;
         // Begin accessing JSON data here
         var data = JSON.parse(this.response);
@@ -195,10 +194,11 @@ function loadCategoryItems(category) {
     // Remove all products from #products
     $('#products').html("");
 
+    var request = new XMLHttpRequest();
     request.open('GET', 'https://cs341group4.tk/Product/GetAll?category=' + category, true);
     request.onload = function () {
 
-        var data = JSON.parse(this.response);
+        let data = JSON.parse(this.response);
         itemList(data.products);
 
     }
