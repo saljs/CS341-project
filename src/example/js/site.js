@@ -14,7 +14,6 @@ $( document ).ready(function() {
     $('#paypalSettings').on('submit', paypalEdit);
     $('#errordiv').hide();
     userWelcome();
-    loadCategoryItems();
     loadAllItems();
     loadSingleItem();
     loadCart();
