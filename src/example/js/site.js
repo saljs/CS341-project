@@ -87,7 +87,8 @@ function loadCategories(type, id) {
                 }
                 else if(type === 'navbar') {
                     cat = data.categories[category];
-                    $('#' + id).append("<a href='#" + cat + "' class='list-group-item'>" + cat + "</a>");
+                    $('#' + id).append("<a href='#" + cat + "' class='list-group-item'>" + cat + "</a>")
+                }
             }
         }
     };
@@ -346,4 +347,4 @@ $.urlParam = function(name){
     else{
        return decodeURI(results[1]) || 0;
     }
-}
+};
