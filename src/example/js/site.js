@@ -283,7 +283,7 @@ function cartList(items) {
       $('#cart').prepend('<tr><td><img width="50" height="50" src="'+item.image+'" /> </td>'+
                  '<td>'+item.name+'</td>'+
                  '<td>In stock</td>'+
-                 '<td><input id="quantity-'+item.id+'" class="form-control" type="number" value="'+item.quantity+'" onchange="updateCartItem('+item.id+');updatePrice();"/></td>'+
+                 '<td><input id="quantity-'+item.id+'" class="form-control" type="number" value="'+item.quantity+'" oninput="updateCartItem('+item.id+');updatePrice();"/></td>'+
                  '<td class="text-right">$'+item.price+'</td>'+
                  '<td class="text-right">'+
                  '<button class="btn btn-sm btn-danger" onclick="deleteCartItem('+item.id+');">'+
