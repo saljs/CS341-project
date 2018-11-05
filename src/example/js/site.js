@@ -203,7 +203,7 @@ function itemList(items) {
                                     '</a>'+
                                     '<div class="card-body">'+
                                         '<h4 class="card-title">'+
-                                            '<a href="'+url+'">'+item.name+'</a>'+
+                                            '<a href="'+url+'">$'+item.name+'</a>'+
                                         '</h4>'+
                                         '<h5>'+item.price+'</h5>'+
                                         '<p class="card-text">'+item.description+'</p>'+
