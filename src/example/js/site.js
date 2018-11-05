@@ -199,7 +199,7 @@ function loadCategoryItems(category) {
     request.onload = function () {
 
         let data = JSON.parse(this.response);
-        itemList(data.products);
+        console.log(data);
 
     }
 
