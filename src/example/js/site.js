@@ -80,6 +80,24 @@ function loadCategories(type, id) {
     request.send();
 }
 
+function loadCategoryItems(category) {
+
+    // Remove all products from #products
+    $('#products').html("");
+
+    var request = new XMLHttpRequest();
+    request.open('GET', 'https://cs341group4.tk/Product/GetAll?category=' + category, true);
+    request.onload = function () {
+
+        let data = JSON.parse(this.response);
+        console.log("Data: " + data);
+
+    };
+
+    request.send();
+
+}
+
 function register(e) {
     e.preventDefault();
     var fields = $('#register').serialize();
@@ -188,25 +206,6 @@ function itemList(items) {
                             '</div>');
     });
 }
-
-function loadCategoryItems(category) {
-
-    // Remove all products from #products
-    $('#products').html("");
-
-    let request = new XMLHttpRequest();
-    request.open('GET', 'https://cs341group4.tk/Product/GetAll?category=' + category, true);
-    request.onload = function () {
-
-        let data = JSON.parse(this.response);
-        console.log(data);
-
-    }
-
-    request.send();
-
-}
-
 
 function loadSingleItem() {
     if($('#itemName') && $('#itemPrice') && $('#itemQuantity') && $('itemDesc')) {
