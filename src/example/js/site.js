@@ -34,12 +34,30 @@ function login(e) {
     });
 }
 
-function addPromotion(e) {
-    var fields = $('#addPromotion').serialize();
-    fields += "&startdate=" + $('#startDate').val();
-    fields += "&enddate=" + $('#endDate').val();
+function addPromotion() {
+    let data = $('#addPromotion').serializeArray();
+    let string = "?";
+    let cats = "&categories=";
+    data.forEach(function(e) {
+        if(e.name === "categories")
+            cats += e.value + ",";
+        else {
+            string += e.name + "=" + e.value;
+        }
+    });
 
+    cats = cats.slice(0, -1)
+    string += cats;
 
+    var request = new XMLHttpRequest();
+    request.open('POST', 'https://cs341group4.tk/Promotion/Create' + string, true);
+    request.onload = function () {
+        // Begin accessing JSON data here
+        var data = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400) {
+            alert(data);
+        }
+    };
 
 }
 
