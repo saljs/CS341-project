@@ -286,7 +286,7 @@ function cartList(items) {
                  '<td><input id="quantity-'+item.id+'" class="form-control" type="number" value="'+item.quantity+'" oninput="updateCartItem('+item.id+');updatePrice();"/></td>'+
                  '<td class="text-right">$'+item.price+'</td>'+
                  '<td class="text-right">'+
-                 '<button class="btn btn-sm btn-danger" onclick="deleteCartItem('+item.id+');">'+
+                 '<button class="btn btn-sm btn-danger" onclick="deleteCartItem('+item.id+');updatePrice();">'+
                  '<i class="fa fa-trash"></i> </button> </td></tr>');
     });
 }
