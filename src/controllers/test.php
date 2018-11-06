@@ -49,6 +49,12 @@ class test {
     static function business($args): void {
         success(getBusinessID()); //shorthand for HTTPResponse code 200
     }
+
+    static function Test($args): void {
+        $string = "?name=50&code=50&typeRadio=percent&percent=50&tags-input=Microwave%2C324%2C1234&categories=Electronics&categories=Office&startdate=2018-05-05T05:05&enddate=2019-05-05T17:05";
+
+        echo $args['categories'];
+    }
 }
 
 ?>
