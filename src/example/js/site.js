@@ -298,7 +298,7 @@ function updatePrice() {
             fields += "&token=" + $.cookie('token');
             $.post('https://cs341group4.tk/Cart/Total', fields)
             .done(function(data) {
-                $('#totalPrice').html(data.total);
+                $('#totalPrice').html('$'+data.total+'.00');
             })
             .fail(function(data) {
                 $('#message').html(data.responseJSON.message);
