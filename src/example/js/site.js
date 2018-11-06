@@ -36,16 +36,6 @@ function login(e) {
 
 function addPromotion(e) {
     alert("Hi!");
-    e.preventDefault();
-    var fields = $('#addPromotion').serialize();
-    fields += "&token=" + $.cookie('token');
-    $.post('https://cs341group4.tk/Promotion/Create', fields)
-    .done(function(data) {
-        $('#message').html(data.message);
-    })
-    .fail(function(data){
-        $('#message').html(data.responseJSON.message);
-    });
 
 }
 function loadCategories(type, id) {
