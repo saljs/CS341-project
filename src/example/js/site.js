@@ -35,6 +35,7 @@ function login(e) {
 }
 
 function addPromotion(e) {
+    alert("Hi!");
     e.preventDefault();
     var fields = $('#addPromotion').serialize();
     fields += "&token=" + $.cookie('token');
