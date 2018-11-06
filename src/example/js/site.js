@@ -203,22 +203,23 @@ function itemList(items) {
 
         if(fileName[0] === 'index.html') {
 
-            $(`#products`).append('<div class="col-lg-3 col-md-6 mb-4">'+'' +
-                '<div class="card">'+
-            '<a href="'+url+'">' +
-            '<img class="card-img-top" src="'+item.image+'" alt="">' +
-            '</a>'+
-            '<div class="card-body">'+
-            '<h4 class="card-title">'+
-            '<a href="'+url+'">'+item.name+'</a>'+
-            '</h4>'+
-            '<h5>$'+item.price+'</h5>'+
-            '<p class="card-text">'+item.description+'</p>'+
-            '</div>'+
-            // '<div class="card-footer">'+
-            //     '<a href="'+url+'" class="btn btn-primary">Find Out More!</a>'+
-            // '</div>'+
-            '</div>'+
+            $(`#products`).append('' +
+                '<div class="col-lg-3 col-md-6 mb-4">'+'' +
+                    '<div class="card">'+
+                        '<a href="'+url+'">' +
+                            '<img class="card-img-top" src="'+item.image+'" alt="">' +
+                        '</a>'+
+                    '<div class="card-body">'+
+                        '<h4 class="card-title">'+
+                            '<a href="'+url+'">'+item.name+'</a>'+
+                        '</h4>'+
+                        '<h5>$'+item.price+'</h5>'+
+                        '<p class="card-text">'+item.description+'</p>'+
+                    '</div>'+
+                // '<div class="card-footer">'+
+                //     '<a href="'+url+'" class="btn btn-primary">Find Out More!</a>'+
+                // '</div>'+
+                '</div>'+
             '</div>');
 
         } else {
