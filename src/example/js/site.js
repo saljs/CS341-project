@@ -199,8 +199,9 @@ function itemList(items) {
 
         // What .html we're at
         let fileName = location.href.split("/").slice(-1);
+        console.log(fileName);
 
-        if(fileName === 'index.html') {
+        if(fileName[0] === 'index.html') {
 
             $(`#products`).append('<div class="col-lg-3 col-md-6 mb-4">'+'' +
                 '<div class="card">'+
