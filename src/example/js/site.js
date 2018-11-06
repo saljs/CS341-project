@@ -59,6 +59,8 @@ function addPromotion() {
         }
     };
 
+    request.send();
+
 }
 
 function loadCategories(type, id) {
