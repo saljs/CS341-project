@@ -35,9 +35,12 @@ function login(e) {
 }
 
 function addPromotion(e) {
-    alert("Hi!");
+    var fields = $('#addPromotion').serialize();
+    console.log(JSON.stringify(fields));
+    alert(JSON.stringify(fields));
 
 }
+
 function loadCategories(type, id) {
     var request = new XMLHttpRequest();
 
