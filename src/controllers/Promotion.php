@@ -24,6 +24,8 @@ class Promotion {
         //&percent=50
         //&tags-input=Microwave%2C324%2C1234
         //&categories=Electronics&categories=Office
+        //&startdate=2018-05-05T05:05
+        //&enddate=2019-05-05T17:05
 
         // Checks if the required variables are given
         if (!($args['name'] && $args['code'] && $args['type'] && $args['percent'] && $args['enddate'] && $args['startdate'] && $args['items'] && $args['categories'])) {

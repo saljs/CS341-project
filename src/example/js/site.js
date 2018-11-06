@@ -36,6 +36,9 @@ function login(e) {
 
 function addPromotion(e) {
     var fields = $('#addPromotion').serialize();
+    fields += "&startdate=" + $('#startDate').val();
+    fields += "&enddate=" + $('#endDate').val();
+
 
 
 }
