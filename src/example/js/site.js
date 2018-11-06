@@ -36,8 +36,7 @@ function login(e) {
 
 function addPromotion(e) {
     var fields = $('#addPromotion').serialize();
-    console.log(JSON.stringify(fields));
-    alert(JSON.stringify(fields));
+    
 
 }
 
