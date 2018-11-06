@@ -194,27 +194,45 @@ function itemList(items) {
         //    + item.name 
         //    + '</a></li>');
 
+
         let url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
 
-        $('#products').append('<div class="col-lg-4 col-md-6 mb-4">'+'' +
-                                '<div class="card h-100">'+
-                                    '<a href="'+url+'">' +
-                                        '<img class="card-img-top" src="'+item.image+'" alt="">' +
-                                    '</a>'+
-                                    '<div class="card-body">'+
-                                        '<h4 class="card-title">'+
-                                            '<a href="'+url+'">'+item.name+'</a>'+
-                                        '</h4>'+
-                                        '<h5>$'+item.price+'</h5>'+
-                                        '<p class="card-text">'+item.description+'</p>'+
-                                    '</div>'+
-                                    // '<div class="card-footer">'+
-                                    //     '<a href="'+url+'" class="btn btn-primary">Find Out More!</a>'+
-                                    // '</div>'+
-                                '</div>'+
-                            '</div>');
+        // What .html we're at
+        let fileName = location.href.split("/").slice(-1);
+
+        let id = $(`#products`);
+
+        if(fileName === 'index.html') {
+
+            id.append('<div class="col-lg-3 col-md-6 mb-4">'+'' +
+                '<div class="card">');
+
+        } else {
+
+            id.append('<div class="col-lg-4 col-md-6 mb-4">'+'' +
+                '<div class="card h-100">');
+
+        }
+
+
+        id.append('<a href="'+url+'">' +
+            '<img class="card-img-top" src="'+item.image+'" alt="">' +
+            '</a>'+
+            '<div class="card-body">'+
+            '<h4 class="card-title">'+
+            '<a href="'+url+'">'+item.name+'</a>'+
+            '</h4>'+
+            '<h5>$'+item.price+'</h5>'+
+            '<p class="card-text">'+item.description+'</p>'+
+            '</div>'+
+            // '<div class="card-footer">'+
+            //     '<a href="'+url+'" class="btn btn-primary">Find Out More!</a>'+
+            // '</div>'+
+            '</div>'+
+            '</div>');
     });
 }
+
 
 function loadSingleItem() {
     if($('#itemName') && $('#itemPrice') && $('#itemQuantity') && $('itemDesc')) {
