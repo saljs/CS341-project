@@ -52,10 +52,10 @@ class Cart {
         $sql = "";
         $result = $db->query("SELECT * FROM cart WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';"); 
         if(mysqli_num_rows($result) > 0) { 
-            $sql = "UPDATE cart SET quantity = quantity + 1 WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';";
+            $sql = "UPDATE cart SET quantity = quantity + ". $args['itemQuantity']." WHERE userId = '" . $user->id . "' AND itemId = '" . $args['itemId'] . "';";
         }
         else {
-            $sql = "INSERT INTO cart (userId, itemId, quantity) VALUES ('" . $user->id . "', '" . $args['itemId'] . "', 1);";
+            $sql = "INSERT INTO cart (userId, itemId, quantity) VALUES ('" . $user->id . "', '" . $args['itemId'] . "', ". $args['itemQuantity'] .");";
         }
         //insert item into cart
         if(!$db->query($sql)) {
