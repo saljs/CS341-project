@@ -42,7 +42,7 @@ function addPromotion() {
         if(e.name === "categories")
             cats += e.value + ",";
         else {
-            string += e.name + "=" + e.value;
+            string += e.name + "=" + e.value + "&";
         }
     });
 

@@ -9,8 +9,8 @@ class Promotion {
      * @param code: the discount code
      * @param type: Either bogo or percent
      * @param percent: The discount percentage
-     * @param startdate: The epoch time-based end date of the promotion. https://www.epochconverter.com
-     * @param enddate: The epoch time-based end date of the promotion. https://www.epochconverter.com
+     * @param startDate: The epoch time-based end date of the promotion. https://www.epochconverter.com
+     * @param endDate: The epoch time-based end date of the promotion. https://www.epochconverter.com
      * @param items: Comma delimited list of item ID's that the promotion works for.
      * @param categories: Comma delimited list of category names that the promotion works for.
      */
@@ -19,10 +19,15 @@ class Promotion {
     static function Create($args): void {
 
         // Checks if the required variables are given
-        if (!($args['name'] && $args['code'] && $args['type'] && $args['percent'] && $args['enddate'] && $args['startdate'] && $args['items'] && $args['categories'])) {
+        if (!($args['name'] && $args['code'] && $args['typeRadio'] && $args['percent'] && $args['endDate'] && $args['startDate'] && $args['items'] && $args['categories'])) {
             error("Missing required fields");
             return;
         }
+
+        $args['type'] = $args['typeRadio'];
+        $args['startDate'] = strtotime($args['startDate']);
+        $args['endDate'] = strtotime($args['endDate']);
+
 //        if(!$args['token']) {
 //            error("Operation requires admin privileges");
 //            return;
@@ -39,9 +44,9 @@ class Promotion {
 //            return;
 //        }
 
-        // Checks if the enddate is valid (not past current time).
+        // Checks if the endDate is valid (not past current time).
         $currenttime = time();
-        if($currenttime >= $args['enddate']) {
+        if($currenttime >= $args['endDate']) {
             error("Invalid End Date");
             return;
         }
@@ -60,7 +65,7 @@ class Promotion {
 
             $currenttime = time();
             // If the promotion is not over
-            if($currenttime < $row['enddate']) {
+            if($currenttime < $row['endDate']) {
 
                 error("Promotion already exists with that code");
                 return;
@@ -72,8 +77,8 @@ class Promotion {
                       SET name='" . $args['name'] .
                     "', type='" . $args['type'] .
                     "', percent='" . $args['percent'] .
-                    "', enddate='" . $args['enddate'] .
-                    "', startdate='" . $args['startdate'] .
+                    "', enddate='" . $args['endDate'] .
+                    "', startdate='" . $args['startDate'] .
                     "', items='" . $args['items'] .
                     "', categories='" . $args['categories'] .
                     "' WHERE code='" . $args['code'] . "';";
@@ -92,8 +97,8 @@ class Promotion {
                       '" . $args['percent'] . "',
                       '" . $args['items'] . "',
                       '" . $args['categories'] . "',
-                      '" . $args['startdate'] . "',
-                      '" . $args['enddate'] . "');";
+                      '" . $args['startDate'] . "',
+                      '" . $args['endDate'] . "');";
 
             // Create the new promotion
             if(!$db->query($sql))
@@ -112,6 +117,9 @@ class Promotion {
             error("Missing required fields");
             return;
         }
+
+        $args['startDate'] = strtotime($args['startDate']);
+        $args['endDate'] = strtotime($args['endDate']);
 
         // Checks if the promotion already exists & is running.
         $db = $GLOBALS['database'];
@@ -173,8 +181,8 @@ class Promotion {
             $payload->name = $promo->name;
             $payload->type = $promo->type;
             $payload->percent = $promo->percent;
-            $payload->startdate = $promo->startdate;
-            $payload->enddate = $promo->enddate;
+            $payload->startDate = $promo->startDate;
+            $payload->endDate = $promo->endDate;
             $payload->items = $promo->items;
             $payload->categories = $promo->categories;
 
@@ -214,7 +222,7 @@ class Promotion {
 
         $db = $GLOBALS['database'];
 
-        $sql = "SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';";
+        $sql = "SELECT endDate FROM promotions WHERE code = '" . $args['code'] . "';";
         $result = $db->query($sql);
         if(!$result)
             error("There's an error in your SQL syntax: {$sql}");
@@ -256,8 +264,8 @@ class ViewableDiscount {
     public $name;
     public $type;
     public $percent;
-    public $startdate;
-    public $enddate;
+    public $startDate;
+    public $endDate;
     public $items;
     public $categories;
 
@@ -282,8 +290,8 @@ class ViewableDiscount {
             $this->name = $row['name'];
             $this->type = $row['type'];
             $this->percent = $row['percent'];
-            $this->startdate = $row['startdate'];
-            $this->enddate = $row['enddate'];
+            $this->startDate = $row['startdate'];
+            $this->endDate = $row['enddate'];
             $this->items = $row['items'];
             $this->categories = $row['categories'];
 
