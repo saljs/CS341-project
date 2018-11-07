@@ -48,20 +48,28 @@ function addPromotion() {
 
     cats = cats.slice(0, -1)
     string += cats;
+    //
+    // //?name=November+Discount&code=NOV31&typeRadio=bogo&percent=30&startDate=2018-11-01T00%3A00&endDate=2018-11-30T23%3A59&items=Microwave%2C1%2C3%2C4&categories=Electronics&categories=Office&categories=Cosmetics&categories=Toys#promotionTab
+    // var request = new XMLHttpRequest();
+    // request.open('POST', 'https://cs341group4.tk/Promotion/Create' + string, true);
+    // request.onload = function () {
+    //     // Begin accessing JSON data here
+    //     var data = JSON.parse(this.response);
+    //     if (request.status >= 200 && request.status < 400) {
+    //         alert(data);
+    //     }
+    //
+    // };
+    //
+    // request.send();
 
-    //?name=November+Discount&code=NOV31&typeRadio=bogo&percent=30&startDate=2018-11-01T00%3A00&endDate=2018-11-30T23%3A59&items=Microwave%2C1%2C3%2C4&categories=Electronics&categories=Office&categories=Cosmetics&categories=Toys#promotionTab
-    var request = new XMLHttpRequest();
-    request.open('POST', 'https://cs341group4.tk/Promotion/Create' + string, true);
-    request.onload = function () {
-        // Begin accessing JSON data here
-        var data = JSON.parse(this.response);
-        if (request.status >= 200 && request.status < 400) {
-            alert(data);
-        }
-
-    };
-
-    request.send();
+    $.post('https://cs341group4.tk/Product/Create', string)
+    .done(function(data) {
+        alert(data.message);
+    })
+    .fail(function(data){
+        alert(data.message);
+    });
 
 }
 
