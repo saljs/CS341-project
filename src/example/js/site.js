@@ -355,7 +355,7 @@ function cartList(items) {
                       '<td class="text-right"><strong><span id="totalPrice"></span></strong></td></tr>'+
                      '<tr><td></td><td></td><td></td><td></td><td><strong>Empty Cart</strong></td>'+
                        '<td class="text-right"><input type="text" name="code" id="addPromotion" onchange="updatePrice();"/>'+
-                      '</td></tr>);
+                      '</td></tr>');
         updatePrice();
 }
 
