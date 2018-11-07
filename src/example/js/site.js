@@ -143,6 +143,7 @@ function register(e) {
 function createCategory(e) {
     e.preventDefault();
     var fields = $('#createCategory').serialize();
+    alert("debug");
     fields += "&token=" + $.cookie('token');
     $.post('https://cs341group4.tk/Category/Create', fields)
     .done(function(data) {
@@ -156,7 +157,7 @@ function createCategory(e) {
 
 function addItem(e) {
     e.preventDefault();
-    alert("debug");
+
     var fields = $('#newItem').serialize();
     fields += "&token=" + $.cookie('token');
     $.post('https://cs341group4.tk/Product/Create', fields)
