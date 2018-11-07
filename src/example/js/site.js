@@ -356,7 +356,7 @@ function cartList(items) {
                      '<tr><td></td><td></td><td></td><td></td><td><strong>Empty Cart</strong></td>'+
                        '<td class="text-right"><button class="btn btn-sm btn-danger"'+
                       'onclick="emptyCart();">'+
-                 '<i class="fa fa-trash"></i> </button> </td></tr>'
+                 '<i class="fa fa-trash"></i> </button> </td></tr>'+
                       '</td></tr>');
         updatePrice();
 }
