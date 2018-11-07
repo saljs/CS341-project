@@ -298,7 +298,7 @@ function loadSingleItem() {
 function addToCart() {
     if($.cookie('token') != undefined) {
         var id = $.urlParam('id');
-        $.post('https://cs341group4.tk/Cart/Add', {token: $.cookie('token'), itemId : id, quantity: $('#quantity').val()})
+        $.post('https://cs341group4.tk/Cart/Add', {token: $.cookie('token'), itemId : id, itemQuantity: $('#quantity').val()})
         .done(function(data) {
             window.location = baseURL + "/cart.html";
         })
