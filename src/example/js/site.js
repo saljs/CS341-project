@@ -354,7 +354,9 @@ function cartList(items) {
                       '</td></tr><tr><td></td><td></td><td></td><td></td><td><strong>Total</strong></td>'+
                       '<td class="text-right"><strong><span id="totalPrice"></span></strong></td></tr>'+
                      '<tr><td></td><td></td><td></td><td></td><td><strong>Empty Cart</strong></td>'+
-                       '<td class="text-right"><input type="submit" name="empty" value="emptyall" id="emptyCart" onchange="updatePrice();"/>'+
+                       '<td class="text-right"><button class="btn btn-sm btn-danger"'+
+                      'onclick="emptyCart();">'+
+                 '<i class="fa fa-trash"></i> </button> </td></tr>'
                       '</td></tr>');
         updatePrice();
 }
@@ -409,7 +411,23 @@ function deleteCartItem(id) {
         //TODO: add guest cart
     }
 }
-
+function emptyCart(){
+    if($.cookie('token') != undefined) {
+        $.post('https://cs341group4.tk/Cart/DeleteAll', 
+            {token: $.cookie('token')})
+        .done(function(data) {
+            $('#message').html("Reloading items...");
+            $('#cart').html("");
+            loadCart();
+        })
+        .fail(function(data) {
+            $('#message').html(data.responseJSON.message);
+        });
+    }
+    else {
+        //TODO: add guest cart
+    }
+}
 function checkout(e) {
     e.preventDefault();
     var fields = $('#checkout').serialize();
