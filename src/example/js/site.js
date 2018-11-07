@@ -157,8 +157,9 @@ function createCategory(e) {
 
 function addItem(e) {
     e.preventDefault();
-    alert("debug");
+    
     var fields = $('#newItem').serialize();
+    alert("debug");
     fields += "&token=" + $.cookie('token');
     $.post('https://cs341group4.tk/Product/Create', fields)
     .done(function(data) {
