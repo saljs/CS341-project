@@ -159,7 +159,7 @@ function addItem(e) {
     e.preventDefault();
     
     var fields = $('#newItem').serialize();
-    alert("debug");
+    alert("debug2");
     fields += "&token=" + $.cookie('token');
     $.post('https://cs341group4.tk/Product/Create', fields)
     .done(function(data) {
