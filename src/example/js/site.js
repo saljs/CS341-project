@@ -177,7 +177,10 @@ function userWelcome() {
             .done(function(data) {
                 $('#userWelcome').html("You are logged in as " + data.name);
                 $('#loginButton').remove();
-                $('#userWelcome').after('<button id="logout">Logout</button>');
+               // $('#userWelcome').after('<button id="logout">Logout</button>');
+                $('#userWelcome').after('<li class="nav-item">'+
+                   '<a id="logout" class="nav-link" href="#">logout</a>'+
+                    '</li>');
                 $('#logout').on('click', logout);
                 if(data.type == "admin") {
                     $('#logout').after('<br/><a href="/example/admin.html">Admin page</a>');
