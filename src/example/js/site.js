@@ -178,7 +178,7 @@ function userWelcome() {
                 $('#userWelcome').html(data.name);
                 $('#loginButton').remove();
                // $('#userWelcome').after('<button id="logout">Logout</button>');
-                $('#userWelcome').before('<li class="nav-item">'+
+                $('#navEntries').append('<li class="nav-item">'+
                    '<a id="logout" class="nav-link" href="#">logout</a>'+
                     '</li>');
                 $('#logout').on('click', logout);
