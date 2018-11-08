@@ -175,7 +175,7 @@ function userWelcome() {
         if($.cookie('token') != undefined) {
             $.post('https://cs341group4.tk/User/Get', {token: $.cookie('token')})
             .done(function(data) {
-                $('#userWelcome').html("You are logged in as " + data.name);
+                $('#userWelcome').html(data.name);
                 $('#loginButton').remove();
                // $('#userWelcome').after('<button id="logout">Logout</button>');
                 $('#userWelcome').before('<li class="nav-item">'+
