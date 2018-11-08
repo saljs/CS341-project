@@ -180,11 +180,14 @@ function userWelcome() {
                 $('#loginButton').remove();
                // $('#userWelcome').after('<button id="logout">Logout</button>');
                 $('#navEntries').append('<li class="nav-item">'+
-                   '<a id="logout" class="nav-link" href="#">logout</a>'+
+                   '<a id="logout" class="nav-link" href="/example/admin.html">admin</a>'+
                     '</li>');
                 $('#logout').on('click', logout);
                 if(data.type == "admin") {
-                    $('#logout').after('<br/><a href="/example/admin.html">Admin page</a>');
+                    //$('#logout').after('<br/><a href="/example/admin.html">Admin page</a>');
+                    $('#navEntries').append('<li class="nav-item">'+
+                   '<a id="adminPage" class="nav-link" href="#">logout</a>'+
+                    '</li>');
                 }
             });
         }
