@@ -180,7 +180,7 @@ function userWelcome() {
                 $('#loginButton').remove();
                // $('#userWelcome').after('<button id="logout">Logout</button>');
                 $('#navEntries').append('<li class="nav-item">'+
-                   '<a id="logout" class="nav-link" href="/example/admin.html">admin</a>'+
+                   '<a id="logout" class="nav-link" href="#">logout</a>'+
                     '</li>');
                 $('#logout').on('click', logout);
                 if(data.type == "admin") {
