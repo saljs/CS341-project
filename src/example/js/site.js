@@ -176,6 +176,7 @@ function userWelcome() {
             $.post('https://cs341group4.tk/User/Get', {token: $.cookie('token')})
             .done(function(data) {
                 $('#userWelcome').html(data.name);
+                $('#userWelcome').attr("href", "/example/userinfo.html");
                 $('#loginButton').remove();
                // $('#userWelcome').after('<button id="logout">Logout</button>');
                 $('#navEntries').append('<li class="nav-item">'+
