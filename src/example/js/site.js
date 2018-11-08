@@ -186,7 +186,7 @@ function userWelcome() {
                 if(data.type == "admin") {
                     //$('#logout').after('<br/><a href="/example/admin.html">Admin page</a>');
                     $('#navEntries').append('<li class="nav-item">'+
-                   '<a id="adminPage" class="nav-link" href="#">logout</a>'+
+                   '<a id="adminPage" class="nav-link" href="/example/admin.html">admin</a>'+
                     '</li>');
                 }
             });
