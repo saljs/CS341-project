@@ -17,7 +17,6 @@ $( document ).ready(function() {
     loadAllItems();
     loadSingleItem();
     loadCart();
-
 });
 
 function login(e) {
@@ -48,20 +47,6 @@ function addPromotion() {
 
     cats = cats.slice(0, -1)
     string += cats;
-    //
-    // //?name=November+Discount&code=NOV31&typeRadio=bogo&percent=30&startDate=2018-11-01T00%3A00&endDate=2018-11-30T23%3A59&items=Microwave%2C1%2C3%2C4&categories=Electronics&categories=Office&categories=Cosmetics&categories=Toys#promotionTab
-    // var request = new XMLHttpRequest();
-    // request.open('POST', 'https://cs341group4.tk/Promotion/Create' + string, true);
-    // request.onload = function () {
-    //     // Begin accessing JSON data here
-    //     var data = JSON.parse(this.response);
-    //     if (request.status >= 200 && request.status < 400) {
-    //         alert(data);
-    //     }
-    //
-    // };
-    //
-    // request.send();
 
     $.post('https://cs341group4.tk/Product/Create', string)
     .done(function(data) {
@@ -104,25 +89,6 @@ function loadCategories(type, id) {
     };
 
     request.send();
-}
-
-function loadCategoryItems(category) {
-
-    // Remove all products from #products
-    $('#products').html("");
-
-    var request = new XMLHttpRequest();
-    request.open('GET', 'https://cs341group4.tk/Product/GetAll?category=' + category, true);
-    request.onload = function () {
-
-        let data = JSON.parse(this.response);
-        console.log(data.products);
-        itemList(data.products);
-
-    };
-
-    request.send();
-
 }
 
 function register(e) {
@@ -200,38 +166,25 @@ function logout(e) {
 }
 
 function loadAllItems() {
-
-    // If they didn't specify a category, show all items
-    let category = $.urlParam('category');
-    if(!category) {
-        if ($('#products').length) {
-            $.post('https://cs341group4.tk/Product/GetAll')
-                .done(function (data) {
-                    $('#message').html("");
-                    itemList(data.products);
-                    console.log(data.products);
-                })
-                .fail(function (data) {
-                    $('#message').html(data.responseJSON.message);
-                });
-        }
-    } else {
-
-        loadCategoryItems(category);
-
+    if ($('#products').length) {
+        $.get('https://cs341group4.tk/Product/GetAll' + window.location.search)
+            .done(function (data) {
+                $('#message').html("");
+                itemList(data.products);
+                console.log(data.products);
+            })
+            .fail(function (data) {
+                $('#message').html(data.responseJSON.message);
+            });
     }
-
+    if($('#categoryField').length && $.urlParam('category')) {
+        $('#categoryField').val($.urlParam('category'));
+    }
 }
 
 function itemList(items) {
     items.forEach(function(item) {
-        //$('#products').append('<li><a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '">' 
-        //    + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
-        //    + item.name 
-        //    + '</a></li>');
-
-
-        let url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
+        var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
 
         // What .html we're at
         let fileName = location.href.split("/").slice(-1);
