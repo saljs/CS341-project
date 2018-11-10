@@ -24,40 +24,44 @@
 
     <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Site Test</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="store.html">Store
-                            <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- TODO: DROP DOWN MENU -->
-                        <a class="nav-link" href="sales.html">Sales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cart.html">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- TODO: add vertical bar -->
-                        <a class="nav-link" href=""></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Sign In</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	    <!-- Navigation -->
+	    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	        <div class="container">
+	            <a class="navbar-brand" href="#">Site Name</a>
+	            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	                <span class="navbar-toggler-icon"></span>
+	            </button>
+	            <div class="collapse navbar-collapse" id="navbarResponsive">
+	                <ul id="navEntries" class="navbar-nav ml-auto">
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="index.html">Home
+	                            <span class="sr-only">(current)</span>
+	                        </a>
+	                    </li>
+	                    <li class="nav-item active">
+	                        <a class="nav-link" href="store.html">Store</a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <!-- TODO: DROP DOWN MENU -->
+	                        <a class="nav-link" href="sales.html">Sales</a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="cart.html">Cart</a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <!-- TODO: add vertical bar -->
+	                        <a class="nav-link" href=""></a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a id="loginButton"class="nav-link" href="login.html">Sign In</a>
+	                    </li>
+	                    <li>
+	                        <a class="nav-link" id="userWelcome" href="#" >welcome guest user</div>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	    </nav>
 
     <!-- Page Content -->
     <div class="container">
@@ -70,6 +74,8 @@
                 <div class="list-group" id="categoriesNavBar">
                     <!-- Auto generated -->
                 </div>
+                <br/>
+                <br/>
                 <div>
                     <form method="get">
                         <input type="text" name="search" placeholder="Search"/>
