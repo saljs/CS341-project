@@ -97,7 +97,7 @@ class Product {
         }
         else if($args['search'] && $args['category']) {
             //select all from category that match search
-            $sql .= " WHERE category LIKE '%" . $args['category'] 
+            $sql .= " WHERE category LIKE '%" . $args['category'] . "%'"
                 . " AND (name LIKE '%" . $args['search'] 
                 . "%' OR description LIKE '%" . $args['search'] . "%');";
         }
