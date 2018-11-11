@@ -25,7 +25,7 @@ function getCartPrice($userId, $promotionCode):float {
     if($promotionCode) {
         //TODO: process promotions
        $promocode = $db->query("SELECT * FROM promotions WHERE code = '" . $promotionCode . "';");
-      //  $cost = (float)($promocode['percent']/100) * $cost;
+       $cost = $promocode['percent'];
     }
     return $cost;
 }  
