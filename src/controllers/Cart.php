@@ -15,7 +15,6 @@ require_once __DIR__ . '/Promotion.php';
  */
 function getCartPrice($userId, $promotionCode):float {
     $db = $GLOBALS['database'];
-    $promo = $db->query("SELECT * FROM promotions WHERE code = '" . $promotionCode . "';");
     $products = $db->query("SELECT * FROM cart WHERE userId = '" . $userId . "';");
     $cost = 0;
     while($product = $products->fetch_assoc()) {
@@ -25,7 +24,7 @@ function getCartPrice($userId, $promotionCode):float {
 
     if($promotionCode) {
         //TODO: process promotions
-       //$promocode = ViewableDiscount($promotionCode);
+        $promo = $db->query("SELECT * FROM promotions WHERE code = '" . $promotionCode . "';");
         if($promo['type'] == 'percent'){
             $cost = 50;//$cost * (1 - ((float)$promo['percent']/100));            
         }
