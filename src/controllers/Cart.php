@@ -14,7 +14,6 @@ require_once __DIR__ . '/Product.php';
  * @param promotionCode - an optional promotion code
  */
 function getCartPrice($userId, $promotionCode):float {
-    alert($promotionCode);
     $db = $GLOBALS['database'];
     $products = $db->query("SELECT * FROM cart WHERE userId = '" . $userId . "';");
     $cost = 0;
