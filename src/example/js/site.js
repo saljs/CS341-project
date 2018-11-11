@@ -304,8 +304,8 @@ function cartList(items) {
                  '<i class="fa fa-trash"></i> </button> </td></tr>');
     });
     $('#cart').append('<tr><td></td><td></td><td></td><td></td><td><strong>Promotion Code</strong></td>'+
-                       '<form><td class="text-right"><input type="text" name="code" id="addPromotion"/>'+
-                      '<input type="button" value="apply" onclick="updatePrice();"></form>'+
+                       '<td class="text-right"><input type="text" name="code" id="addPromotion"/>'+
+                      '<input type="button" value="apply" onclick="updatePrice();">'+
                       '</td></tr><tr><td></td><td></td><td></td><td></td><td><strong>Total</strong></td>'+
                       '<td class="text-right"><strong><span id="totalPrice"></span></strong></td></tr>'+
                      '<tr><td></td><td></td><td></td><td></td><td><strong>Empty Cart</strong></td>'+
