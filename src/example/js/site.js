@@ -294,13 +294,6 @@ function loadCart() {
 
 function cartList(items) {
     items.forEach(function(item) {
-       // $('#cart').append('<li><a href="https://cs341group4.tk' + baseURL +'/item.html?id=' + item.id + '">' 
-       //     + '<img src="' + item.image + '" class="productImg" width="400" height ="400"/>'
-       //     + item.name + ' - $' + item.price
-       //     + '</a><br/>Quantity: <input type="number" id="quantity-' + item.id 
-       //     + '" value="' + item.quantity + '" onchange="updateCartItem(' + item.id + ');">'
-       //     + '<br/><button onclick="deleteCartItem(' + item.id + ');">Delete</button>'
-       //     + '</li>');
       $('#cart').prepend('<tr><td><img width="50" height="50" src="'+item.image+'" /> </td>'+
                  '<td>'+item.name+'</td>'+
                  '<td>In stock</td>'+
@@ -312,6 +305,7 @@ function cartList(items) {
     });
     $('#cart').append('<tr><td></td><td></td><td></td><td></td><td><strong>Promotion Code</strong></td>'+
                        '<td class="text-right"><input type="text" name="code" id="addPromotion" onchange="updatePrice();"/>'+
+                      '<input type="button" value="apply">'+
                       '</td></tr><tr><td></td><td></td><td></td><td></td><td><strong>Total</strong></td>'+
                       '<td class="text-right"><strong><span id="totalPrice"></span></strong></td></tr>'+
                      '<tr><td></td><td></td><td></td><td></td><td><strong>Empty Cart</strong></td>'+
