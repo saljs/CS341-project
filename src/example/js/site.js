@@ -305,7 +305,7 @@ function cartList(items) {
     });
     $('#cart').append('<tr><td></td><td></td><td></td><td></td><td><strong>Promotion Code</strong></td>'+
                        '<form><td class="text-right"><input type="text" name="code" id="addPromotion"/>'+
-                      '<input type="button" value="apply"></form>'+
+                      '<input type="button" value="apply" onclick="alert("trying to apply promo code");"></form>'+
                       '</td></tr><tr><td></td><td></td><td></td><td></td><td><strong>Total</strong></td>'+
                       '<td class="text-right"><strong><span id="totalPrice"></span></strong></td></tr>'+
                      '<tr><td></td><td></td><td></td><td></td><td><strong>Empty Cart</strong></td>'+
