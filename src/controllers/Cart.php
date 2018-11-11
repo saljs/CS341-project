@@ -23,7 +23,7 @@ function getCartPrice($userId, $promotionCode):float {
     }
 
     if($promotionCode) {
-        //TODO: process promotions
+        //TODO: process promotions with more validation
         $result = $db->query("SELECT * FROM promotions WHERE code = '" . $promotionCode . "';");
         if(mysqli_num_rows($result) > 0){$promo = $result->fetch_assoc();}
         if($promo['type'] == 'percent'){
