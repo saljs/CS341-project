@@ -199,6 +199,50 @@ function itemList(items) {
 }
 
 /****************************************************************************
+ * Item page functions
+ ***************************************************************************/
+
+/*
+ * Sets up a single item page
+ */
+function loadSingleItem() {
+    if($('#itemName') && $('#itemPrice') && $('#itemQuantity') && $('itemDesc')) {
+        var id = $.urlParam('id');
+        if(id) {
+            $.post('https://cs341group4.tk/Product/Get', {id: id})
+            .done(function(data) {
+                $('#itemName').html(data.name);
+                $('#itemPrice').html("$" + data.price);
+                $('#itemQuantity').html(data.quantity + " left");
+                $('#itemDesc').html(data.description);
+                $('#itemImg').attr("src",data.image);
+            })
+            .fail(function(data) {
+                $('#itemDesc').html(data.responseJSON.message);
+            });
+        }
+    }
+}
+/*
+ * Adds an item to the cart
+ */
+function addToCart() {
+    if($.cookie('token') != undefined) {
+        var id = $.urlParam('id');
+        $.post('https://cs341group4.tk/Cart/Add', {token: $.cookie('token'), itemId : id, itemQuantity: $('#quantity').val()})
+        .done(function(data) {
+            window.location = baseURL + "/cart.html";
+        })
+        .fail(function(data) {
+            $('#message').html(data.responseJSON.message);
+        });
+    }
+    else {
+        //TODO: add guest cart
+    }
+}
+
+/****************************************************************************
  * Cart page functions
  ***************************************************************************/
 
