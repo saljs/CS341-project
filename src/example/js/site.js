@@ -304,7 +304,7 @@ function cartList(items) {
                  '<i class="fa fa-trash"></i> </button> </td></tr>');
     });
     $('#cart').append('<tr><td></td><td></td><td></td><td></td><td><strong>Promotion Code</strong></td>'+
-                       '<td class="text-right"><input type="text" name="code" id="addPromotion"/>'+
+                       '<td class="text-right"><input type="text" name="code" id="promocode"/>'+
                       '<input type="button" value="apply" onclick="updatePrice();">'+
                       '</td></tr><tr><td></td><td></td><td></td><td></td><td><strong>Total</strong></td>'+
                       '<td class="text-right"><strong><span id="totalPrice"></span></strong></td></tr>'+
@@ -319,7 +319,7 @@ function cartList(items) {
 function updatePrice() {
     if($('#totalPrice').length) {
         if($.cookie('token') != undefined) {
-            var fields = $('#checkout').serialize();
+            var fields = $('#promocode').serialize();
             fields += "&token=" + $.cookie('token');
             alert(fields);
             $.post('https://cs341group4.tk/Cart/Total', fields)
