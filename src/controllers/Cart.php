@@ -27,7 +27,7 @@ function getCartPrice($userId, $promotionCode):float {
         $result = $db->query("SELECT * FROM promotions WHERE code = '" . $promotionCode . "';");
         if(mysqli_num_rows($result) > 0){$promo = $result->fetch_assoc();}
         if($promo['type'] == 'percent'){
-            $cost = 50;//$cost * (1 - ((float)$promo['percent']/100));            
+            $cost = 375;//debug test value    
         }
         
         //$cost = $cost * $promotionCode;
