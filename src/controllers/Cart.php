@@ -7,7 +7,7 @@
 
 require_once __DIR__ . '/User.php';
 require_once __DIR__ . '/Product.php';
-
+require_once __DIR__ . '/Promotion.php';
 /*
  * Calculates the total price of the user's cart
  * @param userId - The user's id
@@ -24,8 +24,8 @@ function getCartPrice($userId, $promotionCode):float {
 
     if($promotionCode) {
         //TODO: process promotions
-       $promocode = $db->query("SELECT * FROM promotions WHERE code = '" . $promotionCode . "';");
-       $cost = $promocode['percent'];
+       $promocode = ViewableDiscount($promotionCode);
+        $cost = $promocode->$percent;
     }
     return $cost;
 }  
