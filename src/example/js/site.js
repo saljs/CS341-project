@@ -321,6 +321,7 @@ function updatePrice() {
         if($.cookie('token') != undefined) {
             var fields = $('#checkout').serialize();
             fields += "&token=" + $.cookie('token');
+            alert(fields);
             $.post('https://cs341group4.tk/Cart/Total', fields)
             .done(function(data) {
                 $('#totalPrice').html('$'+data.total+'.00');
