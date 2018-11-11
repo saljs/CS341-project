@@ -27,7 +27,7 @@ function getCartPrice($userId, $promotionCode):float {
         //TODO: process promotions
        //$promocode = ViewableDiscount($promotionCode);
         if($promo['type'] == 'percent'){
-            $cost = $cost * (1 - ((float)$promo['percent']/100));            
+            $cost = 50;//$cost * (1 - ((float)$promo['percent']/100));            
         }
         
         //$cost = $cost * $promotionCode;
