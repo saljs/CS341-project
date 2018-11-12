@@ -143,8 +143,8 @@ function getGuestId() {
 function loadPromotions(id) {
     $.post('https://cs341group4.tk/Promotion/GetAll')
     .done(function(data) {
-        console.log(data);
         var dataS = data.promotions;
+        console.log(dataS);
         for(var p in dataS) {
             if(id === 'promotionList') {
                 $('#' + id).append("<tr>" +
