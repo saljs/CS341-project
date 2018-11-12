@@ -511,7 +511,7 @@ $.urlParam = function(name){
 /*
  * Converts form data to JSON
  */
-$.serializeForm = function(){
+$.fn.serializeForm = function(){
    var o = {};
    var a = this.serializeArray();
    $.each(a, function() {
