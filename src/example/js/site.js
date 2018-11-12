@@ -61,7 +61,7 @@ $( document ).ready(function() {
  */
 function login(e) {
     e.preventDefault();
-    $.post('https://cs341group4.tk/User/Authenticate', $('#login').serialize())
+    $.post('https://cs341group4.tk/User/Authenticate', $('#login').serializeForm())
     .done(function(data) {
         $.cookie('token', data.token);
         window.location.href = baseURL + "/";
@@ -508,3 +508,22 @@ $.urlParam = function(name){
        return decodeURI(results[1]) || 0;
     }
 };
+/*
+ * Converts form data to JSON
+ */
+$.serializeForm = function(){
+   var o = {};
+   var a = this.serializeArray();
+   $.each(a, function() {
+       if (o[this.name]) {
+           if (!o[this.name].push) {
+               o[this.name] = [o[this.name]];
+           }
+           o[this.name].push(this.value || '');
+       } else {
+           o[this.name] = this.value || '';
+       }
+   });
+   return o;
+};
+
