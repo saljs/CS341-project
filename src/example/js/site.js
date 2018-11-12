@@ -140,6 +140,19 @@ function getGuestId() {
 /*
  * Loads a list of categories
  */
+function loadPromotions() {
+    $.post('https://cs341group4.tk/Promotion/GetAll')
+    .done(function(data) {
+
+    }).fail(function(data) {
+
+    });
+
+}
+
+/*
+ * Loads a list of categories
+ */
 function loadCategories(type, id) {
     $.post('https://cs341group4.tk/Category/GetAll')
     .done(function(data) {

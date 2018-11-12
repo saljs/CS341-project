@@ -182,14 +182,14 @@ class Promotion {
                 $promo[$key] = $value;
             }
 
-            array_push($promotions, $promo);
+            array_push($payload, $promo);
 
         }
 
         $output = new HTTPResponse();
 
         // Declare our return fields.
-        $payload->categories = $promotions;
+        //$payload->promotions = $promotions;
         $output->setPayload($payload);
         $output->complete();
 
