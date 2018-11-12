@@ -345,6 +345,9 @@ function updateCartItem(id) {
     if($.cookie('token') != undefined) {
         $.post('https://cs341group4.tk/Cart/Update', 
             {itemId : id, quantity: quantity})
+        .done(function(data) {
+            updatePrice();
+        })
         .fail(function(data) {
             $('#message').html(data.responseJSON.message);
         });
@@ -352,7 +355,6 @@ function updateCartItem(id) {
     else {
         //TODO: add guest cart
     }
-    updatePrice();
 }
 /*
  * Removes an item from the cart
@@ -364,6 +366,7 @@ function deleteCartItem(id) {
             $('#message').html("Reloading items...");
             $('#cart').html("");
             loadCart();
+            updatePrice();
         })
         .fail(function(data) {
             $('#message').html(data.responseJSON.message);
@@ -372,7 +375,6 @@ function deleteCartItem(id) {
     else {
         //TODO: add guest cart
     }
-    updatePrice();
 }
 /*
  * Removes all items from the cart
