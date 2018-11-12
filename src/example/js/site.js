@@ -1,6 +1,9 @@
 //base page
 var baseURL = "/example";
 
+//site name
+var siteName = "cs341group4.tk";
+
 /*
  * Functions to run on load
  */
@@ -24,6 +27,27 @@ $( document ).ready(function() {
     loadAllItems();
     loadSingleItem();
     loadCart();
+
+    //setup user and site vars
+    $.ajaxSetup({
+        data: {
+            siteName: siteName
+        }
+    });
+    if($.cookie('token') != undefined) {
+        $.ajaxSetup({
+            data: {
+                token: $.cookie('token')
+            }
+        });
+    }
+    else {
+        $.ajaxSetup({
+            data: {
+                guestId: getGuestId()
+            }
+        });
+    }
 });
 
 
@@ -53,9 +77,6 @@ function login(e) {
 function register(e) {
     e.preventDefault();
     var fields = $('#register').serialize();
-    if($('input[name=type]:checked', '#register').val() == "admin") {
-        fields += "&token=" + $.cookie('token');
-    }
     $.post('https://cs341group4.tk/User/Create', fields)
     .done(function(data) {
         $('#message').html(data.message);
@@ -70,21 +91,19 @@ function register(e) {
 function userWelcome() {
     if($('#userWelcome').length) {
         if($.cookie('token') != undefined) {
-            $.post('https://cs341group4.tk/User/Get', {token: $.cookie('token')})
+            $.post('https://cs341group4.tk/User/Get')
             .done(function(data) {
                 $('#userWelcome').html(data.name);
                 $('#userWelcome').attr("href", "/example/userinfo.html");
                 $('#loginButton').remove();
-               // $('#userWelcome').after('<button id="logout">Logout</button>');
                 $('#navEntries').append('<li class="nav-item">'+
-                   '<a id="logout" class="nav-link" href="#">Logout</a>'+
-                    '</li>');
+                                        '<a id="logout" class="nav-link" href="#">Logout</a>'+
+                                        '</li>');
                 $('#logout').on('click', logout);
                 if(data.type == "admin") {
-                    //$('#logout').after('<br/><a href="/example/admin.html">Admin page</a>');
                     $('#navEntries').prepend('<li class="nav-item">'+
-                   '<a id="adminPage" class="nav-link" href="/example/admin.html">Admin</a>'+
-                    '</li>');
+                                             '<a id="adminPage" class="nav-link" href="/example/admin.html">Admin</a>'+
+                                             '</li>');
                 }
             });
         }
@@ -97,6 +116,20 @@ function logout(e) {
     $.removeCookie('token');
     location.reload();
 }
+/*
+ * Returns a temporary browser-specific guest id
+ */
+function getGuestId() {
+    if($.cookie('guestId') === undefined) {
+        var id = "";
+        for(var i = 0; i < 20; i++) {
+            id += Math.random().toString(36).substr(2, 5);
+        }
+        $.cookie('guestId', id);
+    }
+    return $.cookie('guestId');
+}
+        
 
 /****************************************************************************
  * Site page functions
@@ -229,7 +262,7 @@ function loadSingleItem() {
 function addToCart() {
     if($.cookie('token') != undefined) {
         var id = $.urlParam('id');
-        $.post('https://cs341group4.tk/Cart/Add', {token: $.cookie('token'), itemId : id, itemQuantity: $('#quantity').val()})
+        $.post('https://cs341group4.tk/Cart/Add', {itemId : id, itemQuantity: $('#quantity').val()})
         .done(function(data) {
             window.location = baseURL + "/cart.html";
         })
@@ -252,7 +285,7 @@ function addToCart() {
 function loadCart() {
     if($('#cart').length) {
         if($.cookie('token') != undefined) {
-            $.post('https://cs341group4.tk/Cart/Get', {token: $.cookie('token')})
+            $.post('https://cs341group4.tk/Cart/Get')
             .done(function(data) {
                 $('#message').html("");
                 cartList(data.products);
@@ -290,7 +323,6 @@ function updatePrice() {
     if($('#totalPrice').length) {
         if($.cookie('token') != undefined) {
             var fields = $('#promocode').serialize();
-            fields += "&token=" + $.cookie('token');
             $.post('https://cs341group4.tk/Cart/Total', fields)
             .done(function(data) {
                 $('#totalPrice').html('$'+data.total+'.00');
@@ -308,10 +340,10 @@ function updatePrice() {
  * Updates the quantity of an item in the cart
  */
 function updateCartItem(id) {
+    var quantity = $('#quantity-' + id).val();
     if($.cookie('token') != undefined) {
-        var quantity = $('#quantity-' + id).val();
         $.post('https://cs341group4.tk/Cart/Update', 
-            {token: $.cookie('token'), itemId : id, quantity: quantity})
+            {itemId : id, quantity: quantity})
         .fail(function(data) {
             $('#message').html(data.responseJSON.message);
         });
@@ -327,7 +359,7 @@ function updateCartItem(id) {
 function deleteCartItem(id) {
     if($.cookie('token') != undefined) {
         $.post('https://cs341group4.tk/Cart/Delete', 
-            {token: $.cookie('token'), itemId : id})
+            {itemId : id})
         .done(function(data) {
             $('#message').html("Reloading items...");
             $('#cart').html("");
@@ -347,8 +379,7 @@ function deleteCartItem(id) {
  */
 function emptyCart(){
     if($.cookie('token') != undefined) {
-        $.post('https://cs341group4.tk/Cart/DeleteAll', 
-            {token: $.cookie('token')})
+        $.post('https://cs341group4.tk/Cart/DeleteAll')
         .done(function(data) {
             $('#message').html("Reloading items...");
             $('#cart').html("");
@@ -369,14 +400,18 @@ function emptyCart(){
 function checkout(e) {
     e.preventDefault();
     var fields = $('#checkout').serialize();
-    fields += "&token=" + $.cookie('token');
-    $.post('https://cs341group4.tk/Checkout/Complete', fields)
-    .done(function(data) {
-        window.location = data.payemntPage;
-    })
-    .fail(function(data){
-        $('#message').html(data.responseJSON.message);
-    });
+    if($.cookie('token') != undefined) {
+        $.post('https://cs341group4.tk/Checkout/Complete', fields)
+        .done(function(data) {
+            window.location = data.payemntPage;
+        })
+        .fail(function(data){
+            $('#message').html(data.responseJSON.message);
+        });
+    }
+    else {
+        //TODO: add guest cart
+    }
 }
 
 /****************************************************************************
@@ -416,7 +451,6 @@ function createPromotion() {
 function createCategory(e) {
     e.preventDefault();
     var fields = $('#createCategory').serialize();
-    fields += "&token=" + $.cookie('token');
     $.post('https://cs341group4.tk/Category/Create', fields)
     .done(function(data) {
         console.log(data);
@@ -433,7 +467,6 @@ function createItem(e) {
     e.preventDefault();
     
     var fields = $('#newItem').serialize();
-    fields += "&token=" + $.cookie('token');
     alert("debug3 : "+fields);
     $.post('https://cs341group4.tk/Product/Create', fields)
     .done(function(data) {
@@ -449,7 +482,6 @@ function createItem(e) {
 function paypalEdit(e) {
     e.preventDefault();
     var fields = $('#paypalSettings').serialize();
-    fields += "&token=" + $.cookie('token');
     $.post('https://cs341group4.tk/Checkout/PayPalEdit', fields)
     .done(function(data) {
         $('#message').html(data.message);
