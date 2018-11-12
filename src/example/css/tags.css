@@ -25,7 +25,6 @@
 .tags-input .tag .close::after {
     content: "\00D7";
     font-weight: bold;
-    display: inline-block;
     transform: scale(1.4);
     margin-left: 0.75em;
 }
