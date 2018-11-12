@@ -77,7 +77,7 @@ function login(e) {
  */
 function register(e) {
     e.preventDefault();
-    var fields = $('#register').serialize();
+    var fields = $('#register').serializeForm();
     $.post('https://cs341group4.tk/User/Create', fields)
     .done(function(data) {
         $('#message').html(data.message);
@@ -323,7 +323,7 @@ function cartList(items) {
 function updatePrice() {
     if($('#totalPrice').length) {
         if($.cookie('token') != undefined) {
-            var fields = $('#promocode').serialize();
+            var fields = $('#promocode').serializeForm();
             $.post('https://cs341group4.tk/Cart/Total', fields)
             .done(function(data) {
                 $('#totalPrice').html('$'+data.total+'.00');
@@ -359,8 +359,7 @@ function updateCartItem(id) {
  */
 function deleteCartItem(id) {
     if($.cookie('token') != undefined) {
-        $.post('https://cs341group4.tk/Cart/Delete', 
-            {itemId : id})
+        $.post('https://cs341group4.tk/Cart/Delete', {itemId : id})
         .done(function(data) {
             $('#message').html("Reloading items...");
             $('#cart').html("");
@@ -400,7 +399,7 @@ function emptyCart(){
  */
 function checkout(e) {
     e.preventDefault();
-    var fields = $('#checkout').serialize();
+    var fields = $('#checkout').serializeForm();
     if($.cookie('token') != undefined) {
         $.post('https://cs341group4.tk/Checkout/Complete', fields)
         .done(function(data) {
@@ -423,7 +422,7 @@ function checkout(e) {
  * Creates a new promotion
  */
 function createPromotion() {
-    let data = $('#addPromotion').serializeArray();
+    let data = $('#addPromotion').serializeForm();
     let string = "?";
     let cats = "categories=";
     data.forEach(function(e) {
@@ -451,7 +450,7 @@ function createPromotion() {
  */
 function createCategory(e) {
     e.preventDefault();
-    var fields = $('#createCategory').serialize();
+    var fields = $('#createCategory').serializeForm();
     $.post('https://cs341group4.tk/Category/Create', fields)
     .done(function(data) {
         console.log(data);
@@ -467,7 +466,7 @@ function createCategory(e) {
 function createItem(e) {
     e.preventDefault();
     
-    var fields = $('#newItem').serialize();
+    var fields = $('#newItem').serializeForm();
     alert("debug3 : "+fields);
     $.post('https://cs341group4.tk/Product/Create', fields)
     .done(function(data) {
@@ -482,7 +481,7 @@ function createItem(e) {
  */
 function paypalEdit(e) {
     e.preventDefault();
-    var fields = $('#paypalSettings').serialize();
+    var fields = $('#paypalSettings').serializeForm();
     $.post('https://cs341group4.tk/Checkout/PayPalEdit', fields)
     .done(function(data) {
         $('#message').html(data.message);
