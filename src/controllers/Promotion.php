@@ -163,6 +163,39 @@ class Promotion {
 
     }
 
+    static function GetAll(): void {
+
+        $db = $GLOBALS['database'];
+        $sql = "SELECT * FROM promotions";
+
+        $result = $db->query($sql);
+        if(!$result) {
+            error("There's an error in your SQL syntax: {$sql}");
+            return;
+        }
+
+        $promotions = array();
+        while($row = mysqli_fetch_assoc($result)) {
+
+            $promo = array();
+            foreach($result as $key => $value) {
+                $promo[$key] = $value;
+            }
+
+            array_push($promotions, $promo);
+
+        }
+
+        $output = new HTTPResponse();
+
+        // Declare our return fields.
+        $payload->categories = $promotions;
+        $output->setPayload($payload);
+        $output->complete();
+
+    }
+
+
     static function Get($args): void {
 
         if (!$args['code']) {
