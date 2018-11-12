@@ -49,7 +49,7 @@ $( document ).ready(function() {
     loadAllItems();
     loadSingleItem();
     loadCart();
-
+    loadAdmin();
 });
 
 
@@ -138,7 +138,7 @@ function getGuestId() {
  ***************************************************************************/
 
 /*
- * Loads a list of categories
+ * Loads a list of promotions
  */
 function loadPromotions(id) {
     $.post('https://cs341group4.tk/Promotion/GetAll')
@@ -212,7 +212,7 @@ function loadAllItems() {
     if($('#categoryField').length && $.urlParam('category')) {
         $('#categoryField').val($.urlParam('category'));
     }
-    if($('$categoriesNavBar').length) {
+    if($('#categoriesNavBar').length) {
         loadCategories('navbar', 'categoriesNavBar');
     }
 }
@@ -444,6 +444,23 @@ function checkout(e) {
  * Admin functions
  ***************************************************************************/
 
+/*
+ * Loads admin page data
+ */
+function loadAdmin() {
+    if($('#categoryList').length) {
+        loadCategories('cattable', 'categoryList');
+    }
+    if($('#newPromoCatList').length) {
+        loadCategories('catcheck', 'newPromoCatList');
+    }
+    if($('#newItemCatList').length) {
+        loadCategories('catcheck', 'newItemCatList');
+    }
+    if($('#promotionList').length) {
+        loadPromotions('promotionList');
+    }
+}
 /*
  * Creates a new promotion
  */
