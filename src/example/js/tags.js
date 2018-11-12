@@ -1,4 +1,4 @@
-[].forEach.call(document.getElementsByClassName('items'), function (el) {
+[].forEach.call(document.getElementsByClassName('tags-input'), function (el) {
     let hiddenInput = document.createElement('input'),
         mainInput = document.createElement('input'),
         tags = [];
