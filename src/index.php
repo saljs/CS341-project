@@ -32,7 +32,7 @@ function getBusinessID(): string {
     $site = "debug";
 
     if($_REQUEST['siteName']) {
-        $site = preg_replace(array("/http[s]:[\/\\\]+/", "/\./"), array("", ""), $_SERVER['HTTP_ORIGIN']);
+        $site = $_REQUEST['siteName'];
     }
     return $site;
 }

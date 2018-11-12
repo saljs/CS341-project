@@ -2,7 +2,7 @@
 var baseURL = "/example";
 
 //site name
-var siteName = "cs341group4.tk";
+var siteName = "cs341group4tk";
 
 /*
  * Functions to run on load
