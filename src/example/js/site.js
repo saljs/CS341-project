@@ -15,6 +15,7 @@ $( document ).ready(function() {
 
     $('#addPromotion').on('submit', createPromotion);
     $('#createCategory').on('submit', createCategory);
+    $('#removeCategory').on('submit', removeCategory);
     $('#newItem').on('submit', createItem);
     $('#paypalSettings').on('submit', paypalEdit);
     $('#errordiv').hide();
@@ -443,6 +444,23 @@ function createCategory(e) {
         alert(data.responseJSON.message);
     });
 }
+
+/*
+ * Removes an existing category
+ */
+function removeCategory(e) {
+    e.preventDefault();
+    var fields = $('#removeCategory').serializeForm();
+    $.post('https://cs341group4.tk/Category/Delete', fields)
+        .done(function(data) {
+            console.log(data);
+            alert(data.message);
+        })
+        .fail(function(data){
+            alert(data.responseJSON.message);
+        });
+}
+
 /*
  * Creates a new item
  */
