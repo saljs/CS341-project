@@ -140,14 +140,28 @@ function getGuestId() {
 /*
  * Loads a list of categories
  */
-function loadPromotions() {
+function loadPromotions(id) {
     $.post('https://cs341group4.tk/Promotion/GetAll')
     .done(function(data) {
-
+        var dataS = data.promotions;
+        for(var p in dataS) {
+            if(id === 'promotionList') {
+                $('#' + id).append("<tr>" +
+                    "<th scope='row'>" + p + "</th>" +
+                    "<td>" + dataS.name + "</td>" +
+                    "<td>" + dataS.code + "</td>" +
+                    "<td>" + dataS.type + "</td>" +
+                    "<td>" + dataS.percent + "</td>" +
+                    "<td>" + new Date(dataS.startdate*1000).toLocaleString() + "</td>" +
+                    "<td>" + new Date(dataS.enddate*1000).toLocaleString() + "</td>" +
+                    "<td>" + dataS.items + "</td>" +
+                    "<td>" + dataS.categories + "</td>" +
+                "</tr>");
+            }
+        }
     }).fail(function(data) {
 
     });
-
 }
 
 /*
@@ -160,14 +174,14 @@ function loadCategories(type, id) {
         for(var category in data.categories) {
             if(type === 'cattable')
                 $('#' + id).append("<tr>" +
-                    "<th scope='row'>" + category + "</th>" +
-                    "<td>" + data.categories[category] + "</td>" +
+                        "<th scope='row'>" + category + "</th>" +
+                        "<td>" + data.categories[category] + "</td>" +
                     "</tr>");
             else if(type === 'catcheck') {
                 cat = data.categories[category];
                 $('#' + id).append("<div class='form-check'>" +
-                    "<input type='checkbox' class='form-check-input' name='categories'" + "value='"+ cat +"'/>" +
-                    "<label class='form-check-label'>" + cat + "</label>" +
+                        "<input type='checkbox' class='form-check-input' name='categories'" + "value='"+ cat +"'/>" +
+                        "<label class='form-check-label'>" + cat + "</label>" +
                     "</div>");
             }
             else if(type === 'navbar') {
