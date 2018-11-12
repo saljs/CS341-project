@@ -16,8 +16,8 @@ $( document ).ready(function() {
     $('#addPromotion').on('submit', createPromotion);
     $('#createCategory').on('submit', createCategory);
     $('#newItem').on('submit', createItem);
-    $('#errordiv').hide();
     $('#paypalSettings').on('submit', paypalEdit);
+    $('#errordiv').hide();
 
     $('#addToCart').on('click', addToCart);
     $('#checkout').on('submit', checkout);
@@ -423,22 +423,10 @@ function checkout(e) {
 /*
  * Creates a new promotion
  */
-function createPromotion() {
-    let data = $('#addPromotion').serializeForm();
-    let string = "?";
-    let cats = "categories=";
-    data.forEach(function(e) {
-        if(e.name === "categories")
-            cats += e.value + ",";
-        else {
-            string += e.name + "=" + e.value + "&";
-        }
-    });
-
-    cats = cats.slice(0, -1)
-    string += cats;
-    
-    $.post('https://cs341group4.tk/Promotion/Create', string)
+function createPromotion(e) {
+    e.preventDefault();
+    var data = $('#addPromotion').serializeForm();    
+    $.post('https://cs341group4.tk/Promotion/Create', data)
     .done(function(data) {
         alert(data.message);
     })
@@ -456,10 +444,10 @@ function createCategory(e) {
     $.post('https://cs341group4.tk/Category/Create', fields)
     .done(function(data) {
         console.log(data);
-        $('#message').html(data.message);
+        alert(data.message);
     })
     .fail(function(data){
-        $('#message').html(data.responseJSON.message);
+        alert(data.responseJSON.message);
     });
 }
 /*
@@ -472,10 +460,10 @@ function createItem(e) {
     alert("debug3 : "+fields);
     $.post('https://cs341group4.tk/Product/Create', fields)
     .done(function(data) {
-        $('#message').html(data.message);
+        alert(data.message);
     })
     .fail(function(data){
-        $('#message').html(data.responseJSON.message);
+        alert(data.responseJSON.message);
     });
 }
 /*
@@ -486,10 +474,10 @@ function paypalEdit(e) {
     var fields = $('#paypalSettings').serializeForm();
     $.post('https://cs341group4.tk/Checkout/PayPalEdit', fields)
     .done(function(data) {
-        $('#message').html(data.message);
+        alert(data.message);
     })
     .fail(function(data){
-        $('#message').html(data.responseJSON.message);
+        alert(data.responseJSON.message);
     });
 }
 
