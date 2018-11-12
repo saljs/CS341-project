@@ -164,7 +164,6 @@ function loadPromotions(id) {
 
     });
 }
-
 /*
  * Loads a list of categories
  */
@@ -212,6 +211,9 @@ function loadAllItems() {
     }
     if($('#categoryField').length && $.urlParam('category')) {
         $('#categoryField').val($.urlParam('category'));
+    }
+    if($('$categoriesNavBar').length) {
+        loadCategories('navbar', 'categoriesNavBar');
     }
 }
 /*
