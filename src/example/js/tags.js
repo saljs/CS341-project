@@ -25,12 +25,20 @@
         if (keyCode === 8 && mainInput.value.length === 0 && tags.length > 0) {
             removeTag(tags.length - 1);
         }
+
+        if (keyCode === 13 && mainInput.value.length > 0 && tags.length > 0) {
+            addTag(mainInput.value);
+            mainInput.value ="";
+        }
+
+
     });
 
     el.appendChild(mainInput);
     el.appendChild(hiddenInput);
 
-    addTag('Microwave');
+    addTag('hello!');
+
 
     function addTag (text) {
         let tag = {

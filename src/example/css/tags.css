@@ -23,7 +23,7 @@
 }
 
 .tags-input .tag .close::after {
-    content: "\00D7";
+    content: "×";
     font-weight: bold;
     display: inline-block;
     transform: scale(1.4);
