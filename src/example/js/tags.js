@@ -31,14 +31,12 @@
             mainInput.value ="";
         }
 
-
     });
 
     el.appendChild(mainInput);
     el.appendChild(hiddenInput);
 
-    addTag('hello!');
-
+    addTag('Microwave');
 
     function addTag (text) {
         let tag = {
