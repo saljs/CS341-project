@@ -14,7 +14,7 @@ require_once __DIR__ . '/Promotion.php';
  */
 function getCartPrice($guestId, $promotionCode):float {
     $db = $GLOBALS['database'];
-    $products = $db->query("SELECT * FROM guestCart WHERE guestId = '" . $userId . "';");
+    $products = $db->query("SELECT * FROM guestCart WHERE guestId = '" . $guestId . "';");
     $cost = 0;
     while($product = $products->fetch_assoc()) {
         $prod = new ViewableProduct($product['itemId']);
