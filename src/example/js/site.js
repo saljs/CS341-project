@@ -395,9 +395,9 @@ function emptyCart() {
  */
 function checkout(e) {
     e.preventDefault();
-    var endpoint = 'https://cs341group4.tk/Checkout/Complete';
+    var endpoint = 'https://cs341group4.tk/GuestCheckout/Complete';
     if($.cookie('token') != undefined) {
-        endpoint = 'https://cs341group4.tk/GuestCheckout/Complete';
+        endpoint = 'https://cs341group4.tk/Checkout/Complete';
     }
     var fields = $('#checkout').serializeForm();
     $.post(endpoint, fields)
