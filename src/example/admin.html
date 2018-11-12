@@ -199,7 +199,7 @@
                                 <!-- Content goes here -->
                             </div>
 
-                            <button type="submit" class="btn btn-primary" value="addPromotion">Submit</button>
+                            <input type="submit" class="btn btn-primary" value="Submit"/>
                         </form>
                     </div>
                     <div id="EditPromotion" class="tabcontent">
@@ -237,7 +237,7 @@
                                 <input type="url" name="paypal-cancel-url" class="form-control" id="cancelUrl" required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary" value="Update">Submit</button>
+                            <input type="submit" class="btn btn-primary" value="Update"/>
                         </form>
                     </div>
                 </div>
@@ -257,15 +257,15 @@
                             </tbody>
                         </table>
 
-                        <div class="form-check-inline topbottompadding">
-                            <input type="text" name="category" class="form-control" placeholder="Electronics" required>
-                            <button type="submit" class="btn btn-primary" value="Add">Add</button>
-                        </div>
+                        <form class="form-check-inline topbottompadding">
+                            <input type="text" name="category" class="form-control" placeholder="Electronics" required/>
+                            <input type="submit" class="btn btn-primary" value="Add"/>
+                        </form>
 
-                        <div class="form-check-inline topbottompadding">
-                            <input type="text" name="category" class="form-control" placeholder="Electronics" required>
-                            <button type="submit" class="btn btn-primary redbutton" value="Add">Remove</button>
-                        </div>
+                        <form class="form-check-inline topbottompadding">
+                            <input type="text" name="category" class="form-control" placeholder="Electronics" required/>
+                            <input type="submit" class="btn btn-primary redbutton" value="Remove"/>
+                        </form>
 
                     </div>
                 </div>
@@ -400,7 +400,6 @@
         </div>
 
         <br/>
-        <span id="message"></span>
 
         <!-- Open default tab -->
 
