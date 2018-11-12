@@ -229,7 +229,7 @@ function itemList(items) {
                 '<div class="col-lg-3 col-md-6 mb-4">'+'' +
                 '<div class="card">'+
                 '<a href="'+url+'">' +
-                '<img class="card-img-top" src="'+item.image+'" alt="">' +
+                '<img class="card-img-top" src="'+item.image+'" alt="" height="600 px" width="400 px">' +
                 '</a>'+
                 '<div class="card-body">'+
                 '<h4 class="card-title">'+
