@@ -22,12 +22,6 @@ $( document ).ready(function() {
     $('#addToCart').on('click', addToCart);
     $('#checkout').on('submit', checkout);
 
-    //run xhr loaders
-    userWelcome();
-    loadAllItems();
-    loadSingleItem();
-    loadCart();
-
     //setup user and site vars
     $.ajaxSetup({
         data: {
@@ -48,6 +42,13 @@ $( document ).ready(function() {
             }
         });
     }
+
+    //run xhr loaders
+    userWelcome();
+    loadAllItems();
+    loadSingleItem();
+    loadCart();
+
 });
 
 
