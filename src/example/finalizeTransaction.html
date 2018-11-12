@@ -5,23 +5,14 @@
         <title>Finalize Transaction</title>
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/jquery.cookie.js"></script>
+        <script src="js/site.js"></script>
     </head>
     <body>
         <span id="message">Please wait...</span>
         <script>
             $( document ).ready(function() {
-                if($.cookie('token') != undefined) {
-                    $.post('https://cs341group4.tk/Cart/DeleteAll', {token: $.cookie('token')})
-                    .done(function(data) {
-                        window.location = "/example";
-                    })
-                    .fail(function(data) {
-                        $('#message').html(data.responseJSON.message);
-                    });
-                }
-                else {
-                    //TODO: add guest cart
-                }
+                emptyCart();
+                window.location = baseURL;
             });
         </script>
     </body>
