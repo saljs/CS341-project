@@ -467,9 +467,9 @@ function loadAdmin() {
 function createPromotion(e) {
     e.preventDefault();
     var data = $('#addPromotion').serializeForm();
-    console.log(data);
     $.post('https://cs341group4.tk/Promotion/Create', data)
     .done(function(data) {
+        console.log(data);
         alert(data.message);
     })
     .fail(function(data){
