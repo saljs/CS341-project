@@ -65,80 +65,78 @@
             </div>
         </nav>
  
-<section class="jumbotron text-center">
-    <div class="container">
-        <h1 class="jumbotron-heading">CART</h1>
-     </div>
-</section>
-        
-    
- <div class="container mb-4">
-    <div class="row">
-        <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col"> </th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Available</th>
-                            <th scope="col" class="text-center">Quantity</th>
-                            <th scope="col" class="text-right">Price</th>
-                            <th scope="col" class="text-right">Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cart" ></tbody>
-                    <tfoot>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><strong>Promotion Code</strong></td>
-                        <td class="text-right form-check-inline">
-                            <label for="promocode"></label>
-                            <input type="text" name="code" class="form-control" id="promocode"/>
-                            <input type="button" class="btn btn-primary" value="apply" onclick="updatePrice();">
-                        </td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><strong>Total</strong></td>
-                        <td class="text-right"><strong><span id="totalPrice"></span></strong></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><strong>Empty Cart</strong></td>
-                        <td class="text-right">
-                          <button class="btn btn-sm btn-danger" onclick="emptyCart();">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>        
-        <div class="col mb-2">
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">CART</h1>
+             </div>
+        </section>
+        <div class="container mb-4">
             <div class="row">
-                <div class="col-sm-12  col-md-6">
-                    <a href="/example/index.html" class="btn btn-block btn-light" role="button" >Continue Shopping</a>
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col"> </th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Available</th>
+                                    <th scope="col" class="text-center">Quantity</th>
+                                    <th scope="col" class="text-right">Price</th>
+                                    <th scope="col" class="text-right">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart" ></tbody>
+                            <tfoot>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Promotion Code</strong></td>
+                                <td class="text-right form-check-inline">
+                                    <label for="promocode"></label>
+                                    <input type="text" name="code" class="form-control" id="promocode"/>
+                                    <input type="button" class="btn btn-primary" value="apply" onclick="updatePrice();">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Total</strong></td>
+                                <td class="text-right"><strong><span id="totalPrice"></span></strong></td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Empty Cart</strong></td>
+                                <td class="text-right">
+                                  <button class="btn btn-sm btn-danger" onclick="emptyCart();">
+                                    <i class="fa fa-trash"></i>
+                                  </button>
+                                </td>
+                              </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-sm-12 col-md-6 text-right">
-                 <form id="checkout">  
-                    <button class="btn btn-lg btn-block btn-success text-uppercase" id="checkout" >Checkout</button>
-                </form>
+                <div class="col mb-2">
+                    <div class="row">
+                        <div class="col-sm-12  col-md-6">
+                            <a href="/example/index.html" class="btn btn-block btn-light" role="button" >Continue Shopping</a>
+                        </div>
+                        <div class="col-sm-12 col-md-6 text-right">
+                         <form id="checkout">
+                            <button class="btn btn-lg btn-block btn-success text-uppercase" id="checkout" >Checkout</button>
+                        </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div> 
 
     </body>
 </html>

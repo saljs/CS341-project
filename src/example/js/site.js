@@ -415,7 +415,7 @@ function emptyCart() {
         $('#message').html("Reloading items...");
         $('#cart').html("");
         loadCart();
-        window.location.href = baseURL + "/";
+        window.location.href = baseURL + "/index.html";
     })
     .fail(function(data) {
         $('#message').html(data.responseJSON.message);
