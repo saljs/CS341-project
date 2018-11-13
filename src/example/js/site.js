@@ -448,6 +448,7 @@ function checkout(e) {
  * Loads admin page data
  */
 function loadAdmin() {
+
     if($('#categoryList').length) {
         loadCategories('cattable', 'categoryList');
     }
