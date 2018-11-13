@@ -485,8 +485,8 @@ function createCategory(e) {
     var fields = $('#createCategory').serializeForm();
     $.post('https://cs341group4.tk/Category/Create', fields)
     .done(function(data) {
-        location.reload();
         alert(data.message);
+        location.reload();
     })
     .fail(function(data){
         alert(data.responseJSON.message);
@@ -501,8 +501,8 @@ function removeCategory(e) {
     var fields = $('#removeCategory').serializeForm();
     $.post('https://cs341group4.tk/Category/Delete', fields)
         .done(function(data) {
-            location.reload();
             alert(data.message);
+            location.reload();
         })
         .fail(function(data){
             alert(data.responseJSON.message);
