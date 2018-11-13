@@ -469,7 +469,7 @@ function createPromotion(e) {
     var data = $('#addPromotion').serializeForm();
     $.post('https://cs341group4.tk/Promotion/Create', data)
     .done(function(data) {
-        console.log();
+        location.reload();
         alert(data.message);
     })
     .fail(function(data){
@@ -485,6 +485,7 @@ function createCategory(e) {
     var fields = $('#createCategory').serializeForm();
     $.post('https://cs341group4.tk/Category/Create', fields)
     .done(function(data) {
+        location.reload();
         alert(data.message);
     })
     .fail(function(data){
@@ -500,7 +501,7 @@ function removeCategory(e) {
     var fields = $('#removeCategory').serializeForm();
     $.post('https://cs341group4.tk/Category/Delete', fields)
         .done(function(data) {
-            console.log(data);
+            location.reload();
             alert(data.message);
         })
         .fail(function(data){
@@ -518,6 +519,7 @@ function createItem(e) {
     alert("debug3 : "+fields);
     $.post('https://cs341group4.tk/Product/Create', fields)
     .done(function(data) {
+        location.reload();
         alert(data.message);
     })
     .fail(function(data){
