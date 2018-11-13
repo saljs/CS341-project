@@ -57,34 +57,38 @@
                         <h3 class="form-header">Add Item</h3>
                         <form id="newItem">
 
-            <label>Name:</label>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" name="name" placeholder="Microwave">
+                            </div>
 
-            <input type="text" class="form-control" name="name" placeholder="Microwave"><br>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input type="number" class="form-control" name="price" placeholder="100">
+                            </div>
 
-            <label>Price:</label>
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input type="number" class="form-control" name="quantity" placeholder="400">
+                            </div>
 
-            <input type="number" class="form-control" name="price" placeholder="100"><br>
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="url" class="form-control" name="image">
+                            </div>
 
-            <label>Quantity:</label>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" class="form-control" name="description" placeholder="waves microly">
+                            </div>
 
-            <input type="number" class="form-control" name="quantity" placeholder="400"><br>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <input type="text" class="form-control" name="category" placeholder="i.e. electronics">
+                            </div>
 
-            <label>Image:</label>
-
-            <input type="url" class="form-control" name="image"><br>
-
-            <label>Description:</label>
-
-            <input type="text" class="form-control" name="description" placeholder="waves microly"><br>
-
-            <label>Category:</label>
-
-            <input type="text" class="form-control" name="category" placeholder="i.e. electronics"><br>
-
-            <input type="submit" value="add Item"><br>
-
-        </form>
-
+                            <input type="submit" class="btn btn-primary" value="Add Item"><br>
+                        </form>
                     </div>
                     <div id="EditItem" class="tabcontent">
                         <h3 class="form-header">Edit Item</h3>

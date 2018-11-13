@@ -226,7 +226,7 @@ function itemList(items) {
         var fileName = location.href.split("/").slice(-1);
         if(fileName[0] === 'index.html') {
             $(`#products`).append('' +
-                '<div class="col-lg-3 col-md-6 mb-4">'+'' +
+                '<div class="col-lg-3 col-md-6 mb-4 animated fadeInUp">'+'' +
                 '<div class="card">'+
                 '<a href="'+url+'">' +
                 '<img class="card-img-top" src="'+item.image+'" alt="">' +
