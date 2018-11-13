@@ -19,11 +19,12 @@ class Promotion {
     static function Create($args): void {
 
         // Checks if the required variables are given
-        if (!($args['name'] && $args['code'] && $args['typeRadio'] && $args['percent'] && $args['endDate'] && $args['startDate'] && $args['items'] && $args['categories'])) {
+        if (!($args['name'] && $args['code'] && $args['typeRadio'] && $args['percent'] && $args['endDate'] && $args['startDate'] && $args['tags-input'] && $args['categories'])) {
             error("Missing required fields");
             return;
         }
 
+        $args['items'] = $args['tags-input'];
         $args['type'] = $args['typeRadio'];
         $args['startDate'] = strtotime($args['startDate']);
         $args['endDate'] = strtotime($args['endDate']);

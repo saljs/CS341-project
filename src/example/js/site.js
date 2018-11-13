@@ -469,7 +469,7 @@ function createPromotion(e) {
     var data = $('#addPromotion').serializeForm();
     $.post('https://cs341group4.tk/Promotion/Create', data)
     .done(function(data) {
-        console.log(data);
+        console.log();
         alert(data.message);
     })
     .fail(function(data){
@@ -485,7 +485,6 @@ function createCategory(e) {
     var fields = $('#createCategory').serializeForm();
     $.post('https://cs341group4.tk/Category/Create', fields)
     .done(function(data) {
-        console.log(data);
         alert(data.message);
     })
     .fail(function(data){
