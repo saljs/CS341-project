@@ -1,0 +1,18 @@
+-S 341 Software Engineering
+Project Meeting
+Project title:   Software for a shopping cart experience
+Group #:      1
+Members of the group:  Sal, Jack, Jack, David
+Meeting #:   5
+Held on: Nov. 09, 2018 at 2:00 P.M.
+Location the U
+Members present: Jack E., Jack C., David
+Topic for discussion: deliverable 3, implementation of front end, tasks for demo 2
+Report writer: Jack Collins
+ 
+ Demo 2 google slides pres has been created. Majority of Demo functionality has been implemented. Sal is going to reorganize code
+ for readability. Site is nearing completion, or atleast almost has all the neccessary feature implemented. 
+
+
+
+Next meeting and its agenda: Reflect on demo II and plan for the next deliverable. 
