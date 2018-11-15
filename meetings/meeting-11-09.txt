@@ -1,4 +1,4 @@
--S 341 Software Engineering
+C-S 341 Software Engineering
 Project Meeting
 Project title:   Software for a shopping cart experience
 Group #:      1
