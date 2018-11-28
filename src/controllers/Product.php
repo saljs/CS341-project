@@ -89,19 +89,16 @@ class Product {
         if($args['category'] && !$args['search']) {
             //select all from given category
             $sql .= " WHERE category LIKE '%" . $args['category'] . "%';";
-        }
-        else if($args['search'] && !$args['category']) {
+        } else if($args['search'] && !$args['category']) {
             //select all that meet search parameter
             $sql .= " WHERE name LIKE '%" . $args['search'] 
                 . "%' OR description LIKE '%" . $args['search'] . "%';";
-        }
-        else if($args['search'] && $args['category']) {
+        } else if($args['search'] && $args['category']) {
             //select all from category that match search
             $sql .= " WHERE category LIKE '%" . $args['category'] . "%'"
                 . " AND (name LIKE '%" . $args['search'] 
                 . "%' OR description LIKE '%" . $args['search'] . "%');";
-        }
-        else {
+        } else {
             //return all items
             $sql .= ";";
         }
