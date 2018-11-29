@@ -25,7 +25,7 @@ software for an online e-commerce shopping cart software product.
 
 \section{Functional Requirements}
 
-\subsection{Registered User}
+\subsection{Functional Requirements For Registered User}
 
 \begin{tabularx}{\textwidth}{l X}
     \it{Index:} & U.1 \\
@@ -71,7 +71,7 @@ software for an online e-commerce shopping cart software product.
     \hline
 \end{tabularx}
 
-\subsection{Cart}
+\subsection{Functional Requirements For Cart}
 
 \begin{tabularx}{\textwidth}{l X}
     \it{Index:} & CT.1 \\
@@ -153,14 +153,14 @@ software for an online e-commerce shopping cart software product.
     \hline
 \end{tabularx}
 
-\subsection{Guests}
+\subsection{Functional Requirements For Guest Cart}
 
 \begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & G.1 \\
+    \it{Index:} & GC.1 \\
     \it{Name:} & AddItemToGuestCart \\
     \it{Purpose:} & Adds the item to the guest user's cart. \\
-    \it{Input parameters:} & Guest user's id (A randomly generated GUID), Item ID, item count. \\
-    \it{Action:} & Adds the number of items given by the count to the specified guest user's cart. If this is the first time calling this function, 
+    \it{Input parameters:} & Guest user's id (A randomly generated GUID), Item ID, item quantity. \\
+    \it{Action:} & Adds the number of items given by the quantity to the specified guest user's cart. If this is the first time calling this function, 
     an entry for the guest user will first be created in the database.\\
     \it{Output parameters:} & A success or failure message. \\
     \it{Exceptions:} & The item does not exist, there was a database error. \\
@@ -170,11 +170,11 @@ software for an online e-commerce shopping cart software product.
 \end{tabularx}
 
 \begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & G.2 \\
+    \it{Index:} & GC.2 \\
     \it{Name:} & RemoveItemFromGuestCart \\
     \it{Purpose:} & Removes the item from the guest user's cart. \\
-    \it{Input parameters:} & Guest user's id, Item ID, count \\
-    \it{Action:} & Removes the number of items given by the count from the specified guest user's cart. \\
+    \it{Input parameters:} & Guest user's id, Item ID \\
+    \it{Action:} & Removes the all of a specific item from the specified guest user's cart. \\
     \it{Output parameters:} & A success or failure message. \\
     \it{Exceptions:} & The guest does not exist, the item does not exist, there was a database error. \\
     \it{Remarks:} & None. \\
@@ -183,7 +183,20 @@ software for an online e-commerce shopping cart software product.
 \end{tabularx}
 
 \begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & G.3 \\
+    \it{Index:} & GC.3 \\
+    \it{Name:} & EmptyGuestCart \\
+    \it{Purpose:} & Removes all items from the guest user's cart. \\
+    \it{Input parameters:} & Guest user's id \\
+    \it{Action:} & Removes all items from the specified guest user's cart. \\
+    \it{Output parameters:} & A success or failure message. \\
+    \it{Exceptions:} & The guest does not exist, the item does not exist, there was a database error. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & G.2 . \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & GC.4 \\
     \it{Name:} & GetGuestCart \\
     \it{Purpose:} & Returns a list of all items in a guest user's cart. \\
     \it{Input parameters:} & Guest user's ID \\
@@ -192,6 +205,32 @@ software for an online e-commerce shopping cart software product.
     \it{Exceptions:} & The guest user does not exist, there was a database error. \\
     \it{Remarks:} & None 
     \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & GC.5 \\
+    \it{Name:} & UpdateGuestCart \\
+    \it{Purpose:} & Updates the quantities of items in a guest user's cart. \\
+    \it{Input parameters:} & Guest user's ID, item IDs, corresponding quantities\\
+    \it{Action:} & Updates the quantities of items in a guest user's cart and recalculates the price \\
+    \it{Output parameters:} & None. \\
+    \it{Exceptions:} & The guest user does not exist, there was a database error. \\
+    \it{Remarks:} & GC.6 .
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & GC.6 \\
+    \it{Name:} & GetGuestCartPrice \\
+    \it{Purpose:} & calculates the total price, taking ship and promotion codes into consideration \\
+    \it{Input parameters:} & Guest user's id, PromotionCode \\
+    \it{Action:} &  fetches products from the cart, applies promotion to item if valid, then adds price to running total\\
+    \it{Output parameters:} & Total price  \\
+    \it{Exceptions:} &  invalid promotion, empty cart\\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & \\
     \hline
 \end{tabularx}
 
