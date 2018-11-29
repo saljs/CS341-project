@@ -111,6 +111,17 @@ class Promotion {
 
     }
 
+    /*
+     * Edits an existing promotion, only changing fields given, all based on the promotion code.
+     * @param name: The display name
+     * @param code: the discount code
+     * @param type: Either bogo or percent
+     * @param percent: The discount percentage
+     * @param startDate: The epoch time-based end date of the promotion. https://www.epochconverter.com
+     * @param endDate: The epoch time-based end date of the promotion. https://www.epochconverter.com
+     * @param items: Comma delimited list of item ID's that the promotion works for.
+     * @param categories: Comma delimited list of category names that the promotion works for.
+     */
     static function Edit($args): void {
 
         // Make sure they passed all fields
@@ -164,6 +175,10 @@ class Promotion {
 
     }
 
+    /*
+     * Get all existing promotions and their data.
+     * @return: Returns a json string of all promotions in the database.
+     */
     static function GetAll(): void {
 
         $db = $GLOBALS['database'];
@@ -196,7 +211,11 @@ class Promotion {
 
     }
 
-
+    /*
+     * Gets data for one promotion.
+     * @param code: The promotion to look for.
+     * @return: Returns a json string of all promotions in the database.
+     */
     static function Get($args): void {
 
         if (!$args['code']) {
@@ -230,6 +249,11 @@ class Promotion {
 
     }
 
+    /*
+     * Forcibly ends a promotion.
+     * @param code: The promotion to look for.
+     * @return: Returns a json string of all promotions in the database.
+     */
     static function End($args): void {
 
         // Make sure they entered a code

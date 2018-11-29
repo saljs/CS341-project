@@ -326,12 +326,25 @@ software for an online e-commerce shopping cart software product.
 \begin{tabularx}{\textwidth}{l X}
     \it{Index:} & P.2 \\
     \it{Name:} & EndPromotion \\
-    \it{Purpose:} & To forcefully end a promotion \\
+    \it{Purpose:} & Forcibly ends a promotion. \\
     \it{Input parameters:} & Discount Code \it{[Identifier]}.\\
-    \it{Action:} & Ends given promotion from database\\
+    \it{Action:} & Sets the end time of the promotion in the database to the current time. \\
     \it{Output parameters:} & Success or Failure message. \\
-    \it{Exceptions:} & The discount code doesn't exist, the promotion is already ended \\
-    \it{Remarks:} & Edit a field in the database, 'ongoing', to mark it as done. Otherwise could just change the end date to the current datetime.\\
+    \it{Exceptions:} & The discount code doesn't exist. \\
+    \it{Remarks:} & It doesn't matter if they want to end a promotion that's over since it's already over.\\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & P.2 \\
+    \it{Name:} & EditPromotion \\
+    \it{Purpose:} & Edits an existing promotion, only changing fields given, all based on the promotion code. \\
+    \it{Input parameters:} & Discount Code and any fields to change \it{[Identifier]}.\\
+    \it{Action:} & Edits the given promotion in the database. \\
+    \it{Output parameters:} & Success or Failure message. \\
+    \it{Exceptions:} & The discount code doesn't exist, the promotion is already ended. \\
+    \it{Remarks:} & None. \\
     \it{Cross references:} & None. \\
     \hline
 \end{tabularx}
@@ -339,12 +352,25 @@ software for an online e-commerce shopping cart software product.
 \begin{tabularx}{\textwidth}{l X}
     \it{Index:} & P.3 \\
     \it{Name:} & GetPromotion \\
-    \it{Purpose:} & Returns the type & percentage of the promotion. \\
+    \it{Purpose:} & Gets data for one promotion. \\
     \it{Input parameters:} & Discount Code \it{[Identifier]}.\\
     \it{Action:} & Gets a promotion based on the discount code given.\\
-    \it{Output parameters:} & Success or Failure message. \\
+    \it{Output parameters:} & JSON string of the promotion's data. \\
     \it{Exceptions:} & The discount code doesn't exist, the promotion is over. \\
-    \it{Remarks:} & This should be used during ApplyPromotion\\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & P.3 \\
+    \it{Name:} & GetAll \\
+    \it{Purpose:} & Get all existing promotions and their data. \\
+    \it{Input parameters:} & Discount Code \it{[Identifier]}.\\
+    \it{Action:} & Gets all promotions from the database. \\
+    \it{Output parameters:} & JSON string of all the promotion data. \\
+    \it{Exceptions:} & None. \\
+    \it{Remarks:} & None. \\
     \it{Cross references:} & None. \\
     \hline
 \end{tabularx}
@@ -354,11 +380,11 @@ software for an online e-commerce shopping cart software product.
 \begin{tabularx}{\textwidth}{l X}
     \it{Index:} & PP.1 \\
     \it{Name:} & GetProduct \\
-    \it{Purpose:} & Load all products matching given fields.\\
-    \it{Input parameters:} & Search Query & Category.\\
-    \it{Action:} & Returns all products matching the search query & category.\\
-    \it{Output parameters:} & Success or Failure message. \\
-    \it{Exceptions:} & None. \\
+    \it{Purpose:} & Gets info on an existing Product\\
+    \it{Input parameters:} & Product Id\\
+    \it{Action:} & Returns the product name, price, quantity, image, and description.\\
+    \it{Output parameters:} & JSON string of the item's data \\
+    \it{Exceptions:} & Invalid ID. \\
     \it{Remarks:} & None. \\
     \it{Cross references:} & None. \\
     \hline
@@ -367,11 +393,11 @@ software for an online e-commerce shopping cart software product.
 \begin{tabularx}{\textwidth}{l X}
     \it{Index:} & PP.1 \\
     \it{Name:} & GetAllProduct \\
-    \it{Purpose:} & Loads product information \\
-    \it{Input parameters:} & Unique Product Id \\
-    \it{Action:} & Returns product information like name, price, quantity, image, etc.\\
-    \it{Output parameters:} & Success or Failure message. \\
-    \it{Exceptions:} & Invalid PID. \\
+    \it{Purpose:} & Gets info about a group of products. \\
+    \it{Input parameters:} & Category & string to search for. \\
+    \it{Action:} & Find all items that meet the given parameters\\
+    \it{Output parameters:} & JSON string of the item's data \\
+    \it{Exceptions:} & None. \\
     \it{Remarks:} & None. \\
     \it{Cross references:} & None. \\
     \hline
