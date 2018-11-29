@@ -15,7 +15,7 @@
 
 \title{CS341 Shopping Cart Functional Requirements}
 
-\author{Group 4: Sal Skare, Jack Englund, David Wissink, and John Collins}
+\author{Group 1: Sal Skare, Jack Englund, David Wissink, and John Collins}
 
 \maketitle 
     % tells latex to follow your header (e.g., title, author) commands.
@@ -25,14 +25,14 @@ software for an online e-commerce shopping cart software product.
 
 \section{Functional Requirements}
 
-\subsection{Users}
+\subsection{Registered User}
 
 \begin{tabularx}{\textwidth}{l X}
     \it{Index:} & U.1 \\
-    \it{Name:} & CreateUser \\
+    \it{Name:} & CreateRegisteredUser \\
     \it{Purpose:} & To create a new user in the database. \\
-    \it{Input parameters:} & Email, Password, Guest user ID, Type of user \it{[customer, admin]}. \\
-    \it{Action:} & Creates a new entry in the database for the user, hashing the password. If the guest 
+    \it{Input parameters:} & Email, Password, guest ID, type(admin, customer)\\
+    \it{Action:} & Creates a new entry in the database for the Registered User, hashing the password. If the guest 
     user ID is given, the guest user cart will be imported to the new user.\\
     \it{Output parameters:} & Success or failure message. \\
     \it{Exceptions:} & The user already exists, not all required fields were given, there 
@@ -40,12 +40,12 @@ software for an online e-commerce shopping cart software product.
     \it{Remarks:} & It will be up to the front-end design to also log in the newly created 
     user if that functionality is desired. Also, to create an admin user requires an existing admin
     to make the request, including a valid Access Token\\
-    \it{Cross references:} & AuthenticateUser \\
+    \it{Cross references:} & none. \\
     \hline
 \end{tabularx}
 
 \begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & U.3 \\
+    \it{Index:} & U.2 \\
     \it{Name:} & AuthenticateUser \\
     \it{Purpose:} & Authenticates the user to the server for a set period of time. \\
     \it{Input parameters:} & Email, Password \\
@@ -54,12 +54,12 @@ software for an online e-commerce shopping cart software product.
     \it{Exceptions:} & The user does not exist, the password did not match the user, there was a database error. \\
     \it{Remarks:} & The server will log the time the token was created and mark it as expired after a set length of time, 
     requiring the user to log in again. \\
-    \it{Cross references:} & None. \\
+    \it{Cross references:} & none. \\
     \hline
 \end{tabularx}
 
 \begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & U.4 \\
+    \it{Index:} & U.3 \\
     \it{Name:} & GetUser \\
     \it{Purpose:} & Returns information about the user \\
     \it{Input parameters:} & Email, Access Token \\
@@ -71,8 +71,23 @@ software for an online e-commerce shopping cart software product.
     \hline
 \end{tabularx}
 
+\subsection{Cart}
+
 \begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & U.5 \\
+    \it{Index:} & CT.1 \\
+    \it{Name:} & GetCartPrice \\
+    \it{Purpose:} & calculates the total price,  \\
+    \it{Input parameters:} & Email, Access Token, Item ID, count \\
+    \it{Action:} & Adds the number of items given by the count to the specified user's cart. \\
+    \it{Output parameters:} & A success or failure message. \\
+    \it{Exceptions:} & The user is not authenticated, the item does not exist, there was a database error. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.4 \\
     \it{Name:} & AddItemToCart \\
     \it{Purpose:} & Adds the item to the user's cart. \\
     \it{Input parameters:} & Email, Access Token, Item ID, count \\
@@ -328,79 +343,13 @@ software for an online e-commerce shopping cart software product.
     \hlin
 \end{tabularx}
 
-\subsection{Functional Requirements for Out Going Product Management}
+\subsection{Functional Requirements for Login}
 
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & PM.1 \\
-    \it{Name:} &  DisplayOrders\\
-    \it{Purpose:} &  To display all of the out going orders. \\
-    \it{Input parameters:} & none \\
-    \it{Action:} & Displays the orders in chronological order. Displays the status of the order. Displays the items purchased and their quantities. Displays additional data relevant to the user and the order.\\
-    \it{Output parameters:} & Admin GUI \\
-    \it{Exceptions:} & none \\
-    \it{Remarks:} & This method is for admin use, specifically those in charge of getting orders in the mail.\\
-    \it{Cross references:} & \\
-    \hline
-\end{tabularx}
-
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & PM.2 \\
-    \it{Name:} &  GenerateShippingLabel\\
-    \it{Purpose:} & To fetch the shipping address of an outgoing order \\
-    \it{Input parameters:} & order ID \\
-    \it{Action:} & Creates a shipping label based on user data from the checkout process. \\
-    \it{Output parameters:} & A properly formatted shipping label\\
-    \it{Exceptions:} & none \\
-    \it{Remarks:} & This method is used by the admin only.\\
-    \it{Cross references:} & CO.2\\
-    \hline
-\end{tabularx}
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} &  PM.3\\
-    \it{Name:} & LocateItems \\
-    \it{Purpose:} & To provide locations of all items in an order. \\
-    \it{Input parameters:} & Order ID  \\
-    \it{Action:} & Generates a document, which will contain each item from a given order and it's location on site\\
-    \it{Output parameters:} & Location of items document\\
-    \it{Exceptions:} & none\\
-    \it{Remarks:} & this method is for admin use only\\
-    \it{Cross references:} & none\\
-    \hline
-\end{tabularx}
-
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & PM.4 \\
-    \it{Name:} &  UpdateOrderStatus\\
-    \it{Purpose:} &  To indicate an items progress from checkout to delivery\\
-    \it{Input parameters:} & none \\
-    \it{Action:} & Advances an items status. Updates admin log\\
-    \it{Output parameters:} & Success/Fail notification\\
-    \it{Exceptions:} & none\\
-    \it{Remarks:} & This method is for admin use only.\\
-    \it{Cross references:} & none\\
-    \hline
-\end{tabularx}
-
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & PM.5 \\
-    \it{Name:} & CancelOrder \\
-    \it{Purpose:} &  Allow admin to cancel a specific order\\
-    \it{Input parameters:} &  Order ID, Reason Code\\
-    \it{Action:} & Cancels the order.Removes the order from the outgoing log. Generates appropriate response based on reason code(back order, refund, damaged merchandise, etc.).\\
-    \it{Output parameters:} & user notification\\
-    \it{Exceptions:} & Invalid reason code\\
-    \it{Remarks:} & this method is for admin use only. Reason codes should perform appropriate actions such as refunding orders. \\
-    \it{Cross references:} & none\\
-    \hline
-\end{tabularx}
 
 \section{Assumptions:}
 \begin{enumerate}
     \item Users are identified by their email addresses.
     \item If a user wants to change their email address, they will need to create a new account.
     \item All payment info and address data will be handled through PayPal.
-    \item The administrative user duties will include: maintenance of the inventory/users and control of out going orders. 
-    \item The customer who uses this product will create a custom front-end for their business, using the documentation and example front end as 
-        a guide.
 \end{enumerate}
 \end{document}
