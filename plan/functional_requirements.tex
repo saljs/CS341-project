@@ -76,18 +76,19 @@ software for an online e-commerce shopping cart software product.
 \begin{tabularx}{\textwidth}{l X}
     \it{Index:} & CT.1 \\
     \it{Name:} & GetCartPrice \\
-    \it{Purpose:} & calculates the total price,  \\
-    \it{Input parameters:} & Email, Access Token, Item ID, count \\
-    \it{Action:} & Adds the number of items given by the count to the specified user's cart. \\
-    \it{Output parameters:} & A success or failure message. \\
-    \it{Exceptions:} & The user is not authenticated, the item does not exist, there was a database error. \\
+    \it{Purpose:} & calculates the total price, taking ship and promotion codes into consideration \\
+    \it{Input parameters:} & Email, PromotionCode \\
+    \it{Action:} &  fetches products from the cart, applies promotion to item if valid, then adds price to running total\\
+    \it{Output parameters:} & Total price  \\
+    \it{Exceptions:} &  invalid promotion, empty cart\\
     \it{Remarks:} & None. \\
-    \it{Cross references:} & None. \\
+    \it{Cross references:} & \\
     \hline
 \end{tabularx}
 
+
 \begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & U.4 \\
+    \it{Index:} & CT.2 \\
     \it{Name:} & AddItemToCart \\
     \it{Purpose:} & Adds the item to the user's cart. \\
     \it{Input parameters:} & Email, Access Token, Item ID, count \\
@@ -111,6 +112,20 @@ software for an online e-commerce shopping cart software product.
     \it{Cross references:} & None. \\
     \hline
 \end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.7 \\
+    \it{Name:} & EmptyCart \\
+    \it{Purpose:} & Returns a list of all items in a user's cart. \\
+    \it{Input parameters:} & Email, Access Token \\
+    \it{Action:} & Creates a list of item IDs and count in an authenticated user's cart. \\
+    \it{Output parameters:} & A list of Item IDs and the count for each item. \\
+    \it{Exceptions:} & The user is not authenticated, there was a database error. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
 
 \begin{tabularx}{\textwidth}{l X}
     \it{Index:} & U.7 \\
@@ -351,5 +366,6 @@ software for an online e-commerce shopping cart software product.
     \item Users are identified by their email addresses.
     \item If a user wants to change their email address, they will need to create a new account.
     \item All payment info and address data will be handled through PayPal.
+    \item only one promotion code can be applied to the cart
 \end{enumerate}
 \end{document}
