@@ -135,6 +135,35 @@ software for an online e-commerce shopping cart software product.
     \hline
 \end{tabularx}
 
+\subsection{Functional Requirements for Registered User Checkout}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & CO.1 \\
+    \it{Name:} &  CompleteCheckout\\
+    \it{Purpose:} & complete the paypal checkout process \\
+    \it{Input parameters:}  Registered user token, Promotion Code\\
+    \it{Action:} & Calculates total for a registered user's cart and sends request to paypal API\\
+    \it{Output parameters:} & Success or failure message. \\
+    \it{Exceptions:} & Cart is empty, token invalid, paypal API failure \\
+    \it{Remarks:} & None\\
+    \it{Cross references:} & CT.1  \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & CO.2 \\
+    \it{Name:} & PayPalEdit \\
+    \it{Purpose:} &  \\
+    \it{Input parameters:}  \\
+    \it{Action:} & \\
+    \it{Output parameters:} & Success or failure message. \\
+    \it{Exceptions:} &   \\
+    \it{Remarks:} & \\
+    \it{Cross references:} &  \\
+    \hline
+\end{tabularx}
+
+
 \subsection{Functional Requirements For Registered User}
 
 \begin{tabularx}{\textwidth}{l X}
@@ -374,60 +403,6 @@ software for an online e-commerce shopping cart software product.
     \hline
 \end{tabularx}
 
-\subsection{Functional Requirements for the Checkout Process}
-
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & CO.1 \\
-    \it{Name:} & SelectPaymentOption \\
-    \it{Purpose:} & To allow a guest or registered user to select a payment option to apply to the cart balance. \\
-    \it{Input parameters:} none \\
-    \it{Action:} & Setups a payment method to be applied to the shopping cart balance for registered user and guest. Selects an existing payment method for registered user. Payment will be handled through Paypal
-    user ID is given, the guest user cart will be imported to the new user.\\
-    \it{Output parameters:} & Success or failure message. \\
-    \it{Exceptions:} &  Cart has a balance of $0.00$. \\
-    \it{Remarks:} & This method is used only during the checkout routine. Adjusting payment for a registered user can be done with the corresponding user setting functions. Should be incorporated into user friendly GUI.\\
-    \it{Cross references:} & CO.4 \\
-    \hline
-\end{tabularx}
-
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & CO.2 \\
-    \it{Name:} & SelectShippingOption \\
-    \it{Purpose:} & To allow a guest or registered user to select a shipping address for their order.\\
-    \it{Input parameters:} & First Name, Last Name, Street Address, Apt. Number, City, State, Zip Code, Phone Number, Shipping Class \\
-    \it{Action:} & Initialize a new shipping method to be applied. Select an existing shipping method for registered guests. Validates the user's data.\\
-    \it{Output parameters:} & Success/Fail Notification  \\
-    \it{Exceptions:} & The supplied data is invalid. \\
-    \it{Remarks:} & This method is used only during the checkout routine. Adjusting payment for a registered user can be done with the corresponding user setting functions. User friendly form recommended. \\
-    \it{Cross references:} & CO.4\\
-    \hline
-\end{tabularx}
-
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & CO.3 \\
-    \it{Name:} & ApplyPromocode \\
-    \it{Purpose:} & To allow both users to apply promocodes to their shopping cart balance. \\
-    \it{Input parameters:} & Promocode \\
-    \it{Action:} & Validates promocode. Applies promocode to shopping cart to alter the balance of the shopping cart (for both registered and guest users)\\
-    \it{Output parameters:} & Amount Reduced  \\
-    \it{Exceptions:} & Promocode is invalid\\
-    \it{Remarks:} & This method is used only during the checkout routine. Should be incorporated into user friendly GUI.\\
-    \it{Cross references:} & CO.4 \\
-    \hline
-\end{tabularx}
-
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & CO.4 \\
-    \it{Name:} &  SubmitCheckout\\
-    \it{Purpose:} &  To submit the cart, along with payment, for processing by the admin\\
-    \it{Input parameters:} & Cart, Payment Method, Shipping Method \\
-    \it{Action:} & Submits the order for processing by the admin. Reduces the quantity in stock of each item. Generates user notification. Generates admin notification. \\
-    \it{Output parameters:} & Success/Fail Notification \\
-    \it{Exceptions:} & Cart is empty. Payment or shipping is invalid. \\
-    \it{Remarks:} & This method is used to conclude the checkout process. Should be incorporated into user friendly GUI.\\
-    \it{Cross references:} & CO.1, CO.2, CO.3, CO.5 \\
-    \hline
-\end{tabularx}
 
 \subsection{Functional Requirements for Login}
 
@@ -440,6 +415,6 @@ software for an online e-commerce shopping cart software product.
     \item only one promotion code can be applied to the cart
     \item Admin are also registered customers who may purchase items
     \item Admin are distinguished by their ability to access the admin pages
-    \item A category is not deleted unless all items of that category have also been deleted
+    \item A category is not delete unless all items of that category have also been deleted
 \end{enumerate}
 \end{document}
