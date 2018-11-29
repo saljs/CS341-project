@@ -25,52 +25,6 @@ software for an online e-commerce shopping cart software product.
 
 \section{Functional Requirements}
 
-\subsection{Functional Requirements For Registered User}
-
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & U.1 \\
-    \it{Name:} & CreateRegisteredUser \\
-    \it{Purpose:} & To create a new user in the database. \\
-    \it{Input parameters:} & Email, Password, guest ID, type(admin, customer)\\
-    \it{Action:} & Creates a new entry in the database for the Registered User, hashing the password. If the guest 
-    user ID is given, the guest user cart will be imported to the new user.\\
-    \it{Output parameters:} & Success or failure message. \\
-    \it{Exceptions:} & The user already exists, not all required fields were given, there 
-    was a database error, the user does not have permission to create a new admin. \\
-    \it{Remarks:} & It will be up to the front-end design to also log in the newly created 
-    user if that functionality is desired. Also, to create an admin user requires an existing admin
-    to make the request, including a valid Access Token\\
-    \it{Cross references:} & none. \\
-    \hline
-\end{tabularx}
-
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & U.2 \\
-    \it{Name:} & AuthenticateUser \\
-    \it{Purpose:} & Authenticates the user to the server for a set period of time. \\
-    \it{Input parameters:} & Email, Password \\
-    \it{Action:} & Generates an Access Token for the given user. \\
-    \it{Output parameters:} & A temporary Access Token to be included in all requests that require elevated permission. \\
-    \it{Exceptions:} & The user does not exist, the password did not match the user, there was a database error. \\
-    \it{Remarks:} & The server will log the time the token was created and mark it as expired after a set length of time, 
-    requiring the user to log in again. \\
-    \it{Cross references:} & none. \\
-    \hline
-\end{tabularx}
-
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & U.3 \\
-    \it{Name:} & GetUser \\
-    \it{Purpose:} & Returns information about the user \\
-    \it{Input parameters:} & Email, Access Token \\
-    \it{Action:} & Queries the database for the user, then returns all available fields. \\
-    \it{Output parameters:} &  An \it{User} object, containing, email, name, type of user.\\
-    \it{Exceptions:} & The user is not authenticated, there was a database error. \\
-    \it{Remarks:} & None. \\
-    \it{Cross references:} & None. \\
-    \hline
-\end{tabularx}
-
 \subsection{Functional Requirements For Cart}
 
 \begin{tabularx}{\textwidth}{l X}
@@ -119,7 +73,7 @@ software for an online e-commerce shopping cart software product.
     \it{Purpose:} & Removes all items from a car \\
     \it{Input parameters:} & Access Token \\
     \it{Action:} & removes all items from the authenticated user's cart. \\
-    \it{Output parameters:} & \\
+    \it{Output parameters:} & None. \\
     \it{Exceptions:} & The user is not authenticated, there was a database error. \\
     \it{Remarks:} & takes back to the "home" page when complete \\
     \it{Cross references:} & CT.3. \\
@@ -152,6 +106,81 @@ software for an online e-commerce shopping cart software product.
     \it{Cross references:} & None. \\
     \hline
 \end{tabularx}
+
+\subsection{Functional Requirements For Categories}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & CG.1 \\
+    \it{Name:} &  CreateCategory\\
+    \it{Purpose:} & to create a new product category\\
+    \it{Input parameters:} &  Name, admin user's token\\
+    \it{Action:} &  authenticates admin privileges and then creates a new product category \\
+    \it{Output parameters:} & A success or failure message. \\
+    \it{Exceptions:} & invalid token, database error\\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & CG.2 \\
+    \it{Name:} &  DeleteCategory\\
+    \it{Purpose:} & removes an existing category\\
+    \it{Input parameters:} &  Name, Admin user's token\\
+    \it{Action:} &  authenticates the admin's token and then deletes the category\\
+    \it{Output parameters:} & A success or failure message. \\
+    \it{Exceptions:} & invalid token, database error\\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
+\subsection{Functional Requirements For Registered User}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.1 \\
+    \it{Name:} & CreateRegisteredUser \\
+    \it{Purpose:} & To create a new user in the database. \\
+    \it{Input parameters:} & Email, Password, guest ID, type(admin, customer)\\
+    \it{Action:} & Creates a new entry in the database for the Registered User, hashing the password. If the guest 
+    user ID is given, the guest user cart will be imported to the new user.\\
+    \it{Output parameters:} & Success or failure message. \\
+    \it{Exceptions:} & The user already exists, not all required fields were given, there 
+    was a database error, the user does not have permission to create a new admin. \\
+    \it{Remarks:} & It will be up to the front-end design to also log in the newly created 
+    user if that functionality is desired. Also, to create an admin user requires an existing admin
+    to make the request, including a valid Access Token\\
+    \it{Cross references:} & none. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.2 \\
+    \it{Name:} & AuthenticateUser \\
+    \it{Purpose:} & Authenticates the user to the server for a set period of time. \\
+    \it{Input parameters:} & Email, Password \\
+    \it{Action:} & Generates an Access Token for the given user. \\
+    \it{Output parameters:} & A temporary Access Token to be included in all requests that require elevated permission. \\
+    \it{Exceptions:} & The user does not exist, the password did not match the user, there was a database error. \\
+    \it{Remarks:} & The server will log the time the token was created and mark it as expired after a set length of time, 
+    requiring the user to log in again. \\
+    \it{Cross references:} & none. \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l X}
+    \it{Index:} & U.3 \\
+    \it{Name:} & GetUser \\
+    \it{Purpose:} & Returns information about the user \\
+    \it{Input parameters:} & Email, Access Token \\
+    \it{Action:} & Queries the database for the user, then returns all available fields. \\
+    \it{Output parameters:} &  An \it{User} object, containing, email, name, type of user.\\
+    \it{Exceptions:} & The user is not authenticated, there was a database error. \\
+    \it{Remarks:} & None. \\
+    \it{Cross references:} & None. \\
+    \hline
+\end{tabularx}
+
 
 \subsection{Functional Requirements For Guest Cart}
 
@@ -233,6 +262,9 @@ software for an online e-commerce shopping cart software product.
     \it{Cross references:} & \\
     \hline
 \end{tabularx}
+\subsection{Functional Requirements for Guest Checkout}
+
+
 
 \subsection{Promotions}
 
@@ -397,19 +429,6 @@ software for an online e-commerce shopping cart software product.
     \hline
 \end{tabularx}
 
-\begin{tabularx}{\textwidth}{l X}
-    \it{Index:} & CO.5 \\
-    \it{Name:} & GenerateAdminNotification\\
-    \it{Purpose:} &  To create an entry in the administration’s log so the order may be processed\\
-    \it{Input parameters:} & User Name, User Email, Items, Shipping Method  \\
-    \it{Action:} & Notifies appropriate admin. Creates an entry in the admin outgoing processing log\\
-    \it{Output parameters:} & none\\
-    \it{Exceptions:} & none \\
-    \it{Remarks:} & This method is for internal use only. No User will have access to this function.\\
-    \it{Cross references:} & CO.4 \\
-    \hlin
-\end{tabularx}
-
 \subsection{Functional Requirements for Login}
 
 
@@ -420,6 +439,7 @@ software for an online e-commerce shopping cart software product.
     \item All payment info and address data will be handled through PayPal.
     \item only one promotion code can be applied to the cart
     \item Admin are also registered customers who may purchase items
-    \item Admin are distonguished by their ability to access the admin pages
+    \item Admin are distinguished by their ability to access the admin pages
+    \item A category is not deleted unless all items of that category have also been deleted
 \end{enumerate}
 \end{document}
