@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.9.7)  27 SEP 2018 10:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.11.16)  29 NOV 2018 09:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -82,142 +82,190 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 20.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 58--59
+Overfull \hbox (15.0pt too wide) in paragraph at lines 54--55
 [][] 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (15.0pt too wide) in paragraph at lines 72--73
+Overfull \hbox (15.0pt too wide) in paragraph at lines 67--68
 [][] 
  []
 
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 85--86
+Overfull \hbox (15.0pt too wide) in paragraph at lines 80--81
 [][] 
  []
 
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 98--99
+Overfull \hbox (15.0pt too wide) in paragraph at lines 93--94
 [][] 
  []
 
 [2]
-Overfull \hbox (15.0pt too wide) in paragraph at lines 111--112
+Overfull \hbox (15.0pt too wide) in paragraph at lines 106--107
 [][] 
  []
 
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 124--125
+Overfull \hbox (15.0pt too wide) in paragraph at lines 134--135
 [][] 
  []
 
 [3]
-Overfull \hbox (15.0pt too wide) in paragraph at lines 153--154
-[][] 
- []
-
-! Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
-l.166 \end{tabularx}
-                    
-? 
-! Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
-l.166 \end{tabularx}
-                    
-? 
-! Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
-l.166 \end{tabularx}
-                    
-? 
-
-Overfull \hbox (15.0pt too wide) in paragraph at lines 166--167
+Overfull \hbox (15.0pt too wide) in paragraph at lines 162--163
 [][] 
  []
 
 [4]
-Overfull \hbox (15.0pt too wide) in paragraph at lines 194--195
-[][] 
- []
-
-! Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
-l.207 \end{tabularx}
-                    
-? 
-! Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
-l.207 \end{tabularx}
-                    
-? 
-! Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
-l.207 \end{tabularx}
-                    
-? 
-
-Overfull \hbox (15.0pt too wide) in paragraph at lines 207--208
+Overfull \hbox (15.0pt too wide) in paragraph at lines 191--192
 [][] 
  []
 
 [5]
-Overfull \hbox (15.0pt too wide) in paragraph at lines 220--221
+Overfull \hbox (15.0pt too wide) in paragraph at lines 204--205
 [][] 
  []
 
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.217 \end{tabularx}
+                    
+? 
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.217 \end{tabularx}
+                    
+? 
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.217 \end{tabularx}
+                    
+? 
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 248--249
+Overfull \hbox (15.0pt too wide) in paragraph at lines 217--218
+[][] 
+ []
+
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.230 \end{tabularx}
+                    
+? 
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.230 \end{tabularx}
+                    
+? 
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.230 \end{tabularx}
+                    
+? 
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 230--231
 [][] 
  []
 
 [6]
-Overfull \hbox (15.0pt too wide) in paragraph at lines 261--262
-[][] 
- []
-
-
-Overfull \hbox (15.0pt too wide) in paragraph at lines 274--275
+Overfull \hbox (15.0pt too wide) in paragraph at lines 243--244
 [][] 
  []
 
 [7]
-Overfull \hbox (15.0pt too wide) in paragraph at lines 303--304
+Overfull \hbox (15.0pt too wide) in paragraph at lines 291--292
 [][] 
  []
 
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 316--317
+Overfull \hbox (15.0pt too wide) in paragraph at lines 304--305
 [][] 
  []
 
-[8] [9] [10] [11] [12] [13] (./functional_requirements.aux) ) 
+[8]
+Overfull \hbox (15.0pt too wide) in paragraph at lines 337--338
+[][] 
+ []
+
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 350--351
+[][] 
+ []
+
+[9]
+Overfull \hbox (15.0pt too wide) in paragraph at lines 363--364
+[][] 
+ []
+
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 376--377
+[][] 
+ []
+
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.404 \end{tabularx}
+                    
+? 
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.404 \end{tabularx}
+                    
+? 
+[10]
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.404 \end{tabularx}
+                    
+? 
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 404--405
+[][] 
+ []
+
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 417--418
+[][] 
+ []
+
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 430--431
+[][] 
+ []
+
+[11]
+Overfull \hbox (15.0pt too wide) in paragraph at lines 443--444
+[][] 
+ []
+
+[12] [13] (./functional_requirements.aux) ) 
 Here is how much of TeX's memory you used:
  542 strings out of 492642
- 6305 string characters out of 6135567
- 80783 words of memory out of 5000000
+ 6305 string characters out of 6135565
+ 74783 words of memory out of 5000000
  4485 multiletter control sequences out of 15000+600000
  7933 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,9n,19p,251b,181s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
-fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on functional_requirements.pdf (13 pages, 98925 bytes).
+ 23i,8n,19p,189b,181s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on functional_requirements.pdf (13 pages, 89378 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 49 compressed objects within 1 object stream
+ 67 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
