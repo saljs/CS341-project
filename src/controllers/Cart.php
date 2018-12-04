@@ -23,7 +23,7 @@ function getCartPrice($userId, $promotionCode):float {
     }
     while($product = $products->fetch_assoc()) {
         $prod = new ViewableProduct($product['itemId']);
-        if($promo['type'] == 'percent' && $promo['items'] == $product['itemId']){
+        if($promo['type'] == 'percent'){
             $temp = (float)$prod->price * (float)($promo['percent']/100) * (float)$product['quantity'];
             $cost = (int)$cost + (int)$temp;
             $cost = 111;
@@ -34,7 +34,6 @@ function getCartPrice($userId, $promotionCode):float {
         }
         else{
             $cost += (float)$prod->price * (int)$product['quantity'];
-            $cost = 333;
         }
     }
     return $cost;
