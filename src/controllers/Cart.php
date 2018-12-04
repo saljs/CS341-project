@@ -26,7 +26,7 @@ function getCartPrice($userId, $promotionCode):float {
         if($promo['type'] == 'percent'){
             $temp = (float)$prod->price * (float)($promo['percent']/100) * (float)$product['quantity'];
             $cost = (int)$cost + (int)$temp;
-            $cost = 111;
+            $cost = $promo['items'];
         }
         else if($promo['type'] == 'bogo' && $promo['items'] == $product['itemId'] && $product['quantity'] > 1 ){
             $cost += (float)$prod->price * (((int)$product['quantity']) - 1);
