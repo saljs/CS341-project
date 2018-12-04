@@ -23,12 +23,12 @@ function getCartPrice($userId, $promotionCode):float {
     }
     while($product = $products->fetch_assoc()) {
         $prod = new ViewableProduct($product['itemId']);
-        if($promo['type'] == 'percent' && $promo['items'] == $prod['id']){
+        if($promo['type'] == 'percent' && $promo['items'] == $product['itemId']){
             $temp = (float)$prod->price * (float)($promo['percent']/100) * (float)$product['quantity'];
             $cost = (int)$cost + (int)$temp;
             $cost = 111;
         }
-        else if($promo['type'] == 'bogo' && $promo['items'] == $prod['id'] && $product['quantity'] > 1 ){
+        else if($promo['type'] == 'bogo' && $promo['items'] == $product['itemId'] && $product['quantity'] > 1 ){
             $cost += (float)$prod->price * (((int)$product['quantity']) - 1);
             $cost = 222;
         }
