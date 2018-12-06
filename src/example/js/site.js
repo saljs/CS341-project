@@ -243,7 +243,7 @@ function removeItemList(items) {
 }
 
 function loadItemPreview(item, url) {
-    $('previewList').innerHTML = "";
+    $('#previewList').innerHTML = "";
     $('#previewList').append(
         '<div class="col-lg-4 col-md-6 mb-4">'+'' +
         '<div class="card h-100">'+
