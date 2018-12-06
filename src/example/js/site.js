@@ -254,10 +254,10 @@ function changeRemoveButton(item) {
         console.log("....");
         $.post('https://cs341group4.tk/Product/Delete?id=' + item.id)
         .done(function(data) {
-            console.log(data.message);
+            console.log(data);
         })
         .fail(function(data) {
-            console.log(data.message);
+            console.log(data);
         });
     }
 
