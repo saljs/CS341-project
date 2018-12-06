@@ -125,7 +125,7 @@ class Product {
      * Deletes an existing Product
      */
     static function Delete($args): void {
-        if(!$args['id']) {
+        if(!($args['id'])) {
             error("Product Id required");
             return;
         }
