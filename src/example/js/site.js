@@ -238,11 +238,13 @@ function removeItemList(items) {
         a.onclick = function() {
             $('#previewList').innerHTML = "";
             loadItemPreview(item, url);
+            window.location.href += "?removeitem=" + item.id;
         };
 
         var dropdown = document.getElementById("myDropdown");
         dropdown.appendChild(a);
     });
+
 }
 
 function loadItemPreview(item, url) {
