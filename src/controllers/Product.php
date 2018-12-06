@@ -126,8 +126,8 @@ class Product {
      */
     static function Delete($args): void {
         if(!($args['id'])) {
-            error("Product Id required");
-            echo $args;
+            error(json_encode($args));
+            echo json;
             return;
         }
 
