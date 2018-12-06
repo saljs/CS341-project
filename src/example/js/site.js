@@ -235,7 +235,10 @@ function removeItemList(items) {
         var a = document.createElement("a");
         a.value = item.name;
         a.textContent = item.name;
-        a.onclick = function() { loadItemPreview(item, url);};
+        a.onclick = function() {
+            $('#previewList').innerHTML = "";
+            loadItemPreview(item, url);
+        };
 
         var dropdown = document.getElementById("myDropdown");
         dropdown.appendChild(a);
@@ -243,7 +246,6 @@ function removeItemList(items) {
 }
 
 function loadItemPreview(item, url) {
-    $('#previewList').innerHTML = "";
     $('#previewList').append(
         '<div class="col-lg-4 col-md-6 mb-4">'+'' +
         '<div class="card h-100">'+
