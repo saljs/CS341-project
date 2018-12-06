@@ -232,9 +232,10 @@ function loadAllItems() {
 function removeItemList(items) {
     items.forEach(function(item) {
         var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
-        $(`#myDropdown`).append(
-            '<a onclick="loadItemPreview(item, url)">' + item.name + '</a>'
-        );
+        var a = document.createElement("a");
+        a.value = item.name;
+        a.onclick = function() { loadItemPreview(item, url);};
+        $(`#myDropdown`).appendChild(a);
     });
 }
 
