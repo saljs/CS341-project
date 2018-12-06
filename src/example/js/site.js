@@ -252,7 +252,7 @@ function changeRemoveButton(item) {
     var removeButton = document.getElementById("removeItemButton");
     removeButton.onclick = function() {
         console.log("....");
-        $.post('https://cs341group4.tk/Product/Remove?id=' + item.id)
+        $.post('https://cs341group4.tk/Product/Delete?id=' + item.id)
         .done(function(data) {
             console.log("Item Successfully Removed");
         })
