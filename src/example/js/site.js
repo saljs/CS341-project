@@ -238,7 +238,7 @@ function removeItemList(items) {
         a.onclick = function() {
             document.getElementById("previewList").innerHTML = "";
             loadItemPreview(item, url);
-            window.location.href += "?removeitem=" + item.id;
+            window.location.href = baseURL + "/admin.html?removeitem=" + item.id;
             showRemoveList();
         };
 
@@ -588,6 +588,26 @@ function paypalEdit(e) {
     .fail(function(data){
         alert(data.responseJSON.message);
     });
+}
+
+function updateURLParameter(url, param, paramVal){
+    var newAdditionalURL = "";
+    var tempArray = url.split("?");
+    var baseURL = tempArray[0];
+    var additionalURL = tempArray[1];
+    var temp = "";
+    if (additionalURL) {
+        tempArray = additionalURL.split("&");
+        for (var i=0; i<tempArray.length; i++){
+            if(tempArray[i].split('=')[0] != param){
+                newAdditionalURL += temp + tempArray[i];
+                temp = "&";
+            }
+        }
+    }
+
+    var rows_txt = temp + "" + param + "=" + paramVal;
+    return baseURL + "?" + newAdditionalURL + rows_txt;
 }
 
 /****************************************************************************
