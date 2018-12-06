@@ -259,6 +259,7 @@ function changeRemoveButton(item) {
             console.log("Error Removing");
         });
     }
+    removeButton.updateSettings();
 }
 
 function loadItemPreview(item, url) {
