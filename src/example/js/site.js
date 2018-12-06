@@ -239,6 +239,7 @@ function removeItemList(items) {
             document.getElementById("previewList").innerHTML = "";
             loadItemPreview(item, url);
             window.location.href += "?removeitem=" + item.id;
+            showRemoveList();
         };
 
         var dropdown = document.getElementById("myDropdown");
