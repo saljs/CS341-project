@@ -233,7 +233,7 @@ function removeItemList(items) {
     items.forEach(function(item) {
         var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
         $(`#myDropdown`).append(
-            '<a onclick="' + loadItemPreview(item, url) + '">' + item.name + '</a>'
+            '<a onclick="loadItemPreview(item, url)">' + item.name + '</a>'
         );
     });
 }
