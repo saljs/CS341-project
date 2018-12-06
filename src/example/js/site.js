@@ -238,7 +238,6 @@ function removeItemList(items) {
         a.onclick = function() {
             document.getElementById("previewList").innerHTML = "";
             loadItemPreview(item, url);
-            //window.location.href = baseURL + "/admin.html?removeitem=" + item.id;
             showRemoveList();
         };
 
@@ -252,7 +251,7 @@ function loadItemPreview(item, url) {
     $('#previewList').append(
         '<div class="col-lg-4 col-md-6 mb-4">'+'' +
         '<div class="card h-100">'+
-        '<a href="'+url+'">' +
+        '<a href="'+url+'" target="_blank">' +
         '<img class="card-img-top" src="'+item.image+'" alt="">' +
         '</a>'+
         '<div class="card-body">'+
