@@ -238,7 +238,7 @@ function removeItemList(items) {
         a.onclick = function() {
             document.getElementById("previewList").innerHTML = "";
             loadItemPreview(item, url);
-            window.location.href = baseURL + "/admin.html?removeitem=" + item.id;
+            //window.location.href = baseURL + "/admin.html?removeitem=" + item.id;
             showRemoveList();
         };
 
