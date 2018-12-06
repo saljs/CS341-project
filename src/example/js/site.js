@@ -251,6 +251,7 @@ function removeItemList(items) {
 function changeRemoveButton(item) {
     var removeButton = document.getElementById("removeItemButton");
     removeButton.onclick = function() {
+        console.log("....");
         $.post('https://cs341group4.tk/Product/Remove?id=' + item.id)
         .done(function(data) {
             console.log("Item Successfully Removed");
@@ -259,7 +260,7 @@ function changeRemoveButton(item) {
             console.log("Error Removing");
         });
     }
-    removeButton.updateSettings();
+
 }
 
 function loadItemPreview(item, url) {
