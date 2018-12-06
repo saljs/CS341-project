@@ -208,7 +208,7 @@ function loadAllItems() {
             .fail(function (data) {
                 $('#message').html(data.responseJSON.message);
             });
-    } else if($('#myDropdown').length) {
+    } if($('#myDropdown').length) {
         $.get('https://cs341group4.tk/Product/GetAll' + window.location.search)
             .done(function (data) {
                 $('#message').html("");
