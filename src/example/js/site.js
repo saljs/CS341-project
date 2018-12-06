@@ -236,7 +236,7 @@ function removeItemList(items) {
         a.value = item.name;
         a.textContent = item.name;
         a.onclick = function() {
-            $('#previewList').innerHTML = "";
+            document.getElementById("previewList").innerHTML = "";
             loadItemPreview(item, url);
             window.location.href += "?removeitem=" + item.id;
         };
@@ -258,8 +258,6 @@ function loadItemPreview(item, url) {
         '<h4 class="card-title">'+
         '<a href="'+url+'">'+item.name+'</a>'+
         '</h4>'+
-        '<h5>$'+item.price+'</h5>'+
-        '<p class="card-text">'+item.description+'</p>'+
         '</div>'+
         '</div>'+
         '</div>');
