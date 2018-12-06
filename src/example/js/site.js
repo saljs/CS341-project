@@ -235,7 +235,9 @@ function removeItemList(items) {
         var a = document.createElement("a");
         a.value = item.name;
         a.onclick = function() { loadItemPreview(item, url);};
-        $(`#myDropdown`).appendChild(a);
+
+        var dropdown = document.getElementById("myDropdown");
+        dropdown.appendChild(a);
     });
 }
 
