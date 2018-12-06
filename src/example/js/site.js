@@ -239,12 +239,20 @@ function removeItemList(items) {
             document.getElementById("previewList").innerHTML = "";
             loadItemPreview(item, url);
             showRemoveList();
+            changeRemoveButton(item);
         };
 
         var dropdown = document.getElementById("myDropdown");
         dropdown.appendChild(a);
     });
 
+}
+
+function changeRemoveButton(item) {
+    var removeButton = document.getElementById("removeItemButton");
+    removeButton.onclick = function() {
+        $.post('https://cs341group4.tk/Product/Remove')
+    }
 }
 
 function loadItemPreview(item, url) {

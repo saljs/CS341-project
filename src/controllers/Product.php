@@ -124,8 +124,18 @@ class Product {
 	/* 
      * Deletes an existing Product
      */
-    static function delete(): void {
-        echo "<h1>unimplimented, see functional req.s </h1>";
+    static function Delete($args): void {
+        if(!$args['id']) {
+            error("Product Id required");
+            return;
+        }
+
+        $sql = "DELETE FROM `product` WHERE id=" . $args['id'] . ";";
+        $db = $GLOBALS['database'];
+        $db->query($sql);
+
+        success();
+
     }
      /* 
      * edits an existing Product
