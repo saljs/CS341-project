@@ -234,6 +234,7 @@ function removeItemList(items) {
         var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
         var a = document.createElement("a");
         a.value = item.name;
+        a.textContent = item.name;
         a.onclick = function() { loadItemPreview(item, url);};
 
         var dropdown = document.getElementById("myDropdown");
@@ -242,7 +243,8 @@ function removeItemList(items) {
 }
 
 function loadItemPreview(item, url) {
-    $('#RemoveItem').append(
+    $('previewList').innerHTML = "";
+    $('#previewList').append(
         '<div class="col-lg-4 col-md-6 mb-4">'+'' +
         '<div class="card h-100">'+
         '<a href="'+url+'">' +
