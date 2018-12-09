@@ -247,6 +247,28 @@ function removeItemList(items) {
     });
 
 }
+/*
+ * Adds all existing items to the edit
+ * dropdown menu.
+ */
+function editItemList(items) {
+    items.forEach(function(item) {
+        var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
+        var a = document.createElement("a");
+        a.value = item.name;
+        a.textContent = item.name;
+        a.onclick = function() {
+            document.getElementById("editPreviewList").innerHTML = "";
+            loadItemPreview(item, url);
+            showRemoveList();
+            changeRemoveButton(item);
+        };
+
+        var dropdown = document.getElementById("editDropdown");
+        dropdown.appendChild(a);
+    });
+
+}
 
 /*
  * Changes the onclick function of the remove button to be the
