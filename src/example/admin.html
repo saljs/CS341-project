@@ -93,14 +93,7 @@
                     </div>
                     <div id="EditItem" class="tabcontent">
                         <h3 class="form-header">Edit Item</h3>
-                        <input id="EditItemButton" type="submit" class="btn btn-primary redbutton"/>
-                          <div class="dropdown">
-                            <input type="text" placeholder="Search.." id="editInput" onclick="showEditList()" onkeyup="filterEditFunction()">
-                            <div id="editDropdown" class="dropdown-content"></div>
-                        </div>
-                        <form class="form-check-inline topbottompadding">
-                             <div id="editPreviewList"></div>
-                         </form>
+                       
                     </div>
                     <div id="RemoveItem" class="tabcontent"> 
                         <h3 class="form-header">Remove Item</h3> 
@@ -464,9 +457,6 @@
              function showRemoveList() {
                  document.getElementById("myDropdown").classList.toggle("show");
              }
-            function showEditList() {
-                 document.getElementById("editDropdown").classList.toggle("show");
-             }
              function filterFunction() {
                  var input, filter, ul, li, a, i;
                  input = document.getElementById("myInput");
@@ -481,20 +471,7 @@
                      }
                  }
              }
-            function filterEditFunction() {
-                 var input, filter, ul, li, a, i;
-                 input = document.getElementById("editInput");
-                 filter = input.value.toUpperCase();
-                 div = document.getElementById("editDropdown");
-                 a = div.getElementsByTagName("a");
-                 for (i = 0; i < a.length; i++) {
-                     if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                         a[i].style.display = "";
-                     } else {
-                         a[i].style.display = "none";
-                     }
-                 }
-             }
+         
          </script>
 
     </body>
