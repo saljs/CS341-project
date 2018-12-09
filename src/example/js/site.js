@@ -49,6 +49,7 @@ $( document ).ready(function() {
     loadAllItems();
     loadSingleItem();
     loadCart();
+    loadHistory();
     loadAdmin();
 });
 
@@ -511,6 +512,42 @@ function checkout(e) {
     });
 }
 
+/*
+ * Finalizes checkout
+ */
+function finalizeTransaction() {
+    if($.cookie('token') != undefined) {
+        $.post('https://cs341group4.tk/Cart/Finalize')
+        .done(function() {
+            window.location = baseURL + "/userinfo.html";
+        });
+    }
+    else {
+        window.location = baseURL;
+    }
+}
+
+/****************************************************************************
+ * User page functions
+ ***************************************************************************/
+
+/*
+ * Loads user's order history
+ */
+function loadCart() {
+    if($('#orderHistory').length) {
+        if($.cookie('token') != undefined) {
+            $.post('https://cs341group4.tk/Cart/History)
+            .done(function(data) {
+                $('#message').html("");
+                $('#orderHistory').html(data);
+            })
+            .fail(function(data) {
+                $('#message').html(data.responseJSON.message);
+            });
+        }
+    }
+}
 /****************************************************************************
  * Admin functions
  ***************************************************************************/
