@@ -92,13 +92,7 @@
                         </form>
                     </div>
                     <div id="EditItem" class="tabcontent">
-                        <h3 class="form-header">Edit Item</h3>
-                         <input id="EditItemButton" type="submit" class="btn btn-primary redbutton"/>
-                         <div class="dropdown">
-                            <input type="text" placeholder="Search.." id="editInput" onclick="showEditList()" onkeyup="filterEditFunction()">
-                             <div id="editDropdown" class="dropdown-content"></div>
-                        </div>
-                      
+                        <h3 class="form-header">Edit Item</h3
                     </div>
                     <div id="RemoveItem" class="tabcontent">
                         <h3 class="form-header">Remove Item</h3>
@@ -465,28 +459,11 @@
             function showRemoveList() {
                 document.getElementById("RemoveDropdown").classList.toggle("show");
             }
-            function showEditList() {
-                document.getElementById("EditDropdown").classList.toggle("show");
-            }
             function filterRemoveFunction() {
                 var input, filter, ul, li, a, i;
                 input = document.getElementById("removeInput");
                 filter = input.value.toUpperCase();
                 div = document.getElementById("removeDropdown");
-                a = div.getElementsByTagName("a");
-                for (i = 0; i < a.length; i++) {
-                    if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        a[i].style.display = "";
-                    } else {
-                        a[i].style.display = "none";
-                    }
-                }
-            }
-            function filterEditFunction() {
-                var input, filter, ul, li, a, i;
-                input = document.getElementById("editInput");
-                filter = input.value.toUpperCase();
-                div = document.getElementById("editDropdown");
                 a = div.getElementsByTagName("a");
                 for (i = 0; i < a.length; i++) {
                     if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
