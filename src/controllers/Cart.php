@@ -236,7 +236,7 @@ class Cart {
             error("User is not authenticated");
             return;
         }
-        $itemList = array()
+        $itemList = array();
         $products = $db->query("SELECT * FROM cart WHERE userId = '" . $user->id . "';");
         while($product = $products->fetch_assoc()) {
             $itemList[] = $produnct['itemId'];
