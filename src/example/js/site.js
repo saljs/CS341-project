@@ -236,7 +236,7 @@ function removeItemList(items) {
         a.value = item.name;
         a.textContent = item.name;
         a.onclick = function() {
-            document.getElementById("previewList").innerHTML = "";
+            document.getElementById("removePreviewList").innerHTML = "";
             loadItemPreview(item, url);
             showRemoveList();
             changeRemoveButton(item);
@@ -260,8 +260,8 @@ function editItemList(items) {
         a.onclick = function() {
             document.getElementById("editPreviewList").innerHTML = "";
             loadItemPreview(item, url);
-            showRemoveList();
-            changeRemoveButton(item);
+            showEditList();
+            changeEditButton(item);
         };
 
         var dropdown = document.getElementById("editDropdown");
