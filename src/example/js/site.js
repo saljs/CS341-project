@@ -236,7 +236,7 @@ function removeItemList(items) {
         a.value = item.name;
         a.textContent = item.name;
         a.onclick = function() {
-            document.getElementById("removePreviewList").innerHTML = "";
+            document.getElementById("previewList").innerHTML = "";
             loadItemPreview(item, url);
             showRemoveList();
             changeRemoveButton(item);
