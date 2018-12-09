@@ -278,7 +278,7 @@ function changeRemoveButton(item) {
  */
 function loadItemPreview(item, url) {
     $('#previewList').append(
-        '<div class="col-lg-4 col-md-6 mb-4">'+'' +
+        '<div class="mb-4">'+'' +
         '<div class="card h-100">'+
         '<a href="'+url+'" target="_blank">' +
         '<img class="card-img-top" src="'+item.image+'" alt="">' +
