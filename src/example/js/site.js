@@ -281,7 +281,7 @@ function loadItemPreview(item, url) {
         '<div class="mb-4">'+'' +
         '<div class="card h-100">'+
         '<a href="'+url+'" target="_blank">' +
-        '<img class="card-img-top" src="'+item.image+'" alt="">' +
+        '<img class="card-img-top" style="width:50%" src="'+item.image+'" alt="">' +
         '</a>'+
         '<div class="card-body">'+
         '<h4 class="card-title">'+
