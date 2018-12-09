@@ -125,8 +125,8 @@ class Product {
      * Deletes an existing Product
      */
     static function Delete($args): void {
-        if(!($args['id'])) {
-            error(json_encode($args));
+        if(!$args['id']) {
+            error("Product ID Required: " . json_encode($args));
             return;
         }
 
@@ -134,7 +134,7 @@ class Product {
         $db = $GLOBALS['database'];
         $db->query($sql);
 
-        success(json_encode($args));
+        success("Sucess:" . json_encode($args));
 
     }
      /* 
