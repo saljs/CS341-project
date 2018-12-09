@@ -98,8 +98,8 @@
                         <h3 class="form-header">Remove Item</h3>
                         <input id="removeItemButton" type="submit" class="btn btn-primary redbutton"/>
                         <div class="dropdown">
-                            <input type="text" placeholder="Search.." id="removeInput" onclick="showRemoveList()" onkeyup="filterRemoveFunction()">
-                            <div id="removeDropdown" class="dropdown-content">
+                            <input type="text" placeholder="Search.." id="myInput" onclick="showRemoveList()" onkeyup="filterFunction()">
+                            <div id="Dropdown" class="dropdown-content">
                             </div>
                         </div>
                         <form class="form-check-inline topbottompadding">
@@ -457,13 +457,13 @@
             }
 
             function showRemoveList() {
-                document.getElementById("RemoveDropdown").classList.toggle("show");
+                document.getElementById("Dropdown").classList.toggle("show");
             }
-            function filterRemoveFunction() {
+            function filterFunction() {
                 var input, filter, ul, li, a, i;
-                input = document.getElementById("removeInput");
+                input = document.getElementById("myInput");
                 filter = input.value.toUpperCase();
-                div = document.getElementById("removeDropdown");
+                div = document.getElementById("Dropdown");
                 a = div.getElementsByTagName("a");
                 for (i = 0; i < a.length; i++) {
                     if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
