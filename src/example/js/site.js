@@ -259,8 +259,8 @@ function removeItemList(items) {
  */
 function changeRemoveButton(item) {
     var removeButton = document.getElementById("removeItemButton");
+    console.log("Remove Button Item " + item.name + "(" + item.id + ")");
     removeButton.onclick = function() {
-        console.log("https://cs341group4.tk/Product/Delete?id=" + item.id);
         $.post('https://cs341group4.tk/Product/Delete?id=' + item.id)
         .done(function(data) {
             console.log(data);
