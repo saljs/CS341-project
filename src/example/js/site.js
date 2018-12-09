@@ -306,6 +306,23 @@ function changeRemoveButton(item) {
 function changeEditButton(item) {
     let editButton = document.getElementById("editItemButton");
     editButton.onclick = function() {
+           let endpoint = "https://cs341group4.tk/Product/Delete";
+
+        console.log("Removing: " + endpoint + "?itemId="+item.id);
+
+        $.post(endpoint, {itemId : item.id})
+
+        .done(function(data) {
+
+            console.log(data);
+
+        })
+
+        .fail(function(data) {
+
+            console.log(data);
+
+        });
     }
 
 }
