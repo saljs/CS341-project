@@ -240,10 +240,10 @@ class Cart {
         $itemList = array();
         $products = $db->query("SELECT * FROM cart WHERE userId = '" . $user->id . "';");
         while($product = $products->fetch_assoc()) {
-            $itemList[] = $produnct['itemId'];
+            $itemList[] = $product['itemId'];
         }
         $db = $GLOBALS['database'];
-        if(!$db->query("INSERT INTO history (userId, itemList), VALUES ('". $user->id . "', '" . implode(",", $itemList) . "');")) {
+        if(!$db->query("INSERT INTO history (userId, itemList) VALUES ('". $user->id . "', '" . implode(",", $itemList) . "');")) {
             error($db->error);
             return;
         }
