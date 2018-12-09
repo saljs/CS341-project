@@ -320,7 +320,7 @@ function loadItemPreview(item, url) {
  * Loads an item's card and links to the item's main page.
  */
 function loadEditItemPreview(item, url) {
-    $('#previewList').append(
+    $('#editPreviewList').append(
         '<div class="mb-4">'+'' +
         '<div class="card h-100">'+
         '<a href="'+url+'" target="_blank">' +
