@@ -258,10 +258,10 @@ function removeItemList(items) {
  * current item the user selected.
  */
 function changeRemoveButton(item) {
-    var removeButton = document.getElementById("removeItemButton");
-    console.log("Remove Button Item " + item.name + "(" + item.id + ")");
+    let removeButton = document.getElementById("removeItemButton");
     removeButton.onclick = function() {
-        $.post('https://cs341group4.tk/Product/Delete?id=' + item.id)
+        let endpoint = "https://cs341group4.tk/Product/Delete";
+        $.post(endpoint, {id : item.id})
         .done(function(data) {
             console.log(data);
         })
