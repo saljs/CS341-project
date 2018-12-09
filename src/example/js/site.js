@@ -590,15 +590,19 @@ function checkout(e) {
  * Finalizes checkout
  */
 function finalizeTransaction() {
+    var endpoint = 'https://cs341group4.tk/GuestCheckout/Finalize';
+    var redirect = baseURL;
     if($.cookie('token') != undefined) {
-        $.post('https://cs341group4.tk/Cart/Finalize')
-        .done(function() {
-            window.location = baseURL + "/userinfo.html";
-        });
+        endpoint = 'https://cs341group4.tk/Checkout/Finalize';
+        redirect = baseURL + "/userinfo.html";
     }
-    else {
-        window.location = baseURL;
-    }
+    $.post(endpoint, {paymentId: $.urlParam(paymentId), PayerID: $.urlParam(PayerID)})
+    .done(function(data) {
+        window.location = redirect;
+    })
+    .fail(function(data){
+        $('#message').html(data.responseJSON.message);
+    });
 }
 
 /****************************************************************************

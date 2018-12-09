@@ -220,41 +220,6 @@ class Cart {
     }
 
     /*
-     * Finalize a cart when the transaction is complete.
-     * @param token: The user's auth token
-     * @return A success or error message
-     */
-    static function Finalize($args):void {
-        //Check if the token was included
-        if(!$args['token']) {
-            error("Missing required fields");
-            return;
-        }
-        //check if user is logged in
-        $user = new SiteUser(null, $args['token']);
-        if(!$user->isAuth()) { 
-            error("User is not authenticated");
-            return;
-        }
-        $db = $GLOBALS['database'];
-        $itemList = array();
-        $products = $db->query("SELECT * FROM cart WHERE userId = '" . $user->id . "';");
-        while($product = $products->fetch_assoc()) {
-            $itemList[] = $product['itemId'];
-        }
-        $db = $GLOBALS['database'];
-        if(!$db->query("INSERT INTO history (userId, itemList) VALUES ('". $user->id . "', '" . implode(",", $itemList) . "');")) {
-            error($db->error);
-            return;
-        }
-        if(!$db->query("DELETE FROM cart WHERE userId = '" . $user->id . "';")) {
-            error($db->error);
-            return;
-        }
-        success();
-    }
-
-        /*
      * Returns a list of the user's order history
      * @param token The user's authentication token
      * @return A list of orders for this user, including item ids and
@@ -278,7 +243,6 @@ class Cart {
         $payload->orders = array();
         while($order = $orders->fetch_assoc()) {
             $res = new stdClass();
-            $res->total = $order['total'];
             $res->items = array();
             foreach(str_getcsv($order['itemList']) as $itemId) {
                 //add each product to the payload

@@ -67,6 +67,48 @@ class GuestCheckout {
         }
     }
 
+    /*
+     * Finalize a cart when the transaction is complete.
+     * @param guestId: The user's guest ID
+     * @param paymentId: The PayPal payment ID
+     * @param PayerID: The PayPal payer ID
+     * @return A success or error message
+     */
+    static function Finalize($args):void {
+        //Check if the token was included
+        if(!($args['guestId'] && $args['paymentId'] && $args['PayerID'])) {
+            error("Missing required fields");
+            return;
+        }
+        
+        //execute payment
+        $db = $GLOBALS['database'];
+        $result = $db->query("SELECT * FROM siteadmin;");
+        $vars = $result->fetch_assoc();
+        
+        $apiContext = new \PayPal\Rest\ApiContext(
+            new \PayPal\Auth\OAuthTokenCredential($vars['paypal-clientId'], $vars['paypal-secret'])
+        );
+        $payment = \PayPal\Api\Payment::get($args['paymentId'], $apiContext);
+        $execution = new PayPal\Api\PaymentExecution();
+        $execution->setPayerId($args['PayerID']);
+        try {
+            $payment->execute($execution, $apiContext);
+        }
+        catch (\PayPal\Exception\PayPalConnectionException $ex) {
+            // This will print the detailed information on the exception.
+            error($ex->getData());
+            return;
+        }
+
+        //remove the items from their cart
+        if(!$db->query("DELETE FROM guestCart WHERE guestId = '" . $args['guestId'] . "';")) {
+            error($db->error);
+            return;
+        }
+        success();
+    }
+
 }
 
 ?>
