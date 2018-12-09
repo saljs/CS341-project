@@ -98,7 +98,7 @@
                         <h3 class="form-header">Remove Item</h3>
                         <input id="removeItemButton" type="submit" class="btn btn-primary redbutton"/>
                         <div class="dropdown">
-                            <input type="text" placeholder="Search.." id="myInput" onclick="showRemoveList()" onkeyup="filterFunction()">
+                            <input type="text" placeholder="Search.." id="myInput" onclick="showList()" onkeyup="filterFunction()">
                             <div id="Dropdown" class="dropdown-content">
                             </div>
                         </div>
@@ -456,7 +456,7 @@
                 document.getElementById(target[1]).style.display = "block";
             }
 
-            function showRemoveList() {
+            function showList() {
                 document.getElementById("Dropdown").classList.toggle("show");
             }
             function filterFunction() {
