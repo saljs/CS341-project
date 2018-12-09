@@ -151,7 +151,7 @@ function loadPromotions(id) {
                     "<th scope='row'>" + p + "</th>" +
                     "<td>" + dataS.name + "</td>" +
                     "<td>" + dataS.code + "</td>" +
-                    "<td>" + new Date(dataS.startdate*1000).toLocaleString() + "</td>" +
+                    // "<td>" + new Date(dataS.startdate*1000).toLocaleString() + "</td>" +
                     "<td>" + new Date(dataS.enddate*1000).toLocaleString() + "</td>" +
                     "<td>" + dataS.items + "</td>" +
                 "</tr>");
