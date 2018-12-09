@@ -194,6 +194,7 @@ function loadCategories(type, id) {
         $('#message').html(data.responseJSON.message);
     });
 }
+
 /*
  * Loads all items using the given parameters
  */
@@ -229,6 +230,10 @@ function loadAllItems() {
     }
 }
 
+/*
+ * Adds all existing items to the remove
+ * dropdown menu.
+ */
 function removeItemList(items) {
     items.forEach(function(item) {
         var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
@@ -248,10 +253,14 @@ function removeItemList(items) {
 
 }
 
+/*
+ * Changes the onclick function of the remove button to be the
+ * current item the user selected.
+ */
 function changeRemoveButton(item) {
     var removeButton = document.getElementById("removeItemButton");
     removeButton.onclick = function() {
-        console.log("....");
+        console.log("https://cs341group4.tk/Product/Delete?id=" + item.id);
         $.post('https://cs341group4.tk/Product/Delete?id=' + item.id)
         .done(function(data) {
             console.log(data);
@@ -263,6 +272,9 @@ function changeRemoveButton(item) {
 
 }
 
+/*
+ * Loads an item's card and links to the item's main page.
+ */
 function loadItemPreview(item, url) {
     $('#previewList').append(
         '<div class="col-lg-4 col-md-6 mb-4">'+'' +

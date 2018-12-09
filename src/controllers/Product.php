@@ -127,7 +127,6 @@ class Product {
     static function Delete($args): void {
         if(!($args['id'])) {
             error(json_encode($args));
-            echo json;
             return;
         }
 
@@ -135,7 +134,7 @@ class Product {
         $db = $GLOBALS['database'];
         $db->query($sql);
 
-        success();
+        success(json_encode($args));
 
     }
      /* 
