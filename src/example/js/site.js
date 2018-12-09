@@ -247,28 +247,6 @@ function removeItemList(items) {
     });
 
 }
-/*
- * Adds all existing items to the edit
- * dropdown menu.
- */
-function editItemList(items) {
-    items.forEach(function(item) {
-        var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
-        var a = document.createElement("a");
-        a.value = item.name;
-        a.textContent = item.name;
-        a.onclick = function() {
-            document.getElementById("editPreviewList").innerHTML = "";
-            loadEditItemPreview(item, url);
-            showEditList();
-            changeEditButton(item);
-        };
-
-        var dropdown = document.getElementById("editDropdown");
-        dropdown.appendChild(a);
-    });
-
-}
 
 /*
  * Changes the onclick function of the remove button to be the
@@ -289,15 +267,7 @@ function changeRemoveButton(item) {
     }
 
 }
-/*
- * Changes the onclick function of the remove button to be the
- * current item the user selected.
- */
-function changeEditButton(item) {
-    let editButton = document.getElementById("editItemButton");
-    editButton.onclick = function() {
-    }
-}
+
 /*
  * Loads an item's card and links to the item's main page.
  */
@@ -316,24 +286,7 @@ function loadItemPreview(item, url) {
         '</div>'+
         '</div>');
 }
-/*
- * Loads an item's card and links to the item's main page.
- */
-function loadEditItemPreview(item, url) {
-    $('#editPreviewList').append(
-        '<div class="mb-4">'+'' +
-        '<div class="card h-100">'+
-        '<a href="'+url+'" target="_blank">' +
-        '<img class="card-img-top" style="width:50%" src="'+item.image+'" alt="">' +
-        '</a>'+
-        '<div class="card-body">'+
-        '<h4 class="card-title">'+
-        '<a href="'+url+'">'+item.name+'</a>'+
-        '</h4>'+
-        '</div>'+
-        '</div>'+
-        '</div>');
-}
+
 /*
  * Inserts a list of items to page
  */
