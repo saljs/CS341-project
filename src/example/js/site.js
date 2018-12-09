@@ -537,7 +537,7 @@ function finalizeTransaction() {
 function loadCart() {
     if($('#orderHistory').length) {
         if($.cookie('token') != undefined) {
-            $.post('https://cs341group4.tk/Cart/History)
+            $.post('https://cs341group4.tk/Cart/History')
             .done(function(data) {
                 $('#message').html("");
                 $('#orderHistory').html(data);
