@@ -132,9 +132,18 @@ class Product {
 
         $sql = "DELETE FROM `product` WHERE id=" . $args['id'] . ";";
         $db = $GLOBALS['database'];
-        $db->query($sql);
+        $result = $db->query($sql);
+        if(!$result)
+            error("There's an error in your SQL syntax: {$sql}");
 
-        success("Sucess:" . json_encode($args));
+        if(!(mysqli_num_rows($result) > 0)) {
+
+            error("Invalid Product ID");
+            return;
+
+        }
+
+        success("Success:" . json_encode($args));
 
     }
      /* 
