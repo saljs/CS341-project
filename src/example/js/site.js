@@ -107,6 +107,8 @@ function userWelcome() {
                                              '</li>');
                 }
             });
+            $('#userWelcome').html(data.name);
+            $('#userWelcome').attr('href', baseURL + "/userinfo.html");
         }
     }
 }
