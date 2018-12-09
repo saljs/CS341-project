@@ -259,7 +259,7 @@ function editItemList(items) {
         a.textContent = item.name;
         a.onclick = function() {
             document.getElementById("editPreviewList").innerHTML = "";
-            loadItemPreview(item, url);
+            loadEditItemPreview(item, url);
             showEditList();
             changeEditButton(item);
         };
@@ -316,7 +316,24 @@ function loadItemPreview(item, url) {
         '</div>'+
         '</div>');
 }
-
+/*
+ * Loads an item's card and links to the item's main page.
+ */
+function loadEditItemPreview(item, url) {
+    $('#previewList').append(
+        '<div class="mb-4">'+'' +
+        '<div class="card h-100">'+
+        '<a href="'+url+'" target="_blank">' +
+        '<img class="card-img-top" style="width:50%" src="'+item.image+'" alt="">' +
+        '</a>'+
+        '<div class="card-body">'+
+        '<h4 class="card-title">'+
+        '<a href="'+url+'">'+item.name+'</a>'+
+        '</h4>'+
+        '</div>'+
+        '</div>'+
+        '</div>');
+}
 /*
  * Inserts a list of items to page
  */
