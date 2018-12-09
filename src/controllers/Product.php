@@ -125,12 +125,12 @@ class Product {
      * Deletes an existing Product
      */
     static function Delete($args): void {
-        if(!$args['id']) {
+        if(!$args['itemId']) {
             error("Product ID Required: " . json_encode($args));
             return;
         }
 
-        $sql = "DELETE FROM `product` WHERE id=" . $args['id'] . ";";
+        $sql = "DELETE FROM `product` WHERE id=" . $args['itemId'] . ";";
         $db = $GLOBALS['database'];
         $result = $db->query($sql);
         if(!$result)

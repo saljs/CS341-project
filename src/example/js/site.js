@@ -261,7 +261,8 @@ function changeRemoveButton(item) {
     let removeButton = document.getElementById("removeItemButton");
     removeButton.onclick = function() {
         let endpoint = "https://cs341group4.tk/Product/Delete";
-        $.post(endpoint, {id : item.id})
+        console.log("Removing: " + endpoint + "?itemId="+item.id);
+        $.post(endpoint, {itemId : item.id})
         .done(function(data) {
             console.log(data);
         })
