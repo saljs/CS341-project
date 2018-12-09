@@ -95,7 +95,7 @@
                         <h3 class="form-header">Edit Item</h3>
                         <input id="EditItemButton" type="submit" class="btn btn-primary redbutton"/>
                           <div class="dropdown">
-                            <input type="text" placeholder="Search.." id="myInput" onclick="showRemoveList()" onkeyup="filterFunction()">
+                            <input type="text" placeholder="Search.." id="myInput" onclick="showEditList()" onkeyup="filterFunction()">
                             <div id="editDropdown" class="dropdown-content"></div>
                         </div>
                     </div>
@@ -460,6 +460,9 @@
              }
              function showRemoveList() {
                  document.getElementById("myDropdown").classList.toggle("show");
+             }
+            function showEditList() {
+                 document.getElementById("editDropdown").classList.toggle("show");
              }
              function filterFunction() {
                  var input, filter, ul, li, a, i;
