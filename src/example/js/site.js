@@ -151,12 +151,9 @@ function loadPromotions(id) {
                     "<th scope='row'>" + p + "</th>" +
                     "<td>" + dataS.name + "</td>" +
                     "<td>" + dataS.code + "</td>" +
-                    "<td>" + dataS.type + "</td>" +
-                    "<td>" + dataS.percent + "</td>" +
                     "<td>" + new Date(dataS.startdate*1000).toLocaleString() + "</td>" +
                     "<td>" + new Date(dataS.enddate*1000).toLocaleString() + "</td>" +
                     "<td>" + dataS.items + "</td>" +
-                    "<td>" + dataS.categories + "</td>" +
                 "</tr>");
             }
         }
