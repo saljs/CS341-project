@@ -289,7 +289,15 @@ function changeRemoveButton(item) {
     }
 
 }
-
+/*
+ * Changes the onclick function of the remove button to be the
+ * current item the user selected.
+ */
+function changeEditButton(item) {
+    let editButton = document.getElementById("editItemButton");
+    editButton.onclick = function() {
+    }
+}
 /*
  * Loads an item's card and links to the item's main page.
  */
