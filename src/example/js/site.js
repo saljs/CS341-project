@@ -207,7 +207,7 @@ function loadAllItems() {
             .fail(function (data) {
                 $('#message').html(data.responseJSON.message);
             });
-    } if($('#myDropdown').length) {
+    } if($('#myRemoveDropdown').length) {
         $.get('https://cs341group4.tk/Product/GetAll' + window.location.search)
             .done(function (data) {
                 $('#message').html("");
@@ -218,18 +218,6 @@ function loadAllItems() {
                 $('#message').html(data.responseJSON.message);
             });
     }
-    if($('#editmyDropdown').length) {
-        $.get('https://cs341group4.tk/Product/GetAll' + window.location.search)
-            .done(function (data) {
-                $('#message').html("");
-                editItemList(data.products);
-                console.log(data.products);
-            })
-            .fail(function (data) {
-                $('#message').html(data.responseJSON.message);
-            });
-    }
-
     if($('#categoryField').length && $.urlParam('category')) {
         $('#categoryField').val($.urlParam('category'));
     }
@@ -249,39 +237,18 @@ function removeItemList(items) {
         a.value = item.name;
         a.textContent = item.name;
         a.onclick = function() {
-            document.getElementById("previewList").innerHTML = "";
+            document.getElementById("previewRemoveList").innerHTML = "";
             loadItemPreview(item, url);
             showRemoveList();
             changeRemoveButton(item);
         };
 
-        var dropdown = document.getElementById("myDropdown");
+        var dropdown = document.getElementById("myRemoveDropdown");
         dropdown.appendChild(a);
     });
 
 }
-/*
- * Adds all existing items to the remove
- * dropdown menu.
- */
-function editItemList(items) {
-    items.forEach(function(item) {
-        var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
-        var a = document.createElement("a");
-        a.value = item.name;
-        a.textContent = item.name;
-        a.onclick = function() {
-            document.getElementById("editpreviewList").innerHTML = "";
-            loadEditItemPreview(item, url);
-            showEditList();
-            changeEditButton(item);
-        };
 
-        var dropdown = document.getElementById("editmyDropdown");
-        dropdown.appendChild(a);
-    });
-
-}
 /*
  * Changes the onclick function of the remove button to be the
  * current item the user selected.
@@ -301,33 +268,7 @@ function changeRemoveButton(item) {
     }
 
 }
-/*
- * Changes the onclick function of the remove button to be the
- * current item the user selected.
- */
-function changeEditButton(item) {
-    let editButton = document.getElementById("editItemButton");
-    editButton.onclick = function() {
-           let endpoint = "https://cs341group4.tk/Product/Delete";
 
-        console.log("Removing: " + endpoint + "?itemId="+item.id);
-
-        $.post(endpoint, {itemId : item.id})
-
-        .done(function(data) {
-
-            console.log(data);
-
-        })
-
-        .fail(function(data) {
-
-            console.log(data);
-
-        });
-    }
-
-}
 /*
  * Loads an item's card and links to the item's main page.
  */
