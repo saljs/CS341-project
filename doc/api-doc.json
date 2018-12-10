@@ -629,7 +629,7 @@ paths:
                   properties:
                     time:
                       type: string
-                      format: datetime
+                      format: date-time
                     items:
                       type: array
                       items:
