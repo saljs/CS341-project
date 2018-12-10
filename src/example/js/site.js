@@ -638,9 +638,9 @@ function displayHistory(orders) {
     orders.forEach(function(order) {
         var listItem = $('<li/>');
         listItem.append('<p>On ' + order.time + ' you ordered:</p>');
-        var itemList = $('<ul/>');
+        var itemList = $('<ol/>');
         order.items.forEach(function(item) {
-            itemList.append('<li><a href="' + baseURL + "item.html?id=" + item.id
+            itemList.append('<li><a href="' + baseURL + "/item.html?id=" + item.id
                 + '"><img width="50" height="50" src="' + item.image + '"/> - '
                 + item.name + '</a></li>');
         });
