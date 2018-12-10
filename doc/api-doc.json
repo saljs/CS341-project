@@ -16,32 +16,32 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: email
         description: The new user's email address
         required: true
         type: string
-      - in: query
+      - in: formData
         name: password
         description: The user's desired password
         required: true
         type: string
-      - in: query
+      - in: formData
         name: type
         description: The type of user
         required: true
         type: string
         enum: [user, admin]
-      - in: query
+      - in: formData
         name: token
         description: An admin user token that must be included when creating an admin user
         required: false
         type: string
-      - in: query
+      - in: formData
         name: name
         description: The user's name
         required: true
@@ -72,16 +72,16 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: email
         description: The user's email address
         required: true
         type: string
-      - in: query
+      - in: formData
         name: password
         description: The user's password
         required: true
@@ -112,11 +112,11 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: token
         description: The user's authentication token
         required: true
@@ -153,41 +153,41 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: name
         description: The name of the product
         required: true
         type: string
-      - in: query
+      - in: formData
         name: price
         description: The price of the product
         required: true
         type: number
-      - in: query
+      - in: formData
         name: quantity
         description: The number currently in stock
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: image
         description: The visual for product, a URL
         required: true
         type: string
-      - in: query
+      - in: formData
         name: description
         description: The description of the product
         required: true
         type: string
-      - in: query
+      - in: formData
         name: category
         description: The categories that the product fits into, csv
         required: true
         type: string
-      - in: query
+      - in: formData
         name: token
         description: An admin user's authentication token
         required: true
@@ -218,11 +218,11 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: id
         description: The product's ID number
         required: true
@@ -261,15 +261,15 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: category
         description: The category of the products
         type: string
-      - in: query
+      - in: formData
         name: search
         description: A search string
         type: string
@@ -313,16 +313,16 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: itemId
         description: The ID of the product
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: token
         description: An admin user's authentication token
         required: true
@@ -355,21 +355,21 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: itemId
         description: The product's ID number
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: itemQuantity
         description: The quantity of the product to add to the user's cart.
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: token
         description: The user's authentication token.
         required: true
@@ -400,11 +400,11 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: token
         description: The user's authentication token.
         required: true
@@ -448,21 +448,21 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: itemId
         description: The product's ID number
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: quantity
         description: The new quantity of the product in the user's cart.
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: token
         description: The user's authentication token.
         required: true
@@ -493,16 +493,16 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: itemId
         description: The product's ID number
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: token
         description: The user's authentication token.
         required: true
@@ -533,11 +533,11 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: token
         description: The user's authentication token.
         required: true
@@ -568,16 +568,16 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: token
         description: The user's authentication token.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: code
         description: An optional promotion code to apply.
         type: string
@@ -607,11 +607,11 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: token
         description: The user's authentication token.
         required: true
@@ -659,21 +659,21 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: itemId
         description: The product's ID number
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: itemQuantity
         description: The quantity of the product to add to the user's cart.
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: guestId
         description: The user's guest ID string.
         required: true
@@ -704,11 +704,11 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: guestId
         description: The user's guest ID string.
         required: true
@@ -752,21 +752,21 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: itemId
         description: The product's ID number
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: quantity
         description: The new quantity of the product in the user's cart.
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: guestId
         description: The user's guest ID string.
         required: true
@@ -797,16 +797,16 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: itemId
         description: The product's ID number
         required: true
         type: integer
-      - in: query
+      - in: formData
         name: guestId
         description: The user's guest ID string.
         required: true
@@ -837,11 +837,11 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: guestId
         description: The user's guest ID string.
         required: true
@@ -872,16 +872,16 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: guestId
         description: The user's guest ID string.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: code
         description: An optional promotion code to apply.
         type: string
@@ -911,16 +911,16 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: token
         description: The user's authentication token.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: code
         description: An optional promotion code to apply.
         type: string
@@ -950,21 +950,21 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: token
         description: The user's authentication token.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: paymentId
         description: The PayPal payment ID.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: PayerID
         description: The PayPal payer ID.
         required: true
@@ -996,31 +996,31 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: token
         description: An admin user's authentication token.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: paypal-clientId
         description: The PayPal client ID.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: paypal-secret
         description: The PayPal secret key.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: paypal-success-url
         description: The URL on the site to return to once payment details are entered.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: paypal-cancel-url
         description: The URL on the site to return to if payment is cancelled.
         required: true
@@ -1051,16 +1051,16 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: guestId
         description: The user's guest ID string.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: code
         description: An optional promotion code to apply.
         type: string
@@ -1090,21 +1090,21 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: siteName
         description: The name of your site
         type: string
-      - in: query
+      - in: formData
         name: guestId
         description: The user's guest ID string.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: paymentId
         description: The PayPal payment ID.
         required: true
         type: string
-      - in: query
+      - in: formData
         name: PayerID
         description: The PayPal payer ID.
         required: true
