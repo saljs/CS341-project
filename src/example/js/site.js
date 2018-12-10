@@ -641,7 +641,7 @@ function displayHistory(orders) {
         var itemList = $('<ul/>');
         order.items.forEach(function(item) {
             itemList.append('<li><a href="' + baseURL + "item.html?id=" + item.id
-                + '><img width="50" height="50" src="' + item.image + '"/> - '
+                + '"><img width="50" height="50" src="' + item.image + '"/> - '
                 + item.name + '</a></li>');
         });
         listItem.append(itemList);
