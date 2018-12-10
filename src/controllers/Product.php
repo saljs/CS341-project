@@ -127,7 +127,7 @@ class Product {
      * @param token: An authentication token
      */
     static function Delete($args): void {
-        if(!($args['itemId'] && $args['token')) {
+        if(!($args['itemId'] && $args['token'])) {
             error("Missing required field");
             return;
         }
