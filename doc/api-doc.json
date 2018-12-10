@@ -1,7 +1,6 @@
 swagger: '2.0'
 info:
-  description: |
-    This is the API for the Shopping Cart project for our CS341 class.
+  description: This is the API for the Shopping Cart project for our CS341 class.
   version: 1.0.0
   title: Shopping Cart
 
@@ -10,6 +9,7 @@ paths:
     post:
       tags:
       - User
+        Admin
       summary: Add a new user to the store.
       consumes:
       - application/x-www-form-urlencoded
@@ -146,6 +146,7 @@ paths:
     post:
       tags:
       - Product
+        Admin
       summary: Add a new product to the store.
       consumes:
       - application/x-www-form-urlencoded
@@ -170,7 +171,7 @@ paths:
         name: quantity
         description: The number currently in stock
         required: true
-        type: number
+        type: integer
       - in: query
         name: image
         description: The visual for product, a URL
@@ -225,7 +226,7 @@ paths:
         name: id
         description: The product's ID number
         required: true
-        type: number
+        type: integer
       responses:
         200:
           description: Product object
@@ -237,7 +238,7 @@ paths:
               price:
                 type: number
               quantity:
-                type: number
+                type: integer
               image:
                 type: string
               description:
@@ -284,7 +285,7 @@ paths:
                   type: object
                   properties:
                     id:
-                      type: number
+                      type: integer
                     name:
                       type: string
                     price:
@@ -305,6 +306,7 @@ paths:
     post:
       tags:
       - Product
+        Admin
       summary: Deletes a product from the store.
       consumes:
       - application/x-www-form-urlencoded
@@ -319,7 +321,7 @@ paths:
         name: itemId
         description: The ID of the product
         required: true
-        type: number
+        type: integer
       - in: query
         name: token
         description: An admin user's authentication token
@@ -343,7 +345,785 @@ paths:
 
   #Add in product edit method here
 
-  
+  /Cart/Add:
+    post:
+      tags:
+      - Cart
+      summary: Adds an item to a user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: itemId
+        description: The product's ID number
+        required: true
+        type: integer
+      - in: query
+        name: itemQuantity
+        description: The quantity of the product to add to the user's cart.
+        required: true
+        type: integer
+      - in: query
+        name: token
+        description: The user's authentication token.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Cart/Get:
+    post:
+      tags:
+      - Cart
+      summary: Get's a list of items in the user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: token
+        description: The user's authentication token.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Product object list
+          schema:
+            type: object
+            properties:
+              products:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    price:
+                      type: number
+                    image:
+                      type: string
+                    quantity:
+                      type: integer
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Cart/Update:
+    post:
+      tags:
+      - Cart
+      summary: Updates the quantity of an item in the user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: itemId
+        description: The product's ID number
+        required: true
+        type: integer
+      - in: query
+        name: quantity
+        description: The new quantity of the product in the user's cart.
+        required: true
+        type: integer
+      - in: query
+        name: token
+        description: The user's authentication token.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Cart/Delete:
+    post:
+      tags:
+      - Cart
+      summary: Delete's an item from the user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: itemId
+        description: The product's ID number
+        required: true
+        type: integer
+      - in: query
+        name: token
+        description: The user's authentication token.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Cart/DeleteAll:
+    post:
+      tags:
+      - Cart
+      summary: Delete's all items from the user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: token
+        description: The user's authentication token.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Cart/Total:
+    post:
+      tags:
+      - Cart
+      summary: Get's the total amount for the user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: token
+        description: The user's authentication token.
+        required: true
+        type: string
+      - in: query
+        name: code
+        description: An optional promotion code to apply.
+        type: string
+      responses:
+        200:
+          description: Total for the user's cart.
+          schema:
+            type: object
+            properties:
+              total:
+                type: number
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Cart/History:
+    post:
+      tags:
+      - Cart
+      summary: Returns a list of the user's order history.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: token
+        description: The user's authentication token.
+        required: true
+        type: string
+      responses:
+        200:
+          description: History object list
+          schema:
+            type: object
+            properties:
+              orders:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    time:
+                      type: string
+                      format: datetime
+                    items:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          name:
+                            type: string
+                          image:
+                            type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /GuestCart/Add:
+    post:
+      tags:
+      - Cart
+      summary: Adds an item to a guest user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: itemId
+        description: The product's ID number
+        required: true
+        type: integer
+      - in: query
+        name: itemQuantity
+        description: The quantity of the product to add to the user's cart.
+        required: true
+        type: integer
+      - in: query
+        name: guestId
+        description: The user's guest ID string.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /GuestCart/Get:
+    post:
+      tags:
+      - Cart
+      summary: Get's a list of items in the guest user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: guestId
+        description: The user's guest ID string.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Product object list
+          schema:
+            type: object
+            properties:
+              products:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    price:
+                      type: number
+                    image:
+                      type: string
+                    quantity:
+                      type: integer
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /GuestCart/Update:
+    post:
+      tags:
+      - Cart
+      summary: Updates the quantity of an item in the guest user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: itemId
+        description: The product's ID number
+        required: true
+        type: integer
+      - in: query
+        name: quantity
+        description: The new quantity of the product in the user's cart.
+        required: true
+        type: integer
+      - in: query
+        name: guestId
+        description: The user's guest ID string.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /GuestCart/Delete:
+    post:
+      tags:
+      - Cart
+      summary: Delete's an item from the guest user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: itemId
+        description: The product's ID number
+        required: true
+        type: integer
+      - in: query
+        name: guestId
+        description: The user's guest ID string.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /GuestCart/DeleteAll:
+    post:
+      tags:
+      - Cart
+      summary: Delete's all items from the guest user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: guestId
+        description: The user's guest ID string.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /GuestCart/Total:
+    post:
+      tags:
+      - Cart
+      summary: Get's the total amount for the guest user's cart.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: guestId
+        description: The user's guest ID string.
+        required: true
+        type: string
+      - in: query
+        name: code
+        description: An optional promotion code to apply.
+        type: string
+      responses:
+        200:
+          description: Total for the user's cart.
+          schema:
+            type: object
+            properties:
+              total:
+                type: number
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Checkout/Complete:
+    post:
+      tags:
+      - Checkout
+      summary: Starts checkout flow and creates a payment.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: token
+        description: The user's authentication token.
+        required: true
+        type: string
+      - in: query
+        name: code
+        description: An optional promotion code to apply.
+        type: string
+      responses:
+        200:
+          description: PayPal payment page link.
+          schema:
+            type: object
+            properties:
+              payemntPage:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Checkout/Finalize:
+    post:
+      tags:
+      - Checkout
+      summary: Finishes checkout process, executes payment.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: token
+        description: The user's authentication token.
+        required: true
+        type: string
+      - in: query
+        name: paymentId
+        description: The PayPal payment ID.
+        required: true
+        type: string
+      - in: query
+        name: PayerID
+        description: The PayPal payer ID.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Checkout/PayPalEdit:
+    post:
+      tags:
+      - Checkout
+        Admin
+      summary: Edit's the site's paypal details.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: token
+        description: An admin user's authentication token.
+        required: true
+        type: string
+      - in: query
+        name: paypal-clientId
+        description: The PayPal client ID.
+        required: true
+        type: string
+      - in: query
+        name: paypal-secret
+        description: The PayPal secret key.
+        required: true
+        type: string
+      - in: query
+        name: paypal-success-url
+        description: The URL on the site to return to once payment details are entered.
+        required: true
+        type: string
+      - in: query
+        name: paypal-cancel-url
+        description: The URL on the site to return to if payment is cancelled.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /GuestCheckout/Complete:
+    post:
+      tags:
+      - Checkout
+      summary: Starts guest checkout flow and creates a payment.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: guestId
+        description: The user's guest ID string.
+        required: true
+        type: string
+      - in: query
+        name: code
+        description: An optional promotion code to apply.
+        type: string
+      responses:
+        200:
+          description: PayPal payment page link.
+          schema:
+            type: object
+            properties:
+              payemntPage:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /GuestCheckout/Finalize:
+    post:
+      tags:
+      - Checkout
+      summary: Finishes guest checkout process, executes payment.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: guestId
+        description: The user's guest ID string.
+        required: true
+        type: string
+      - in: query
+        name: paymentId
+        description: The PayPal payment ID.
+        required: true
+        type: string
+      - in: query
+        name: PayerID
+        description: The PayPal payer ID.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
 
 host: cs341group4.tk
 basePath: /
