@@ -1,32 +1,30 @@
 <?php
 
-    /*
-     * Creates a category entry in the database
-     * @param name: The category name
-     */
-
     class Category {
-
+        /*
+         * Creates a category entry in the database
+         * @param name: The category name
+         * @param token: A User authentication token
+         */
         static function Create($args): void {
-
             // Checks if the required variables were given
-            if (!($args['category'])) {
+            if (!($args['category'] && $args['token'])) {
                 error("Missing required fields");
                 return;
             }
 
-//            // Check if user has access
-//            try {
-//                $user = new SiteUser(null, $args['token']);
-//                if(!$user->isAuth() || $user->type != "admin") {
-//                    error("User doesn't have privileges to add items");
-//                    return;
-//                }
-//            }
-//            catch(Exception $e) {
-//                error($e->getMessage());
-//                return;
-//            }
+            //check if user has access
+            try {
+                $user = new SiteUser(null, $args['token']);
+                if(!$user->isAuth() || $user->type != "admin") {
+                    error("User doesn't have privileges to add items");
+                    return;
+                }
+            }
+            catch(Exception $e) {
+                error($e->getMessage());
+                return;
+            }
 
             // Checks if the category exists
             $db = $GLOBALS['database'];
@@ -88,14 +86,26 @@
         /*
          * Deletes a category entry in the database
          * @param name: The category name
+         * @param token: A User authentication token
          */
         static function Delete($args): void {
 
-            if(!($args['category'])) {
-
+            if(!($args['category'] && args['token'])) {
                 error("Missing required fields");
                 return;
+            }
 
+            //check if user has access
+            try {
+                $user = new SiteUser(null, $args['token']);
+                if(!$user->isAuth() || $user->type != "admin") {
+                    error("User doesn't have privileges to add items");
+                    return;
+                }
+            }
+            catch(Exception $e) {
+                error($e->getMessage());
+                return;
             }
 
             // Checks if the category exists

@@ -1,0 +1,351 @@
+swagger: '2.0'
+info:
+  description: |
+    This is the API for the Shopping Cart project for our CS341 class.
+  version: 1.0.0
+  title: Shopping Cart
+
+paths:
+  /User/Create:
+    post:
+      tags:
+      - User
+      summary: Add a new user to the store.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: email
+        description: The new user's email address
+        required: true
+        type: string
+      - in: query
+        name: password
+        description: The user's desired password
+        required: true
+        type: string
+      - in: query
+        name: type
+        description: The type of user
+        required: true
+        type: string
+        enum: [user, admin]
+      - in: query
+        name: token
+        description: An admin user token that must be included when creating an admin user
+        required: false
+        type: string
+      - in: query
+        name: name
+        description: The user's name
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /User/Authenticate:
+    post:
+      tags:
+      - User
+      summary: Authenticate an existing user. Returns a token that can be used to authenticate a user for the next 6 hours.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: email
+        description: The user's email address
+        required: true
+        type: string
+      - in: query
+        name: password
+        description: The user's password
+        required: true
+        type: string
+      responses:
+        200:
+          description: Authentication token
+          schema:
+            type: object
+            properties:
+              token:
+                type: string          
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /User/Get:
+    post:
+      tags:
+      - User
+      summary: Get details about the authenticated user.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: token
+        description: The user's authentication token
+        required: true
+        type: string
+      responses:
+        200:
+          description: User object
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              name:
+                type: string
+              type:
+                type: string
+                enum: [user, admin]
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Product/Create:
+    post:
+      tags:
+      - Product
+      summary: Add a new product to the store.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: name
+        description: The name of the product
+        required: true
+        type: string
+      - in: query
+        name: price
+        description: The price of the product
+        required: true
+        type: number
+      - in: query
+        name: quantity
+        description: The number currently in stock
+        required: true
+        type: number
+      - in: query
+        name: image
+        description: The visual for product, a URL
+        required: true
+        type: string
+      - in: query
+        name: description
+        description: The description of the product
+        required: true
+        type: string
+      - in: query
+        name: category
+        description: The categories that the product fits into, csv
+        required: true
+        type: string
+      - in: query
+        name: token
+        description: An admin user's authentication token
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Product/Get:
+    post:
+      tags:
+      - Product
+      summary: Get details about an existing product.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: id
+        description: The product's ID number
+        required: true
+        type: number
+      responses:
+        200:
+          description: Product object
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              price:
+                type: number
+              quantity:
+                type: number
+              image:
+                type: string
+              description:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Product/GetAll:
+    post:
+      tags:
+      - Product
+      summary: Get details about all existing products with the given parameters.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: category
+        description: The category of the products
+        type: string
+      - in: query
+        name: search
+        description: A search string
+        type: string
+      responses:
+        200:
+          description: Product object list
+          schema:
+            type: object
+            properties:
+              products:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    name:
+                      type: string
+                    price:
+                      type: number
+                    image:
+                      type: string
+                    description:
+                      type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Product/Delete:
+    post:
+      tags:
+      - Product
+      summary: Deletes a product from the store.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: siteName
+        description: The name of your site
+        type: string
+      - in: query
+        name: itemId
+        description: The ID of the product
+        required: true
+        type: number
+      - in: query
+        name: token
+        description: An admin user's authentication token
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  #Add in product edit method here
+
+  
+
+host: cs341group4.tk
+basePath: /
+schemes:
+ - https

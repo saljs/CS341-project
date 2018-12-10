@@ -121,12 +121,26 @@ class Product {
         $output->complete();
     }
      
-	/* 
+    /* 
      * Deletes an existing Product
+     * @param itemId: The product ID to delete
+     * @param token: An authentication token
      */
     static function Delete($args): void {
-        if(!$args['itemId']) {
-            error("Product ID Required: " . json_encode($args));
+        if(!($args['itemId'] && $args['token')) {
+            error("Missing required field");
+            return;
+        }
+        //check if user has access
+        try {
+            $user = new SiteUser(null, $args['token']);
+            if(!$user->isAuth() || $user->type != "admin") {
+                error("User doesn't have privileges to add items");
+                return;
+            }
+        }
+        catch(Exception $e) {
+            error($e->getMessage());
             return;
         }
 
@@ -143,7 +157,7 @@ class Product {
 
         }
 
-        success("Success:" . json_encode($args));
+        success();
 
     }
      /* 

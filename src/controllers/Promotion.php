@@ -13,13 +13,12 @@ class Promotion {
      * @param endDate: The epoch time-based end date of the promotion. https://www.epochconverter.com
      * @param items: Comma delimited list of item ID's that the promotion works for.
      * @param categories: Comma delimited list of category names that the promotion works for.
+     * @param token: An Admin Auth token
      */
-
-    // HTTP Get Request
     static function Create($args): void {
 
         // Checks if the required variables are given
-        if (!($args['name'] && $args['code'] && $args['typeRadio'] && $args['percent'] && $args['endDate'] && $args['startDate'] && $args['tags-input'] && $args['categories'])) {
+        if (!($args['name'] && $args['code'] && $args['typeRadio'] && $args['percent'] && $args['endDate'] && $args['startDate'] && $args['tags-input'] && $args['categories'] && $args['token'])) {
             error("Missing required fields");
             return;
         }
@@ -29,21 +28,18 @@ class Promotion {
         $args['startDate'] = strtotime($args['startDate']);
         $args['endDate'] = strtotime($args['endDate']);
 
-//        if(!$args['token']) {
-//            error("Operation requires admin privileges");
-//            return;
-//        }
-//        try {
-//            $admin = new SiteUser(null, $args['token']);
-//            if(!$admin->isAuth()) {
-//                error("Invalid token");
-//                return;
-//            }
-//        }
-//        catch(Exception $e) {
-//            error($e->getMessage());
-//            return;
-//        }
+        //check if user has access
+        try {
+            $user = new SiteUser(null, $args['token']);
+            if(!$user->isAuth() || $user->type != "admin") {
+                error("User doesn't have privileges to add items");
+                return;
+            }
+        }
+        catch(Exception $e) {
+            error($e->getMessage());
+            return;
+        }
 
         // Checks if the endDate is valid (not past current time).
         $currenttime = time();
@@ -121,12 +117,26 @@ class Promotion {
      * @param endDate: The epoch time-based end date of the promotion. https://www.epochconverter.com
      * @param items: Comma delimited list of item ID's that the promotion works for.
      * @param categories: Comma delimited list of category names that the promotion works for.
+     * @param token: An Admin Auth token
      */
     static function Edit($args): void {
 
         // Make sure they passed all fields
-        if(!($args['code'])) {
+        if(!($args['code'] && $args['token'])) {
             error("Missing required fields");
+            return;
+        }
+
+        //check if user has access
+        try {
+            $user = new SiteUser(null, $args['token']);
+            if(!$user->isAuth() || $user->type != "admin") {
+                error("User doesn't have privileges to add items");
+                return;
+            }
+        }
+        catch(Exception $e) {
+            error($e->getMessage());
             return;
         }
 
@@ -253,30 +263,28 @@ class Promotion {
      * Forcibly ends a promotion.
      * @param code: The promotion to look for.
      * @return: Returns a json string of all promotions in the database.
+     * @param token: An Admin Auth token
      */
     static function End($args): void {
 
         // Make sure they entered a code
-        if(!($args['code'])) {
+        if(!($args['code']) && $args['token']) {
             error("Missing required fields");
             return;
         }
 
-//        if(!$args['token']) {
-//            error("Operation requires admin privileges");
-//            return;
-//        }
-//        try {
-//            $admin = new SiteUser(null, $args['token']);
-//            if(!$admin->isAuth()) {
-//                error("Invalid token");
-//                return;
-//            }
-//        }
-//        catch(Exception $e) {
-//            error($e->getMessage());
-//            return;
-//        }
+        //check if user has access
+        try {
+            $user = new SiteUser(null, $args['token']);
+            if(!$user->isAuth() || $user->type != "admin") {
+                error("User doesn't have privileges to add items");
+                return;
+            }
+        }
+        catch(Exception $e) {
+            error($e->getMessage());
+            return;
+        }
 
         $db = $GLOBALS['database'];
 
