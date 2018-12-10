@@ -598,7 +598,7 @@ function finalizeTransaction() {
         endpoint = 'https://cs341group4.tk/Checkout/Finalize';
         redirect = baseURL + "/userinfo.html";
     }
-    $.post(endpoint, {paymentId: $.urlParam(paymentId), PayerID: $.urlParam(PayerID)})
+    $.post(endpoint, {paymentId: $.urlParam("paymentId"), PayerID: $.urlParam("PayerID")})
     .done(function(data) {
         window.location = redirect;
     })
