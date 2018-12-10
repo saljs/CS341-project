@@ -637,7 +637,9 @@ function displayHistory(orders) {
     var orderList = $('<ul/>');
     orders.forEach(function(order) {
         var listItem = $('<li/>');
-        listItem.append('<p>On ' + order.time + ' you ordered:</p>');
+        var timestamp = new Date(order.time);
+        listItem.append('<p>On ' + timestamp.toLocaleDateString() + ' at '
+            + timestamp.toLocaleTimeString() + ' you ordered:</p>');
         var itemList = $('<ol/>');
         order.items.forEach(function(item) {
             itemList.append('<li><a href="' + baseURL + "/item.html?id=" + item.id

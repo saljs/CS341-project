@@ -101,6 +101,15 @@ class GuestCheckout {
             return;
         }
 
+        //decrement item availablity
+        $products = $db->query("SELECT itemId, quantity FROM guestCart WHERE guestId = '" . $args['guestId'] . "';");
+        while($product = $products->fetch_assoc()) {
+            if(!$db->query("UPDATE product SET quantity = quantity - " . $product['quantity'] . " WHERE id = " . $product['itemId'] . ";")) {
+                error($db->error);
+                return;
+            }
+        }
+
         //remove the items from their cart
         if(!$db->query("DELETE FROM guestCart WHERE guestId = '" . $args['guestId'] . "';")) {
             error($db->error);

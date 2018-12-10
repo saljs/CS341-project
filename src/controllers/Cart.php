@@ -42,11 +42,12 @@ class Cart {
     /*
      * Adds an item to a user's cart
      * @param itemId - the item ID
+     * @param itemQuantity - the number of items to add
      * @param token - The user's auth token
      */
     static function Add($args):void {
         //check params
-        if(!($args['itemId'] && $args['token'])) {
+        if(!($args['itemId'] && $args['token'] && $args['itemQuantity'])) {
             error("Missing required fields");
             return;
         }
@@ -54,6 +55,13 @@ class Cart {
         $user = new SiteUser(null, $args['token']);
         if(!$user->isAuth()) { 
             error("User is not authenticated");
+            return;
+        }
+
+        //check if product is in stock
+        $prod = new ViewableProduct($args['itemId']);
+        if($prod->quantity < (int)$args['itemQuantity']) {
+            error("Product is out of stock");
             return;
         }
 
@@ -133,6 +141,13 @@ class Cart {
         $user = new SiteUser(null, $args['token']);
         if(!$user->isAuth()) { 
             error("User is not authenticated");
+            return;
+        }
+
+        //check if product is in stock
+        $prod = new ViewableProduct($args['itemId']);
+        if($prod->quantity < (int)$args['quantity']) {
+            error("Product is out of stock");
             return;
         }
 

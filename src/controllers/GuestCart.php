@@ -38,12 +38,20 @@ class GuestCart {
     /*
      * Adds an item to a user's cart
      * @param itemId - the item ID
+     * @param itemQuantity - the number of items to add
      * @param guestId - the user's guest ID
      */
     static function Add($args):void {
         //check params
-        if(!($args['itemId'] && $args['guestId'])) {
+        if(!($args['itemId'] && $args['guestId'] && $args['itemQuantity'])) {
             error("Missing required fields");
+            return;
+        }
+
+        //check if product is in stock
+        $prod = new ViewableProduct($args['itemId']);
+        if($prod->quantity < (int)$args['itemQuantity']) {
+            error("Product is out of stock");
             return;
         }
         
@@ -111,6 +119,13 @@ class GuestCart {
         //Check if the token was included
         if(!($args['itemId'] && $args['quantity'] && $args['guestId'])) {
             error("Missing required fields");
+            return;
+        }
+
+        //check if product is in stock
+        $prod = new ViewableProduct($args['itemId']);
+        if($prod->quantity < (int)$args['quantity']) {
+            error("Product is out of stock");
             return;
         }
         

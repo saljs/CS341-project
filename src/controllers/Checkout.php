@@ -113,13 +113,18 @@ class Checkout {
             return;
         }
 
-        //add items to user's history and remove the items from their cart
+        //decrement item availablity
         $itemList = array();
-        $products = $db->query("SELECT * FROM cart WHERE userId = '" . $user->id . "';");
+        $products = $db->query("SELECT itemId, quantity FROM cart WHERE userId = '" . $user->id . "';");
         while($product = $products->fetch_assoc()) {
             $itemList[] = $product['itemId'];
+            if(!$db->query("UPDATE product SET quantity = quantity - " . $product['quantity'] . " WHERE id = " . $product['itemId'] . ";")) {
+                error($db->error);
+                return;
+            }
         }
-        $db = $GLOBALS['database'];
+
+        //add items to user's history and remove the items from their cart
         if(!$db->query("INSERT INTO history (userId, itemList) VALUES ('". $user->id . "', '" . implode(",", $itemList) . "');")) {
             error($db->error);
             return;
