@@ -193,82 +193,78 @@ function loadCategories(type, id) {
     });
 }
 
-/*
- * Loads all items using the given parameters
- */
-function loadAllItems() {
-    if ($('#products').length) {
-        $.get('https://cs341group4.tk/Product/GetAll' + window.location.search)
-            .done(function (data) {
+
+ /*
+  * Loads all items using the given parameters
+  */
+ function loadAllItems() {
+     if ($('#products').length) {
+         $.get('https://cs341group4.tk/Product/GetAll' + window.location.search)
+             .done(function (data) {
+                 $('#message').html("");
+                 itemList(data.products);
+                 console.log(data.products);
+             })
+            .fail(function (data) { 
+                $('#message').html(data.responseJSON.message); 
+            }); 
+    } if($('#myDropdown').length) { 
+        $.get('https://cs341group4.tk/Product/GetAll' + window.location.search) 
+            .done(function (data) { 
                 $('#message').html("");
-                itemList(data.products);
-                console.log(data.products);
-            })
-            .fail(function (data) {
-                $('#message').html(data.responseJSON.message);
-            });
-    } if($('#myRemoveDropdown').length) {
-        $.get('https://cs341group4.tk/Product/GetAll' + window.location.search)
-            .done(function (data) {
-                $('#message').html("");
-                removeItemList(data.products);
-                console.log(data.products);
-            })
-            .fail(function (data) {
-                $('#message').html(data.responseJSON.message);
-            });
-    }
-    if($('#categoryField').length && $.urlParam('category')) {
-        $('#categoryField').val($.urlParam('category'));
-    }
-    if($('#categoriesNavBar').length) {
-        loadCategories('navbar', 'categoriesNavBar');
-    }
-}
-
+                 removeItemList(data.products);
+                 console.log(data.products);
+             })
+             .fail(function (data) {
+                $('#message').html(data.responseJSON.message); 
+            }); 
+    } 
+     if($('#categoryField').length && $.urlParam('category')) {
+        $('#categoryField').val($.urlParam('category')); 
+    } 
+     if($('#categoriesNavBar').length) {
+         loadCategories('navbar', 'categoriesNavBar');
+     }
+ }
 /*
- * Adds all existing items to the remove
- * dropdown menu.
- */
-function removeItemList(items) {
-    items.forEach(function(item) {
-        var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
-        var a = document.createElement("a");
-        a.value = item.name;
-        a.textContent = item.name;
-        a.onclick = function() {
-            document.getElementById("previewRemoveList").innerHTML = "";
-            loadItemPreview(item, url);
-            showRemoveList();
-            changeRemoveButton(item);
-        };
+  * Adds all existing items to the remove
+  * dropdown menu.
+  */
+ function removeItemList(items) {
+     items.forEach(function(item) {
+         var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
+         var a = document.createElement("a");
+        a.value = item.name; 
+        a.textContent = item.name; 
+        a.onclick = function() { 
+            document.getElementById("previewList").innerHTML = ""; 
+            loadItemPreview(item, url); 
+            showRemoveList(); 
+            changeRemoveButton(item); 
+        }; 
+        var dropdown = document.getElementById("myDropdown");
+        dropdown.appendChild(a); 
+    }); 
+} 
 
-        var dropdown = document.getElementById("myRemoveDropdown");
-        dropdown.appendChild(a);
-    });
-
-}
-
-/*
- * Changes the onclick function of the remove button to be the
- * current item the user selected.
- */
-function changeRemoveButton(item) {
-    let removeButton = document.getElementById("removeItemButton");
-    removeButton.onclick = function() {
-        let endpoint = "https://cs341group4.tk/Product/Delete";
-        console.log("Removing: " + endpoint + "?itemId="+item.id);
-        $.post(endpoint, {itemId : item.id})
-        .done(function(data) {
-            console.log(data);
-        })
-        .fail(function(data) {
-            console.log(data);
-        });
+/* 
+ * Changes the onclick function of the remove button to be the 
+ * current item the user selected. 
+  */
+ function changeRemoveButton(item) {
+     let removeButton = document.getElementById("removeItemButton");
+     removeButton.onclick = function() {
+         let endpoint = "https://cs341group4.tk/Product/Delete";
+         console.log("Removing: " + endpoint + "?itemId="+item.id);
+         $.post(endpoint, {itemId : item.id})
+         .done(function(data) {
+             console.log(data);
+         })
+         .fail(function(data) {
+             console.log(data);
+         });
     }
-
-}
-
+} 
 /*
  * Loads an item's card and links to the item's main page.
  */
