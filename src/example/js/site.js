@@ -97,6 +97,9 @@ function userWelcome() {
             $.post('https://cs341group4.tk/User/Get')
             .done(function(data) {
                 $('#loginButton').remove();
+                $('#navEntries').append('<li class="nav-item">'+ 
+                                        '<a id="logout" class="nav-link" href="#">Logout</a>'+ 
+                                        '</li>'); 
                 $('#logout').on('click', logout);
                 if(data.type == "admin") {
                     $('#navEntries').prepend('<li class="nav-item">'+
