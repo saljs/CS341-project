@@ -97,12 +97,12 @@
                     <div id="RemoveItem" class="tabcontent"> 
                         <h3 class="form-header">Remove Item</h3> 
                          <input id="removeItemButton" type="submit" class="btn btn-primary redbutton"/>
-                         <div class="dropdown">
-                             <input type="text" placeholder="Search.." id="myInput" onclick="showRemoveList()" onkeyup="filterFunction()">
-                             <div id="myDropdown" class="dropdown-content"></div>
+                         <div class="removeDropdown">
+                             <input type="text" placeholder="Search.." id="myRemoveInput" onclick="showRemoveList()" onkeyup="removeFilterFunction()">
+                             <div id="myRemoveDropdown" class="dropdown-content"></div>
                          </div>
                          <form class="form-check-inline topbottompadding">
-                             <div id="previewList"></div>
+                             <div id="previewRemoveList"></div>
                          </form>
                      </div>
                 </div>
@@ -454,13 +454,13 @@
                  document.getElementById(target[1]).style.display = "block";
              }
              function showRemoveList() {
-                 document.getElementById("myDropdown").classList.toggle("show");
+                 document.getElementById("myRemoveDropdown").classList.toggle("show");
              }
-             function filterFunction() {
+             function removeFilterFunction() {
                  var input, filter, ul, li, a, i;
-                 input = document.getElementById("myInput");
+                 input = document.getElementById("myRemoveInput");
                  filter = input.value.toUpperCase();
-                 div = document.getElementById("myDropdown");
+                 div = document.getElementById("myRemoveDropdown");
                  a = div.getElementsByTagName("a");
                  for (i = 0; i < a.length; i++) {
                      if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
