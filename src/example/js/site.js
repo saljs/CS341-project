@@ -106,9 +106,9 @@ function userWelcome() {
                                              '<a id="adminPage" class="nav-link" href="/example/admin.html">Admin</a>'+
                                              '</li>');
                 }
+                $('#userWelcome').html(data.name);
+                $('#userWelcome').attr('href', baseURL + "/userinfo.html");
             });
-            $('#userWelcome').html(data.name);
-            $('#userWelcome').attr('href', baseURL + "/userinfo.html");
         }
     }
 }
