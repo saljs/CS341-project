@@ -620,7 +620,7 @@ function loadHistory() {
             $.post('https://cs341group4.tk/Cart/History')
             .done(function(data) {
                 $('#message').html("");
-                $('#orderHistory').html(data);
+                displayHistory(data.orders);
             })
             .fail(function(data) {
                 $('#message').html(data.responseJSON.message);
@@ -628,6 +628,28 @@ function loadHistory() {
         }
     }
 }
+
+/*
+ * Displays a user's order history
+ */
+function displayHistory(orders) {
+    console.log(orders);
+    var orderList = $('<ul/>');
+    orders.forEach(function(order) {
+        var listItem = $('<li/>');
+        listItem.append('<p>On ' + order.time + ' you ordered:</p>');
+        var itemList = $('<ul/>');
+        order.items.forEach(function(item) {
+            itemList.append('<li><a href="' + baseURL + "item.html?id=" + item.id
+                + '><img width="50" height="50" src="' + item.image + '"/> - '
+                + item.name + '</a></li>');
+        });
+        listItem.append(itemList);
+        orderList.append(listItem);
+    });
+    $('#orderHistory').html(orderList);
+}
+        
 /****************************************************************************
  * Admin functions
  ***************************************************************************/

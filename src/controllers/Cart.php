@@ -243,6 +243,7 @@ class Cart {
         $payload->orders = array();
         while($order = $orders->fetch_assoc()) {
             $res = new stdClass();
+            $res->time = $order['time'];
             $res->items = array();
             foreach(str_getcsv($order['itemList']) as $itemId) {
                 //add each product to the payload
@@ -253,8 +254,8 @@ class Cart {
                     error($e->getMessage());
                 }
                 $item = new stdClass();
+                $item->id = $prod->id;
                 $item->name = $prod->name;
-                $item->price = $prod->price;
                 $item->image = $prod->image;
                 $res->items[] = $item;
             }
