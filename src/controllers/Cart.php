@@ -254,7 +254,7 @@ class Cart {
                     error($e->getMessage());
                 }
                 $item = new stdClass();
-                $item->id = $prod->id;
+                $item->id = $itemId;
                 $item->name = $prod->name;
                 $item->image = $prod->image;
                 $res->items[] = $item;
