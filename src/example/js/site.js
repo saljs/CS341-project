@@ -356,7 +356,7 @@ function loadEditItemPreview(item, url) {
     '<form id="newItem">'+
        '<div class="form-group">'+
             '<label>Name</label>'+
-            '<input type="text" class="form-control" name="name" value='+item.name+'>'+
+            '<input class="form-control" name="name" value='+item.name+'>'+
         '</div>'+
         '<div class="form-group">'+
             '<label>Price</label>'+
