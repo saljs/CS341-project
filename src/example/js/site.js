@@ -333,6 +333,35 @@ function loadItemPreview(item, url) {
         '</div>'+
         '</div>'+
         '</div>');
+    $('#previewEditList').append(
+    
+    '<form id="newItem">'+
+       '<div class="form-group">'+
+            '<label>Name</label>'+
+            '<input type="text" class="form-control" name="name" placeholder="Microwave">'+
+        '</div>'+
+        '<div class="form-group">'+
+            '<label>Price</label>'+
+            '<input type="number" class="form-control" name="price" placeholder="100">'+
+        '</div>'+
+        '<div class="form-group">'+
+            '<label>Quantity</label>'+
+            '<input type="number" class="form-control" name="quantity" placeholder="400">'+
+        '</div>'+
+        '<div class="form-group">'+
+            '<label>Image</label>'+
+            '<input type="url" class="form-control" name="image">'+
+        '</div>'+
+        '<div class="form-group">'+
+            '<label>Description</label'+
+            '<input type="text" class="form-control" name="description" placeholder="waves microly">'+
+        '</div>'+
+        '<div class="form-group">'+
+            '<label>Category</label>'+
+            '<input type="text" class="form-control" name="category" placeholder="i.e. electronics">'+
+        '</div>'+
+        '<input type="submit" class="btn btn-primary" value="Add Item"><br>'+
+    '</form>');
 }
 
 /*
