@@ -371,7 +371,7 @@ function loadEditItemPreview(item, url) {
             '<input type="url" class="form-control" name="image">'+
         '</div>'+
         '<div class="form-group">'+
-            '<label>Description</label'+
+            '<label>Description</label>'+
             '<input type="text" class="form-control" name="description" placeholder="waves microly">'+
         '</div>'+
         '<div class="form-group">'+
