@@ -359,7 +359,7 @@ function loadItemPreview(item, url) {
             '<label>Category</label>'+
             '<input type="text" class="form-control" name="category" placeholder="i.e. electronics">'+
         '</div>'+
-        '<input type="submit" class="btn btn-primary" value="Add Item"><br>'+
+        '<input id="editItemButton" type="submit" class="btn btn-primary" value="submitChanges"><br>'+
     '</form>');
 }
 
