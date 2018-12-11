@@ -686,11 +686,11 @@ function editPromotionPopulate() {
     var form = document.forms["editPromotion"];
     $.post('https://cs341group4.tk/Promotion/Get', {code: form["code"].value})
     .done(function(data) {
-        form["name"].value = data.value;
+        form["name"].value = data.name;
         form["type"].value = data.type;
         form["percent"].value = data.percent;
-        form["startDate"].value = data.startDate;
-        form["endDate"].value = data.endDate;
+        form["startDate"].value = new Date(data.startDate*1000);
+        form["endDate"].value = new Date(data.endDate*1000);
         form["items"].value = data.items;
         form["categories"].value = data.categories;
     })
@@ -786,7 +786,7 @@ function editItemPopulate() {
     var form = document.forms["editItem"];
     $.post('https://cs341group4.tk/Product/Get', {id: form["id"].value})
     .done(function(data) {
-        form["name"].value = data.value;
+        form["name"].value = data.name;
         form["price"].value = data.price;
         form["quantity"].value = data.quantity;
         form["image"].value = data.image;
