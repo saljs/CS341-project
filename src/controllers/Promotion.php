@@ -26,18 +26,18 @@ class Promotion {
         $args['startDate'] = strtotime($args['startDate']);
         $args['endDate'] = strtotime($args['endDate']);
 
-        //check if user has access
-        try {
-            $user = new SiteUser(null, $args['token']);
-            if(!$user->isAuth() || $user->type != "admin") {
-                error("User doesn't have privileges to add items");
-                return;
-            }
-        }
-        catch(Exception $e) {
-            error($e->getMessage());
-            return;
-        }
+//        //check if user has access
+//        try {
+//            $user = new SiteUser(null, $args['token']);
+//            if(!$user->isAuth() || $user->type != "admin") {
+//                error("User doesn't have privileges to add items");
+//                return;
+//            }
+//        }
+//        catch(Exception $e) {
+//            error($e->getMessage());
+//            return;
+//        }
 
         // Checks if the endDate is valid (not past current time).
         $currenttime = time();
