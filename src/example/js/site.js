@@ -333,6 +333,25 @@ function loadItemPreview(item, url) {
         '</div>'+
         '</div>'+
         '</div>');
+}
+
+/*
+ * Loads an item's card and links to the item's main page.
+ */
+function loadEditItemPreview(item, url) {
+    $('#previewEditList').append(
+        '<div class="mb-4">'+'' +
+        '<div class="card h-100">'+
+        '<a href="'+url+'" target="_blank">' +
+        '<img class="card-img-top" style="width:50%" src="'+item.image+'" alt="">' +
+        '</a>'+
+        '<div class="card-body">'+
+        '<h4 class="card-title">'+
+        '<a href="'+url+'">'+item.name+'</a>'+
+        '</h4>'+
+        '</div>'+
+        '</div>'+
+        '</div>');
     $('#previewEditList').append(
     '<form id="newItem">'+
        '<div class="form-group">'+
@@ -361,25 +380,6 @@ function loadItemPreview(item, url) {
         '</div>'+
         '<input id="editItemButton" type="submit" class="btn btn-primary" value="submitChanges"><br>'+
     '</form>');
-}
-
-/*
- * Loads an item's card and links to the item's main page.
- */
-function loadEditItemPreview(item, url) {
-    $('#previewEditList').append(
-        '<div class="mb-4">'+'' +
-        '<div class="card h-100">'+
-        '<a href="'+url+'" target="_blank">' +
-        '<img class="card-img-top" style="width:50%" src="'+item.image+'" alt="">' +
-        '</a>'+
-        '<div class="card-body">'+
-        '<h4 class="card-title">'+
-        '<a href="'+url+'">'+item.name+'</a>'+
-        '</h4>'+
-        '</div>'+
-        '</div>'+
-        '</div>');
 }
 /*
  * Inserts a list of items to page
