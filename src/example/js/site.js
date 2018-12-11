@@ -652,9 +652,8 @@ function editPromotionPopulate() {
         form["type"].value = data.type;
         form["percent"].value = data.percent;
         //special date handling
-        var tzoffset = (new Date()).getTimezoneOffset() * 60000;
-        form["startDate"].value = (new Date(data.startDate*1000 - tzoffset)).toISOString().slice(0, 19);
-        form["endDate"].value = (new Date(data.endDate*1000 - tzoffset)).toISOString().slice(0, 19);
+        form["startDate"].value = dateField(data.startDate);
+        form["endDate"].value = dateField(data.endDate);
         form["items"].value = data.items;
         form["categories"].value = data.categories;
     })
@@ -811,3 +810,12 @@ $.fn.serializeForm = function(){
    });
    return o;
 };
+
+/*
+ * Returns a properly formatted date from UNIX timestamp
+ */
+function dateField(unixtime) {
+    var dateobj = new Date(unixtime * 1000);
+    var tzoffset = dateobj.getTimezoneOffset() * 60000;
+    return (new Date(dateobj.getTime() - tzoffset)).toISOString().slice(0, 19);
+}
