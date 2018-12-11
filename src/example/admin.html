@@ -477,13 +477,14 @@
                  var target = myDiv.split("#");
                  document.getElementById(target[1]).style.display = "block";
              }
+            //products
              function showRemoveList() {
                  document.getElementById("myDropdown").classList.toggle("show");
              }
              function showEditList() {
                  document.getElementById("editDropdown").classList.toggle("show");
              }
-             function filterFunction() {
+            function filterFunction() {
                  var input, filter, ul, li, a, i;
                  input = document.getElementById("myInput");
                  filter = input.value.toUpperCase();
@@ -511,6 +512,41 @@
                      }
                  }
              }
+            //Promotions
+            function showRemovePromoList() {
+                 document.getElementById("removePromoDropdown").classList.toggle("show");
+             }
+             function showEditPromoList() {
+                 document.getElementById("editPromoDropdown").classList.toggle("show");
+             }function editPromoFilterFunction() {
+                 var input, filter, ul, li, a, i;
+                 input = document.getElementById("editPromoInput");
+                 filter = input.value.toUpperCase();
+                 div = document.getElementById("editPromoDropdown");
+                 a = div.getElementsByTagName("a");
+                 for (i = 0; i < a.length; i++) {
+                     if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                         a[i].style.display = "";
+                     } else {
+                         a[i].style.display = "none";
+                     }
+                 }
+             }
+            function removePromoFilterFunction() {
+                 var input, filter, ul, li, a, i;
+                 input = document.getElementById("removePromoInput");
+                 filter = input.value.toUpperCase();
+                 div = document.getElementById("removePromoDropdown");
+                 a = div.getElementsByTagName("a");
+                 for (i = 0; i < a.length; i++) {
+                     if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                         a[i].style.display = "";
+                     } else {
+                         a[i].style.display = "none";
+                     }
+                 }
+             }
+             
          </script>
 
     </body>
