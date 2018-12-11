@@ -45,7 +45,7 @@ class Promotion {
 
         $db = $GLOBALS['database'];
         // Create the new promotion
-        if(!$db->query("INSERT INTO promotions (name, code, type, percent, items, categories, startdate, enddate) VALUES ("
+        if(!$db->query("INSERT INTO promotions (name, code, type, percent, itemId, categories, startdate, enddate) VALUES ("
           . "'" . $args['name'] . "', "
           . "'" . $args['code'] . "', " 
           . "'" . $args['type'] . "', " 
@@ -107,7 +107,7 @@ class Promotion {
           . "code = '" . $args['code'] . "', " 
           . "type = '" . $args['type'] . "', " 
           . "percent = '" . $args['percent'] . "', "
-          . "items = '" . $args['items'] . "', "
+          . "itemId = '" . $args['items'] . "', "
           . "categories = '" . $args['categories'] . "', "
           . "startdate = '" . strtotime($args['startDate']) . "', "
           . "enddate = '" . strtotime($args['endDate']) . "';")) {
