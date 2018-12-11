@@ -351,8 +351,7 @@ function loadEditItemPreview(item, url) {
         '</h4>'+
         '</div>'+
         '</div>'+
-        '</div>');
-    $('#previewEditList').append(
+        '</div>'+
     '<form id="newItem">'+
        '<div class="form-group">'+
             '<label>Name</label>'+
