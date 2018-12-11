@@ -51,7 +51,7 @@ class Promotion {
           . "'" . $args['type'] . "', " 
           . "'" . $args['percent'] . "', "
           . "'" . $args['items'] . "', "
-          . "'" . $args['categories'] . "', "
+          . "'" . implode(",", $args['categories']) . "', "
           . "'" . strtotime($args['startDate']) . "', "
           . "'" . strtotime($args['endDate']) . "');")) {
             error($db->error);
@@ -108,7 +108,7 @@ class Promotion {
           . "type = '" . $args['type'] . "', " 
           . "percent = '" . $args['percent'] . "', "
           . "itemId = '" . $args['items'] . "', "
-          . "categories = '" . $args['categories'] . "', "
+          . "categories = '" . implode(",", $args['categories']) . "', "
           . "startdate = '" . strtotime($args['startDate']) . "', "
           . "enddate = '" . strtotime($args['endDate']) . "';")) {
             error($db->error);
