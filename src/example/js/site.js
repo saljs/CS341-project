@@ -158,7 +158,7 @@ function loadPromotions(id) {
         for(var p in data.promotions) {
             var dataS = data.promotions[p];
             var item = getItemObject(dataS.itemId);
-            if(item != null) {
+            if(item) {
 
                 if(id === 'promotionList') {
                     $('#' + id).append("<tr>" +
