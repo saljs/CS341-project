@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/User.php';
 
 class Promotion {
 
@@ -285,7 +285,7 @@ class Promotion {
 
         $db = $GLOBALS['database'];
 
-        $sql = "SELECT endDate FROM promotions WHERE code = '" . $args['code'] . "';";
+        $sql = "SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';";
         $result = $db->query($sql);
         if(!$result)
             error("There's an error in your SQL syntax: {$sql}");
