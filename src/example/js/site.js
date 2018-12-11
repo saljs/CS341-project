@@ -161,6 +161,19 @@ function loadPromotions(id) {
     }).fail(function(data) {
 
     });
+    //*
+    if($('#removePromoDropdown').length) { 
+        $.get('https://cs341group4.tk/Promotion/GetAll' + window.location.search) 
+            .done(function (data) { 
+                $('#message').html("");
+                 removePromoList(data.promotions);
+                 console.log(data.promotions);
+             })
+             .fail(function (data) {
+                $('#message').html(data.responseJSON.message); 
+            }); 
+    }
+    
 }
 /*
  * Loads a list of categories
@@ -277,7 +290,6 @@ function loadCategories(type, id) {
         dropdown.appendChild(a); 
     }); 
 }
-
 /* 
  * Changes the onclick function of the remove button to be the 
  * current item the user selected. 
