@@ -157,19 +157,15 @@ function loadPromotions(id) {
     .done(function(data) {
         for(var p in data.promotions) {
             var dataS = data.promotions[p];
-            var item = getItemObject(dataS.itemId);
-            if(item) {
 
-                if(id === 'promotionList') {
-                    $('#' + id).append("<tr>" +
-                        "<th scope='row'>" + p + "</th>" +
-                        "<td>" + dataS.name + "</td>" +
-                        "<td>" + dataS.code + "</td>" +
-                        "<td>" + new Date(dataS.enddate*1000).toLocaleString() + "</td>" +
-                        "<td>" + dataS.itemId + "</td>" +
-                        "</tr>");
-                }
-
+            if(id === 'promotionList') {
+                $('#' + id).append("<tr>" +
+                    "<th scope='row'>" + p + "</th>" +
+                    "<td>" + dataS.name + "</td>" +
+                    "<td>" + dataS.code + "</td>" +
+                    "<td>" + new Date(dataS.enddate*1000).toLocaleString() + "</td>" +
+                    "<td>" + dataS.itemId + "</td>" +
+                "</tr>");
             }
         }
     });
@@ -350,33 +346,20 @@ function loadSingleItem() {
     if($('#itemName') && $('#itemPrice') && $('#itemQuantity') && $('itemDesc')) {
         var id = $.urlParam('id');
         if(id) {
-            var data = getItemObject(id);
-            if(data != null) {
+            $.post('https://cs341group4.tk/Product/Get', {id: id})
+            .done(function(data) {
                 $('#itemName').html(data.name);
                 $('#itemPrice').html("$" + data.price);
                 $('#itemQuantity').html(data.quantity + " left");
                 $('#itemDesc').html(data.description);
                 $('#itemImg').attr("src",data.image);
-            } else {
+            })
+            .fail(function(data) {
                 $('#itemDesc').html(data.responseJSON.message);
-            }
+            });
         }
     }
 }
-
-/*
- * Gets an item's object from an id
- */
-function getItemObject(id) {
-    $.post('https://cs341group4.tk/Product/Get', {id: id})
-        .done(function(data) {
-            return data;
-        })
-        .fail(function(data) {
-            return null;
-        });
-}
-
 
 /*
  * Adds an item to the cart
