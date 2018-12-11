@@ -343,7 +343,7 @@ paths:
               message:
                 type: string
 
-/Product/Edit:
+  /Product/Edit:
     post:
       tags:
       - Product
@@ -408,68 +408,7 @@ paths:
             properties:
               message:
                 type: string
-
-/Category/Create:
-  post:
-    tags:
-    - Category
-    summary: Create a new category
-    consumes:
-    - application/x-www-form-urlencoded
-    produces:
-    - application/json
-    parameters:
-      - in: formData
-      name: name
-      description: The category name
-      type: string
-      - in: formData
-      name: token
-      description: The user authentication token
-      type: string
-    responses:
-      200:
-        description: Bad Request
-        schema:
-          type: object
-          properties:
-            message:
-              type: string
-    400:
-      description: Bad Request
-      schema:
-        type: object
-        properties:
-          message:
-            type: string
-
-
-/Category/GetAll:
-post:
-tags:
-- Category
-summary: Return a list of all existing categories
-consumes:
-- application/x-www-form-urlencoded
-produces:
-- application/json
-responses:
-200:
-description: comma delimited list
-schema:
-
-400:
-description: Bad Request
-schema:
-type: object
-properties:
-message:
-type: string
-
-
-
-
-#Add in product edit method here
+  
   /Promotion/Create:
     post:
       tags:
