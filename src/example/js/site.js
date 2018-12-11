@@ -166,7 +166,7 @@ function loadPromotions(id) {
                         "<td>" + dataS.name + "</td>" +
                         "<td>" + dataS.code + "</td>" +
                         "<td>" + new Date(dataS.enddate*1000).toLocaleString() + "</td>" +
-                        "<td>" + item.name + "</td>" +
+                        "<td>" + dataS.itemId + "</td>" +
                         "</tr>");
                 }
 
