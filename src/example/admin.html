@@ -241,6 +241,14 @@
                     </div>
                     <div id="EditPromotion" class="tabcontent">
                         <h3 class="form-header">Edit Promotion</h3>
+                        <input id="editPromoButton" type="submit" class="btn btn-primary redbutton"/>
+                         <div class="Dropdown">
+                             <input type="text" placeholder="Search.." id="editPromoInput" onclick="showEditPromoList()" onkeyup="editPromoFilterFunction()">
+                             <div id="editPromoDropdown" class="dropdown-content"></div>
+                         </div>
+                         <form class="form-check-inline topbottompadding">
+                             <div id="previewEditPromoList"></div>
+                         </form>
                     </div>
                     <div id="RemovePromotion" class="tabcontent">
                         <h3 class="form-header">Remove Promotion</h3>
