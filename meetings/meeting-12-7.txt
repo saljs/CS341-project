@@ -1,0 +1,17 @@
+C-S 341 Software Engineering
+Project Meeting
+Project title:   Software for a shopping cart experience
+Group #:      1
+Members of the group:  Sal, Jack, Jack
+Meeting #:   5
+Held on: DEC. 7, 2018 at 2:00 P.M.
+Location the U
+Members present: Jack E., Jack C., Sal
+Topic for discussion: final deliverable/demo
+Report writer: Jack Collins
+  we identified what is left to be implimented for the final demo. edit and end promo/items will be handled by Jack anc Jack.
+  Sal will work on the product history tab. All code needs to be formatted uniformly and commented. we also need to decide
+  how we would like to generate the API. Group message will be used to communicate and troubleshoot opposed to meetings since pre-finals 
+  week is busy for everyone.
+  
+Next meeting and its agenda: discuss remaining reqs and the final demonstration.
