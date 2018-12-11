@@ -149,13 +149,12 @@ class Product {
         $db = $GLOBALS['database'];
         $result = $db->query($sql);
         if(!$result)
-            error("There's an error in your SQL syntax: {$sql}");
-
+        {
+            error($db->error);
+        }
         if(!(mysqli_num_rows($result) > 0)) {
-
             error("Invalid Product ID");
             return;
-
         }
 
         success();

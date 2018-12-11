@@ -23,86 +23,41 @@ class Promotion {
             return;
         }
 
-        $args['startDate'] = strtotime($args['startDate']);
-        $args['endDate'] = strtotime($args['endDate']);
-
-//        //check if user has access
-//        try {
-//            $user = new SiteUser(null, $args['token']);
-//            if(!$user->isAuth() || $user->type != "admin") {
-//                error("User doesn't have privileges to add items");
-//                return;
-//            }
-//        }
-//        catch(Exception $e) {
-//            error($e->getMessage());
-//            return;
-//        }
+        //check if user has access
+        try {
+            $user = new SiteUser(null, $args['token']);
+            if(!$user->isAuth() || $user->type != "admin") {
+                error("User doesn't have privileges to add items");
+                return;
+            }
+        }
+        catch(Exception $e) {
+            error($e->getMessage());
+            return;
+        }
 
         // Checks if the endDate is valid (not past current time).
         $currenttime = time();
-        if($currenttime >= $args['endDate']) {
+        if($currenttime >= strtotime($args['endDate'])) {
             error("Invalid End Date");
             return;
         }
 
-        // Checks if the promotion already exists & is running.
         $db = $GLOBALS['database'];
-        $sql = "SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';";
-        $result = $db->query($sql);
-        if(!$result)
-            error("There's an error in your SQL syntax: {$sql}");
-
-        // If there is a existing promotion with that code in the database
-        if(mysqli_num_rows($result) > 0) {
-
-            $row = mysqli_fetch_row($result);
-
-            $currenttime = time();
-            // If the promotion is not over
-            if($currenttime < $row['endDate']) {
-
-                error("Promotion already exists with that code");
-                return;
-
-            }
-
-            // Otherwise, update that discount with the new information.
-            $sql = "UPDATE promotions 
-                      SET name='" . $args['name'] .
-                    "', type='" . $args['type'] .
-                    "', percent='" . $args['percent'] .
-                    "', enddate='" . $args['endDate'] .
-                    "', startdate='" . $args['startDate'] .
-                    "', items='" . $args['items'] .
-                    "', categories='" . $args['categories'] .
-                    "' WHERE code='" . $args['code'] . "';";
-
-            if(!$db->query($sql))
-                error("There's an error in your SQL syntax: {$sql}");
-
-        } else {
-
-            $sql = "INSERT INTO `promotions`
-                      (`name`, `code`, `type`, `percent`, `items`, `categories`, `startdate`, `enddate`) 
-                      VALUES 
-                      ('". $args['name'] . "', 
-                      '" . $args['code'] . "', 
-                      '" . $args['type'] . "', 
-                      '" . $args['percent'] . "',
-                      '" . $args['items'] . "',
-                      '" . $args['categories'] . "',
-                      '" . $args['startDate'] . "',
-                      '" . $args['endDate'] . "');";
-
-            // Create the new promotion
-            if(!$db->query($sql))
-                error("There's an error in your SQL syntax: {$sql}");
-
+        // Create the new promotion
+        if(!$db->query("INSERT INTO promotions (name, code, type, percent, items, categories, startdate, enddate) VALUES ("
+          . "'" . $args['name'] . "', "
+          . "'" . $args['code'] . "', " 
+          . "'" . $args['type'] . "', " 
+          . "'" . $args['percent'] . "', "
+          . "'" . $args['items'] . "', "
+          . "'" . $args['categories'] . "', "
+          . "'" . strtotime($args['startDate']) . "', "
+          . "'" . strtotime($args['endDate']) . "');")) {
+            error(db->error);
+            return;
         }
-
         success();
-
     }
 
     /*
@@ -120,7 +75,7 @@ class Promotion {
     static function Edit($args): void {
 
         // Make sure they passed all fields
-        if(!($args['code'] && $args['token'])) {
+        if (!($args['name'] && $args['code'] && $args['type'] && $args['percent'] && $args['endDate'] && $args['startDate'] && $args['items'] && $args['categories'] && $args['token'])) {
             error("Missing required fields");
             return;
         }
@@ -138,49 +93,28 @@ class Promotion {
             return;
         }
 
-        $args['startDate'] = strtotime($args['startDate']);
-        $args['endDate'] = strtotime($args['endDate']);
-
-        // Checks if the promotion already exists & is running.
-        $db = $GLOBALS['database'];
-        $sql = "SELECT `name`, `type`, `percent`, `startdate`, `enddate`, `items`, `categories` FROM promotions WHERE code = '{$args["code"]}';";
-        $result = $db->query($sql);
-        if(!$result)
-            error("There's an error in your SQL syntax: {$sql}");
-
-        if(mysqli_num_rows($result) > 0) {
-
-            // We want to check if there's a promotion with the given code
-            $row = mysqli_fetch_assoc($result);
-            $currenttime = time();
-
-            // If the promotion is not over
-            if ($currenttime < $row['enddate']) {
-
-                // Go through each field in the row, if that field was given in the
-                // edit arguements, then insert it into our new array, otherwise take
-                // that data from the database and insert it into our new array.
-                $new['code'] = $args['code'];
-                foreach($row as $key => $val) {
-
-                    if($args[$key])
-                        $new[$key] = $args[$key];
-                    else
-                        $new[$key] = $row[$key];
-
-                }
-
-                // Use our existing create function to update the item
-                self::Create($new);
-
-            } else {
-
-                error("This promotion is over");
-
-            }
-
+        // Checks if the endDate is valid (not past current time).
+        $currenttime = time();
+        if($currenttime >= strtotime($args['endDate'])) {
+            error("Invalid End Date");
+            return;
         }
 
+        $db = $GLOBALS['database'];
+        // Update the promotion
+        if(!$db->query("UPDATE promotions SET "
+          . "name = '" . $args['name'] . "', "
+          . "code = '" . $args['code'] . "', " 
+          . "type = '" . $args['type'] . "', " 
+          . "percent = '" . $args['percent'] . "', "
+          . "items = '" . $args['items'] . "', "
+          . "categories = '" . $args['categories'] . "', "
+          . "startdate = '" . strtotime($args['startDate']) . "', "
+          . "enddate = '" . strtotime($args['endDate']) . "';")) {
+            error(db->error);
+            return;
+        }
+        success();
     }
 
     /*
@@ -200,23 +134,18 @@ class Promotion {
 
         $promotions = array();
         while($row = mysqli_fetch_assoc($result)) {
-
             $promo = array();
             foreach($result as $key => $value) {
                 $promo[$key] = $value;
             }
-
             array_push($promotions, $promo);
-
         }
 
         $output = new HTTPResponse();
-
         // Declare our return fields.
         $payload->promotions = $promotions[0];
         $output->setPayload($payload);
         $output->complete();
-
     }
 
     /*
@@ -227,12 +156,9 @@ class Promotion {
     static function Get($args): void {
 
         if (!$args['code']) {
-
             error("Discount code required");
             return;
-
         } try {
-
             // Get our promotion based on the code given.
             $promo = new ViewableDiscount($args['code']);
             $output = new HTTPResponse();
@@ -254,7 +180,6 @@ class Promotion {
         } catch (Exception $e) {
             error($e->getMessage());
         }
-
     }
 
     /*
@@ -263,13 +188,11 @@ class Promotion {
      * @param token: An Admin Auth token
      */
     static function End($args): void {
-
         // Make sure they entered a code
         if(!($args['code']) && $args['token']) {
             error("Missing required fields");
             return;
         }
-
         //check if user has access
         try {
             $user = new SiteUser(null, $args['token']);
@@ -284,40 +207,32 @@ class Promotion {
         }
 
         $db = $GLOBALS['database'];
-
         $sql = "SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';";
         $result = $db->query($sql);
-        if(!$result)
-            error("There's an error in your SQL syntax: {$sql}");
+        if(!$result) {
+            error(db->error);
+            return;
+        }
 
         if(mysqli_num_rows($result) > 0) {
-
             // We want to check if there's a promotion with the given code
             while($row = mysqli_fetch_assoc($result)) {
-
                 $currenttime = time();
                 // If the promotion is not over
                 if($currenttime < $row['enddate']) {
-
                     // Change the end date to the current time.
                     $sql = "UPDATE promotions SET enddate= '" . $currenttime . "' WHERE code='" . $args[code] . "';";
-
-                    if(!$db->query($sql))
-                        error("There's an error in your SQL syntax: {$sql}");
-
+                    if(!$db->query($sql)) {
+                        error(db->error);
+                        return;
+                    }
                 }
-
             }
-
         } else {
-
             error("Invalid Code");
             return;
-
         }
-
         success();
-
     }
 }
 
