@@ -163,7 +163,7 @@ function loadPromotions(id) {
     });
     //*
     if($('#removePromoDropdown').length) { 
-        $.get('https://cs341group4.tk/Promotion/GetAll' + window.location.search) 
+        $.get('https://cs341group4.tk/Promotion/GetAll') 
             .done(function (data) { 
                 $('#message').html("");
                  removePromoList(data.promotions);
