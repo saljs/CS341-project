@@ -200,7 +200,7 @@ class Product {
             . "quantity = '" . $args['quantity'] . "', "
             . "image = '" . $args['image'] . "', "
             . "description = '" . $args['description'] . "', "
-            . "categrory = '" . $args['category'] . "' "
+            . "category = '" . $args['category'] . "' "
             . "WHERE id = " . $args['id'] . ";")){
             error($db->error);
             return;
