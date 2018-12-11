@@ -50,10 +50,6 @@
                 </div>
                 <!-- Items -->
                 <div>
-                    <div id="ItemInfo" class="tabcontent">
-                        <h3 class="form-header">Item Info</h3>
-                        <p> Display stats for items like total items.</p>
-                    </div>
                     <div id="AddItem" class="tabcontent">
                         <h3 class="form-header">Add Item</h3>
                         <form id="newItem">
@@ -93,34 +89,57 @@
                     </div>
                     <div id="EditItem" class="tabcontent">
                         <h3 class="form-header">Edit Item</h3>
-                        
-                        <div class="Dropdown">
-                            <input type="text" placeholder="Search.." id="editInput" onclick="showEditList()" onkeyup="editFilterFunction()">
-                             <div id="editDropdown" class="dropdown-content"></div>
-                        </div>
-                         <form class="form-check-inline topbottompadding">
-                             <div id="previewEditList"></div>
-                         </form>
+                        <form id="editItem">
+
+                            <div class="form-group">
+                                <label>ID</label>
+                                <input type="number" class="form-control" name="id" id="editItemID">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" name="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input type="number" class="form-control" name="price">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input type="number" class="form-control" name="quantity">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="url" class="form-control" name="image">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" class="form-control" name="description">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Category</label>
+                                <input type="text" class="form-control" name="category">
+                            </div>
+
+                            <input type="submit" class="btn btn-primary" value="Edit Item"><br>
+                        </form>
                     </div>
                     <div id="RemoveItem" class="tabcontent"> 
                         <h3 class="form-header">Remove Item</h3> 
-                         <input id="removeItemButton" type="submit" class="btn btn-primary redbutton"/>
-                         <div class="Dropdown">
-                             <input type="text" placeholder="Search.." id="myInput" onclick="showRemoveList()" onkeyup="filterFunction()">
-                             <div id="myDropdown" class="dropdown-content"></div>
-                         </div>
-                         <form class="form-check-inline topbottompadding">
-                             <div id="previewList"></div>
-                         </form>
+                        <form id="deleteItem">
+                            <input type="number" name="itemId" placeholder="Item ID"/>
+                            <input type="submit" value="Remove">
+                        </form>
                      </div>
                 </div>
                 
                 <!-- Accounts -->
                 <div>
-                    <div id="AdminInfo" class="tabcontent">
-                        <h3 class="form-header">Admin Info</h3>
-                        <p> Display admin count. etc, possibly remove this.</p>
-                    </div>
                     <div id="NewAdmin" class="tabcontent">
                         <h3 class="form-header">Add Admin User</h3>
                         <form id="register">
@@ -140,13 +159,6 @@
                             <button type="submit" class="btn btn-primary" value="Register">Add User</button>
                         </form>
                         <div id="message"></div>
-                    </div>
-                    <div id="EditAdmin" class="tabcontent">
-                        <h3 class="form-header">Edit Admin</h3>
-
-                    </div>
-                    <div id="RemoveAdmin" class="tabcontent">
-                        <h3 class="form-header">Remove Admin</h3>
                     </div>
                 </div>
 
@@ -175,30 +187,30 @@
                         </div>
                     </div>
                     <div id="NewPromotion" class="tabcontent">
+                        <h3 class="form-header">Add Promotion</h3>
                         <form id="addPromotion">
-                            <h3 class="form-header">Add Promotion</h3>
                             <div class="form-group">
-                                <label for="displayName">Display Name</label>
-                                <input type="text" name="name" class="form-control" id="displayName" placeholder="Holiday 50% Off" required>
+                                <label>Display Name</label>
+                                <input type="text" name="name" class="form-control" placeholder="Holiday 50% Off" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="discountCode">Discount Code</label>
-                                <input type="text" name="code" class="form-control" id="discountCode" placeholder="HOL50" required>
+                                <label>Discount Code</label>
+                                <input type="text" name="code" class="form-control" placeholder="HOL50" required>
                             </div>
 
                             <div>
                                 <label>Promotion Type</label><br>
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="typeRadio" id="percentRadio" value="percent" checked>
-                                    <label class="form-check-label" for="percentRadio" required>
+                                    <input class="form-check-input" type="radio" name="type" value="percent" checked>
+                                    <label class="form-check-label">
                                         Percent
                                     </label>
                                 </div>
 
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="typeRadio" id="bogoRadio" value="bogo">
-                                    <label class="form-check-label" for="bogoRadio" required>
+                                    <input class="form-check-input" type="radio" name="type" value="bogo">
+                                    <label class="form-check-label">
                                         Bogo
                                     </label>
                                 </div>
@@ -207,32 +219,28 @@
                             <br>
 
                             <div class="form-group">
-                                <label for="percentOff">Percent Off</label>
-                                <input type="number" name="percent" class="form-control" id="percentOff" step="10" min="10" max="100" placeholder="50" required>
+                                <label>Percent Off</label>
+                                <input type="number" name="percent" class="form-control" step="10" min="10" max="100" placeholder="50" required>
                             </div>
 
                             <!-- TODO: Merge start date and start time -->
                             <div class="form-group">
-                                <label for="startDate">Start Date</label>
-                                <input type="datetime-local" id="startDate" name="startDate" class="form-control" required/>
+                                <label>Start Date</label>
+                                <input type="datetime-local" name="startDate" class="form-control" required/>
                             </div>
 
                             <!-- TODO: same as above comment -->
                             <div class="form-group">
-                                <label for="endDate">End Date</label>
-                                <input type="datetime-local" id="endDate" name="endDate" class="form-control" required/>
+                                <label>End Date</label>
+                                <input type="datetime-local" name="endDate" class="form-control" required/>
                             </div>
 
-                            <!-- You can get these item values from the hidden input, tags-input, in the form of a comma delimited list
-                                    we have TODO: change list to add items based on ID, not name.-->
                             <div class="form-group">
                                 <label>Item</label>
-                                <div class="tags-input form-control" data-name="tags-input">
-                                    <!-- Content goes here -->
-                                </div>
+                                <input type="text" name="items" placeholder="1" class="form-control" required/>
                             </div>
 
-                            <div id="newPromoCatList">
+                            <div class="newPromoCatList">
                                 <!-- Content goes here -->
                             </div>
 
@@ -241,24 +249,68 @@
                     </div>
                     <div id="EditPromotion" class="tabcontent">
                         <h3 class="form-header">Edit Promotion</h3>
-                        <input id="editPromoButton" type="submit" class="btn btn-primary redbutton"/>
-                         <div class="Dropdown">
-                             <input type="text" placeholder="Search.." id="editPromoInput" onclick="showEditPromoList()" onkeyup="editPromoFilterFunction()">
-                             <div id="editPromoDropdown" class="dropdown-content"></div>
-                         </div>
-                         <form class="form-check-inline topbottompadding">
-                             <div id="previewEditPromoList"></div>
-                         </form>
+                        <form id="editPromotion">
+                            <div class="form-group">
+                                <label>Discount Code</label>
+                                <input type="text" name="code" class="form-control" id="editPromotionCode" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Display Name</label>
+                                <input type="text" name="name" class="form-control" required>
+                            </div>
+
+                            <div>
+                                <label>Promotion Type</label><br>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="type" value="percent" checked>
+                                    <label class="form-check-label">
+                                        Percent
+                                    </label>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="type" value="bogo">
+                                    <label class="form-check-label">
+                                        Bogo
+                                    </label>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="form-group">
+                                <label>Percent Off</label>
+                                <input type="number" name="percent" class="form-control" step="10" min="10" max="100" placeholder="50" required>
+                            </div>
+
+                            <!-- TODO: Merge start date and start time -->
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="datetime-local" name="startDate" class="form-control" required/>
+                            </div>
+
+                            <!-- TODO: same as above comment -->
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="datetime-local" name="endDate" class="form-control" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Item</label>
+                                <input type="text" name="items" class="form-control" required/>
+                            </div>
+
+                            <div class="newPromoCatList">
+                                <!-- Content goes here -->
+                            </div>
+                        </form>
                     </div>
-                    <div id="RemovePromotion" class="tabcontent">
-                        <h3 class="form-header">Remove Promotion</h3>
-                         <input id="removePromoButton" type="submit" class="btn btn-primary redbutton"/>
-                         <div class="Dropdown">
-                             <input type="text" placeholder="Search.." id="removePromoInput" onclick="showRemovePromoList()" onkeyup="removePromoFilterFunction()">
-                             <div id="removePromoDropdown" class="dropdown-content"></div>
-                         </div>
-                         <form class="form-check-inline topbottompadding">
-                             <div id="previewRemovePromoList"></div>
+                    <div id="EndPromotion" class="tabcontent">
+                        <h3 class="form-header">End Promotion</h3>
+                         <form id="endPromotion">
+                             <input type="text" name="code" placeholder="Promotion Code"/>
+                             <input type="submit" value="End"/>
                          </form>
                     </div>
                 </div>
@@ -341,11 +393,6 @@
                     </a>
                     <ul class="subtab newscontainer itemsTab" id="itemsTab">
                         <li>
-                            <button class="tablinks" onclick="openTab(event, 'ItemInfo')">
-                                <img src="https://png.icons8.com/ios/50/000000/info-filled.png" class="icon"> Info
-                            </button>
-                        </li>
-                        <li>
                             <button class="tablinks" onclick="openTab(event, 'AddItem');">
                                 <img src="https://png.icons8.com/ios/50/000000/plus-filled.png" class="icon"> Add Item
                             </button>
@@ -371,11 +418,6 @@
                         </button>
                     </a>
                     <ul class="subtab newscontainer accountsTab" id="accountsTab">
-                        <li>
-                            <button class="tablinks" onclick="openTab(event, 'AdminInfo')">
-                                <img src="https://png.icons8.com/ios/50/000000/info-filled.png" class="icon"> Info
-                            </button>
-                        </li>
                         <li>
                             <button class="tablinks" onclick="openTab(event, 'NewAdmin')">
                                 <img src="https://png.icons8.com/ios/50/000000/plus-filled.png" class="icon"> New Admin
@@ -428,17 +470,10 @@
                 <!-- Paypal subtabs -->
                 <div>
                     <a href="#paypalTab" class="tabLink paypalTab" onclick="testFunc(this)">
-                        <button class="tablinks">
+                        <button class="tablinks" onclick="openTab(event, 'PayPalEdit')">
                             <img src="https://png.icons8.com/ios/50/000000/settings-filled.png" class="icon"> PayPal Settings
                         </button>
                     </a>
-                    <ul class="subtab newscontainer paypalTab" id="paypalTab">
-                        <li>
-                            <button class="tablinks" onclick="openTab(event, 'PayPalEdit')">
-                                <img src="https://png.icons8.com/ios/50/000000/info-filled.png" class="icon"> Edit
-                            </button>
-                        </li>
-                    </ul>
                 </div>
 
                 <!-- Categories subtabs -->
@@ -477,76 +512,6 @@
                  var target = myDiv.split("#");
                  document.getElementById(target[1]).style.display = "block";
              }
-            //products
-             function showRemoveList() {
-                 document.getElementById("myDropdown").classList.toggle("show");
-             }
-             function showEditList() {
-                 document.getElementById("editDropdown").classList.toggle("show");
-             }
-            function filterFunction() {
-                 var input, filter, ul, li, a, i;
-                 input = document.getElementById("myInput");
-                 filter = input.value.toUpperCase();
-                 div = document.getElementById("myDropdown");
-                 a = div.getElementsByTagName("a");
-                 for (i = 0; i < a.length; i++) {
-                     if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                         a[i].style.display = "";
-                     } else {
-                         a[i].style.display = "none";
-                     }
-                 }
-             }
-              function editFilterFunction() {
-                 var input, filter, ul, li, a, i;
-                 input = document.getElementById("editInput");
-                 filter = input.value.toUpperCase();
-                 div = document.getElementById("editDropdown");
-                 a = div.getElementsByTagName("a");
-                 for (i = 0; i < a.length; i++) {
-                     if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                         a[i].style.display = "";
-                     } else {
-                         a[i].style.display = "none";
-                     }
-                 }
-             }
-            //Promotions
-            function showRemovePromoList() {
-                 document.getElementById("removePromoDropdown").classList.toggle("show");
-             }
-             function showEditPromoList() {
-                 document.getElementById("editPromoDropdown").classList.toggle("show");
-             }function editPromoFilterFunction() {
-                 var input, filter, ul, li, a, i;
-                 input = document.getElementById("editPromoInput");
-                 filter = input.value.toUpperCase();
-                 div = document.getElementById("editPromoDropdown");
-                 a = div.getElementsByTagName("a");
-                 for (i = 0; i < a.length; i++) {
-                     if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                         a[i].style.display = "";
-                     } else {
-                         a[i].style.display = "none";
-                     }
-                 }
-             }
-            function removePromoFilterFunction() {
-                 var input, filter, ul, li, a, i;
-                 input = document.getElementById("removePromoInput");
-                 filter = input.value.toUpperCase();
-                 div = document.getElementById("removePromoDropdown");
-                 a = div.getElementsByTagName("a");
-                 for (i = 0; i < a.length; i++) {
-                     if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                         a[i].style.display = "";
-                     } else {
-                         a[i].style.display = "none";
-                     }
-                 }
-             }
-             
          </script>
 
     </body>

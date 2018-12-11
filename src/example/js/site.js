@@ -8,18 +8,29 @@ var siteName = "cs341group4tk";
  * Functions to run on load
  */
 $( document ).ready(function() {
-    //add event listeners
+    $('#errordiv').hide();
+    //user event listeners
     $('#login').on('submit', login);
     $('#logout').on('click', logout);
     $('#register').on('submit', register);
 
+    //admin event listeners
     $('#addPromotion').on('submit', createPromotion);
+    $('#editPromotion').on('submit', editPromotion);
+    $('#editPromotionCode').on('change', editPromotionPopulate);
+    $('#endPromotion').on('submit', endPromotion);
+    
     $('#createCategory').on('submit', createCategory);
     $('#removeCategory').on('submit', removeCategory);
+    
     $('#newItem').on('submit', createItem);
+    $('#deleteItem').on('submit', deleteItem);
+    $('#editItem').on('submit', editItem);
+    $('#editItemID').on('change', editItemPopulate);
+    
     $('#paypalSettings').on('submit', paypalEdit);
-    $('#errordiv').hide();
 
+    //cart event listeners
     $('#addToCart').on('click', addToCart);
     $('#checkout').on('submit', checkout);
 
@@ -190,7 +201,7 @@ function loadCategories(type, id) {
                     "</tr>");
             else if(type === 'catcheck') {
                 cat = data.categories[category];
-                $('#' + id).append("<div class='form-check'>" +
+                $('.' + id).append("<div class='form-check'>" +
                         "<input type='checkbox' class='form-check-input' name='categories'" + "value='"+ cat +"'/>" +
                         "<label class='form-check-label'>" + cat + "</label>" +
                     "</div>");
@@ -249,84 +260,6 @@ function loadCategories(type, id) {
          loadCategories('navbar', 'categoriesNavBar');
      }
  }
-/*
-  * Adds all existing items to the remove
-  * dropdown menu.
-  */
- function removeItemList(items) {
-     items.forEach(function(item) {
-         var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
-         var a = document.createElement("a");
-        a.value = item.name; 
-        a.textContent = item.name; 
-        a.onclick = function() { 
-            document.getElementById("previewList").innerHTML = ""; 
-            loadItemPreview(item, url); 
-            showRemoveList(); 
-            changeRemoveButton(item); 
-        }; 
-        var dropdown = document.getElementById("myDropdown");
-        dropdown.appendChild(a); 
-    }); 
-} 
-
-/*
-  * Adds all existing items to the edit
-  * dropdown menu.
-  */
- function editItemList(items) {
-     items.forEach(function(item) {
-         var url = 'https://cs341group4.tk' + baseURL + '/item.html?id=' + item.id;
-         var a = document.createElement("a");
-        a.value = item.name; 
-        a.textContent = item.name; 
-        a.onclick = function() { 
-            document.getElementById("previewEditList").innerHTML = ""; 
-            loadEditItemPreview(item, url); 
-            showEditList(); 
-            changeEditButton(item); 
-        }; 
-        var dropdown = document.getElementById("editDropdown");
-        dropdown.appendChild(a); 
-    }); 
-}
-/* 
- * Changes the onclick function of the remove button to be the 
- * current item the user selected. 
-  */
- function changeRemoveButton(item) {
-     let removeButton = document.getElementById("removeItemButton");
-     removeButton.onclick = function() {
-         let endpoint = "https://cs341group4.tk/Product/Delete";
-         console.log("Removing: " + endpoint + "?itemId="+item.id);
-         $.post(endpoint, {itemId : item.id})
-         .done(function(data) {
-             console.log(data);
-         })
-         .fail(function(data) {
-             console.log(data);
-         });
-    }
-} 
-
-/* 
- * Changes the onclick function of the edit button to be the 
- * current item the user selected. 
-  */
- function changeRemoveButton(item) {
-     let editButton = document.getElementById("editItemButton");
-     editButton.onclick = function() {
-         let endpoint = "https://cs341group4.tk/Product/Delete";
-         console.log("Removing: " + endpoint + "?itemId="+item.id);
-         $.post(endpoint, {itemId : item.id})
-         .done(function(data) {
-             console.log(data);
-         })
-         .fail(function(data) {
-             console.log(data);
-         });
-    }
-}
 
 /*
  * Loads an item's card and links to the item's main page.
@@ -692,16 +625,15 @@ function loadAdmin() {
     if($('#categoryList').length) {
         loadCategories('cattable', 'categoryList');
     }
-    if($('#newPromoCatList').length) {
+    if($('.newPromoCatList').length) {
         loadCategories('catcheck', 'newPromoCatList');
     }
-    if($('#newItemCatList').length) {
-        loadCategories('catcheck', 'newItemCatList');
-    }
+
     if($('#promotionList').length) {
         loadPromotions('promotionList');
     }
 }
+
 /*
  * Creates a new promotion
  */
@@ -710,14 +642,63 @@ function createPromotion(e) {
     var data = $('#addPromotion').serializeForm();
     $.post('https://cs341group4.tk/Promotion/Create', data)
     .done(function(data) {
+        lalert(data.message);
         location.reload();
-        alert(data.message);
     })
     .fail(function(data){
         alert(data.message);
     });
-
 }
+/*
+ * Ends a  promotion
+ */
+function endPromotion(e) {
+    e.preventDefault();
+    var data = $('#endPromotion').serializeForm();
+    $.post('https://cs341group4.tk/Promotion/End', data)
+    .done(function(data) {
+        lalert(data.message);
+        location.reload();
+    })
+    .fail(function(data){
+        alert(data.message);
+    });
+}
+/*
+ * Edits a  promotion
+ */
+function editPromotion(e) {
+    e.preventDefault();
+    var data = $('#editPromotion').serializeForm();
+    $.post('https://cs341group4.tk/Promotion/Edit', data)
+    .done(function(data) {
+        lalert(data.message);
+        location.reload();
+    })
+    .fail(function(data){
+        alert(data.message);
+    });
+}
+/*
+ * Updates the edit fields
+ */
+function editPromotionPopulate() {
+    var form = document.forms["editPromotion"];
+    $.post('https://cs341group4.tk/Promotion/Get', {code: form["code"].value})
+    .done(function(data) {
+        form["name"].value = data.value;
+        form["type"].value = data.type;
+        form["percent"].value = data.percent;
+        form["startDate"].value = data.startDate;
+        form["endDate"].value = data.endDate;
+        form["items"].value = data.items;
+        form["categories"].value = data.categories;
+    })
+    .fail(function(data){
+        alert(data.responseJSON.message);
+    });
+}
+
 /*
  * Creates a new category
  */
@@ -741,13 +722,13 @@ function removeCategory(e) {
     e.preventDefault();
     var fields = $('#removeCategory').serializeForm();
     $.post('https://cs341group4.tk/Category/Delete', fields)
-        .done(function(data) {
-            alert(data.message);
-            location.reload();
-        })
-        .fail(function(data){
-            alert(data.responseJSON.message);
-        });
+    .done(function(data) {
+        alert(data.message);
+        location.reload();
+    })
+    .fail(function(data){
+        alert(data.responseJSON.message);
+    });
 }
 
 /*
@@ -755,18 +736,67 @@ function removeCategory(e) {
  */
 function createItem(e) {
     e.preventDefault();
-    
     var fields = $('#newItem').serializeForm();
-    alert("debug3 : "+fields);
     $.post('https://cs341group4.tk/Product/Create', fields)
     .done(function(data) {
-        location.reload();
         alert(data.message);
+        location.reload();
     })
     .fail(function(data){
         alert(data.responseJSON.message);
     });
 }
+
+/*
+ * Deletes an existing item
+ */
+function deleteItem(e) {
+    e.preventDefault();
+    var fields = $('#deleteItem').serializeForm();
+    $.post('https://cs341group4.tk/Product/Delete', fields)
+    .done(function(data) {
+        alert(data.message);
+        location.reload();
+    })
+    .fail(function(data){
+        alert(data.responseJSON.message);
+    });
+}
+
+/*
+ * Edits an existing item
+ */
+function editItem(e) {
+    e.preventDefault();
+    var fields = $('#editItem').serializeForm();
+    $.post('https://cs341group4.tk/Product/Edit', fields)
+    .done(function(data) {
+        alert(data.message);
+        location.reload();
+    })
+    .fail(function(data){
+        alert(data.responseJSON.message);
+    });
+}
+
+/*
+ * Updates the edit fields
+ */
+function editItemPopulate() {
+    var form = document.forms["editItem"];
+    $.post('https://cs341group4.tk/Product/Get', {id: form["id"].value})
+    .done(function(data) {
+        form["name"].value = data.value;
+        form["price"].value = data.price;
+        form["quantity"].value = data.quantity;
+        form["image"].value = data.image;
+        form["description"].value = data.description;
+    })
+    .fail(function(data){
+        alert(data.responseJSON.message);
+    });
+}
+
 /*
  * Edits the site's paypal details
  */
@@ -776,6 +806,7 @@ function paypalEdit(e) {
     $.post('https://cs341group4.tk/Checkout/PayPalEdit', fields)
     .done(function(data) {
         alert(data.message);
+        location.reload();
     })
     .fail(function(data){
         alert(data.responseJSON.message);

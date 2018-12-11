@@ -18,13 +18,11 @@ class Promotion {
     static function Create($args): void {
 
         // Checks if the required variables are given
-        if (!($args['name'] && $args['code'] && $args['typeRadio'] && $args['percent'] && $args['endDate'] && $args['startDate'] && $args['tags-input'] && $args['categories'] && $args['token'])) {
+        if (!($args['name'] && $args['code'] && $args['type'] && $args['percent'] && $args['endDate'] && $args['startDate'] && $args['items'] && $args['categories'] && $args['token'])) {
             error("Missing required fields");
             return;
         }
 
-        $args['items'] = $args['tags-input'];
-        $args['type'] = $args['typeRadio'];
         $args['startDate'] = strtotime($args['startDate']);
         $args['endDate'] = strtotime($args['endDate']);
 
@@ -262,7 +260,6 @@ class Promotion {
     /*
      * Forcibly ends a promotion.
      * @param code: The promotion to look for.
-     * @return: Returns a json string of all promotions in the database.
      * @param token: An Admin Auth token
      */
     static function End($args): void {

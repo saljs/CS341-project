@@ -52,6 +52,7 @@ class Product {
         }
         success();
     }
+
     /* 
      * Gets info on an existing Product
      * @param id: id of the product to query from db
@@ -161,12 +162,51 @@ class Product {
 
     }
      /* 
-     * edits an existing Product
+     * Edits an existing Product
+     * @parm id: the product ID 
+     * @param name: name of the product
+     * @param price: price of the product
+     * @param quantity: number currently in stock
+     * @param image: visual for product, a path in the directory
+     * @param description: describes the product
+     * @param category: the categories that the product fits into, csv
+     * @param token: A User authentication token
      */
-    static function edit(): void {
-        echo "<h1>unimplimented, see functional req.s </h1>";
-    }
+    static function Edit($args): void {
+        //checks if the required variables were given
+        if(!($args['id'] && $args['name'] && $args['price'] && $args['quantity'] && $args['image'] && $args['description'] && $args['category'] && $args['token'])) {
+            error("Missing required fields");
+            return;
+        }
 
+        //check if user has access
+        try {
+            $user = new SiteUser(null, $args['token']);
+            if(!$user->isAuth() || $user->type != "admin") {
+                error("User doesn't have privileges to add items");
+                return;
+            }
+        }
+        catch(Exception $e) {
+            error($e->getMessage());
+            return;
+        }
+
+        //update database
+        $db = $GLOBALS['database'];
+        if(!$db->query("UPDATE product SET "
+            . "name = '" . $args['name'] . "', "
+            . "price = '" . $args['price'] . "', "
+            . "quantity = '" . $args['quantity'] . "', "
+            . "image = '" . $args['image'] . "', "
+            . "description = '" . $args['description'] . "', "
+            . "categrory = '" . $args['category'] . "' "
+            . "WHERE id = " . $args['id'] . ";")){
+            error($db->error);
+            return;
+        }
+        success();
+    }
 }
 class ViewableProduct{
     private $id;
