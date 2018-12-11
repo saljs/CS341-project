@@ -382,7 +382,7 @@ function loadEditItemPreview(item, url) {
         $.post('https://cs341group4.tk/Product/Get', {item.id: id})
             .done(function(data) {
                 $('#itemImg').attr("value",item.image);
-            })            
+            });            
 }
 /*
  * Inserts a list of items to page
