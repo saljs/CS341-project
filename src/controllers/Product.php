@@ -151,6 +151,7 @@ class Product {
         if(!$result)
         {
             error($db->error);
+            return;
         }
         if(!(mysqli_num_rows($result) > 0)) {
             error("Invalid Product ID");

@@ -54,7 +54,7 @@ class Promotion {
           . "'" . $args['categories'] . "', "
           . "'" . strtotime($args['startDate']) . "', "
           . "'" . strtotime($args['endDate']) . "');")) {
-            error(db->error);
+            error($db->error);
             return;
         }
         success();
@@ -111,7 +111,7 @@ class Promotion {
           . "categories = '" . $args['categories'] . "', "
           . "startdate = '" . strtotime($args['startDate']) . "', "
           . "enddate = '" . strtotime($args['endDate']) . "';")) {
-            error(db->error);
+            error($db->error);
             return;
         }
         success();
@@ -128,7 +128,7 @@ class Promotion {
 
         $result = $db->query($sql);
         if(!$result) {
-            error("There's an error in your SQL syntax: {$sql}");
+            error($db->error);
             return;
         }
 
@@ -210,7 +210,7 @@ class Promotion {
         $sql = "SELECT enddate FROM promotions WHERE code = '" . $args['code'] . "';";
         $result = $db->query($sql);
         if(!$result) {
-            error(db->error);
+            error($db->error);
             return;
         }
 
@@ -223,7 +223,7 @@ class Promotion {
                     // Change the end date to the current time.
                     $sql = "UPDATE promotions SET enddate= '" . $currenttime . "' WHERE code='" . $args[code] . "';";
                     if(!$db->query($sql)) {
-                        error(db->error);
+                        error($db->error);
                         return;
                     }
                 }
@@ -252,13 +252,11 @@ class ViewableDiscount {
         $db = $GLOBALS['database'];
         $sql = "SELECT * FROM promotions WHERE code = '{$code}';";
         $result = $db->query($sql);
-        if(!$result)
-            error("There's an error in your SQL syntax: {$sql}");
-
+        if(!$result) {
+            throw new Exception($db->error);
+        }
         if(mysqli_num_rows($result) < 1) {
-
             throw new Exception("Promotion Code does not exist");
-
         } else {
 
 
