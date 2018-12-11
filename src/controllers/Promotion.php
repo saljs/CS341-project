@@ -9,7 +9,7 @@ class Promotion {
      * @param code: the discount code
      * @param type: Either bogo or percent
      * @param percent: The discount percentage
-     * @param startDate: The epoch time-based end date of the promotion. https://www.epochconverter.com
+     * @param startDate: The epoch time-based start date of the promotion. https://www.epochconverter.com
      * @param endDate: The epoch time-based end date of the promotion. https://www.epochconverter.com
      * @param items: Comma delimited list of item ID's that the promotion works for.
      * @param categories: Comma delimited list of category names that the promotion works for.
@@ -111,7 +111,7 @@ class Promotion {
      * @param code: the discount code
      * @param type: Either bogo or percent
      * @param percent: The discount percentage
-     * @param startDate: The epoch time-based end date of the promotion. https://www.epochconverter.com
+     * @param startDate: The epoch time-based start date of the promotion. https://www.epochconverter.com
      * @param endDate: The epoch time-based end date of the promotion. https://www.epochconverter.com
      * @param items: Comma delimited list of item ID's that the promotion works for.
      * @param categories: Comma delimited list of category names that the promotion works for.
