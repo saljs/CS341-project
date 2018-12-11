@@ -104,13 +104,12 @@ class Promotion {
         // Update the promotion
         if(!$db->query("UPDATE promotions SET "
           . "name = '" . $args['name'] . "', "
-          . "code = '" . $args['code'] . "', " 
           . "type = '" . $args['type'] . "', " 
           . "percent = '" . $args['percent'] . "', "
           . "itemId = '" . $args['items'] . "', "
           . "categories = '" . implode(",", $args['categories']) . "', "
           . "startdate = '" . strtotime($args['startDate']) . "', "
-          . "enddate = '" . strtotime($args['endDate']) . "';")) {
+          . "enddate = '" . strtotime($args['endDate']) . "' WHERE code = '" . $args['code'] . "';")) {
             error($db->error);
             return;
         }
