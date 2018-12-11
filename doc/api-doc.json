@@ -344,6 +344,82 @@ paths:
                 type: string
 
   #Add in product edit method here
+  /Promotion/Create:
+    post:
+      tags:
+      - Promotion
+        Admin
+      summary: Adds a new promotion to the store.
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: formData
+        name: name
+        description: The name of the promotion
+        required: true
+        type: string
+      - in: formData
+        name: code
+        description: The promotion code
+        required: true
+        type: string
+      - in: formData
+        name: type
+        description: The type of the promotion
+        required: true
+        type: string
+        enum: [bogo, percentage]
+      - in: formData
+        name: percent
+        description: The percentage of the promotion's discount
+        required: true
+        type: number
+      - in: formData
+        name: startDate
+        description: The epoch time-based start date of the promotion
+        required: true
+        type: string
+        format: dateTime
+      - in: formData
+        name: endDate
+        description: The epoch time-based end date of the promotion
+        required: true
+        type: string
+        format: dateTime
+      - in: formData
+        name: items
+        description: Comma delimited list of item ID's that the promotion works for
+        required: true
+        type: string
+        collectionFormat: csv
+      - in: formData
+        name: categories
+        description: Comma delimited list of category names that the promotion works for
+        required: true
+        type: string
+        collectionFormat: csv
+      - in: formData
+        name: token
+        description: An Admin Auth token
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
 
   /Cart/Add:
     post:
