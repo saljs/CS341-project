@@ -480,6 +480,73 @@ type: string
             properties:
               message:
                 type: string
+  
+  /Promotion/End:
+    post:
+      tags:
+      - Promotion
+        Admin
+      summary: Forcibly ends a promotion
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: formData
+        name: code
+        description: The promotion code
+        required: true
+        type: string
+      - in: formData
+        name: token
+        description: An Admin Auth token
+        required: true
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /Promotion/GetAll:
+    post:
+      tags:
+      - Promotion
+      summary: Get all existing promotions and their data
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: formData
+        name: siteName
+        description: The name of your site
+        type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
 
   /Promotion/Edit:
     post:
