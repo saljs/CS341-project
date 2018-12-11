@@ -266,7 +266,7 @@ class Cart {
                     $prod = new ViewableProduct((int)$itemId);
                 }
                 catch (Exception $e) {
-                    error($e->getMessage());
+                    continue;
                 }
                 $item = new stdClass();
                 $item->id = $itemId;
