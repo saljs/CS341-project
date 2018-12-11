@@ -339,6 +339,7 @@ function loadItemPreview(item, url) {
  * Loads an item's card and links to the item's main page.
  */
 function loadEditItemPreview(item, url) {
+    var n = item.name;
     $('#previewEditList').append(
         '<div class="mb-4">'+'' +
         '<div class="card h-100">'+
@@ -356,7 +357,7 @@ function loadEditItemPreview(item, url) {
     '<form id="newItem">'+
        '<div class="form-group">'+
             '<label>Name</label>'+
-            '<input class="form-control" name="name" value='+item.name+'>'+
+            '<input type="text" class="form-control" name="name" value='+n+'>'+
         '</div>'+
         '<div class="form-group">'+
             '<label>Price</label>'+
