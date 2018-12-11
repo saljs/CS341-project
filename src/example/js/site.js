@@ -367,7 +367,7 @@ function loadEditItemPreview(item, url) {
         '</div>'+
         '<div class="form-group">'+
             '<label>Image</label>'+
-            '<input type="url" class="form-control" name="image" value='+item.image+'>'+
+            '<input id="image" type="url" class="form-control" name="image" >'+
         '</div>'+
         '<div class="form-group">'+
             '<label>Description</label>'+
@@ -379,7 +379,10 @@ function loadEditItemPreview(item, url) {
         '</div>'+
         '<input id="editItemButton" type="submit" class="btn btn-primary" value="submitChanges"><br>'+
     '</form>');
-                    
+        $.post('https://cs341group4.tk/Product/Get', {item.id: id})
+            .done(function(data) {
+                $('#itemImg').attr("value",item.image);
+            })            
 }
 /*
  * Inserts a list of items to page
