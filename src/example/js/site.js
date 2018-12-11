@@ -604,7 +604,7 @@ function createPromotion(e) {
     var data = $('#addPromotion').serializeForm();
     $.post('https://cs341group4.tk/Promotion/Create', data)
     .done(function(data) {
-        lalert(data.message);
+        alert(data.message);
         location.reload();
     })
     .fail(function(data){
@@ -619,7 +619,7 @@ function endPromotion(e) {
     var data = $('#endPromotion').serializeForm();
     $.post('https://cs341group4.tk/Promotion/End', data)
     .done(function(data) {
-        lalert(data.message);
+        alert(data.message);
         location.reload();
     })
     .fail(function(data){
@@ -634,7 +634,7 @@ function editPromotion(e) {
     var data = $('#editPromotion').serializeForm();
     $.post('https://cs341group4.tk/Promotion/Edit', data)
     .done(function(data) {
-        lalert(data.message);
+        alert(data.message);
         location.reload();
     })
     .fail(function(data){
