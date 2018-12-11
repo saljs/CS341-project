@@ -377,7 +377,7 @@ function loadEditItemPreview(item, url) {
             '<label>Category</label>'+
             '<input type="text" class="form-control" name="category" value='+item.category+'>'+
         '</div>'+
-        '<input id="editItemButton" type="submit" class="btn btn-primary" value="submitChanges"><br>'+
+        '<input id="editItemButton" type="submit" class="btn btn-primary" value="Submit Changes"><br>'+
     '</form>');         
 }
 /*
