@@ -339,7 +339,6 @@ function loadItemPreview(item, url) {
  * Loads an item's card and links to the item's main page.
  */
 function loadEditItemPreview(item, url) {
-    var n = item.name;
     $('#previewEditList').append(
         '<div class="mb-4">'+'' +
         '<div class="card h-100">'+
@@ -357,27 +356,27 @@ function loadEditItemPreview(item, url) {
     '<form id="newItem">'+
        '<div class="form-group">'+
             '<label>Name</label>'+
-            '<input type="text" class="form-control" name="name" value='+n+'>'+
+            '<input type="text" class="form-control" name="name" value='+item.name+'>'+
         '</div>'+
         '<div class="form-group">'+
             '<label>Price</label>'+
-            '<input type="number" class="form-control" name="price" placeholder="100">'+
+            '<input type="number" class="form-control" name="price" value='+item.price+'>'+
         '</div>'+
         '<div class="form-group">'+
             '<label>Quantity</label>'+
-            '<input type="number" class="form-control" name="quantity" placeholder="400">'+
+            '<input type="number" class="form-control" name="quantity" value='+item.quantity+'>'+
         '</div>'+
         '<div class="form-group">'+
             '<label>Image</label>'+
-            '<input type="url" class="form-control" name="image">'+
+            '<input type="url" class="form-control" name="image" value='+item.image+'>'+
         '</div>'+
         '<div class="form-group">'+
             '<label>Description</label>'+
-            '<input type="text" class="form-control" name="description" placeholder="waves microly">'+
+            '<input type="text" class="form-control" name="description" value='+item.description+'>'+
         '</div>'+
         '<div class="form-group">'+
             '<label>Category</label>'+
-            '<input type="text" class="form-control" name="category" placeholder="i.e. electronics">'+
+            '<input type="text" class="form-control" name="category" value='+item.category+'>'+
         '</div>'+
         '<input id="editItemButton" type="submit" class="btn btn-primary" value="submitChanges"><br>'+
     '</form>');
