@@ -352,11 +352,13 @@ function loadEditItemPreview(item, url) {
         '</div>'+
         '</div>'+
         '</div>');
+                $.post('https://cs341group4.tk/Product/Get', {id: id})
+            .done(function(data) {
     $('#previewEditList').append(
     '<form id="newItem">'+
        '<div class="form-group">'+
             '<label>Name</label>'+
-            '<input type="text" class="form-control" name="name" placeholder="Microwave">'+
+            '<input type="text" class="form-control" name="name" placeholder='+data.name+'>'+
         '</div>'+
         '<div class="form-group">'+
             '<label>Price</label>'+
@@ -380,6 +382,7 @@ function loadEditItemPreview(item, url) {
         '</div>'+
         '<input id="editItemButton" type="submit" class="btn btn-primary" value="submitChanges"><br>'+
     '</form>');
+                    })
 }
 /*
  * Inserts a list of items to page
