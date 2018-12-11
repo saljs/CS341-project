@@ -163,28 +163,12 @@ function loadPromotions(id) {
                     "<th scope='row'>" + p + "</th>" +
                     "<td>" + dataS.name + "</td>" +
                     "<td>" + dataS.code + "</td>" +
-                    // "<td>" + new Date(dataS.startdate*1000).toLocaleString() + "</td>" +
                     "<td>" + new Date(dataS.enddate*1000).toLocaleString() + "</td>" +
                     "<td>" + dataS.items + "</td>" +
                 "</tr>");
             }
         }
-    }).fail(function(data) {
-
     });
-    //*
-    if($('#removePromoDropdown').length) { 
-        $.get('https://cs341group4.tk/Promotion/GetAll') 
-            .done(function (data) { 
-                $('#message').html("");
-                 removePromoList(data.promotions);
-                 console.log(data.promotions);
-             })
-             .fail(function (data) {
-                $('#message').html(data.responseJSON.message); 
-            }); 
-    }
-    
 }
 /*
  * Loads a list of categories
@@ -227,38 +211,17 @@ function loadCategories(type, id) {
              .done(function (data) {
                  $('#message').html("");
                  itemList(data.products);
-                 console.log(data.products);
              })
             .fail(function (data) { 
                 $('#message').html(data.responseJSON.message); 
             }); 
-    } if($('#myDropdown').length) { 
-        $.get('https://cs341group4.tk/Product/GetAll' + window.location.search) 
-            .done(function (data) { 
-                $('#message').html("");
-                 removeItemList(data.products);
-                 console.log(data.products);
-             })
-             .fail(function (data) {
-                $('#message').html(data.responseJSON.message); 
-            }); 
-    } if($('#editDropdown').length) { 
-        $.get('https://cs341group4.tk/Product/GetAll' + window.location.search) 
-            .done(function (data) { 
-                $('#message').html("");
-                 editItemList(data.products);
-                 console.log(data.products);
-             })
-             .fail(function (data) {
-                $('#message').html(data.responseJSON.message); 
-            }); 
-    }
-     if($('#categoryField').length && $.urlParam('category')) {
+    } 
+    if($('#categoryField').length && $.urlParam('category')) {
         $('#categoryField').val($.urlParam('category')); 
     } 
-     if($('#categoriesNavBar').length) {
-         loadCategories('navbar', 'categoriesNavBar');
-     }
+    if($('#categoriesNavBar').length) {
+        loadCategories('navbar', 'categoriesNavBar');
+    }
  }
 
 /*
@@ -594,7 +557,6 @@ function loadHistory() {
  * Displays a user's order history
  */
 function displayHistory(orders) {
-    console.log(orders);
     var orderList = $('<ul/>');
     orders.forEach(function(order) {
         var listItem = $('<li/>');
@@ -689,8 +651,10 @@ function editPromotionPopulate() {
         form["name"].value = data.name;
         form["type"].value = data.type;
         form["percent"].value = data.percent;
-        form["startDate"].value = new Date(data.startDate*1000);
-        form["endDate"].value = new Date(data.endDate*1000);
+        //special date handling
+        var tzoffset = (new Date()).getTimezoneOffset() * 60000;
+        form["startDate"].value = (new Date(data.startDate*1000 - tzoffset)).toISOString().slice(0, 19);
+        form["endDate"].value = (new Date(data.endDate*1000 - tzoffset)).toISOString().slice(0, 19);
         form["items"].value = data.items;
         form["categories"].value = data.categories;
     })
@@ -813,26 +777,6 @@ function paypalEdit(e) {
     });
 }
 
-function updateURLParameter(url, param, paramVal){
-    var newAdditionalURL = "";
-    var tempArray = url.split("?");
-    var baseURL = tempArray[0];
-    var additionalURL = tempArray[1];
-    var temp = "";
-    if (additionalURL) {
-        tempArray = additionalURL.split("&");
-        for (var i=0; i<tempArray.length; i++){
-            if(tempArray[i].split('=')[0] != param){
-                newAdditionalURL += temp + tempArray[i];
-                temp = "&";
-            }
-        }
-    }
-
-    var rows_txt = temp + "" + param + "=" + paramVal;
-    return baseURL + "?" + newAdditionalURL + rows_txt;
-}
-
 /****************************************************************************
  * Utility functions
  ***************************************************************************/
@@ -867,4 +811,3 @@ $.fn.serializeForm = function(){
    });
    return o;
 };
-
